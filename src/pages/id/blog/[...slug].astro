@@ -1,19 +1,19 @@
 ---
 import { render } from "astro:content";
-import PostLayout from "@/layouts/PostLayout.astro";
-import PostNavigation from "@/components/widgets/PostNavigation.astro";
-import ShareButtons from "@/components/widgets/ShareButtons.astro";
-import RelatedPosts from "@/components/widgets/RelatedPosts.astro";
 import GiscusComments from "@/components/ui/GiscusComments.astro";
+import PostNavigation from "@/components/widgets/PostNavigation.astro";
+import RelatedPosts from "@/components/widgets/RelatedPosts.astro";
+import ShareButtons from "@/components/widgets/ShareButtons.astro";
+import { themeConfig } from "@/config";
+import type { Locale } from "@/i18n";
+import PostLayout from "@/layouts/PostLayout.astro";
 import {
+	getAdjacentPosts,
 	getAllPostSlugs,
 	getPostBySlug,
 	getPostSlug,
-	getAdjacentPosts,
 	getRelatedPostsByTags,
 } from "@/utils/i18n-content";
-import type { Locale } from "@/i18n";
-import { themeConfig } from "@/config";
 
 export async function getStaticPaths() {
 	const slugs = await getAllPostSlugs();

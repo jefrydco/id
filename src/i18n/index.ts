@@ -1,15 +1,15 @@
+import { defaultLocale, type Locale, languageTags } from "./locales";
 import { en, type Translations } from "./translations/en";
 import { id } from "./translations/id";
-import { defaultLocale, languageTags, type Locale } from "./locales";
 
-export {
-	locales,
-	defaultLocale,
-	localeLabels,
-	languageTags,
-	isValidLocale,
-} from "./locales";
 export type { Locale } from "./locales";
+export {
+	defaultLocale,
+	isValidLocale,
+	languageTags,
+	localeLabels,
+	locales,
+} from "./locales";
 export type { Translations } from "./translations/en";
 
 const translations: Record<Locale, Translations> = {

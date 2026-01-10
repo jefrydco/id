@@ -1,32 +1,32 @@
 ---
 import "@/styles/global.css";
-import type { PostLayoutProps } from "@/types";
-import FormattedDate from "@/components/widgets/FormattedDate.astro";
-import FootnoteScroll from "@/components/widgets/FootnoteScroll.astro";
 import BaseHead from "@/components/layout/BaseHead.astro";
 import Footer from "@/components/layout/Footer.astro";
 import BackButton from "@/components/ui/BackButton.astro";
+import CopyCode from "@/components/ui/CopyCode.astro";
 import FloatingActions from "@/components/ui/FloatingActions.astro";
-import TableOfContents from "@/components/ui/TableOfContents.astro";
+import FocusModeOverlay from "@/components/ui/FocusModeOverlay.astro";
+import GitHubCard from "@/components/ui/GitHubCard.astro";
 import GradientMask from "@/components/ui/GradientMask.astro";
+import ImageDownload from "@/components/ui/ImageDownload.astro";
 import ImageOptimizer from "@/components/ui/ImageOptimizer.astro";
 import ImageViewer from "@/components/ui/ImageViewer.astro";
-import GitHubCard from "@/components/ui/GitHubCard.astro";
 import LinkCard from "@/components/ui/LinkCard.astro";
-import NeoDBCard from "@/components/ui/NeoDBCard.astro";
-import VideoEmbed from "@/components/ui/VideoEmbed.astro";
-import XPOST from "@/components/ui/XPOST.astro";
-import CopyCode from "@/components/ui/CopyCode.astro";
 import MathDownload from "@/components/ui/MathDownload.astro";
 import MermaidDownload from "@/components/ui/MermaidDownload.astro";
-import ImageDownload from "@/components/ui/ImageDownload.astro";
-import FocusModeOverlay from "@/components/ui/FocusModeOverlay.astro";
-import TwoslashFloating from "@/components/ui/TwoslashFloating.astro";
+import NeoDBCard from "@/components/ui/NeoDBCard.astro";
 import ReadingProgress from "@/components/ui/ReadingProgress.astro";
+import TableOfContents from "@/components/ui/TableOfContents.astro";
+import TwoslashFloating from "@/components/ui/TwoslashFloating.astro";
+import VideoEmbed from "@/components/ui/VideoEmbed.astro";
+import XPOST from "@/components/ui/XPOST.astro";
+import FootnoteScroll from "@/components/widgets/FootnoteScroll.astro";
+import FormattedDate from "@/components/widgets/FormattedDate.astro";
 import TagList from "@/components/widgets/TagList.astro";
-import BaseLayout from "@/layouts/BaseLayout.astro";
 import { themeConfig } from "@/config";
 import { defaultLocale, getTranslations } from "@/i18n";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import type { PostLayoutProps } from "@/types";
 
 const {
 	title,

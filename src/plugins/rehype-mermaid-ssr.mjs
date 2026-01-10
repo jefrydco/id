@@ -6,9 +6,9 @@
  * (light, dark, reading) that are toggled via CSS based on html class.
  */
 
+import { toText } from "hast-util-to-text";
 import puppeteer from "puppeteer";
 import { visit } from "unist-util-visit";
-import { toText } from "hast-util-to-text";
 
 // Theme configurations from MermaidTheme.astro
 const mermaidThemes = {

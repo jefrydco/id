@@ -1,11 +1,11 @@
 ---
-import ThemeToggle from "@/components/ui/ThemeToggle.astro";
-import LanguageSwitcher from "@/components/ui/LanguageSwitcher.astro";
-import SearchButton from "@/components/ui/SearchButton.astro";
+import { ArrowUp } from "@lucide/astro";
 import FocusModeToggle from "@/components/ui/FocusModeToggle.astro";
 import FontToggle from "@/components/ui/FontToggle.astro";
-import { getTranslations, defaultLocale, type Locale } from "@/i18n";
-import { ArrowUp } from "@lucide/astro";
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher.astro";
+import SearchButton from "@/components/ui/SearchButton.astro";
+import ThemeToggle from "@/components/ui/ThemeToggle.astro";
+import { defaultLocale, getTranslations, type Locale } from "@/i18n";
 
 interface Props {
 	locale?: Locale;

@@ -1,11 +1,11 @@
 ---
 import { ClientRouter } from "astro:transitions";
-import ThemeManager from "@/components/ui/ThemeManager.astro";
-import FaviconThemeSwitcher from "@/components/ui/FaviconThemeSwitcher.astro";
 import TransitionWrapper from "@/components/layout/TransitionWrapper.astro";
+import FaviconThemeSwitcher from "@/components/ui/FaviconThemeSwitcher.astro";
 import SkipLink from "@/components/ui/SkipLink.astro";
+import ThemeManager from "@/components/ui/ThemeManager.astro";
+import { defaultLocale, getLanguageTag } from "@/i18n";
 import type { LayoutProps } from "@/types";
-import { getLanguageTag, defaultLocale } from "@/i18n";
 
 type Props = LayoutProps;
 

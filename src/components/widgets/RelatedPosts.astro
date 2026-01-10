@@ -1,8 +1,8 @@
 ---
-import FormattedDate from "@/components/widgets/FormattedDate.astro";
-import { getTranslations, defaultLocale, type Locale } from "@/i18n";
-import { getPostSlug } from "@/utils/i18n-content";
 import type { CollectionEntry } from "astro:content";
+import FormattedDate from "@/components/widgets/FormattedDate.astro";
+import { defaultLocale, getTranslations, type Locale } from "@/i18n";
+import { getPostSlug } from "@/utils/i18n-content";
 
 interface Props {
 	posts: CollectionEntry<"blog">[];

@@ -42,7 +42,7 @@ jobs:
         run: pnpm install --frozen-lockfile --prefer-offline
 
       - name: Check code quality
-        run: pnpm exec biome check .
+        run: pnpm exec biome ci .
 
       - name: Build project
         run: pnpm build

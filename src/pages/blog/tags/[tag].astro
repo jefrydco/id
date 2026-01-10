@@ -1,11 +1,11 @@
 ---
-import IndexLayout from "@/layouts/IndexLayout.astro";
-import PostList from "@/components/widgets/PostList.astro";
 import Pagination from "@/components/widgets/Pagination.astro";
+import PostList from "@/components/widgets/PostList.astro";
 import { themeConfig } from "@/config";
-import { getAllUniqueTags, getPostsByTag } from "@/utils/tags";
-import { paginatePosts } from "@/utils/pagination";
 import { defaultLocale, getTranslations } from "@/i18n";
+import IndexLayout from "@/layouts/IndexLayout.astro";
+import { paginatePosts } from "@/utils/pagination";
+import { getAllUniqueTags, getPostsByTag } from "@/utils/tags";
 
 export async function getStaticPaths() {
 	const tags = await getAllUniqueTags();

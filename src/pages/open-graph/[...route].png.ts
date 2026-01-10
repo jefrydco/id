@@ -1,10 +1,10 @@
-import type { APIRoute, GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
-import { generateOGImage } from "@/utils/og-image";
+import type { APIRoute, GetStaticPaths } from "astro";
 import { themeConfig } from "@/config";
-import { locales, defaultLocale, type Locale } from "@/i18n";
-import { parsePostId, isDraft } from "@/utils/i18n-content";
+import { defaultLocale, type Locale, locales } from "@/i18n";
+import { isDraft, parsePostId } from "@/utils/i18n-content";
 import { parseTalkId } from "@/utils/i18n-talk-content";
+import { generateOGImage } from "@/utils/og-image";
 
 interface OGImageProps {
 	title: string;
