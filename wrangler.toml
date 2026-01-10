@@ -1,0 +1,23 @@
+main = "dist/_worker.js/index.js"
+name = "jefrydco"
+compatibility_date = "2025-12-26"
+compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
+
+[assets]
+binding = "ASSETS"
+directory = "./dist"
+
+[observability]
+enabled = true
+
+[[routes]]
+pattern = "jefrydco.id"
+custom_domain = true
+
+[[routes]]
+pattern = "jefrydco.dev"
+custom_domain = true
+
+[[routes]]
+pattern = "jefryd.co"
+custom_domain = true
