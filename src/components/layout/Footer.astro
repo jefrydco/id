@@ -1,0 +1,85 @@
+---
+import { themeConfig } from "@/config";
+import { getTranslations, defaultLocale, type Locale } from "@/i18n";
+
+interface Props {
+	locale?: Locale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const t = getTranslations(locale);
+const today = new Date();
+---
+
+<footer data-pagefind-ignore="all">
+  <div class="footer-content">
+    <div class="copyright">
+      <span class="date">
+        &copy;
+        {today.getFullYear()}
+      </span>
+      {themeConfig.site.author}
+    </div>
+    <div class="powered-by">
+      {t.ui.poweredBy}{' '}
+      <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" class="external-link-icon" aria-hidden="true"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> &{' '}
+      <a href="https://github.com/the3ash/astro-chiri" target="_blank" rel="noopener noreferrer">Chiri<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" class="external-link-icon" aria-hidden="true"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>
+    </div>
+  </div>
+</footer>
+<style>
+  footer {
+    font-size: var(--font-size-s);
+    font-weight: var(--font-weight-light);
+    line-height: 1.75;
+    color: var(--text-secondary);
+    opacity: 0.75;
+    margin-top: 4rem;
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+
+  .copyright,
+  .powered-by {
+    white-space: nowrap;
+  }
+
+  .copyright .date {
+    opacity: 1;
+  }
+
+  footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease-out;
+  }
+
+  footer a:hover {
+    color: var(--text-primary);
+  }
+
+  footer a:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 0.125rem;
+  }
+
+  footer a .external-link-icon {
+    display: inline-block;
+    width: 0.75em;
+    height: 0.75em;
+    margin-left: 0.15em;
+    vertical-align: baseline;
+    position: relative;
+    top: 0.05em;
+    opacity: 0.6;
+    flex-shrink: 0;
+  }
+</style>

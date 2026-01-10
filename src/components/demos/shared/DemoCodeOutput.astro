@@ -1,0 +1,58 @@
+---
+interface Props {
+  class?: string;
+  id?: string;
+  maxHeight?: string;
+  'aria-live'?: 'polite' | 'assertive' | 'off';
+  'aria-label'?: string;
+  copyButtonLabel?: string;
+}
+
+const {
+  class: className,
+  id,
+  maxHeight = '20rem',
+  'aria-live': ariaLive = 'polite',
+  'aria-label': ariaLabel = 'Generated code',
+  copyButtonLabel = 'Copy code to clipboard',
+} = Astro.props;
+
+const wrapperClasses = ['demo-code-output', 'copy-code-wrapper', className].filter(Boolean).join(' ');
+---
+
+<div class={wrapperClasses} id={id}>
+  <button
+    class="copy-button"
+    type="button"
+    title={copyButtonLabel}
+    aria-label={copyButtonLabel}
+  ></button>
+  <pre
+    class="demo-code-block copy-code-block"
+    style={`max-height: ${maxHeight}`}
+    aria-live={ariaLive}
+    aria-label={ariaLabel}
+  ><code><slot /></code></pre>
+</div>
+
+<style>
+  .demo-code-output {
+    position: relative;
+    margin-top: 1rem;
+  }
+
+  .demo-code-block {
+    background: var(--astro-code-background);
+    border-radius: 6px;
+    padding: 1rem;
+    font-family: var(--mono);
+    font-size: var(--font-size-s);
+    color: var(--text-primary);
+    margin: 0;
+    overflow: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  /* Copy button styling is handled by CopyCode.astro globally */
+</style>

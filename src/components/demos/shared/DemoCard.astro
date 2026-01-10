@@ -1,0 +1,41 @@
+---
+interface Props {
+  id?: string;
+  class?: string;
+  'data-lang'?: 'en' | 'id';
+  'aria-label'?: string;
+  role?: string;
+}
+
+const {
+  id,
+  class: className,
+  'data-lang': dataLang,
+  'aria-label': ariaLabel,
+  role,
+  ...rest
+} = Astro.props;
+
+const classes = ['demo-card', className].filter(Boolean).join(' ');
+---
+
+<div
+  id={id}
+  class={classes}
+  data-lang={dataLang}
+  aria-label={ariaLabel}
+  role={role}
+  {...rest}
+>
+  <slot />
+</div>
+
+<style>
+  .demo-card {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+</style>

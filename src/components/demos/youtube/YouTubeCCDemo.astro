@@ -1,0 +1,879 @@
+---
+import DemoCard from '../shared/DemoCard.astro';
+import DemoInput from '../shared/DemoInput.astro';
+import DemoButton from '../shared/DemoButton.astro';
+
+interface Props {
+  lang?: 'en' | 'id';
+}
+
+const { lang = 'en' } = Astro.props;
+
+const t = {
+  en: {
+    title: "YouTube Closed Captions Search Demo",
+    videoTitle: "Video Title",
+    channelName: "Channel Name",
+    by: "by",
+    note: "Note:",
+    demoNotices: [
+      "Only YouTube video that <strong>has English subtitle</strong> is supported.",
+      "<strong>Can't be used</strong> on <strong>copyrighted YouTube video</strong>, such as music video.",
+      "Each YouTube URL <strong>takes a longer time to search at first</strong> because the cache isn't available yet.",
+      "To minimize the data usage, the auto demo feature <strong>only runs if this demo section is visible</strong> on your browser viewport."
+    ],
+    notSearching: "Not looking for any keyword, try enter some keyword.",
+    searchingKeywordLessThanThree: "The keyword should be more than 3 characters, please add more.",
+    searching: "Please wait, searching for \"<strong>{keyword}</strong>\".....",
+    searchingError: "There is something wrong, please try again later or use another keyword.",
+    inputYoutubeUrlLabel: "YouTube URL",
+    inputKeywordLabel: "Search Keyword",
+    autoDemo: "Auto Demo",
+    autoDemoStart: "Start Auto Demo",
+    autoDemoStop: "Stop Auto Demo",
+    timer: "Timer: {timer}s",
+    playVideoAt: "Play Video at {time}s",
+    reset: "Reset",
+    searchResultInfo: "{total} search results found. Currently on page {page}",
+    firstPage: "First Page",
+    lastPage: "Last Page",
+    nextPage: "Next Page",
+    prevPage: "Prev Page"
+  },
+  id: {
+    title: "Demo Pencarian Teks Tertutup YouTube",
+    videoTitle: "Judul Video",
+    channelName: "Nama Kanal",
+    by: "oleh",
+    note: "Catatan:",
+    demoNotices: [
+      "Hanya video YouTube yang <strong>memiliki <em>subtitle</em> berbahasa Inggris</strong> yang didukung.",
+      "<strong>Tidak dapat digunakan</strong> pada <strong>video YouTube berhak cipta</strong>, seperti musik video.",
+      "Setiap pranala YouTube <strong>memerlukan waktu yang lebih lama saat pertama kali dicari</strong> karena temboloknya (<em>cache</em>) belum tersedia.",
+      "Untuk mengurangi penggunaan data, fitur demo otomatis <strong>hanya berjalan jika bagian demo ini terlihat</strong> di layar peramban (<em>browser</em>) teman-teman."
+    ],
+    notSearching: "Tidak sedang mencari kata kunci apapun, coba masukkan sebuah kata kunci.",
+    searchingKeywordLessThanThree: "Kata kunci yang digunakan harus lebih banyak dari 3 karakter ya.",
+    searching: "Tunggu ya, sedang mencari kata kunci \"<strong>{keyword}</strong>\".....",
+    searchingError: "Sepertinya ada yang salah nih, coba beberapa saat lagi atau coba menggunakan kata kunci lain ya.",
+    inputYoutubeUrlLabel: "Pranala YouTube",
+    inputKeywordLabel: "Kata Kunci Pencarian",
+    autoDemo: "Demo Otomatis",
+    autoDemoStart: "Mulai Demo Otomatis",
+    autoDemoStop: "Hentikan Demo Otomatis",
+    timer: "Timer: {timer}s",
+    playVideoAt: "Putar video pada detik ke-{time}",
+    reset: "Atur Ulang",
+    searchResultInfo: "{total} hasil pencarian ditemukan. Saat ini berada pada halaman ke-{page}",
+    firstPage: "Halaman Pertama",
+    lastPage: "Halaman Terakhir",
+    nextPage: "Halaman Berikutnya",
+    prevPage: "Halaman Sebelumnya"
+  }
+}[lang];
+---
+
+<DemoCard class="yt-cc-demo" id="yt-cc-demo" data-lang={lang}>
+  <h3 class="demo-title">{t.title}</h3>
+
+  <figure class="demo-video" tabindex="0">
+    <div class="video-thumbnail">
+      <img class="video-thumbnail-img" src="" alt="YouTube video thumbnail" />
+      <div class="video-play-button">▸</div>
+    </div>
+    <div class="video-embed" style="display: none;">
+      <iframe
+        class="demo-iframe"
+        src=""
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </figure>
+
+  <h4 class="demo-subtitle">
+    "<span class="video-title-display">{t.videoTitle}</span>" {t.by}
+    <a class="channel-link" href="#" target="_blank" rel="noopener noreferrer">
+      <em class="channel-name-display">{t.channelName}</em>
+    </a>
+  </h4>
+
+  <blockquote class="demo-notice">
+    <strong>{t.note}</strong>
+    <ul>
+      {t.demoNotices.map(notice => <li set:html={notice} />)}
+    </ul>
+  </blockquote>
+
+  <div class="demo-form">
+    <label class="demo-label">
+      {t.inputYoutubeUrlLabel}
+      <DemoInput type="text" class="yt-url" width="full" placeholder="https://www.youtube.com/watch?v=..." aria-label={t.inputYoutubeUrlLabel} />
+    </label>
+
+    <label class="demo-label">
+      {t.inputKeywordLabel}
+      <DemoInput type="text" class="yt-keyword" width="full" placeholder="Enter keyword..." aria-label={t.inputKeywordLabel} />
+    </label>
+  </div>
+
+  <div class="demo-status-section">
+    <p class="demo-status">{t.notSearching}</p>
+    <p class="demo-timer">{t.timer.replace('{timer}', '15')}</p>
+  </div>
+
+  <div class="demo-controls">
+    <DemoButton class="btn-auto-demo">{t.autoDemoStart}</DemoButton>
+    <DemoButton class="btn-reset">{t.reset}</DemoButton>
+  </div>
+
+  <hr class="demo-divider" />
+
+  <div class="demo-pagination-info">
+    <p class="search-result-info">{t.searchResultInfo.replace('{total}', '0').replace('{page}', '0')}</p>
+  </div>
+
+  <div class="demo-pagination-controls">
+    <DemoButton class="btn-first" disabled>{t.firstPage}</DemoButton>
+    <DemoButton class="btn-prev" disabled>{t.prevPage}</DemoButton>
+    <DemoButton class="btn-next" disabled>{t.nextPage}</DemoButton>
+    <DemoButton class="btn-last" disabled>{t.lastPage}</DemoButton>
+  </div>
+
+  <hr class="demo-divider" />
+
+  <ul class="demo-results"></ul>
+</DemoCard>
+
+<script define:vars={{ lang }}>
+  (function() {
+    // Constants
+    const MAXIMUM_AUTO_TYPE_INTERVAL = 15000;
+    const MAXIMUM_AUTO_TYPE_KEYWORD_INTERVAL = 250;
+    const MAXIMUM_TIMER_INTERVAL = 15;
+    const API_URL = 'https://cari-teks-video-api.vercel.app/api/search';
+    const YOUTUBE_WATCH_URL = 'https://www.youtube.com/watch';
+
+    const KEYWORD_LIST = {
+      'CWu29PRCUvQ': ['Revolution', 'Human', 'Species'],
+      'klnvttPfOUM': ['Web', 'Page', 'Great'],
+      'QRt7LjqJ45k': ['Slow', 'Aging', 'Reverse'],
+      '2oVYQpbrQu4': ['SpaceX', 'Elon', 'Industry'],
+      'nx2-4l4s4Nw': ['Nuclear', 'Energy', 'Humanity'],
+      '0vdltv7kqU4': ['People', 'Drug', 'Micro'],
+      'okpg-lVWLbE': ['Student', 'Problem', 'Education']
+    };
+
+    const DEFAULT_RESULTS = {
+      data: [],
+      meta: { title: '', channelName: '', channelUrl: '', channelLogoUrl: '' },
+      first: '', last: '', prev: '', next: '',
+      total: 0, page: 0
+    };
+
+    // Translations
+    const translations = {
+      en: {
+        videoTitle: "Video Title",
+        channelName: "Channel Name",
+        notSearching: "Not looking for any keyword, try enter some keyword.",
+        searchingKeywordLessThanThree: "The keyword should be more than 3 characters, please add more.",
+        searching: "Please wait, searching for \"<strong>{keyword}</strong>\".....",
+        searchingError: "There is something wrong, please try again later or use another keyword.",
+        autoDemoStart: "Start Auto Demo",
+        autoDemoStop: "Stop Auto Demo",
+        timer: "Timer: {timer}s",
+        playVideoAt: "Play Video at {time}s",
+        searchResultInfo: "{total} search results found. Currently on page {page}"
+      },
+      id: {
+        videoTitle: "Judul Video",
+        channelName: "Nama Kanal",
+        notSearching: "Tidak sedang mencari kata kunci apapun, coba masukkan sebuah kata kunci.",
+        searchingKeywordLessThanThree: "Kata kunci yang digunakan harus lebih banyak dari 3 karakter ya.",
+        searching: "Tunggu ya, sedang mencari kata kunci \"<strong>{keyword}</strong>\".....",
+        searchingError: "Sepertinya ada yang salah nih, coba beberapa saat lagi atau coba menggunakan kata kunci lain ya.",
+        autoDemoStart: "Mulai Demo Otomatis",
+        autoDemoStop: "Hentikan Demo Otomatis",
+        timer: "Timer: {timer}s",
+        playVideoAt: "Putar video pada detik ke-{time}",
+        searchResultInfo: "{total} hasil pencarian ditemukan. Saat ini berada pada halaman ke-{page}"
+      }
+    };
+
+    const t = translations[lang] || translations.en;
+
+    // State
+    let state = {
+      youtubeUrl: '',
+      keyword: '',
+      youtubeId: '',
+      results: JSON.parse(JSON.stringify(DEFAULT_RESULTS)),
+      isSearching: false,
+      isSearchingError: false,
+      isAutoDemoRun: false,
+      timer: MAXIMUM_TIMER_INTERVAL,
+      isPlaying: false,
+      currentStart: 0,
+      isVisible: false
+    };
+
+    // Interval IDs
+    let intervalIds = {
+      autoType: null,
+      autoTypeKeyword: null,
+      timer: null
+    };
+
+    let keywordChars = [];
+    let searchDebounceTimer = null;
+
+    function init() {
+      const container = document.getElementById('yt-cc-demo');
+      if (!container || container.dataset.initialized === 'true') return;
+      container.dataset.initialized = 'true';
+
+      // Elements
+      const urlInput = container.querySelector('.yt-url');
+      const keywordInput = container.querySelector('.yt-keyword');
+      const videoFigure = container.querySelector('.demo-video');
+      const thumbnailContainer = container.querySelector('.video-thumbnail');
+      const thumbnailImg = container.querySelector('.video-thumbnail-img');
+      const embedContainer = container.querySelector('.video-embed');
+      const iframe = container.querySelector('.demo-iframe');
+      const videoTitleDisplay = container.querySelector('.video-title-display');
+      const channelNameDisplay = container.querySelector('.channel-name-display');
+      const channelLink = container.querySelector('.channel-link');
+      const statusDisplay = container.querySelector('.demo-status');
+      const timerDisplay = container.querySelector('.demo-timer');
+      const btnAutoDemo = container.querySelector('.btn-auto-demo');
+      const btnReset = container.querySelector('.btn-reset');
+      const resultsList = container.querySelector('.demo-results');
+      const searchResultInfo = container.querySelector('.search-result-info');
+      const btnFirst = container.querySelector('.btn-first');
+      const btnPrev = container.querySelector('.btn-prev');
+      const btnNext = container.querySelector('.btn-next');
+      const btnLast = container.querySelector('.btn-last');
+
+      // Utility functions
+      function randomItem(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+      }
+
+      function extractVideoId(url) {
+        const match = url.match(/(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/i);
+        return match ? match[1] : null;
+      }
+
+      function buildUrl(baseUrl, params) {
+        const url = new URL(baseUrl);
+        Object.entries(params).forEach(([key, value]) => {
+          if (value !== undefined && value !== null) {
+            url.searchParams.set(key, value);
+          }
+        });
+        return url.toString();
+      }
+
+      // Update functions
+      function updateVideoDisplay() {
+        const videoId = state.youtubeId;
+        if (videoId) {
+          thumbnailImg.src = `https://i3.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+          thumbnailImg.alt = state.results.meta.title || 'YouTube video thumbnail';
+          thumbnailContainer.style.display = 'block';
+        } else {
+          thumbnailContainer.style.display = 'none';
+        }
+      }
+
+      function updateMetaDisplay() {
+        const meta = state.results.meta;
+        if (meta.title) {
+          videoTitleDisplay.textContent = meta.title;
+          channelNameDisplay.textContent = meta.channelName;
+          channelLink.href = meta.channelUrl || '#';
+        } else {
+          videoTitleDisplay.textContent = t.videoTitle;
+          channelNameDisplay.textContent = t.channelName;
+          channelLink.href = '#';
+        }
+      }
+
+      function updateStatusDisplay() {
+        if (state.isSearchingError) {
+          statusDisplay.innerHTML = t.searchingError;
+          statusDisplay.classList.add('status-error');
+        } else if (state.isSearching) {
+          statusDisplay.innerHTML = t.searching.replace('{keyword}', state.keyword);
+          statusDisplay.classList.remove('status-error');
+        } else if (state.keyword && state.keyword.length <= 3) {
+          statusDisplay.innerHTML = t.searchingKeywordLessThanThree;
+          statusDisplay.classList.remove('status-error');
+        } else {
+          statusDisplay.innerHTML = t.notSearching;
+          statusDisplay.classList.remove('status-error');
+        }
+      }
+
+      function updateTimerDisplay() {
+        timerDisplay.textContent = t.timer.replace('{timer}', state.timer.toString());
+      }
+
+      function updateAutoDemoButton() {
+        btnAutoDemo.textContent = state.isAutoDemoRun ? t.autoDemoStop : t.autoDemoStart;
+      }
+
+      function updatePaginationInfo() {
+        searchResultInfo.textContent = t.searchResultInfo
+          .replace('{total}', state.results.total.toString())
+          .replace('{page}', state.results.page.toString());
+      }
+
+      function updatePaginationButtons() {
+        const isOnlyPage = Math.ceil(state.results.total / 10) <= 1;
+        btnFirst.disabled = !state.results.first || isOnlyPage;
+        btnPrev.disabled = !state.results.prev || isOnlyPage;
+        btnNext.disabled = !state.results.next || isOnlyPage;
+        btnLast.disabled = !state.results.last || isOnlyPage;
+      }
+
+      function updateResultsList() {
+        resultsList.innerHTML = '';
+        state.results.data.forEach((item) => {
+          const li = document.createElement('li');
+          li.className = 'result-item';
+          li.innerHTML = `
+            <p class="result-text">${item.text}</p>
+            <button class="result-btn" data-start="${item.start}">
+              ${t.playVideoAt.replace('{time}', item.start.toString())}
+            </button>
+          `;
+          resultsList.appendChild(li);
+        });
+
+        // Add click handlers
+        resultsList.querySelectorAll('.result-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const start = parseFloat(btn.dataset.start);
+            playVideoAt(start);
+          });
+        });
+      }
+
+      function playVideoAt(start) {
+        state.currentStart = start;
+        state.isPlaying = true;
+        stopAutoDemo();
+
+        if (state.youtubeId) {
+          const embedUrl = buildUrl(`https://www.youtube.com/embed/${state.youtubeId}`, {
+            hl: 'en',
+            cc_lang_pref: 'en',
+            cc_load_policy: 1,
+            autoplay: 1,
+            start: Math.floor(start),
+            rel: 0
+          });
+          iframe.src = embedUrl;
+          thumbnailContainer.style.display = 'none';
+          embedContainer.style.display = 'block';
+          videoFigure.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+
+      // Search function with debounce
+      function search(urlOverride) {
+        if (searchDebounceTimer) {
+          clearTimeout(searchDebounceTimer);
+        }
+
+        searchDebounceTimer = setTimeout(async () => {
+          try {
+            state.isSearchingError = false;
+            state.isSearching = true;
+            updateStatusDisplay();
+
+            const searchUrl = urlOverride || buildUrl(API_URL, {
+              url: state.youtubeUrl,
+              q: state.keyword
+            });
+
+            const response = await fetch(searchUrl, { method: 'POST' });
+            if (!response.ok) {
+              throw new Error('Search failed');
+            }
+
+            const results = await response.json();
+            state.results = results;
+
+            // Extract video ID
+            const videoId = extractVideoId(state.youtubeUrl);
+            if (videoId) {
+              state.youtubeId = videoId;
+            }
+
+            updateVideoDisplay();
+            updateMetaDisplay();
+            updatePaginationInfo();
+            updatePaginationButtons();
+            updateResultsList();
+          } catch (error) {
+            console.error('Search error:', error);
+            state.isSearchingError = true;
+          } finally {
+            state.isSearching = false;
+            updateStatusDisplay();
+          }
+        }, 250);
+      }
+
+      // Auto demo functions
+      function startAutoDemo() {
+        state.isAutoDemoRun = true;
+        state.timer = MAXIMUM_TIMER_INTERVAL;
+        updateAutoDemoButton();
+        runAutoTypeInterval();
+
+        intervalIds.autoType = setInterval(runAutoTypeInterval, MAXIMUM_AUTO_TYPE_INTERVAL);
+        intervalIds.timer = setInterval(() => {
+          if (state.timer > 1) {
+            state.timer--;
+          } else {
+            state.timer = MAXIMUM_TIMER_INTERVAL;
+          }
+          updateTimerDisplay();
+        }, 1000);
+      }
+
+      function stopAutoDemo() {
+        state.isAutoDemoRun = false;
+        clearAllIntervals();
+        updateAutoDemoButton();
+      }
+
+      function clearAllIntervals() {
+        if (intervalIds.autoType) clearInterval(intervalIds.autoType);
+        if (intervalIds.autoTypeKeyword) clearInterval(intervalIds.autoTypeKeyword);
+        if (intervalIds.timer) clearInterval(intervalIds.timer);
+        intervalIds.autoType = null;
+        intervalIds.autoTypeKeyword = null;
+        intervalIds.timer = null;
+      }
+
+      function runAutoTypeInterval() {
+        // Reset video state
+        state.isPlaying = false;
+        embedContainer.style.display = 'none';
+        thumbnailContainer.style.display = 'block';
+
+        // Pick random YouTube ID and keyword
+        const youtubeIds = Object.keys(KEYWORD_LIST);
+        const youtubeId = randomItem(youtubeIds);
+        const keyword = randomItem(KEYWORD_LIST[youtubeId]);
+
+        // Set YouTube URL instantly
+        state.youtubeUrl = buildUrl(YOUTUBE_WATCH_URL, { v: youtubeId });
+        state.youtubeId = youtubeId;
+        urlInput.value = state.youtubeUrl;
+        updateVideoDisplay();
+
+        // Type keyword character by character
+        state.keyword = '';
+        keywordInput.value = '';
+        keywordChars = keyword.split('');
+
+        if (intervalIds.autoTypeKeyword) {
+          clearInterval(intervalIds.autoTypeKeyword);
+        }
+
+        intervalIds.autoTypeKeyword = setInterval(() => {
+          if (keywordChars.length > 0) {
+            state.keyword += keywordChars.shift();
+            keywordInput.value = state.keyword;
+            updateStatusDisplay();
+
+            if (state.keyword.length > 3) {
+              search();
+            }
+          } else {
+            clearInterval(intervalIds.autoTypeKeyword);
+            intervalIds.autoTypeKeyword = null;
+          }
+        }, MAXIMUM_AUTO_TYPE_KEYWORD_INTERVAL);
+
+        state.timer = MAXIMUM_TIMER_INTERVAL;
+        updateTimerDisplay();
+      }
+
+      function resetAll() {
+        stopAutoDemo();
+        state.youtubeUrl = '';
+        state.keyword = '';
+        state.youtubeId = '';
+        state.results = JSON.parse(JSON.stringify(DEFAULT_RESULTS));
+        state.timer = MAXIMUM_TIMER_INTERVAL;
+        state.isPlaying = false;
+        state.currentStart = 0;
+
+        urlInput.value = '';
+        keywordInput.value = '';
+        thumbnailContainer.style.display = 'none';
+        embedContainer.style.display = 'none';
+        iframe.src = '';
+
+        updateMetaDisplay();
+        updateStatusDisplay();
+        updateTimerDisplay();
+        updatePaginationInfo();
+        updatePaginationButtons();
+        updateResultsList();
+      }
+
+      // Event listeners
+      urlInput.addEventListener('input', (e) => {
+        state.youtubeUrl = e.target.value;
+        const videoId = extractVideoId(state.youtubeUrl);
+        if (videoId) {
+          state.youtubeId = videoId;
+          updateVideoDisplay();
+          if (state.keyword.length > 3) {
+            search();
+          }
+        }
+      });
+
+      urlInput.addEventListener('focus', () => {
+        if (state.isAutoDemoRun) stopAutoDemo();
+      });
+
+      keywordInput.addEventListener('input', (e) => {
+        state.keyword = e.target.value;
+        updateStatusDisplay();
+        if (state.keyword.length > 3 && state.youtubeUrl) {
+          search();
+        }
+      });
+
+      keywordInput.addEventListener('focus', () => {
+        if (state.isAutoDemoRun) stopAutoDemo();
+      });
+
+      videoFigure.addEventListener('click', () => {
+        if (state.youtubeId && !state.isPlaying) {
+          playVideoAt(0);
+        }
+      });
+
+      videoFigure.addEventListener('keydown', (e) => {
+        if ((e.key === 'Enter' || e.key === ' ') && state.youtubeId && !state.isPlaying) {
+          e.preventDefault();
+          playVideoAt(0);
+        }
+      });
+
+      btnAutoDemo.addEventListener('click', () => {
+        if (state.isAutoDemoRun) {
+          stopAutoDemo();
+        } else {
+          resetAll();
+          startAutoDemo();
+        }
+      });
+
+      btnReset.addEventListener('click', resetAll);
+
+      btnFirst.addEventListener('click', () => {
+        if (state.results.first) search(state.results.first);
+      });
+
+      btnPrev.addEventListener('click', () => {
+        if (state.results.prev) search(state.results.prev);
+      });
+
+      btnNext.addEventListener('click', () => {
+        if (state.results.next) search(state.results.next);
+      });
+
+      btnLast.addEventListener('click', () => {
+        if (state.results.last) search(state.results.last);
+      });
+
+      // Intersection Observer
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          state.isVisible = entry.isIntersecting;
+          if (entry.isIntersecting) {
+            // Resume auto demo if it was running
+            if (!state.isAutoDemoRun && !state.youtubeUrl && !state.keyword) {
+              // Start auto demo on first view
+              startAutoDemo();
+            }
+          } else {
+            // Pause auto demo when not visible
+            if (state.isAutoDemoRun) {
+              stopAutoDemo();
+            }
+          }
+        });
+      }, { threshold: 0.1 });
+
+      observer.observe(container);
+
+      // Initial state
+      updateTimerDisplay();
+      updateAutoDemoButton();
+
+      setTimeout(() => {
+        if (state.isVisible && !state.isAutoDemoRun && !state.youtubeUrl && !state.keyword) {
+          startAutoDemo();
+        }
+      }, 1000);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+    document.addEventListener('astro:page-load', init);
+  })();
+</script>
+
+<style>
+  .demo-title {
+    margin: 0 0 1rem 0;
+    font-size: var(--font-size-m);
+  }
+
+  .demo-video {
+    margin: 0 0 1rem 0;
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--astro-code-background);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .demo-video:focus {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .video-thumbnail {
+    position: absolute;
+    inset: 0;
+    display: none;
+  }
+
+  .video-thumbnail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .video-thumbnail::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: background-color 0.2s ease;
+  }
+
+  .demo-video:hover .video-thumbnail::before {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .video-play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: var(--bg);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .demo-video:hover .video-play-button {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  .video-embed {
+    position: absolute;
+    inset: 0;
+  }
+
+  .demo-iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .demo-subtitle {
+    margin: 0 0 1rem 0;
+    font-size: var(--font-size-s);
+    color: var(--text-secondary);
+  }
+
+  .demo-subtitle a {
+    color: var(--text-primary);
+    text-decoration: underline;
+  }
+
+  .demo-subtitle a:hover {
+    text-decoration: none;
+  }
+
+  .demo-notice {
+    background: var(--astro-code-background);
+    padding: 1rem;
+    border-radius: 6px;
+    margin: 0 0 1rem 0;
+    border-left: 3px solid var(--border);
+  }
+
+  .demo-notice ul {
+    margin: 0.5rem 0 0 1.5rem;
+    padding: 0;
+  }
+
+  .demo-notice li {
+    margin: 0.25rem 0;
+    font-size: var(--font-size-s);
+  }
+
+  .demo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .demo-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: var(--font-size-s);
+  }
+
+  .demo-status-section {
+    margin-bottom: 1rem;
+  }
+
+  .demo-status {
+    color: var(--text-secondary);
+    font-size: var(--font-size-s);
+    margin: 0 0 0.25rem 0;
+  }
+
+  .demo-status.status-error {
+    color: var(--error, #ef4444);
+  }
+
+  .demo-timer {
+    color: var(--text-secondary);
+    font-size: var(--font-size-s);
+    margin: 0;
+  }
+
+  .demo-controls {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .demo-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1rem 0;
+  }
+
+  .demo-pagination-info {
+    margin-bottom: 0.5rem;
+  }
+
+  .search-result-info {
+    font-size: var(--font-size-s);
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .demo-pagination-controls {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .demo-results {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .demo-results:empty::before {
+    content: 'No results yet. Start the auto demo or search manually.';
+    display: block;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: var(--font-size-s);
+    padding: 2rem 1rem;
+    background: var(--astro-code-background);
+    border-radius: 6px;
+  }
+
+  :global(.result-item) {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  :global(.result-item:last-child) {
+    border-bottom: none;
+  }
+
+  :global(.result-text) {
+    margin: 0 0 0.5rem 0;
+    font-size: var(--font-size-s);
+  }
+
+  :global(.result-btn) {
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: var(--font-size-s);
+    transition: background 0.15s ease;
+  }
+
+  :global(.result-btn:hover) {
+    background: var(--code-bg);
+  }
+
+  :global(.result-btn:focus-visible) {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .video-play-button,
+    .video-thumbnail::before,
+    :global(.result-btn) {
+      transition: none;
+    }
+  }
+</style>

@@ -1,0 +1,80 @@
+---
+import { render } from "astro:content";
+import TalkLayout from "@/layouts/TalkLayout.astro";
+import PostNavigation from "@/components/widgets/PostNavigation.astro";
+import ShareButtons from "@/components/widgets/ShareButtons.astro";
+import RelatedTalks from "@/components/widgets/RelatedTalks.astro";
+import GiscusComments from "@/components/ui/GiscusComments.astro";
+import {
+	getAllTalkSlugs,
+	getTalkBySlug,
+	getTalkSlug,
+	getAdjacentTalks,
+	getRelatedTalksByTags,
+} from "@/utils/i18n-talk-content";
+import { getTranslations } from "@/i18n";
+import { themeConfig } from "@/config";
+import type { TOCItem } from "@/types";
+
+const locale = "id";
+
+export async function getStaticPaths() {
+	const slugs = await getAllTalkSlugs();
+	return slugs.map((slug) => ({
+		params: { slug },
+		props: { slug },
+	}));
+}
+
+const { slug } = Astro.props;
+const t = getTranslations(locale);
+const talk = await getTalkBySlug(slug, locale);
+
+if (!talk) {
+	return Astro.redirect("/404");
+}
+
+const { Content, remarkPluginFrontmatter } = await render(talk);
+const { prevTalk, nextTalk } = await getAdjacentTalks(slug, locale);
+const relatedTalks = await getRelatedTalksByTags(
+	slug,
+	talk.data.tags || [],
+	locale,
+	3,
+);
+
+const talkUrl = `${themeConfig.site.url}/id/talk/${slug}/`;
+
+const { slide, writeUp, sourceCode } = talk.data;
+const contentToc = (remarkPluginFrontmatter.toc as TOCItem[]) || [];
+const combinedToc: TOCItem[] = [];
+let tocIndex = 0;
+
+contentToc.forEach((item) => {
+	combinedToc.push({ ...item, index: tocIndex++ });
+});
+
+if (slide || writeUp || sourceCode) {
+	combinedToc.push({ level: 2, text: t.ui.resources, id: 'resources', index: tocIndex++ });
+}
+
+combinedToc.push({ level: 2, text: t.ui.organizer, id: 'organizer', index: tocIndex++ });
+
+function getTalkUrlPath(talk: typeof prevTalk): string {
+	if (!talk) return "";
+	const talkSlug = getTalkSlug(talk);
+	return `/id/talk/${talkSlug}/`;
+}
+
+const prevItem = prevTalk ? { title: prevTalk.data.title, url: getTalkUrlPath(prevTalk) } : null;
+const nextItem = nextTalk ? { title: nextTalk.data.title, url: getTalkUrlPath(nextTalk) } : null;
+---
+
+<TalkLayout talk={talk} locale={locale} toc={combinedToc}>
+  <Content slot="content" />
+  <ShareButtons title={talk.data.title} url={talkUrl} locale={locale} />
+  <hr />
+  <RelatedTalks talks={relatedTalks} locale={locale} />
+  <PostNavigation prevItem={prevItem} nextItem={nextItem} ariaLabel={t.ui.talkNavigation} locale={locale} />
+  <GiscusComments locale={locale} category="Talk" categoryId="DIC_kwDOQu-wFs4C0mhs" />
+</TalkLayout>

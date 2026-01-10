@@ -1,0 +1,59 @@
+---
+import { getTranslations, defaultLocale, type Locale } from "@/i18n";
+
+interface Props {
+  locale?: Locale;
+  category?: string;
+  categoryId?: string;
+}
+
+const {
+  locale = defaultLocale,
+  category = "Blog",
+  categoryId = "DIC_kwDOQu-wFs4C0mhf"
+} = Astro.props;
+const t = getTranslations(locale);
+---
+
+<section class="giscus-wrapper" aria-labelledby="comments-heading" data-pagefind-ignore="all">
+  <hr />
+  <h2 id="comments-heading" class="giscus-title">{t.ui.comments}</h2>
+  <div class="giscus"></div>
+</section>
+
+<script
+  src="https://giscus.app/client.js"
+  data-repo="jefrydco/id"
+  data-repo-id="R_kgDOQu-wFg"
+  data-category={category}
+  data-category-id={categoryId}
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="preferred_color_scheme"
+  data-lang={locale}
+  data-loading="lazy"
+  crossorigin="anonymous"
+  data-astro-rerun
+  async
+></script>
+
+<style is:inline>
+  .giscus-title {
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.75;
+    margin: 3.75em 0 1.75em 0;
+    color: var(--text-primary);
+  }
+
+  .giscus {
+    width: 100%;
+  }
+
+  .giscus iframe.giscus-frame {
+    width: 100% !important;
+  }
+</style>

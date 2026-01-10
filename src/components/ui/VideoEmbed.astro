@@ -1,0 +1,285 @@
+---
+import { Download, Check } from "@lucide/astro";
+---
+
+<template id="video-download-icons-template">
+  <Download class="download-icon" size={16} />
+  <Check class="downloaded-icon" size={16} />
+</template>
+
+<script>
+  function initVideoEmbed() {
+    const containers = document.querySelectorAll('.video-embed-container')
+
+    containers.forEach((container) => {
+      if (container.dataset.videoInit) return
+      container.dataset.videoInit = '1'
+
+      const videoSrc = container.dataset.videoSrc
+      if (!videoSrc) return
+
+      const placeholder = container.querySelector('.video-embed-placeholder')
+      const playButton = container.querySelector('.video-embed-play')
+
+      if (!placeholder || !playButton) return
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              loadVideo()
+              observer.disconnect()
+            }
+          })
+        },
+        {
+          rootMargin: '100px',
+          threshold: 0
+        }
+      )
+
+      observer.observe(container)
+
+      playButton.addEventListener('click', () => {
+        loadVideo()
+        observer.disconnect()
+      })
+
+      function loadVideo() {
+        const video = document.createElement('video')
+        video.src = videoSrc!
+        video.autoplay = true
+        video.loop = true
+        video.muted = true
+        video.playsInline = true
+        video.preload = 'auto'
+        video.className = 'video-embed-player'
+
+        const downloadButton = document.createElement('button')
+        downloadButton.className = 'download-button video-download'
+        downloadButton.type = 'button'
+        downloadButton.title = 'Download video'
+        downloadButton.setAttribute('aria-label', 'Download video')
+
+        const template = document.getElementById('video-download-icons-template')
+        if (template) {
+          const icons = (template as HTMLTemplateElement).content.cloneNode(true)
+          downloadButton.appendChild(icons)
+        }
+
+        container.innerHTML = ''
+        container.appendChild(downloadButton)
+        container.appendChild(video)
+
+        initVideoDownload(container as HTMLElement, video, downloadButton)
+      }
+    })
+  }
+
+  function initVideoDownload(
+    wrapper: HTMLElement,
+    video: HTMLVideoElement,
+    button: HTMLButtonElement
+  ) {
+    wrapper.addEventListener('mouseenter', () => {
+      button.classList.add('visible')
+    })
+
+    wrapper.addEventListener('mouseleave', () => {
+      if (!button.hasAttribute('data-downloading')) {
+        button.classList.remove('visible')
+      }
+    })
+
+    button.addEventListener('click', async (e) => {
+      e.stopPropagation()
+      e.preventDefault()
+
+      button.setAttribute('data-downloading', 'true')
+
+      try {
+        const videoSrc = video.src
+        const response = await fetch(videoSrc)
+        const blob = await response.blob()
+
+        const { createDownloadFilename } = await import('@/utils/download-filename')
+        const urlParts = videoSrc.split('/')
+        const filenameWithParams = urlParts[urlParts.length - 1]
+        const originalFilename = filenameWithParams.split('?')[0] || 'video'
+        const filename = createDownloadFilename(originalFilename)
+
+        const url = URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = filename
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+        URL.revokeObjectURL(url)
+
+        button.classList.add('downloaded')
+
+        setTimeout(() => {
+          if (!wrapper.matches(':hover')) {
+            button.classList.remove('visible')
+          }
+          button.removeAttribute('data-downloading')
+
+          setTimeout(() => {
+            button.classList.remove('downloaded')
+          }, 500)
+        }, 1500)
+      } catch (err) {
+        console.error('Failed to download video:', err)
+        button.removeAttribute('data-downloading')
+      }
+    })
+  }
+
+  document.addEventListener('astro:page-load', initVideoEmbed)
+  document.addEventListener('DOMContentLoaded', initVideoEmbed)
+</script>
+
+<style is:inline>
+  .video-embed-wrapper {
+    margin: 2em 0;
+  }
+
+  .video-embed-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--code-bg);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .video-embed-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--code-bg);
+    cursor: pointer;
+  }
+
+  .video-embed-play {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-out;
+    backdrop-filter: blur(48px);
+  }
+
+  .video-embed-play:hover {
+    background: var(--code-bg);
+    transform: scale(1.05);
+  }
+
+  .video-embed-play:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .video-embed-play svg {
+    margin-left: 0.25rem;
+  }
+
+  .video-embed-player {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: var(--code-bg);
+    border-radius: 8px;
+  }
+
+  .video-download {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    z-index: 10;
+    background: var(--bg);
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    backdrop-filter: blur(48px);
+    opacity: 0;
+  }
+
+  .video-download.visible,
+  .video-download:focus,
+  .video-download:focus-visible {
+    opacity: 1;
+  }
+
+  .video-download::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--code-bg);
+    border-radius: 0.325rem;
+    opacity: 0;
+    transition: opacity 0.15s ease-out;
+    pointer-events: none;
+  }
+
+  .video-download:hover::before {
+    opacity: 1;
+  }
+
+  .video-download:hover {
+    color: var(--text-primary);
+  }
+
+  .video-download:focus,
+  .video-download:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    color: var(--text-primary);
+  }
+
+  .video-download svg {
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .video-download .downloaded-icon {
+    display: none;
+  }
+
+  .video-download.downloaded .download-icon {
+    display: none;
+  }
+
+  .video-download.downloaded .downloaded-icon {
+    display: block;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .video-embed-play,
+    .video-download,
+    .video-download::before {
+      transition: none;
+    }
+  }
+</style>

@@ -1,0 +1,322 @@
+---
+import "@/styles/global.css";
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import FormattedDate from "@/components/widgets/FormattedDate.astro";
+import TagList from "@/components/widgets/TagList.astro";
+import BackButton from "@/components/ui/BackButton.astro";
+import BaseHead from "@/components/layout/BaseHead.astro";
+import Footer from "@/components/layout/Footer.astro";
+import FloatingActions from "@/components/ui/FloatingActions.astro";
+import TableOfContents from "@/components/ui/TableOfContents.astro";
+import GradientMask from "@/components/ui/GradientMask.astro";
+import FocusModeOverlay from "@/components/ui/FocusModeOverlay.astro";
+import ReadingProgress from "@/components/ui/ReadingProgress.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { ExternalLink } from "@lucide/astro";
+import { themeConfig } from "@/config";
+import { defaultLocale, getTranslations, type Locale } from "@/i18n";
+import type { TOCItem } from "@/types";
+import { getTalkSlug } from "@/utils/i18n-talk-content";
+import { getTalkTagUrl } from "@/utils/talk-tags";
+import { formatTime } from "@/utils/time";
+import { getYoutubeId } from "@/utils/youtube";
+
+interface Props {
+	talk: CollectionEntry<"talk">;
+	locale?: Locale;
+	toc?: TOCItem[];
+}
+
+const { talk, locale = defaultLocale, toc = [] } = Astro.props;
+const t = getTranslations(locale);
+
+const { title, description, poster, slide, playback, sourceCode, writeUp, startDate, endDate, organizer, organizerUrl, tags } = talk.data;
+
+const talkSlug = getTalkSlug(talk);
+
+const youtubeId = playback ? getYoutubeId(playback) : null;
+
+const talkListUrl = locale === "en" ? "/talk/" : `/${locale}/talk/`;
+
+const ogImage = locale === "en"
+	? `/open-graph/talk/${talkSlug}.png`
+	: `/open-graph/${locale}/talk/${talkSlug}.png`;
+---
+
+<BaseLayout
+  title={`${title} · ${themeConfig.site.title}`}
+  description={description || themeConfig.site.description}
+  type="post"
+  locale={locale}
+>
+  <ReadingProgress />
+  <BaseHead
+    title={`${title} · ${themeConfig.site.title}`}
+    description={description || themeConfig.site.description}
+    ogImage={ogImage}
+    locale={locale}
+    slot="head"
+  />
+  <div class="talk-container">
+    <main id="main-content">
+      <div class="prose">
+        <GradientMask />
+        <BackButton locale={locale} href={talkListUrl} label={t.ui.talk} />
+        <TableOfContents toc={toc} locale={locale} />
+
+        <div class="title-section">
+          <h1>{title}</h1>
+          <div class="talk-meta font-features">
+            <FormattedDate date={startDate} context="post" locale={locale} />
+            <span class="separator">·</span>
+            <span class="talk-time">
+              {formatTime(startDate, locale)} - {formatTime(endDate, locale)}
+            </span>
+          </div>
+          {tags && tags.length > 0 && (
+            <TagList tags={tags} locale={locale} getTagUrl={getTalkTagUrl} />
+          )}
+        </div>
+
+        {(youtubeId || poster) && (
+          <div class="media-section">
+            {youtubeId && poster ? (
+              <div class="video-toggle-container">
+                <div class="switcher" role="group" aria-label="Switch between playback and poster">
+                  <button
+                    class="switcher-item active"
+                    data-mode="playback"
+                    aria-pressed="true"
+                    aria-label={t.ui.watchTalk}
+                  >
+                    {t.ui.playback}
+                  </button>
+                  <span class="separator">|</span>
+                  <button
+                    class="switcher-item"
+                    data-mode="poster"
+                    aria-pressed="false"
+                    aria-label={t.ui.viewPoster}
+                  >
+                    {t.ui.poster}
+                  </button>
+                </div>
+                <div class="media-content">
+                  <div class="youtube-container" data-content="playback">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${youtubeId}`}
+                      title={title}
+                      loading="lazy"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                    ></iframe>
+                  </div>
+                  <div class="poster-container" data-content="poster" style="display: none;">
+                    <Image src={poster} alt={title} loading="lazy" />
+                  </div>
+                </div>
+              </div>
+            ) : youtubeId ? (
+              <div class="youtube-container">
+                <iframe
+                  src={`https://www.youtube.com/embed/${youtubeId}`}
+                  title={title}
+                  loading="lazy"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                ></iframe>
+              </div>
+            ) : (
+              <div class="poster-container">
+                <Image src={poster} alt={title} loading="lazy" />
+              </div>
+            )}
+          </div>
+        )}
+
+        <div class="toc-mobile">
+          <TableOfContents toc={toc} locale={locale} />
+        </div>
+
+        <div class="talk-content">
+          <slot name="content" />
+        </div>
+
+        {(slide || writeUp || sourceCode) && (
+          <>
+            <h2 id="resources">{t.ui.resources}</h2>
+            <ul>
+              {slide && (
+                <li>
+                  <strong>{t.ui.slide}:</strong>{" "}
+                  <a href={slide} target="_blank" rel="noopener noreferrer" class="external-link">
+                    {slide}
+                    <ExternalLink size={14} aria-hidden="true" />
+                  </a>
+                </li>
+              )}
+              {writeUp && (
+                <li>
+                  <strong>{t.ui.writeUp}:</strong>{" "}
+                  <a href={writeUp} target="_blank" rel="noopener noreferrer" class="external-link">
+                    {writeUp}
+                    <ExternalLink size={14} aria-hidden="true" />
+                  </a>
+                </li>
+              )}
+              {sourceCode && (
+                <li>
+                  <strong>{t.ui.sourceCode}:</strong>{" "}
+                  <a href={sourceCode} target="_blank" rel="noopener noreferrer" class="external-link">
+                    {sourceCode}
+                    <ExternalLink size={14} aria-hidden="true" />
+                  </a>
+                </li>
+              )}
+            </ul>
+          </>
+        )}
+
+        <h2 id="organizer">{t.ui.organizer}</h2>
+        <p>
+          {organizerUrl ? (
+            <a href={organizerUrl} target="_blank" rel="noopener noreferrer" class="external-link">
+              {organizer}
+              <ExternalLink size={14} aria-hidden="true" />
+            </a>
+          ) : (
+            organizer
+          )}
+        </p>
+
+        <slot />
+      </div>
+    </main>
+    <FocusModeOverlay locale={locale} />
+    <Footer locale={locale} />
+    <FloatingActions locale={locale} slug={talkSlug} />
+  </div>
+</BaseLayout>
+
+<script>
+  function initVideoToggle() {
+    const toggleButtons = document.querySelectorAll('.video-toggle-container .switcher-item');
+    const playbackContent = document.querySelector('[data-content="playback"]');
+    const posterContent = document.querySelector('[data-content="poster"]');
+
+    if (!toggleButtons.length || !playbackContent || !posterContent) return;
+
+    toggleButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const mode = button.getAttribute('data-mode');
+
+        toggleButtons.forEach(btn => {
+          btn.classList.remove('active');
+          btn.setAttribute('aria-pressed', 'false');
+        });
+        button.classList.add('active');
+        button.setAttribute('aria-pressed', 'true');
+
+        if (mode === 'playback') {
+          (playbackContent as HTMLElement).style.display = 'block';
+          (posterContent as HTMLElement).style.display = 'none';
+        } else {
+          (playbackContent as HTMLElement).style.display = 'none';
+          (posterContent as HTMLElement).style.display = 'block';
+        }
+      });
+    });
+  }
+
+  initVideoToggle();
+  document.addEventListener('astro:after-swap', initVideoToggle);
+</script>
+
+<style>
+  .talk-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .talk-container main {
+    flex: 1;
+  }
+
+  .media-section {
+    margin-bottom: 2rem;
+  }
+
+  .video-toggle-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .youtube-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .youtube-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .poster-container {
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .poster-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .title-section {
+    margin-bottom: 2rem;
+  }
+
+  .title-section h1 {
+    margin: 0 0 0.75rem 0;
+    font-size: var(--heading-1);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+  }
+
+  .talk-meta {
+    color: var(--text-secondary);
+    font-size: var(--font-size-m);
+    letter-spacing: var(--spacing-s);
+  }
+
+  .separator {
+    margin: 0 0.5rem;
+  }
+
+  .talk-content {
+    margin: 2rem 0;
+  }
+
+  .external-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    word-break: break-all;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .toggle-btn {
+      transition: none;
+    }
+  }
+</style>

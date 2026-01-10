@@ -1,0 +1,191 @@
+---
+import { Type } from "@lucide/astro";
+import { getTranslations, defaultLocale, type Locale } from "@/i18n";
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const t = getTranslations(locale);
+---
+
+<button
+  class="font-toggle"
+  title={t.ui.fontToggle}
+  aria-label={t.ui.fontToggle}
+  data-font="default"
+  data-pagefind-ignore="all"
+>
+  <Type size={16} />
+</button>
+
+<script is:inline>
+  ;(function () {
+    if (window.FontManager && window.FontManager.initialized) {
+      return
+    }
+
+    window.FontManager = {
+      STORAGE_KEY: 'chiri-font',
+      FONTS: ['default', 'dyslexic'],
+      initialized: false,
+
+      getStoredFont() {
+        try {
+          return localStorage.getItem(this.STORAGE_KEY)
+        } catch {
+          return null
+        }
+      },
+
+      setStoredFont(font) {
+        try {
+          if (font === 'default') {
+            localStorage.removeItem(this.STORAGE_KEY)
+          } else {
+            localStorage.setItem(this.STORAGE_KEY, font)
+          }
+        } catch (e) {
+          console.warn('Failed to store font preference:', e)
+        }
+      },
+
+      getEffectiveFont() {
+        const stored = this.getStoredFont()
+        if (stored && this.FONTS.includes(stored)) {
+          return stored
+        }
+        return 'default'
+      },
+
+      applyFont(font) {
+        document.documentElement.classList.remove('font-dyslexic')
+        if (font === 'dyslexic') {
+          document.documentElement.classList.add('font-dyslexic')
+        }
+
+        document.dispatchEvent(
+          new CustomEvent('fontchange', {
+            detail: { font }
+          })
+        )
+      },
+
+      toggle() {
+        const currentFont = this.getEffectiveFont()
+        const newFont = currentFont === 'default' ? 'dyslexic' : 'default'
+
+        this.setStoredFont(newFont)
+        this.applyFont(newFont)
+      },
+
+      init() {
+        if (this.initialized) return
+
+        this.applyFont(this.getEffectiveFont())
+        this.initialized = true
+      }
+    }
+
+    window.FontManager.init()
+
+    const applyFont = () => {
+      if (window.FontManager) {
+        const font = window.FontManager.getEffectiveFont()
+        window.FontManager.applyFont(font)
+      }
+    }
+
+    applyFont()
+
+    document.addEventListener('astro:before-preparation', applyFont)
+    document.addEventListener('astro:after-swap', applyFont)
+    document.addEventListener('astro:page-load', applyFont)
+  })()
+</script>
+
+<script is:inline>
+  function updateFontToggleState(toggle, font) {
+    const isDyslexic = font === 'dyslexic'
+    const text = isDyslexic
+      ? 'Dyslexia-friendly font enabled. Click to use default font'
+      : 'Click to enable dyslexia-friendly font'
+
+    toggle.setAttribute('data-font', font)
+    toggle.setAttribute('title', text)
+    toggle.setAttribute('aria-label', text)
+  }
+
+  function updateAllFontToggles(font) {
+    document.querySelectorAll('.font-toggle').forEach(function(toggle) {
+      updateFontToggleState(toggle, font)
+    })
+  }
+
+  if (!window._fontToggleListenerBound) {
+    window._fontToggleListenerBound = true
+    document.addEventListener('fontchange', function(e) {
+      updateAllFontToggles(e.detail.font)
+    })
+  }
+
+  function bindFontToggles() {
+    const fontToggles = document.querySelectorAll('.font-toggle')
+    if (!fontToggles.length || !window.FontManager) return
+
+    var currentFont = window.FontManager.getEffectiveFont()
+
+    fontToggles.forEach(function(toggle) {
+      if (toggle.dataset.bound === 'true') return
+      toggle.dataset.bound = 'true'
+
+      updateFontToggleState(toggle, currentFont)
+
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault()
+        e.stopPropagation()
+        window.FontManager.toggle()
+      })
+    })
+  }
+
+  window.addEventListener('DOMContentLoaded', bindFontToggles)
+  document.addEventListener('astro:page-load', bindFontToggles)
+</script>
+
+<style>
+  .font-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    color: var(--text-primary);
+    transition: opacity 0.2s ease;
+  }
+
+  .font-toggle:hover {
+    opacity: 0.7;
+  }
+
+  .font-toggle[data-font="dyslexic"] {
+    color: var(--link-hover);
+    background: var(--selection);
+    border-radius: 0.25rem;
+  }
+
+  .font-toggle:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .font-toggle {
+      transition: none;
+    }
+  }
+</style>

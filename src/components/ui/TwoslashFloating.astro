@@ -1,0 +1,230 @@
+---
+---
+
+<script>
+function isPointInTriangle(px: number, py: number, ax: number, ay: number, bx: number, by: number, cx: number, cy: number): boolean {
+  const v0x = cx - ax, v0y = cy - ay;
+  const v1x = bx - ax, v1y = by - ay;
+  const v2x = px - ax, v2y = py - ay;
+  const dot00 = v0x * v0x + v0y * v0y;
+  const dot01 = v0x * v1x + v0y * v1y;
+  const dot02 = v0x * v2x + v0y * v2y;
+  const dot11 = v1x * v1x + v1y * v1y;
+  const dot12 = v1x * v2x + v1y * v2y;
+  const inv = 1 / (dot00 * dot11 - dot01 * dot01);
+  const u = (dot11 * dot02 - dot01 * dot12) * inv;
+  const v = (dot00 * dot12 - dot01 * dot02) * inv;
+  return u >= 0 && v >= 0 && u + v <= 1;
+}
+
+function isInSafeZone(mouseX: number, mouseY: number, triggerRect: DOMRect, popupRect: DOMRect, isAbove: boolean, apexX: number): boolean {
+  if (mouseX >= triggerRect.left && mouseX <= triggerRect.right &&
+      mouseY >= triggerRect.top && mouseY <= triggerRect.bottom) return true;
+
+  if (mouseX >= popupRect.left && mouseX <= popupRect.right &&
+      mouseY >= popupRect.top && mouseY <= popupRect.bottom) return true;
+
+  if (isAbove) {
+    return isPointInTriangle(
+      mouseX, mouseY,
+      apexX, triggerRect.top,
+      popupRect.left, popupRect.bottom,
+      popupRect.right, popupRect.bottom
+    );
+  } else {
+    return isPointInTriangle(
+      mouseX, mouseY,
+      apexX, triggerRect.bottom,
+      popupRect.left, popupRect.top,
+      popupRect.right, popupRect.top
+    );
+  }
+}
+
+let floatingPopup: HTMLElement | null = null;
+let currentHoverEl: HTMLElement | null = null;
+let isAbove = false;
+let apexX = 0;
+let mouseMoveHandler: ((e: MouseEvent) => void) | null = null;
+
+function getFloatingPopup(): HTMLElement {
+  if (!floatingPopup) {
+    floatingPopup = document.createElement('div');
+    floatingPopup.className = 'twoslash-floating-popup';
+    document.body.appendChild(floatingPopup);
+  }
+  return floatingPopup;
+}
+
+function initCopyButtonsInPopup(container: HTMLElement) {
+  const template = document.getElementById('copy-icons-template');
+  const copyButtons = container.querySelectorAll('.copy-button');
+
+  copyButtons.forEach((button) => {
+    const btn = button as HTMLElement;
+    delete btn.dataset.copyInit;
+
+    btn.innerHTML = '';
+    if (template) {
+      const icons = (template as HTMLTemplateElement).content.cloneNode(true);
+      btn.appendChild(icons);
+    }
+
+    let preElement = btn.closest('.copy-code-block') as HTMLElement | null;
+    if (!preElement) {
+      const parent = btn.parentElement;
+      if (parent) {
+        preElement = parent.querySelector('.copy-code-block');
+      }
+    }
+    if (!preElement) return;
+
+    const codeElement = preElement.querySelector('code');
+    if (!codeElement) return;
+
+    let wrapper = preElement;
+    const parent = btn.parentElement;
+    if (parent && parent.classList.contains('copy-code-wrapper')) {
+      wrapper = parent;
+    }
+
+    wrapper.addEventListener('mouseenter', () => btn.classList.add('visible'));
+    wrapper.addEventListener('mouseleave', () => {
+      if (!btn.hasAttribute('data-copying')) {
+        btn.classList.remove('visible');
+      }
+    });
+
+    btn.addEventListener('click', async () => {
+      const codeText = codeElement.textContent || '';
+      try {
+        await navigator.clipboard.writeText(codeText);
+        btn.setAttribute('data-copying', 'true');
+        btn.classList.add('copied');
+        setTimeout(() => {
+          if (!wrapper.matches(':hover')) {
+            btn.classList.remove('visible');
+          }
+          btn.removeAttribute('data-copying');
+          setTimeout(() => btn.classList.remove('copied'), 500);
+        }, 1500);
+      } catch (err) {
+        console.error('Failed to copy code:', err);
+      }
+    });
+  });
+}
+
+function showPopup(hoverEl: HTMLElement, e: MouseEvent) {
+  const popup = hoverEl.querySelector('.twoslash-popup-container') as HTMLElement;
+  if (!popup) return;
+
+  currentHoverEl = hoverEl;
+  apexX = e.clientX;
+
+  const fp = getFloatingPopup();
+  fp.innerHTML = popup.innerHTML;
+  initCopyButtonsInPopup(fp);
+
+  const rect = hoverEl.getBoundingClientRect();
+
+  fp.style.visibility = 'hidden';
+  fp.classList.add('visible');
+
+  requestAnimationFrame(() => {
+    const popupRect = fp.getBoundingClientRect();
+
+    let top = rect.bottom + window.scrollY + 8;
+    let left = rect.left + window.scrollX;
+
+    isAbove = false;
+    if (top + popupRect.height > window.innerHeight + window.scrollY - 20) {
+      top = rect.top + window.scrollY - popupRect.height - 8;
+      isAbove = true;
+    }
+
+    if (left + popupRect.width > window.innerWidth - 20) {
+      left = window.innerWidth - popupRect.width - 20;
+    }
+
+    fp.style.left = `${Math.max(10, left)}px`;
+    fp.style.top = `${top}px`;
+    fp.dataset.position = isAbove ? 'above' : 'below';
+
+    const triggerCenterX = rect.left + rect.width / 2;
+    const arrowLeft = triggerCenterX - Math.max(10, left) - 4;
+    fp.style.setProperty('--arrow-left', `${Math.max(8, Math.min(arrowLeft, popupRect.width - 16))}px`);
+
+    fp.style.visibility = 'visible';
+
+    startTracking();
+  });
+}
+
+function hidePopup() {
+  if (floatingPopup) {
+    floatingPopup.classList.remove('visible');
+  }
+  currentHoverEl = null;
+  stopTracking();
+}
+
+function startTracking() {
+  if (mouseMoveHandler) return;
+
+  mouseMoveHandler = (e: MouseEvent) => {
+    if (!currentHoverEl || !floatingPopup) {
+      hidePopup();
+      return;
+    }
+
+    const triggerRect = currentHoverEl.getBoundingClientRect();
+    const popupRect = floatingPopup.getBoundingClientRect();
+
+    if (!isInSafeZone(e.clientX, e.clientY, triggerRect, popupRect, isAbove, apexX)) {
+      hidePopup();
+    }
+  };
+
+  document.addEventListener('mousemove', mouseMoveHandler);
+}
+
+function stopTracking() {
+  if (mouseMoveHandler) {
+    document.removeEventListener('mousemove', mouseMoveHandler);
+    mouseMoveHandler = null;
+  }
+}
+
+function initTwoslashFloating() {
+  const hovers = document.querySelectorAll('.twoslash-hover');
+
+  hovers.forEach(hover => {
+    const hoverEl = hover as HTMLElement;
+    if (hoverEl.dataset.floatingInit) return;
+    hoverEl.dataset.floatingInit = '1';
+
+    const popup = hoverEl.querySelector('.twoslash-popup-container') as HTMLElement;
+    if (popup) {
+      popup.style.display = 'none';
+    }
+
+    hoverEl.addEventListener('mouseenter', (e) => showPopup(hoverEl, e));
+  });
+}
+
+document.addEventListener('astro:page-load', () => {
+  if (floatingPopup) {
+    floatingPopup.remove();
+    floatingPopup = null;
+  }
+  hidePopup();
+  initTwoslashFloating();
+});
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initTwoslashFloating);
+} else {
+  initTwoslashFloating();
+}
+</script>

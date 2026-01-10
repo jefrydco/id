@@ -1,0 +1,72 @@
+---
+import { Focus } from "@lucide/astro";
+import { getTranslations, defaultLocale, type Locale } from "@/i18n";
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const t = getTranslations(locale);
+---
+
+<button
+  class="focus-toggle"
+  title={t.ui.focusMode}
+  aria-label={t.ui.focusMode}
+  data-pagefind-ignore="all"
+>
+  <Focus size={16} />
+</button>
+
+<script is:inline>
+  function bindFocusToggles() {
+    const focusToggles = document.querySelectorAll('.focus-toggle')
+    if (!focusToggles.length) return
+
+    focusToggles.forEach(function(toggle) {
+      if (toggle.dataset.bound === 'true') return
+      toggle.dataset.bound = 'true'
+
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault()
+        e.stopPropagation()
+
+        document.dispatchEvent(new CustomEvent('focusmodeactivate'))
+      })
+    })
+  }
+
+  window.addEventListener('DOMContentLoaded', bindFocusToggles)
+  document.addEventListener('astro:page-load', bindFocusToggles)
+</script>
+
+<style>
+  .focus-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    color: var(--text-primary);
+    transition: opacity 0.2s ease;
+  }
+
+  .focus-toggle:hover {
+    opacity: 0.7;
+  }
+
+  .focus-toggle:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .focus-toggle {
+      transition: none;
+    }
+  }
+</style>

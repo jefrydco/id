@@ -1,0 +1,153 @@
+---
+import FormattedDate from "@/components/widgets/FormattedDate.astro";
+import type { PostListProps } from "@/types";
+import { defaultLocale } from "@/i18n";
+import { getPostSlug } from "@/utils/i18n-content";
+
+const { posts, locale = defaultLocale } = Astro.props as PostListProps;
+
+function getPostUrl(post: (typeof posts)[0]): string {
+	const slug = getPostSlug(post);
+	return locale === "en" ? `/blog/${slug}/` : `/${locale}/blog/${slug}/`;
+}
+---
+
+<ul>
+  {
+    posts.map((post) => (
+      <li>
+        <a href={getPostUrl(post)}>
+          <div class="post-item">
+            <p class="title">{post.data.title}</p>
+            <div class="dotted-divider" />
+            <p class="date font-features">
+              <FormattedDate date={post.data.publishedAt} context="list" locale={locale} />
+            </p>
+          </div>
+        </a>
+      </li>
+    ))
+  }
+</ul>
+<div class="placeholder"></div>
+
+<style>
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  a {
+    color: var(--text-primary);
+    display: block;
+    text-decoration: none;
+    transition: opacity 0.15s ease-out;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 0.125rem;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    ul:hover a {
+      opacity: 0.4;
+    }
+
+    ul:hover a:hover {
+      opacity: 1;
+    }
+
+    ul:hover a:hover .divider {
+      background-color: var(--text-tertiary);
+      opacity: 0.75;
+    }
+    ul:hover a:hover .dotted-divider {
+      color: var(--text-secondary);
+    }
+    ul:hover a:hover .date {
+      color: var(--text-secondary);
+      opacity: 1;
+    }
+  }
+
+  /* Focus effect - same as hover, but don't conflict with hover */
+  ul:has(a:focus-visible) a:not(:focus-visible):not(:hover) {
+    opacity: 0.4;
+  }
+
+  ul:has(a:focus-visible) a:focus-visible .dotted-divider {
+    color: var(--text-secondary);
+  }
+
+  ul:has(a:focus-visible) a:focus-visible .date {
+    color: var(--text-secondary);
+    opacity: 1;
+  }
+
+  .post-item {
+    height: 2.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .title {
+    margin: 0;
+    flex-shrink: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .date {
+    margin: 0;
+    color: var(--text-secondary);
+    opacity: 0.75;
+    letter-spacing: var(--spacing-s);
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .divider {
+    flex: 1 1 auto;
+    min-width: 3rem;
+    margin: 0 0.25rem;
+    height: 0.5px;
+    background-color: var(--border);
+  }
+
+  .dotted-divider {
+    flex: 1 1 3rem;
+    min-width: 3rem;
+    max-width: 100%;
+    text-align: end;
+    letter-spacing: 5px;
+    height: 1.675rem;
+    overflow: hidden;
+    color: var(--text-tertiary);
+    opacity: 0.75;
+  }
+
+  .dotted-divider::after {
+    content: '·····························································································································································';
+    pointer-events: none;
+  }
+
+  .placeholder {
+    height: 3rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    a {
+      transition: none;
+    }
+  }
+</style>

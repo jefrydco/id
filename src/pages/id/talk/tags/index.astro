@@ -1,0 +1,81 @@
+---
+import IndexLayout from "@/layouts/IndexLayout.astro";
+import { themeConfig } from "@/config";
+import { getAllTalkTags, getTalkTagUrl } from "@/utils/talk-tags";
+import { getTranslations } from "@/i18n";
+
+const locale = "id";
+const t = getTranslations(locale);
+const tags = await getAllTalkTags(locale);
+
+const pageTitle = `${t.ui.allTalkTags} - ${themeConfig.site.title}`;
+---
+
+<IndexLayout title={pageTitle} description={t.ui.talkDescription} locale={locale}>
+  <div class="tags-page" data-pagefind-ignore="all">
+    <h1 class="page-title">{t.ui.allTalkTags}</h1>
+    <div class="tags-grid">
+      {tags.map((tagInfo) => (
+        <a href={getTalkTagUrl(tagInfo.tag, locale)} class="tag-item">
+          <span class="tag-name">{tagInfo.tag}</span>
+          <span class="tag-count">({tagInfo.count})</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</IndexLayout>
+
+<style>
+  .tags-page {
+    margin-top: 1.25rem;
+  }
+
+  .page-title {
+    font-size: var(--heading-1);
+    font-weight: var(--font-weight-bold);
+    margin: 0 0 1.5rem 0;
+  }
+
+  .tags-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .tag-item {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.25rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.25rem;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: border-color 0.15s ease-out, background-color 0.15s ease-out;
+  }
+
+  .tag-item:hover {
+    border-color: var(--text-tertiary);
+    background-color: var(--code-bg);
+  }
+
+  .tag-item:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .tag-name {
+    font-weight: var(--font-weight-bold);
+  }
+
+  .tag-count {
+    font-size: var(--font-size-s);
+    color: var(--text-secondary);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tag-item {
+      transition: none;
+    }
+  }
+</style>

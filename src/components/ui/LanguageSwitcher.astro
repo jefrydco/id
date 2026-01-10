@@ -1,0 +1,56 @@
+---
+import {
+	locales,
+	localeLabels,
+	defaultLocale,
+	getLocalizedPath,
+	type Locale,
+} from "@/i18n";
+import { getPostSlug, hasTranslation } from "@/utils/i18n-content";
+
+interface Props {
+	locale?: Locale;
+	slug?: string;
+}
+
+const { locale = defaultLocale, slug } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+// Check if we're on a post page
+const isPostPage = slug !== undefined;
+
+// Build translation availability map for post pages
+const translationAvailable: Record<Locale, boolean> = { en: true, id: true };
+if (isPostPage && slug) {
+	for (const loc of locales) {
+		translationAvailable[loc] = await hasTranslation(slug, loc);
+	}
+}
+---
+
+<nav class="switcher" aria-label="Language switcher" data-pagefind-ignore="all">
+  {
+    locales.map((loc, index) => {
+      const isActive = loc === locale
+      const hasContent = isPostPage ? translationAvailable[loc] : true
+      const targetPath = isPostPage && slug ? getLocalizedPath(`/blog/${slug}`, loc) : getLocalizedPath(currentPath, loc)
+
+      return (
+        <>
+          {index > 0 && <span class="separator">|</span>}
+          {isActive ? (
+            <span class="switcher-item active">{localeLabels[loc]}</span>
+          ) : hasContent ? (
+            <a href={targetPath} class="switcher-item" hreflang={loc}>
+              {localeLabels[loc]}
+            </a>
+          ) : (
+            <span class="switcher-item dimmed" title="Translation not available">
+              {localeLabels[loc]}
+            </span>
+          )}
+        </>
+      )
+    })
+  }
+</nav>

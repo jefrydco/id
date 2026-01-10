@@ -1,0 +1,45 @@
+---
+import "@/styles/global.css";
+import BaseHead from "@/components/layout/BaseHead.astro";
+import Header from "@/components/layout/Header.astro";
+import Footer from "@/components/layout/Footer.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import GradientMask from "@/components/ui/GradientMask.astro";
+import { defaultLocale, type Locale } from "@/i18n";
+
+interface Props {
+	title: string;
+	description: string;
+	locale?: Locale;
+}
+
+const { title, description, locale = defaultLocale } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} type="page" locale={locale}>
+  <BaseHead title={title} description={description} locale={locale} slot="head" />
+  <div class="page-content">
+    <GradientMask />
+    <div>
+      <Header locale={locale} />
+    </div>
+    <main id="main-content">
+      <slot />
+    </main>
+    <div>
+      <Footer locale={locale} />
+    </div>
+  </div>
+</BaseLayout>
+
+<style is:global>
+  .page-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-content main {
+    flex: 1;
+  }
+</style>

@@ -1,0 +1,152 @@
+---
+import IndexLayout from "@/layouts/IndexLayout.astro";
+import Search from "astro-pagefind/components/Search";
+import { themeConfig } from "@/config";
+import { getTranslations, type Locale } from "@/i18n";
+
+const locale: Locale = "id";
+const t = getTranslations(locale);
+const pageTitle = `${t.ui.search} - ${themeConfig.site.title}`;
+---
+
+<IndexLayout title={pageTitle} description={themeConfig.site.description} locale={locale}>
+  <div class="search-page" data-pagefind-ignore="all">
+    <h1 class="page-title">{t.ui.search}</h1>
+    <Search id="search" className="pagefind-ui" uiOptions={{ showImages: false }} />
+  </div>
+</IndexLayout>
+
+<script is:inline>
+  function initSearch() {
+    function setupInput(input) {
+      const params = new URLSearchParams(window.location.search)
+      const query = params.get('q')
+      if (query) {
+        input.value = query
+        input.dispatchEvent(new Event('input', { bubbles: true }))
+      }
+
+      setTimeout(() => input.focus(), 100)
+
+      let timeout
+      input.addEventListener('input', (e) => {
+        clearTimeout(timeout)
+        timeout = setTimeout(() => {
+          const url = new URL(window.location)
+          if (e.target.value) {
+            url.searchParams.set('q', e.target.value)
+          } else {
+            url.searchParams.delete('q')
+          }
+          history.replaceState(null, '', url)
+        }, 300)
+      })
+    }
+
+    const existingInput = document.querySelector('.pagefind-ui__search-input')
+    if (existingInput) {
+      setupInput(existingInput)
+      return
+    }
+
+    const observer = new MutationObserver((mutations, obs) => {
+      const input = document.querySelector('.pagefind-ui__search-input')
+      if (input) {
+        obs.disconnect()
+        setupInput(input)
+      }
+    })
+
+    observer.observe(document.body, { childList: true, subtree: true })
+  }
+
+  document.addEventListener('astro:page-load', initSearch)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSearch)
+  } else {
+    initSearch()
+  }
+</script>
+
+<style is:global>
+  .search-page {
+    margin-top: 1.25rem;
+  }
+
+  .pagefind-ui {
+    --pagefind-ui-scale: 1;
+    --pagefind-ui-primary: var(--text-primary);
+    --pagefind-ui-text: var(--text-primary);
+    --pagefind-ui-background: transparent;
+    --pagefind-ui-border: var(--border);
+    --pagefind-ui-tag: var(--code-bg);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 0.25rem;
+    --pagefind-ui-image-border-radius: 0.25rem;
+    --pagefind-ui-image-box-ratio: 3 / 2;
+    --pagefind-ui-font: var(--sans);
+  }
+
+  .pagefind-ui__search-input {
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    transition: border-color 0.2s ease;
+  }
+
+  .pagefind-ui__search-input:focus {
+    outline: none;
+    border-color: var(--text-primary);
+  }
+
+  .pagefind-ui__search-input::placeholder {
+    color: var(--text-tertiary);
+    font-weight: normal;
+  }
+
+  .pagefind-ui__search-clear {
+    color: var(--text-secondary);
+  }
+
+  .pagefind-ui__search-clear:hover {
+    color: var(--text-primary);
+  }
+
+  .pagefind-ui__result-link {
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .pagefind-ui__result-link:hover {
+    text-decoration: underline;
+  }
+
+  .pagefind-ui__result-link:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 0.125rem;
+  }
+
+  .pagefind-ui__result-excerpt {
+    color: var(--text-secondary);
+  }
+
+  .pagefind-ui__result-title {
+    font-weight: var(--font-weight-bold);
+  }
+
+  .pagefind-ui__message {
+    color: var(--text-secondary);
+  }
+
+  /* Override Pagefind's default highlight styles (uses :where() with 0 specificity) */
+  .pagefind-ui mark,
+  .pagefind-ui .pagefind__highlight {
+    background-color: var(--mark);
+    color: var(--text-primary);
+    padding: 1px 2px;
+    border-radius: 2px;
+  }
+</style>

@@ -1,0 +1,32 @@
+---
+import { themeConfig } from "@/config";
+import IndexLayout from "@/layouts/IndexLayout.astro";
+import { getTranslations } from "@/i18n";
+import type { Locale } from "@/i18n";
+
+const locale: Locale = "id";
+const t = getTranslations(locale);
+---
+
+<IndexLayout title={`404 - ${themeConfig.site.title}`} description="Not Found" locale={locale}>
+  <div data-pagefind-ignore="all">
+  <style>
+    .error-container {
+      color: var(--text-secondary);
+      text-align: center;
+      padding: 2rem 0;
+    }
+    .error-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .error-message {
+      color: var(--text-tertiary);
+    }
+  </style>
+  <div class="error-container">
+    <p class="error-title">{t.ui.pageNotFound}</p>
+    <p class="error-message">{t.ui.notFoundMessage}</p>
+  </div>
+  </div>
+</IndexLayout>

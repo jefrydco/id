@@ -1,0 +1,172 @@
+---
+import FormattedDate from "@/components/widgets/FormattedDate.astro";
+import { getTranslations, defaultLocale, type Locale } from "@/i18n";
+import { getTalkSlug } from "@/utils/i18n-talk-content";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+	talks: CollectionEntry<"talk">[];
+	locale?: Locale;
+}
+
+const { talks, locale = defaultLocale } = Astro.props;
+const t = getTranslations(locale);
+
+function getTalkUrl(talk: CollectionEntry<"talk">): string {
+	const slug = getTalkSlug(talk);
+	return locale === "en" ? `/talk/${slug}/` : `/${locale}/talk/${slug}/`;
+}
+---
+
+{
+  talks.length > 0 && (
+    <section class="related-talks" aria-labelledby="related-talks-heading">
+      <h2 id="related-talks-heading" class="related-talks-heading">
+        {t.ui.relatedTalks}
+      </h2>
+      <ul class="related-talks-list">
+        {talks.map((talk) => (
+          <li>
+            <a href={getTalkUrl(talk)}>
+              <div class="talk-item">
+                <p class="title">{talk.data.title}</p>
+                <div class="dotted-divider" />
+                <p class="date font-features">
+                  <FormattedDate date={talk.data.startDate} context="list" locale={locale} />
+                </p>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+<style>
+  .related-talks {
+    margin-top: 3rem;
+  }
+
+  .related-talks-heading {
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.75;
+    margin: 3.75em 0 1.75em 0;
+  }
+
+  .related-talks-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .related-talks-list li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .related-talks-list li::before,
+  .related-talks-list li::marker {
+    display: none;
+    content: none;
+  }
+
+  .related-talks-list a {
+    color: var(--text-primary);
+    display: block;
+    text-decoration: none;
+    transition: opacity 0.15s ease-out;
+  }
+
+  .related-talks-list a:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 0.125rem;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .related-talks-list:hover a {
+      opacity: 0.4;
+    }
+
+    .related-talks-list:hover a:hover {
+      opacity: 1;
+    }
+
+    .related-talks-list:hover a:hover .dotted-divider {
+      color: var(--text-secondary);
+    }
+
+    .related-talks-list:hover a:hover .date {
+      color: var(--text-secondary);
+      opacity: 1;
+    }
+  }
+
+  .related-talks-list:has(a:focus-visible) a:not(:focus-visible):not(:hover) {
+    opacity: 0.4;
+  }
+
+  .related-talks-list:has(a:focus-visible) a:focus-visible .dotted-divider {
+    color: var(--text-secondary);
+  }
+
+  .related-talks-list:has(a:focus-visible) a:focus-visible .date {
+    color: var(--text-secondary);
+    opacity: 1;
+  }
+
+  .talk-item {
+    height: 2.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .title {
+    margin: 0;
+    flex-shrink: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .date {
+    margin: 0;
+    color: var(--text-secondary);
+    opacity: 0.75;
+    letter-spacing: var(--spacing-s);
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .dotted-divider {
+    flex: 1 1 3rem;
+    min-width: 3rem;
+    max-width: 100%;
+    text-align: end;
+    letter-spacing: 5px;
+    height: 1.675rem;
+    overflow: hidden;
+    color: var(--text-tertiary);
+    opacity: 0.75;
+  }
+
+  .dotted-divider::after {
+    content: '·····························································································································································';
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .related-talks-list a {
+      transition: none;
+    }
+  }
+</style>

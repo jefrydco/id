@@ -1,0 +1,507 @@
+---
+import { X } from "@lucide/astro";
+---
+
+<div
+  id="image-viewer"
+  class="image-viewer"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Image viewer - Press Escape to close"
+  tabindex="-1"
+>
+  <button
+    id="image-viewer-close"
+    class="image-viewer-close"
+    aria-label="Close image viewer"
+  >
+    <X size={16} />
+  </button>
+  <img id="image-viewer-img" src="" alt="" />
+  <div id="svg-viewer-container" class="svg-viewer-container" role="img" aria-label=""></div>
+</div>
+
+<script>
+  function initImageViewer() {
+    const viewer = document.getElementById('image-viewer')
+    const viewerImg = document.getElementById('image-viewer-img') as HTMLImageElement
+    const svgContainer = document.getElementById('svg-viewer-container')
+    const closeButton = document.getElementById('image-viewer-close')
+
+    if (!viewer || !viewerImg || viewerImg.tagName !== 'IMG' || !closeButton || !svgContainer) return
+
+    if (viewer.dataset.init) return
+    viewer.dataset.init = '1'
+
+    let previousFocus: Element | null = null
+    let currentMode: 'image' | 'svg' | null = null
+
+    function openViewer() {
+      previousFocus = document.activeElement
+
+      viewer!.style.visibility = 'visible'
+      void viewer!.offsetWidth
+      viewer!.classList.add('active')
+      document.body.classList.add('image-viewer-open')
+      document.body.style.overflow = 'hidden'
+      document.body.dataset.scrollY = window.scrollY.toString()
+
+      setTimeout(() => {
+        closeButton!.focus()
+      }, 50)
+    }
+
+    function showImage(src: string, alt?: string) {
+      currentMode = 'image'
+      if (viewerImg && src) {
+        const tempImg = new Image()
+        tempImg.onload = () => {
+          const originalWidth = tempImg.naturalWidth
+          const originalHeight = tempImg.naturalHeight
+
+          const maxWidth = window.innerWidth * 0.85
+          const maxHeight = window.innerHeight * 0.80
+          const scaleX = maxWidth / originalWidth
+          const scaleY = maxHeight / originalHeight
+          const scale = Math.min(scaleX, scaleY, 5)
+
+          viewerImg!.style.width = `${originalWidth * scale}px`
+          viewerImg!.style.height = `${originalHeight * scale}px`
+          viewerImg!.style.minWidth = 'auto'
+          viewerImg!.style.maxWidth = '85vw'
+          viewerImg!.style.maxHeight = '80vh'
+
+          viewerImg!.src = src
+          viewerImg!.alt = alt || 'Enlarged image'
+          viewerImg!.style.display = 'block'
+          svgContainer!.style.display = 'none'
+          svgContainer!.innerHTML = ''
+          openViewer()
+        }
+        tempImg.src = src
+      }
+    }
+
+    function showSvg(svgHtml: string, ariaLabel: string) {
+      currentMode = 'svg'
+      svgContainer!.innerHTML = svgHtml
+      svgContainer!.setAttribute('aria-label', ariaLabel)
+      svgContainer!.style.display = 'flex'
+      viewerImg!.style.display = 'none'
+
+      const svg = svgContainer!.querySelector('svg')
+      if (svg) {
+        const viewBox = svg.getAttribute('viewBox')
+        const widthAttr = svg.getAttribute('width') || ''
+        const heightAttr = svg.getAttribute('height') || ''
+        let originalWidth = 0
+        let originalHeight = 0
+
+        if (viewBox) {
+          const parts = viewBox.split(/\s+|,/)
+          originalWidth = parseFloat(parts[2]) || 0
+          originalHeight = parseFloat(parts[3]) || 0
+        }
+
+        if (!originalWidth || !originalHeight) {
+          if (widthAttr.includes('ex') || heightAttr.includes('ex')) {
+            originalWidth = parseFloat(widthAttr) * 16
+            originalHeight = parseFloat(heightAttr) * 16
+          } else if (!widthAttr.includes('%') && !heightAttr.includes('%')) {
+            originalWidth = parseFloat(widthAttr) || 0
+            originalHeight = parseFloat(heightAttr) || 0
+          }
+        }
+
+        if (!originalWidth || !originalHeight) {
+          try {
+            const bbox = svg.getBBox()
+            originalWidth = bbox.width || 100
+            originalHeight = bbox.height || 100
+          } catch {
+            originalWidth = 100
+            originalHeight = 100
+          }
+        }
+
+        const maxWidth = window.innerWidth * 0.85
+        const maxHeight = window.innerHeight * 0.80
+        const scaleX = maxWidth / originalWidth
+        const scaleY = maxHeight / originalHeight
+        const scale = Math.min(scaleX, scaleY, 5)
+
+        svg.style.width = `${originalWidth * scale}px`
+        svg.style.height = `${originalHeight * scale}px`
+        svg.style.minWidth = 'auto'
+        svg.style.minHeight = 'auto'
+        svg.style.maxWidth = '85vw'
+        svg.style.maxHeight = '80vh'
+      }
+
+      openViewer()
+    }
+
+    function hideViewer() {
+      viewer!.classList.remove('active')
+      document.body.classList.remove('image-viewer-open')
+      document.body.style.overflow = ''
+
+      if (previousFocus && previousFocus instanceof HTMLElement) {
+        previousFocus.focus()
+      }
+    }
+
+    viewer!.addEventListener('transitionend', (e) => {
+      if (e.propertyName === 'opacity' && !viewer!.classList.contains('active')) {
+        viewer!.style.visibility = 'hidden'
+        currentMode = null
+        if (viewerImg) {
+          viewerImg.src = ''
+          viewerImg.alt = ''
+          viewerImg.style.display = 'block'
+        }
+        if (svgContainer) {
+          svgContainer.innerHTML = ''
+          svgContainer.style.display = 'none'
+          svgContainer.setAttribute('aria-label', '')
+        }
+      }
+    })
+
+    function bindImageClickEvents() {
+      const previewImages = document.querySelectorAll('img[data-preview="true"]')
+      previewImages.forEach((img) => {
+        const imgElement = img as HTMLImageElement
+
+        if (imgElement.dataset.viewerInit) return
+        imgElement.dataset.viewerInit = '1'
+
+        imgElement.style.cursor = 'zoom-in'
+        imgElement.tabIndex = 0
+        imgElement.setAttribute('role', 'button')
+        imgElement.setAttribute('aria-haspopup', 'dialog')
+
+        imgElement.addEventListener('click', (e) => {
+          e.preventDefault()
+          const target = e.target as HTMLImageElement
+          showImage(target.src, target.alt || '')
+        })
+
+        imgElement.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            showImage(imgElement.src, imgElement.alt || '')
+          }
+        })
+      })
+    }
+
+    function bindMathClickEvents() {
+      const mathElements = document.querySelectorAll('mjx-container[data-zoom="true"]')
+      mathElements.forEach((el) => {
+        const container = el as HTMLElement
+
+        if (container.dataset.zoomInit) return
+        container.dataset.zoomInit = '1'
+
+        container.style.cursor = 'zoom-in'
+        container.tabIndex = 0
+        container.setAttribute('role', 'button')
+        container.setAttribute('aria-haspopup', 'dialog')
+        container.setAttribute('aria-label', 'Click to enlarge equation')
+
+        container.addEventListener('click', (e) => {
+          if ((e.target as HTMLElement).closest('.download-button')) return
+
+          e.preventDefault()
+          e.stopPropagation()
+          const svg = container.querySelector('svg')
+          if (svg) {
+            showSvg(svg.outerHTML, 'Enlarged equation')
+          }
+        })
+
+        container.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            const svg = container.querySelector('svg')
+            if (svg) {
+              showSvg(svg.outerHTML, 'Enlarged equation')
+            }
+          }
+        })
+      })
+    }
+
+    function getVisibleMermaidTheme(): string {
+      const html = document.documentElement
+      if (html.classList.contains('dark')) return 'mermaid-dark'
+      if (html.classList.contains('reading')) return 'mermaid-reading'
+      return 'mermaid-light'
+    }
+
+    function bindMermaidClickEvents() {
+      const mermaidWrappers = document.querySelectorAll('.mermaid-ssr[data-zoom="true"]')
+      mermaidWrappers.forEach((wrapper) => {
+        const el = wrapper as HTMLElement
+
+        if (el.dataset.zoomInit) return
+        el.dataset.zoomInit = '1'
+
+        el.style.cursor = 'zoom-in'
+        el.tabIndex = 0
+        el.setAttribute('role', 'button')
+        el.setAttribute('aria-haspopup', 'dialog')
+        el.setAttribute('aria-label', 'Click to enlarge diagram')
+
+        el.addEventListener('click', (e) => {
+          const target = e.target as HTMLElement
+          if (target.closest('.mermaid-download') || target.closest('.download-menu')) return
+
+          e.preventDefault()
+          e.stopPropagation()
+
+          const themeClass = getVisibleMermaidTheme()
+          const themeContainer = el.querySelector('.' + themeClass)
+          const svg = themeContainer?.querySelector('svg')
+
+          if (svg) {
+            showSvg(svg.outerHTML, 'Enlarged diagram')
+          }
+        })
+
+        el.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+
+            const themeClass = getVisibleMermaidTheme()
+            const themeContainer = el.querySelector('.' + themeClass)
+            const svg = themeContainer?.querySelector('svg')
+
+            if (svg) {
+              showSvg(svg.outerHTML, 'Enlarged diagram')
+            }
+          }
+        })
+      })
+    }
+
+    closeButton.addEventListener('click', (e) => {
+      e.stopPropagation()
+      hideViewer()
+    })
+
+    viewer?.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement
+      if (target === viewer || target === viewerImg || target === svgContainer || svgContainer?.contains(target)) {
+        hideViewer()
+      }
+    })
+
+    viewer?.addEventListener(
+      'touchmove',
+      (e) => {
+        if (viewer.classList.contains('active')) {
+          e.preventDefault()
+        }
+      },
+      { passive: false }
+    )
+
+    viewer?.addEventListener('keydown', (e) => {
+      if (!viewer.classList.contains('active')) return
+
+      if (e.key === 'Escape') {
+        hideViewer()
+        return
+      }
+
+      if (e.key === 'Tab') {
+        e.preventDefault()
+        const focusableElement = currentMode === 'svg' ? svgContainer : viewerImg
+        if (document.activeElement === closeButton) {
+          focusableElement?.focus()
+        } else {
+          closeButton!.focus()
+        }
+      }
+    })
+
+    bindImageClickEvents()
+    bindMathClickEvents()
+    bindMermaidClickEvents()
+
+    const observer = new MutationObserver(() => {
+      bindImageClickEvents()
+      bindMathClickEvents()
+      bindMermaidClickEvents()
+    })
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    })
+
+    viewer!.style.visibility = 'hidden'
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initImageViewer)
+  } else {
+    initImageViewer()
+  }
+
+  document.addEventListener('astro:page-load', initImageViewer)
+</script>
+
+<style>
+  .image-viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.15s ease-in-out;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    cursor: zoom-out;
+  }
+
+  .image-viewer:focus {
+    outline: none;
+  }
+
+  .image-viewer.active {
+    opacity: 1;
+  }
+
+  .image-viewer img {
+    max-width: 85vw;
+    max-height: 80vh;
+    object-fit: contain;
+    cursor: zoom-out;
+  }
+
+  .image-viewer img:focus {
+    outline: none;
+  }
+
+  .svg-viewer-container {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+    height: 85vh;
+    cursor: zoom-out;
+    overflow: auto;
+  }
+
+  .svg-viewer-container:focus {
+    outline: none;
+  }
+
+  .svg-viewer-container svg {
+    max-width: 85vw;
+    max-height: 80vh;
+    object-fit: contain;
+  }
+
+  .image-viewer-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    border-radius: 0.25rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: opacity 0.2s ease;
+    z-index: 1;
+  }
+
+  .image-viewer-close:hover {
+    opacity: 0.7;
+  }
+
+  .image-viewer-close:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    color: var(--text-primary);
+  }
+
+  .image-viewer-close svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+
+  @media (prefers-reduced-motion: reduce) {
+    .image-viewer {
+      transition: none;
+    }
+
+    .svg-viewer-container svg * {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+
+  body.image-viewer-open {
+    overflow: hidden;
+  }
+
+  :global(mjx-container[data-zoom="true"]) {
+    cursor: zoom-in;
+    transition: opacity 0.15s ease;
+  }
+
+  :global(mjx-container[data-zoom="true"]:hover) {
+    opacity: 0.8;
+  }
+
+  :global(mjx-container[data-zoom="true"]:focus-visible) {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  :global(.mermaid-ssr[data-zoom="true"]) {
+    cursor: zoom-in;
+    transition: opacity 0.15s ease;
+  }
+
+  :global(.mermaid-ssr[data-zoom="true"]:hover) {
+    opacity: 0.8;
+  }
+
+  :global(.mermaid-ssr[data-zoom="true"]:focus-visible) {
+    outline: 2px solid var(--focus);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  :global(img[data-preview="true"]) {
+    cursor: zoom-in;
+    transition: opacity 0.15s ease;
+  }
+
+  :global(img[data-preview="true"]:hover) {
+    opacity: 0.8;
+  }
+
+  :global(img[data-preview="true"]:focus-visible) {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+</style>

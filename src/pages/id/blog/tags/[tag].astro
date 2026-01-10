@@ -1,0 +1,55 @@
+---
+import IndexLayout from "@/layouts/IndexLayout.astro";
+import PostList from "@/components/widgets/PostList.astro";
+import Pagination from "@/components/widgets/Pagination.astro";
+import { themeConfig } from "@/config";
+import { getAllUniqueTags, getPostsByTag } from "@/utils/tags";
+import { paginatePosts } from "@/utils/pagination";
+import { getTranslations, type Locale } from "@/i18n";
+
+export async function getStaticPaths() {
+	const tags = await getAllUniqueTags();
+	return tags.map((tag) => ({
+		params: { tag },
+		props: { tag },
+	}));
+}
+
+const { tag } = Astro.props;
+const locale: Locale = "id";
+const t = getTranslations(locale);
+const allPosts = await getPostsByTag(tag, locale);
+const { posts, currentPage, totalPages } = paginatePosts(allPosts, 1);
+
+const pageTitle = `${t.ui.postsTaggedWith} "${tag}" - ${themeConfig.site.title}`;
+---
+
+<IndexLayout title={pageTitle} description={themeConfig.site.description} locale={locale}>
+  <div class="tag-page" data-pagefind-ignore="all">
+    <h1 class="page-title">
+      {t.ui.postsTaggedWith} <span class="tag-name">"{tag}"</span>
+    </h1>
+    {posts.length > 0 ? (
+      <>
+        <PostList posts={posts} locale={locale} />
+        <Pagination currentPage={currentPage} totalPages={totalPages} locale={locale} basePath={`/id/blog/tags/${tag}`} />
+      </>
+    ) : (
+      <p class="no-posts">{t.ui.noPostsWithTag}</p>
+    )}
+  </div>
+</IndexLayout>
+
+<style>
+  .tag-page {
+    margin-top: 1.25rem;
+  }
+
+  .tag-name {
+    font-weight: 500;
+  }
+
+  .no-posts {
+    color: var(--text-secondary);
+  }
+</style>

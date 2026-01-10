@@ -1,0 +1,144 @@
+---
+import { X } from "@lucide/astro";
+import { getTranslations, defaultLocale, type Locale } from "@/i18n";
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const t = getTranslations(locale);
+---
+
+<button
+  class="focus-exit"
+  title={t.ui.exitFocusMode}
+  aria-label={t.ui.exitFocusMode}
+  hidden
+  data-pagefind-ignore="all"
+>
+  <X size={16} />
+</button>
+
+<script is:inline>
+  function initFocusMode() {
+    const exitButton = document.querySelector('.focus-exit')
+    if (!exitButton) return
+
+    let previouslyFocusedElement = null
+    let isActive = false
+
+    const elementsToHide = [
+      '.floating-actions',
+      '.back-button',
+      '.toc-wrapper',
+      '.gradient-mask',
+      'footer',
+      '.reading-progress',
+      '.giscus-wrapper'
+    ]
+
+    function activateFocusMode() {
+      if (isActive) return
+      isActive = true
+
+      previouslyFocusedElement = document.activeElement
+
+      document.body.classList.add('focus-mode-active')
+
+      elementsToHide.forEach(selector => {
+        const el = document.querySelector(selector)
+        if (el) el.setAttribute('data-focus-hidden', 'true')
+      })
+
+      exitButton.hidden = false
+      requestAnimationFrame(() => {
+        exitButton.focus()
+      })
+    }
+
+    function deactivateFocusMode() {
+      if (!isActive) return
+      isActive = false
+
+      document.body.classList.remove('focus-mode-active')
+
+      elementsToHide.forEach(selector => {
+        const el = document.querySelector(selector)
+        if (el) el.removeAttribute('data-focus-hidden')
+      })
+
+      exitButton.hidden = true
+
+      if (previouslyFocusedElement && previouslyFocusedElement.focus) {
+        previouslyFocusedElement.focus()
+      }
+    }
+
+    document.addEventListener('focusmodeactivate', activateFocusMode)
+
+    exitButton.addEventListener('click', function(e) {
+      e.preventDefault()
+      e.stopPropagation()
+      deactivateFocusMode()
+    })
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && isActive) {
+        deactivateFocusMode()
+      }
+    })
+  }
+
+  document.addEventListener('DOMContentLoaded', initFocusMode)
+  document.addEventListener('astro:page-load', initFocusMode)
+</script>
+
+<style is:global>
+  [data-focus-hidden="true"] {
+    display: none !important;
+  }
+
+  .focus-exit {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 100;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    transition: opacity 0.2s ease;
+  }
+
+  .focus-exit[hidden] {
+    display: none;
+  }
+
+  .focus-exit:hover {
+    opacity: 0.7;
+  }
+
+  .focus-exit:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+
+  @media (max-width: 1336px) {
+    .focus-exit {
+      top: 1rem;
+      right: 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .focus-exit {
+      transition: none;
+    }
+  }
+</style>

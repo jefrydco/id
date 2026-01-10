@@ -1,0 +1,280 @@
+---
+import DemoCard from '../shared/DemoCard.astro';
+import DemoInput from '../shared/DemoInput.astro';
+
+interface Props {
+  lang?: 'en' | 'id';
+}
+
+const { lang = 'en' } = Astro.props;
+const demoId = `reactivity-vue3-demo-${Math.random().toString(36).substring(7)}`;
+
+const labels = {
+  en: {
+    placeholder: 'Enter your todo item here',
+  },
+  id: {
+    placeholder: 'Masukkan item todo teman-teman di sini',
+  },
+};
+
+const t = labels[lang];
+---
+
+<DemoCard id={demoId} data-lang={lang}>
+  <pre class="demo-state"></pre>
+
+  <DemoInput
+    type="text"
+    class="demo-input"
+    width="full"
+    placeholder={t.placeholder}
+    aria-label={t.placeholder}
+  />
+
+  <ul class="demo-list"></ul>
+</DemoCard>
+
+<script define:vars={{ demoId }}>
+  (function() {
+    function init() {
+      const container = document.getElementById(demoId);
+      if (!container || container.dataset.initialized) return;
+      container.dataset.initialized = 'true';
+
+      // Vue 3-style reactivity implementation
+      const targetMap = new WeakMap();
+      let activeEffect = undefined;
+
+      function isObject(value) {
+        return Object.prototype.toString.call(value) === '[object Object]';
+      }
+
+      function reactive(target) {
+        return new Proxy(target, {
+          get(target, key, receiver) {
+            const value = target[key];
+            track(target, key);
+
+            if (isObject(value)) {
+              return reactive(value);
+            }
+            if (Array.isArray(value)) {
+              return trackArray(target, key);
+            }
+
+            return Reflect.get(target, key, receiver);
+          },
+          set(target, key, value, receiver) {
+            trigger(target, key, value);
+            return Reflect.set(target, key, value, receiver);
+          }
+        });
+      }
+
+      function track(target, key) {
+        let depsMap = targetMap.get(target);
+        if (!depsMap) {
+          depsMap = new Map();
+          targetMap.set(target, depsMap);
+        }
+
+        let dep = depsMap.get(key);
+        if (!dep) {
+          dep = new Set();
+          depsMap.set(key, dep);
+        }
+
+        if (!dep.has(activeEffect) && typeof activeEffect !== 'undefined') {
+          dep.add(activeEffect);
+        }
+
+        targetMap.set(target, depsMap);
+      }
+
+      function trackArray(target, key) {
+        const value = target[key];
+
+        return new Proxy(value, {
+          get(arrayTarget, arrayKey) {
+            const arrayMethod = arrayTarget[arrayKey];
+
+            if (typeof arrayMethod === 'function') {
+              if (['push', 'unshift', 'pop', 'shift', 'splice'].includes(arrayKey)) {
+                return function() {
+                  const result = Array.prototype[arrayKey].apply(arrayTarget, arguments);
+                  trigger(target, key, value);
+                  return result;
+                };
+              }
+              return arrayMethod.bind(arrayTarget);
+            }
+            return arrayMethod;
+          }
+        });
+      }
+
+      function trigger(target, key, value) {
+        const depsMap = targetMap.get(target);
+        if (!depsMap) return;
+        const effects = depsMap.get(key);
+
+        if (effects) {
+          effects.forEach(function(effect) {
+            effect(value);
+          });
+        }
+      }
+
+      function watch(target, key, effect) {
+        activeEffect = effect;
+        const value = target[key];
+        effect(value);
+        activeEffect = undefined;
+      }
+
+      function nextTick(callback) {
+        setTimeout(callback, 0);
+      }
+
+      // DOM helpers
+      const stateEl = container.querySelector('.demo-state');
+      const inputEl = container.querySelector('.demo-input');
+      const listEl = container.querySelector('.demo-list');
+
+      // Create reactive state
+      const state = reactive({
+        input: '',
+        list: []
+      });
+
+      function renderState() {
+        if (stateEl) {
+          stateEl.innerText = JSON.stringify(state, null, 2);
+        }
+      }
+
+      // Watch input changes
+      watch(state, 'input', function(value) {
+        if (inputEl) {
+          inputEl.value = value;
+        }
+        nextTick(renderState);
+      });
+
+      // Watch list changes
+      watch(state, 'list', function(value) {
+        if (listEl) {
+          listEl.innerHTML = value
+            .map(function(item, i) {
+              return '<li class="demo-list-item">' +
+                '<span>' + item + '</span>' +
+                '<button class="demo-remove-btn" data-index="' + i + '">×</button>' +
+                '</li>';
+            })
+            .join('');
+
+          // Add click handlers for remove buttons
+          value.forEach(function(item, i) {
+            const button = listEl.querySelector('.demo-remove-btn[data-index="' + i + '"]');
+            if (button) {
+              button.addEventListener('click', function(e) {
+                const index = parseInt(e.target.dataset.index);
+                state.list.splice(index, 1);
+              });
+            }
+          });
+        }
+        nextTick(renderState);
+      });
+
+      // Add input event listeners
+      if (inputEl) {
+        inputEl.addEventListener('input', function(e) {
+          state.input = e.target.value;
+        });
+
+        inputEl.addEventListener('keyup', function(e) {
+          if (e.key === 'Enter' && state.input.trim()) {
+            state.list.push(state.input);
+            state.input = '';
+          }
+        });
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+    document.addEventListener('astro:page-load', init);
+  })();
+</script>
+
+<style>
+  .demo-state {
+    background: var(--astro-code-background);
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    font-family: var(--mono);
+    font-size: var(--font-size-s);
+    overflow-x: auto;
+    min-height: 4rem;
+  }
+
+  .demo-input {
+    margin-bottom: 1rem;
+  }
+
+  .demo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  :global(.demo-list-item) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem;
+    background: var(--astro-code-background);
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+  }
+
+  :global(.demo-list-item span) {
+    flex: 1;
+    color: var(--text-primary);
+  }
+
+  :global(.demo-remove-btn) {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.25rem 0.75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  :global(.demo-remove-btn:hover) {
+    background: var(--code-diff-remove);
+    color: white;
+    border-color: var(--code-diff-remove);
+  }
+
+  :global(.demo-remove-btn:focus-visible) {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.demo-remove-btn) {
+      transition: none;
+    }
+  }
+</style>

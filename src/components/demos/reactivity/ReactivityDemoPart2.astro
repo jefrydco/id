@@ -1,0 +1,301 @@
+---
+import DemoCard from '../shared/DemoCard.astro';
+import DemoInput from '../shared/DemoInput.astro';
+import DemoSelect from '../shared/DemoSelect.astro';
+import DemoButton from '../shared/DemoButton.astro';
+
+interface Props {
+  variant: 11 | 12 | 13 | 14 | 15;
+  lang?: 'en' | 'id';
+}
+
+const { variant, lang = 'en' } = Astro.props;
+const demoId = `reactivity-demo-${variant}`;
+
+const t = {
+  en: {
+    calculator: "Calculator",
+    stopwatch: "Stopwatch",
+    start: "Start",
+    stop: "Stop",
+    reset: "Reset",
+    firstNumber: "First number",
+    secondNumber: "Second number",
+    operator: "Operator"
+  },
+  id: {
+    calculator: "Kalkulator",
+    stopwatch: "Stopwatch",
+    start: "Mulai",
+    stop: "Berhenti",
+    reset: "Atur Ulang",
+    firstNumber: "Angka pertama",
+    secondNumber: "Angka kedua",
+    operator: "Operator"
+  }
+}[lang];
+
+const operatorOptions = [
+  { value: '+', label: '+' },
+  { value: '-', label: '-' },
+  { value: '*', label: 'x' },
+  { value: '/', label: '÷' },
+];
+---
+
+<DemoCard id={demoId}>
+  <div class="demo-section">
+    <h4>{t.calculator}</h4>
+    <pre class="demo-state"></pre>
+    <div class="demo-controls">
+      <DemoInput type="number" class="demo-input1" min={0} value={0} aria-label={t.firstNumber} />
+      <DemoSelect class="demo-operator" options={operatorOptions} value="+" aria-label={t.operator} />
+      <DemoInput type="number" class="demo-input2" min={0} value={0} aria-label={t.secondNumber} />
+    </div>
+    <div class="demo-result">0</div>
+  </div>
+
+  <hr class="demo-divider" />
+
+  <div class="demo-section">
+    <h4>{t.stopwatch}</h4>
+    <pre class="demo-state-2"></pre>
+    <div class="demo-controls">
+      <DemoButton class="demo-start">{t.start}</DemoButton>
+      <DemoButton class="demo-stop">{t.stop}</DemoButton>
+      <DemoButton class="demo-reset">{t.reset}</DemoButton>
+    </div>
+    <div class="demo-second">0</div>
+  </div>
+</DemoCard>
+
+<script define:vars={{ variant, demoId }}>
+  (function() {
+    const OPERATOR = {
+      PLUS: '+',
+      SUBSTRACT: '-',
+      MULTIPLY: '*',
+      DIVIDE: '/'
+    };
+
+    const state = {
+      result: 0,
+      operator: OPERATOR.PLUS,
+      input1: 0,
+      input2: 0
+    };
+
+    const secondState = {
+      second: 0
+    };
+
+    function init() {
+      const container = document.getElementById(demoId);
+      if (!container || container.dataset.initialized) return;
+      container.dataset.initialized = 'true';
+
+      const stateDisplay = container.querySelector('.demo-state');
+      const resultDisplay = container.querySelector('.demo-result');
+      const input1Display = container.querySelector('.demo-input1');
+      const input2Display = container.querySelector('.demo-input2');
+      const operatorDisplay = container.querySelector('.demo-operator');
+      const state2Display = container.querySelector('.demo-state-2');
+      const secondDisplay = container.querySelector('.demo-second');
+      const startBtn = container.querySelector('.demo-start');
+      const stopBtn = container.querySelector('.demo-stop');
+      const resetBtn = container.querySelector('.demo-reset');
+
+      function updateDisplay() {
+        if (stateDisplay) stateDisplay.innerText = JSON.stringify(state, null, 2);
+        if (resultDisplay) resultDisplay.innerText = state.result.toString();
+        if (input1Display) input1Display.value = state.input1.toString();
+        if (input2Display) input2Display.value = state.input2.toString();
+        if (operatorDisplay) operatorDisplay.value = state.operator;
+      }
+
+      function calculateResult() {
+        switch (state.operator) {
+          case OPERATOR.PLUS:
+            state.result = state.input1 + state.input2;
+            break;
+          case OPERATOR.SUBSTRACT:
+            state.result = state.input1 - state.input2;
+            break;
+          case OPERATOR.MULTIPLY:
+            state.result = state.input1 * state.input2;
+            break;
+          case OPERATOR.DIVIDE:
+            state.result = state.input1 / state.input2;
+            break;
+        }
+      }
+
+      function updateStopwatch() {
+        if (state2Display) state2Display.innerText = JSON.stringify(secondState, null, 2);
+        if (secondDisplay) secondDisplay.innerText = secondState.second.toString();
+      }
+
+      let intervalId = 0;
+
+      function start() {
+        if (intervalId) return;
+        intervalId = setInterval(function() {
+          secondState.second = secondState.second + 1;
+          if (variant < 15) updateStopwatch();
+        }, 1000);
+      }
+
+      function stop() {
+        clearInterval(intervalId);
+        intervalId = 0;
+      }
+
+      function reset() {
+        stop();
+        secondState.second = 0;
+        if (variant < 15) updateStopwatch();
+      }
+
+      // Variant 15: Full reactivity with Watcher class
+      if (variant === 15) {
+        class Watcher {
+          constructor() {
+            this.taskList = [];
+          }
+          saveTask() {
+            if (Watcher.task) {
+              this.taskList.push(Watcher.task);
+            }
+          }
+          runTask() {
+            this.taskList.forEach(function(task) {
+              task();
+            });
+          }
+        }
+        Watcher.task = null;
+
+        function observe(object) {
+          Object.keys(object).forEach(function(key) {
+            let value = object[key];
+            const watcher = new Watcher();
+
+            Object.defineProperty(object, key, {
+              enumerable: true,
+              configurable: true,
+              get: function() {
+                watcher.saveTask();
+                return value;
+              },
+              set: function(newValue) {
+                if (newValue === value) return;
+                value = newValue;
+                watcher.runTask();
+              }
+            });
+          });
+        }
+
+        function runner(task) {
+          Watcher.task = task;
+          task();
+          Watcher.task = null;
+        }
+
+        observe(state);
+        observe(secondState);
+
+        runner(updateDisplay);
+        runner(calculateResult);
+        runner(updateStopwatch);
+      } else {
+        // Non-reactive variants
+        Object.keys(state).forEach(function(key) {
+          let value = state[key];
+          Object.defineProperty(state, key, {
+            enumerable: true,
+            configurable: true,
+            get: function() { return value; },
+            set: function(newValue) {
+              if (newValue === value) return;
+              value = newValue;
+              updateDisplay();
+              calculateResult();
+            }
+          });
+        });
+        updateDisplay();
+        updateStopwatch();
+      }
+
+      // Event listeners
+      if (input1Display) {
+        input1Display.addEventListener('input', function(event) {
+          state.input1 = parseInt(event.target.value) || 0;
+        });
+      }
+      if (input2Display) {
+        input2Display.addEventListener('input', function(event) {
+          state.input2 = parseInt(event.target.value) || 0;
+        });
+      }
+      if (operatorDisplay) {
+        operatorDisplay.addEventListener('change', function(event) {
+          state.operator = event.target.value;
+        });
+      }
+      if (startBtn) startBtn.addEventListener('click', start);
+      if (stopBtn) stopBtn.addEventListener('click', stop);
+      if (resetBtn) resetBtn.addEventListener('click', reset);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+    document.addEventListener('astro:page-load', init);
+  })();
+</script>
+
+<style>
+  .demo-section h4 {
+    margin: 0 0 1rem 0;
+    font-size: var(--font-size-m);
+    color: var(--text-secondary);
+  }
+
+  .demo-divider {
+    margin: 1.5rem 0;
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .demo-state, .demo-state-2 {
+    background: var(--astro-code-background);
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    font-family: var(--mono);
+    font-size: var(--font-size-s);
+    overflow-x: auto;
+    min-height: 4rem;
+  }
+
+  .demo-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .demo-result, .demo-second {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 1rem;
+    background: var(--astro-code-background);
+    border-radius: 6px;
+  }
+</style>

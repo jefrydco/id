@@ -1,0 +1,127 @@
+---
+import { getTranslations, defaultLocale, type Locale } from "@/i18n";
+import { ChevronLeft, ChevronRight } from "@lucide/astro";
+
+interface NavItem {
+	title: string;
+	url: string;
+}
+
+interface Props {
+	prevItem: NavItem | null;
+	nextItem: NavItem | null;
+	ariaLabel?: string;
+	locale?: Locale;
+}
+
+const { prevItem, nextItem, ariaLabel, locale = defaultLocale } = Astro.props;
+const t = getTranslations(locale);
+const navAriaLabel = ariaLabel || t.ui.postNavigation;
+---
+
+{
+  (prevItem || nextItem) && (
+    <>
+      <hr />
+      <nav class="post-navigation" aria-label={navAriaLabel} data-pagefind-ignore="all">
+      {prevItem ? (
+        <a class="nav-item prev" href={prevItem.url}>
+          <span class="nav-arrow" aria-hidden="true">
+            <ChevronLeft size={16} />
+          </span>
+          <span class="nav-title">{prevItem.title}</span>
+        </a>
+      ) : (
+        <div class="nav-placeholder" />
+      )}
+
+      {nextItem ? (
+        <a class="nav-item next" href={nextItem.url}>
+          <span class="nav-title">{nextItem.title}</span>
+          <span class="nav-arrow" aria-hidden="true">
+            <ChevronRight size={16} />
+          </span>
+        </a>
+      ) : (
+        <div class="nav-placeholder" />
+      )}
+    </nav>
+    </>
+  )
+}
+
+<style>
+  .post-navigation {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.75rem;
+  }
+
+  @media (max-width: 640px) {
+    .post-navigation {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--text-secondary);
+    transition: color 0.15s ease-out;
+  }
+
+  .nav-item:hover {
+    color: var(--text-primary);
+  }
+
+  .nav-item:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 0.125rem;
+    color: var(--text-primary);
+  }
+
+  .nav-item.prev {
+    text-align: left;
+  }
+
+  .nav-item.next {
+    text-align: right;
+    justify-content: flex-end;
+  }
+
+  @media (max-width: 640px) {
+    .nav-item.next {
+      grid-row: 1;
+    }
+
+    .nav-placeholder {
+      display: none;
+    }
+  }
+
+  .nav-arrow {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.125rem;
+  }
+
+  .nav-arrow svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .nav-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.5;
+  }
+</style>

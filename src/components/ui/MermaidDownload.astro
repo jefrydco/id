@@ -1,0 +1,275 @@
+---
+import { Download, Check } from "@lucide/astro";
+---
+
+<template id="mermaid-download-icons-template">
+  <Download class="download-icon" size={16} />
+  <Check class="downloaded-icon" size={16} />
+</template>
+
+<template id="mermaid-download-menu-template">
+  <div class="download-menu">
+    <button type="button" class="download-menu-item" data-format="svg">SVG</button>
+    <button type="button" class="download-menu-item" data-format="png">PNG</button>
+  </div>
+</template>
+
+<script>
+  function initMermaidDownload() {
+    const template = document.getElementById('mermaid-download-icons-template')
+    const menuTemplate = document.getElementById('mermaid-download-menu-template')
+    const downloadButtons = document.querySelectorAll('.mermaid-download')
+
+    downloadButtons.forEach((button) => {
+      if (button.dataset.mermaidInit) return
+      button.dataset.mermaidInit = '1'
+
+      if (!button.querySelector('svg') && template) {
+        const icons = template.content.cloneNode(true)
+        button.appendChild(icons)
+      }
+
+      const wrapper = button.closest('.download-mermaid-wrapper')
+      if (!wrapper) return
+
+      // Get the currently visible SVG based on theme
+      function getVisibleSvg() {
+        const html = document.documentElement
+        let themeClass = 'mermaid-light'
+        if (html.classList.contains('dark')) {
+          themeClass = 'mermaid-dark'
+        } else if (html.classList.contains('reading')) {
+          themeClass = 'mermaid-reading'
+        }
+        const container = wrapper.querySelector('.' + themeClass)
+        return container?.querySelector('svg')
+      }
+
+      let menu = null
+
+      wrapper.addEventListener('mouseenter', () => {
+        button.classList.add('visible')
+      })
+
+      wrapper.addEventListener('mouseleave', () => {
+        if (!button.hasAttribute('data-downloading')) {
+          button.classList.remove('visible')
+          if (menu) {
+            menu.remove()
+            menu = null
+          }
+        }
+      })
+
+      button.addEventListener('click', (e) => {
+        e.stopPropagation()
+
+        if (menu) {
+          menu.remove()
+          menu = null
+          return
+        }
+
+        if (menuTemplate) {
+          menu = menuTemplate.content.cloneNode(true).firstElementChild
+          wrapper.appendChild(menu)
+
+          menu.querySelectorAll('.download-menu-item').forEach((item) => {
+            item.addEventListener('click', async (e) => {
+              e.stopPropagation()
+              const format = item.dataset.format
+
+              button.setAttribute('data-downloading', 'true')
+
+              try {
+                const svgElement = getVisibleSvg()
+                if (!svgElement) {
+                  throw new Error('No SVG found')
+                }
+
+                const html = document.documentElement
+                let bgColor = '#ffffff'
+                if (html.classList.contains('dark')) {
+                  bgColor = '#1c1c1c'
+                } else if (html.classList.contains('reading')) {
+                  bgColor = '#f4ecd8'
+                }
+
+                const { downloadSvg } = await import('@/utils/svg-to-image')
+                const { createDownloadFilename } = await import('@/utils/download-filename')
+
+                await downloadSvg(svgElement, createDownloadFilename('diagram'), format, {
+                  backgroundColor: format === 'png' ? bgColor : undefined,
+                  useDataUrl: true
+                })
+
+                button.classList.add('downloaded')
+
+                if (menu) {
+                  menu.remove()
+                  menu = null
+                }
+
+                setTimeout(() => {
+                  if (!wrapper.matches(':hover')) {
+                    button.classList.remove('visible')
+                  }
+                  button.removeAttribute('data-downloading')
+
+                  setTimeout(() => {
+                    button.classList.remove('downloaded')
+                  }, 500)
+                }, 1500)
+              } catch (err) {
+                console.error('Failed to download diagram:', err)
+                button.removeAttribute('data-downloading')
+                if (menu) {
+                  menu.remove()
+                  menu = null
+                }
+              }
+            })
+          })
+        }
+      })
+
+      document.addEventListener('click', () => {
+        if (menu) {
+          menu.remove()
+          menu = null
+        }
+      })
+    })
+  }
+
+  document.addEventListener('astro:page-load', initMermaidDownload)
+  document.addEventListener('DOMContentLoaded', initMermaidDownload)
+</script>
+
+<style is:global>
+  /* Mermaid SSR Container */
+  .mermaid-ssr {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+  }
+
+  .mermaid-ssr svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Theme visibility toggle */
+  .mermaid-light,
+  .mermaid-dark,
+  .mermaid-reading {
+    display: none;
+  }
+
+  html:not(.dark):not(.reading) .mermaid-light {
+    display: block;
+  }
+
+  html.dark .mermaid-dark {
+    display: block;
+  }
+
+  html.reading .mermaid-reading {
+    display: block;
+  }
+
+  /* Download wrapper */
+  .download-mermaid-wrapper {
+    position: relative !important;
+  }
+
+  .mermaid-download {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    z-index: 10;
+    background: var(--bg);
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    backdrop-filter: blur(48px);
+    opacity: 0;
+  }
+
+  .mermaid-download.visible,
+  .mermaid-download:focus,
+  .mermaid-download:focus-visible {
+    opacity: 1;
+  }
+
+  .mermaid-download::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--code-bg);
+    border-radius: 0.325rem;
+    opacity: 0;
+    transition: opacity 0.15s ease-out;
+    pointer-events: none;
+  }
+
+  .mermaid-download:hover::before {
+    opacity: 1;
+  }
+
+  .mermaid-download:hover {
+    color: var(--text-primary);
+  }
+
+  .mermaid-download:focus,
+  .mermaid-download:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    color: var(--text-primary);
+  }
+
+  .mermaid-download svg {
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .mermaid-download .downloaded-icon {
+    display: none;
+  }
+
+  .mermaid-download.downloaded .download-icon {
+    display: none;
+  }
+
+  .mermaid-download.downloaded .downloaded-icon {
+    display: block;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mermaid-download {
+      transition: none;
+    }
+
+    .mermaid-download::before {
+      transition: none;
+    }
+
+    .mermaid-ssr svg * {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>

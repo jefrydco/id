@@ -1,0 +1,126 @@
+---
+// Reading progress indicator for post pages
+---
+
+<div
+  class="reading-progress"
+  id="reading-progress"
+  role="progressbar"
+  aria-label="Reading progress"
+  aria-valuenow="0"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  data-pagefind-ignore="all"
+>
+  <div class="reading-progress-bar" id="reading-progress-bar"></div>
+</div>
+
+<script is:inline>
+  ;(function () {
+    const state = {
+      progressBar: null,
+      progressContainer: null,
+      article: null,
+      rafId: null
+    }
+
+    function initElements() {
+      state.progressBar = document.getElementById('reading-progress-bar')
+      state.progressContainer = document.getElementById('reading-progress')
+      state.article = document.querySelector('.prose')
+      return state.progressBar && state.article
+    }
+
+    function updateProgress() {
+      if (!state.article || !state.progressBar) return
+
+      const articleRect = state.article.getBoundingClientRect()
+      const articleTop = articleRect.top + window.scrollY
+      const articleHeight = state.article.offsetHeight
+      const windowHeight = window.innerHeight
+      const scrollY = window.scrollY
+
+      const start = articleTop
+      const end = articleTop + articleHeight - windowHeight
+      const current = scrollY
+
+      let progress = 0
+      if (current <= start) {
+        progress = 0
+      } else if (current >= end) {
+        progress = 100
+      } else {
+        progress = ((current - start) / (end - start)) * 100
+      }
+
+      state.progressBar.style.width = `${progress}%`
+      state.progressContainer.setAttribute('aria-valuenow', Math.round(progress).toString())
+    }
+
+    function handleScroll() {
+      if (state.rafId) {
+        cancelAnimationFrame(state.rafId)
+      }
+      state.rafId = requestAnimationFrame(updateProgress)
+    }
+
+    function init() {
+      if (initElements()) {
+        updateProgress()
+        window.addEventListener('scroll', handleScroll, { passive: true })
+        window.addEventListener('resize', updateProgress)
+      }
+    }
+
+    function cleanup() {
+      if (state.rafId) {
+        cancelAnimationFrame(state.rafId)
+      }
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', updateProgress)
+      state.progressBar = null
+      state.progressContainer = null
+      state.article = null
+    }
+
+    document.addEventListener('astro:page-load', () => {
+      cleanup()
+      init()
+    })
+
+    document.addEventListener('astro:before-swap', cleanup)
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init)
+    } else {
+      init()
+    }
+  })()
+</script>
+
+<style>
+  .reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: transparent;
+    z-index: 100;
+    pointer-events: none;
+  }
+
+  .reading-progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: var(--text-primary);
+    transition: width 0.1s ease-out;
+    will-change: width;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reading-progress-bar {
+      transition: none;
+    }
+  }
+</style>

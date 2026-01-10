@@ -1,0 +1,20 @@
+---
+title: TutorTeknik - Uncover Vue 3 Reactivity
+description: Reveals the secret of the reactivity system of Vue 3 by recreating a simplified version.
+poster: ../../../assets/talk/2021-tutorteknik---uncover-vue-3-reactivity.jpg
+slide: https://bit.ly/slide-vue-3-reactivity
+sourceCode: https://github.com/jefrydco/anime-search-one
+writeUp: https://jefrydco.id/en/blog/create-reactivity-system-vue-3-javascript
+startDate: 2021-04-25T07:00:00.000Z
+endDate: 2021-04-25T09:00:00.000Z
+organizer: Tutor Teknik
+organizerUrl: https://tutorteknik.com/
+tags:
+  - vue
+  - vue3
+  - reactivity
+---
+
+TutorTeknik is a platform for 4.0 tech training in Indonesia.
+
+Reveals the secret of the reactivity system of Vue 3 by recreating a simplified version.

@@ -1,0 +1,30 @@
+---
+import IndexLayout from "@/layouts/IndexLayout.astro";
+import PostList from "@/components/widgets/PostList.astro";
+import Pagination from "@/components/widgets/Pagination.astro";
+import { themeConfig } from "@/config";
+import { getSortedPostsByLocale } from "@/utils/i18n-content";
+import { paginatePosts } from "@/utils/pagination";
+import { defaultLocale, getTranslations } from "@/i18n";
+
+const locale = defaultLocale;
+const t = getTranslations(locale);
+const allPosts = await getSortedPostsByLocale(locale);
+const { posts, currentPage, totalPages } = paginatePosts(allPosts, 1);
+
+const pageTitle = `${t.ui.blog} - ${themeConfig.site.title}`;
+---
+
+<IndexLayout title={pageTitle} description={themeConfig.site.description} locale={locale}>
+  <div class="blog-page" data-pagefind-ignore="all">
+    <h1 class="page-title">{t.ui.blog}</h1>
+    <PostList posts={posts} locale={locale} />
+    <Pagination currentPage={currentPage} totalPages={totalPages} locale={locale} basePath="/blog" />
+  </div>
+</IndexLayout>
+
+<style>
+  .blog-page {
+    margin-top: 1.25rem;
+  }
+</style>
