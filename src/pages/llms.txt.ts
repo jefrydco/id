@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
-import { getSortedPostsByLocale, getPostSlug } from "@/utils/i18n-content";
 import { themeConfig } from "@/config";
+import { getPostSlug, getSortedPostsByLocale } from "@/utils/i18n-content";
 
 export const GET: APIRoute = async () => {
 	const posts = await getSortedPostsByLocale("en");

@@ -1,7 +1,7 @@
 ---
 import { themeConfig } from "@/config";
+import { defaultLocale, getLocaleFromPath, getTranslations } from "@/i18n";
 import IndexLayout from "@/layouts/IndexLayout.astro";
-import { getTranslations, getLocaleFromPath, defaultLocale } from "@/i18n";
 
 const locale = getLocaleFromPath(Astro.url.pathname) || defaultLocale;
 const t = getTranslations(locale);

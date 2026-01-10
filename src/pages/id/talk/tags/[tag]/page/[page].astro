@@ -1,13 +1,13 @@
 ---
-import IndexLayout from "@/layouts/IndexLayout.astro";
-import TalkList from "@/components/widgets/TalkList.astro";
 import Pagination from "@/components/widgets/Pagination.astro";
+import TalkList from "@/components/widgets/TalkList.astro";
 import { themeConfig } from "@/config";
+import { getTranslations, type Locale } from "@/i18n";
+import IndexLayout from "@/layouts/IndexLayout.astro";
 import {
 	getAllUniqueTalkTags,
 	getTalksByTagGroupedByYear,
 } from "@/utils/talk-tags";
-import { getTranslations, type Locale } from "@/i18n";
 
 export async function getStaticPaths() {
 	const locale: Locale = "id";

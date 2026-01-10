@@ -6,16 +6,16 @@
  * (from remark-math) to SVG using MathJax 4.
  */
 
-import { toText } from "hast-util-to-text";
-import { SKIP, visitParents } from "unist-util-visit-parents";
-import { h } from "hastscript";
+import { liteAdaptor } from "@mathjax/src/js/adaptors/liteAdaptor.js";
+import { RegisterHTMLHandler } from "@mathjax/src/js/handlers/html.js";
+import { TeX } from "@mathjax/src/js/input/tex.js";
 
 // MathJax 4 imports
 import { mathjax } from "@mathjax/src/js/mathjax.js";
-import { TeX } from "@mathjax/src/js/input/tex.js";
 import { SVG } from "@mathjax/src/js/output/svg.js";
-import { liteAdaptor } from "@mathjax/src/js/adaptors/liteAdaptor.js";
-import { RegisterHTMLHandler } from "@mathjax/src/js/handlers/html.js";
+import { toText } from "hast-util-to-text";
+import { h } from "hastscript";
+import { SKIP, visitParents } from "unist-util-visit-parents";
 
 // Async loader for ESM
 import "@mathjax/src/js/util/asyncLoad/esm.js";

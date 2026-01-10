@@ -1,8 +1,8 @@
 ---
-import IndexLayout from "@/layouts/IndexLayout.astro";
 import { themeConfig } from "@/config";
-import { getAllTalkTags, getTalkTagUrl } from "@/utils/talk-tags";
 import { defaultLocale, getTranslations } from "@/i18n";
+import IndexLayout from "@/layouts/IndexLayout.astro";
+import { getAllTalkTags, getTalkTagUrl } from "@/utils/talk-tags";
 
 const locale = defaultLocale;
 const t = getTranslations(locale);

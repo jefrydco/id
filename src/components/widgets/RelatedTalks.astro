@@ -1,8 +1,8 @@
 ---
-import FormattedDate from "@/components/widgets/FormattedDate.astro";
-import { getTranslations, defaultLocale, type Locale } from "@/i18n";
-import { getTalkSlug } from "@/utils/i18n-talk-content";
 import type { CollectionEntry } from "astro:content";
+import FormattedDate from "@/components/widgets/FormattedDate.astro";
+import { defaultLocale, getTranslations, type Locale } from "@/i18n";
+import { getTalkSlug } from "@/utils/i18n-talk-content";
 
 interface Props {
 	talks: CollectionEntry<"talk">[];

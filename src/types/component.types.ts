@@ -1,5 +1,5 @@
-import type { TOCItem, ReadingTime } from "./content.types";
 import type { Locale } from "@/i18n";
+import type { ReadingTime, TOCItem } from "./content.types";
 
 // TOC component props interface
 export interface TOCProps {

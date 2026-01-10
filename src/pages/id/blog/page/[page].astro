@@ -1,12 +1,12 @@
 ---
-import IndexLayout from "@/layouts/IndexLayout.astro";
 import About from "@/components/widgets/About.astro";
-import PostList from "@/components/widgets/PostList.astro";
 import Pagination from "@/components/widgets/Pagination.astro";
+import PostList from "@/components/widgets/PostList.astro";
 import { themeConfig } from "@/config";
-import { getSortedPostsByLocale } from "@/utils/i18n-content";
-import { paginatePosts, POSTS_PER_PAGE } from "@/utils/pagination";
 import { getTranslations, type Locale } from "@/i18n";
+import IndexLayout from "@/layouts/IndexLayout.astro";
+import { getSortedPostsByLocale } from "@/utils/i18n-content";
+import { POSTS_PER_PAGE, paginatePosts } from "@/utils/pagination";
 
 export async function getStaticPaths() {
 	const locale: Locale = "id";

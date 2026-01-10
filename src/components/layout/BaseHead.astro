@@ -1,16 +1,16 @@
 ---
+import { pwaAssetsHead } from "virtual:pwa-assets/head";
+import { pwaInfo } from "virtual:pwa-info";
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import { themeConfig } from "@/config";
-import type { BaseHeadProps } from "@/types/component.types";
 import {
-	locales,
 	defaultLocale,
-	getLocalizedPath,
 	getLanguageTag,
+	getLocalizedPath,
+	locales,
 } from "@/i18n";
-import { pwaAssetsHead } from "virtual:pwa-assets/head";
-import { pwaInfo } from "virtual:pwa-info";
+import type { BaseHeadProps } from "@/types/component.types";
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 

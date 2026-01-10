@@ -1,20 +1,20 @@
 ---
 import { render } from "astro:content";
-import TalkLayout from "@/layouts/TalkLayout.astro";
-import PostNavigation from "@/components/widgets/PostNavigation.astro";
-import ShareButtons from "@/components/widgets/ShareButtons.astro";
-import RelatedTalks from "@/components/widgets/RelatedTalks.astro";
 import GiscusComments from "@/components/ui/GiscusComments.astro";
+import PostNavigation from "@/components/widgets/PostNavigation.astro";
+import RelatedTalks from "@/components/widgets/RelatedTalks.astro";
+import ShareButtons from "@/components/widgets/ShareButtons.astro";
+import { themeConfig } from "@/config";
+import { getTranslations } from "@/i18n";
+import TalkLayout from "@/layouts/TalkLayout.astro";
+import type { TOCItem } from "@/types";
 import {
+	getAdjacentTalks,
 	getAllTalkSlugs,
+	getRelatedTalksByTags,
 	getTalkBySlug,
 	getTalkSlug,
-	getAdjacentTalks,
-	getRelatedTalksByTags,
 } from "@/utils/i18n-talk-content";
-import { getTranslations } from "@/i18n";
-import { themeConfig } from "@/config";
-import type { TOCItem } from "@/types";
 
 const locale = "id";
 

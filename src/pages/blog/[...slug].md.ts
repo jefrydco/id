@@ -1,6 +1,6 @@
 import type { APIRoute, GetStaticPaths } from "astro";
-import { getAllPostSlugs, getPostBySlug } from "@/utils/i18n-content";
 import { defaultLocale } from "@/i18n";
+import { getAllPostSlugs, getPostBySlug } from "@/utils/i18n-content";
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const slugs = await getAllPostSlugs();
