@@ -1,34 +1,34 @@
 ---
 interface Option {
-  value: string;
-  label: string;
+	value: string;
+	label: string;
 }
 
 interface Props {
-  options: Option[];
-  value?: string;
-  class?: string;
-  id?: string;
-  name?: string;
-  'aria-label'?: string;
-  'aria-labelledby'?: string;
-  disabled?: boolean;
-  [key: `data-${string}`]: string | number | undefined;
+	options: Option[];
+	value?: string;
+	class?: string;
+	id?: string;
+	name?: string;
+	"aria-label"?: string;
+	"aria-labelledby"?: string;
+	disabled?: boolean;
+	[key: `data-${string}`]: string | number | undefined;
 }
 
 const {
-  options,
-  value,
-  class: className,
-  id,
-  name,
-  'aria-label': ariaLabel,
-  'aria-labelledby': ariaLabelledby,
-  disabled = false,
-  ...rest
+	options,
+	value,
+	class: className,
+	id,
+	name,
+	"aria-label": ariaLabel,
+	"aria-labelledby": ariaLabelledby,
+	disabled = false,
+	...rest
 } = Astro.props;
 
-const classes = ['demo-select', className].filter(Boolean).join(' ');
+const classes = ["demo-select", className].filter(Boolean).join(" ");
 ---
 
 <select

@@ -132,7 +132,7 @@ function createRenderer(options) {
  * rehype plugin for MathJax 4 SVG rendering
  */
 export default function rehypeMathJax4(options = {}) {
-	return function (tree, file) {
+	return (tree, file) => {
 		const renderer = createRenderer(options);
 		let found = false;
 		let context = tree;
@@ -140,7 +140,7 @@ export default function rehypeMathJax4(options = {}) {
 
 		renderer.register();
 
-		visitParents(tree, "element", function (element, parents) {
+		visitParents(tree, "element", (element, parents) => {
 			const classes = Array.isArray(element.properties.className)
 				? element.properties.className
 				: emptyClasses;

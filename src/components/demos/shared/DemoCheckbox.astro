@@ -1,25 +1,25 @@
 ---
 interface Props {
-  checked?: boolean;
-  label: string;
-  name?: string;
-  id?: string;
-  class?: string;
-  disabled?: boolean;
-  [key: `data-${string}`]: string | number | undefined;
+	checked?: boolean;
+	label: string;
+	name?: string;
+	id?: string;
+	class?: string;
+	disabled?: boolean;
+	[key: `data-${string}`]: string | number | undefined;
 }
 
 const {
-  checked = false,
-  label,
-  name,
-  id,
-  class: className,
-  disabled = false,
-  ...rest
+	checked = false,
+	label,
+	name,
+	id,
+	class: className,
+	disabled = false,
+	...rest
 } = Astro.props;
 
-const classes = ['demo-checkbox-label', className].filter(Boolean).join(' ');
+const classes = ["demo-checkbox-label", className].filter(Boolean).join(" ");
 ---
 
 <label class={classes}>

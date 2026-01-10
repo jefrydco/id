@@ -16,10 +16,7 @@ import {
 	transformerNotationDiff,
 	transformerMetaHighlight,
 } from "@shikijs/transformers";
-import {
-	transformerTwoslash,
-	rendererRich,
-} from "@shikijs/twoslash";
+import { transformerTwoslash, rendererRich } from "@shikijs/twoslash";
 import remarkEmbeddedMedia from "./src/plugins/remark-embedded-media.mjs";
 import remarkReadingTime from "./src/plugins/remark-reading-time.mjs";
 import rehypeCleanup from "./src/plugins/rehype-cleanup.mjs";
@@ -41,13 +38,13 @@ export default defineConfig({
 	adapter: cloudflare({
 		imageService: "compile",
 		routes: {
-         extend: {
-             exclude: [
-                 { pattern: "/sitemap-index.xml" },
-                 { pattern: "/sitemap-0.xml" },
-             ],
-         },
-     },
+			extend: {
+				exclude: [
+					{ pattern: "/sitemap-index.xml" },
+					{ pattern: "/sitemap-0.xml" },
+				],
+			},
+		},
 	}),
 	prefetch: true,
 	experimental: {
@@ -209,7 +206,7 @@ export default defineConfig({
 			external: [
 				"node:fs/promises",
 				"node:path",
-				"node:path/posix",,
+				"node:path/posix",
 				"node:url",
 				"node:crypto",
 				"stream",

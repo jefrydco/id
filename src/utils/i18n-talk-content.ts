@@ -98,12 +98,12 @@ export async function getTalksByYear(locale: Locale): Promise<TalkYearGroup[]> {
 		if (!grouped.has(year)) {
 			grouped.set(year, []);
 		}
-		grouped.get(year)!.push(talk);
+		grouped.get(year)?.push(talk);
 	}
 
 	return Array.from(grouped.entries())
 		.map(([year, talks]) => ({ year, talks }))
-		.sort((a, b) => parseInt(b.year) - parseInt(a.year));
+		.sort((a, b) => Number.parseInt(b.year, 10) - Number.parseInt(a.year, 10));
 }
 
 /**
@@ -231,9 +231,7 @@ export async function getRelatedTalksByTags(
 			if (b.score !== a.score) {
 				return b.score - a.score;
 			}
-			return (
-				b.talk.data.startDate.valueOf() - a.talk.data.startDate.valueOf()
-			);
+			return b.talk.data.startDate.valueOf() - a.talk.data.startDate.valueOf();
 		});
 
 	const result = scoredTalks.slice(0, limit).map((item) => item.talk);

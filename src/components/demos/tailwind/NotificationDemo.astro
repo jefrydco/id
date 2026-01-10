@@ -1,25 +1,25 @@
 ---
-import DemoCard from '../shared/DemoCard.astro';
+import DemoCard from "../shared/DemoCard.astro";
 
 interface Props {
-  lang?: 'en' | 'id';
+	lang?: "en" | "id";
 }
 
-const { lang = 'en' } = Astro.props;
+const { lang = "en" } = Astro.props;
 
 const t = {
-  en: {
-    title: "New Message from Boss",
-    defaultContent: "Congratulations, your salary is increased next month!",
-    successContent: "Next month you're the CTO ya!",
-    errorContent: "Come to my desk, quick!"
-  },
-  id: {
-    title: "Pesan Baru dari Bos",
-    defaultContent: "Selamat, gaji kamu bulan depan naik!",
-    successContent: "Bulan depan kamu saya angkat jadi CTO ya!",
-    errorContent: "Cepat ke meja saya sekarang!"
-  }
+	en: {
+		title: "New Message from Boss",
+		defaultContent: "Congratulations, your salary is increased next month!",
+		successContent: "Next month you're the CTO ya!",
+		errorContent: "Come to my desk, quick!",
+	},
+	id: {
+		title: "Pesan Baru dari Bos",
+		defaultContent: "Selamat, gaji kamu bulan depan naik!",
+		successContent: "Bulan depan kamu saya angkat jadi CTO ya!",
+		errorContent: "Cepat ke meja saya sekarang!",
+	},
 }[lang];
 ---
 

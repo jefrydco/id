@@ -43,7 +43,10 @@ function inlineComputedStyles(
 
 		if (styles.length) {
 			const existing = clonedElements[i].getAttribute("style") || "";
-			clonedElements[i].setAttribute("style", existing + ";" + styles.join(";"));
+			clonedElements[i].setAttribute(
+				"style",
+				`${existing};${styles.join(";")}`,
+			);
 		}
 	}
 }
@@ -94,7 +97,7 @@ export async function svgToBlob(svgElement: SVGElement): Promise<Blob> {
 export function svgToDataUrl(svg: SVGElement): string {
 	const svgString = new XMLSerializer().serializeToString(svg);
 	const base64 = btoa(unescape(encodeURIComponent(svgString)));
-	return "data:image/svg+xml;base64," + base64;
+	return `data:image/svg+xml;base64,${base64}`;
 }
 
 export async function svgToPngBlob(
@@ -114,7 +117,9 @@ export async function svgToPngBlob(
 		imgSrc = svgToDataUrl(preparedSvg);
 	} else {
 		const svgString = new XMLSerializer().serializeToString(preparedSvg);
-		const svgBlob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
+		const svgBlob = new Blob([svgString], {
+			type: "image/svg+xml;charset=utf-8",
+		});
 		imgSrc = URL.createObjectURL(svgBlob);
 	}
 
@@ -128,7 +133,10 @@ export async function svgToPngBlob(
 	const canvas = document.createElement("canvas");
 	canvas.width = bbox.width * scale;
 	canvas.height = bbox.height * scale;
-	const ctx = canvas.getContext("2d")!;
+	const ctx = canvas.getContext("2d");
+	if (!ctx) {
+		throw new Error("Failed to get canvas 2D context");
+	}
 	ctx.scale(scale, scale);
 	ctx.drawImage(img, 0, 0);
 

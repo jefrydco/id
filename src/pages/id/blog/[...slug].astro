@@ -50,8 +50,12 @@ function getPostUrl(post: typeof prevPost): string {
 	return `/id/blog/${postSlug}/`;
 }
 
-const prevItem = prevPost ? { title: prevPost.data.title, url: getPostUrl(prevPost) } : null;
-const nextItem = nextPost ? { title: nextPost.data.title, url: getPostUrl(nextPost) } : null;
+const prevItem = prevPost
+	? { title: prevPost.data.title, url: getPostUrl(prevPost) }
+	: null;
+const nextItem = nextPost
+	? { title: nextPost.data.title, url: getPostUrl(nextPost) }
+	: null;
 ---
 
 <PostLayout {...post.data} tags={post.data.tags || []} readingTime={readingTime} toc={toc} locale={locale}>

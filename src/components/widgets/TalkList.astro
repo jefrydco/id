@@ -28,9 +28,7 @@ function getTalkUrl(talk: CollectionEntry<"talk">): string {
 }
 
 // Group talks by year if needed
-function groupTalksByYear(
-	talks: CollectionEntry<"talk">[],
-): TalkYearGroup[] {
+function groupTalksByYear(talks: CollectionEntry<"talk">[]): TalkYearGroup[] {
 	const grouped = new Map<string, CollectionEntry<"talk">[]>();
 
 	for (const talk of talks) {
@@ -38,15 +36,16 @@ function groupTalksByYear(
 		if (!grouped.has(year)) {
 			grouped.set(year, []);
 		}
-		grouped.get(year)!.push(talk);
+		grouped.get(year)?.push(talk);
 	}
 
 	return Array.from(grouped.entries())
 		.map(([year, talks]) => ({ year, talks }))
-		.sort((a, b) => parseInt(b.year) - parseInt(a.year));
+		.sort((a, b) => Number.parseInt(b.year, 10) - Number.parseInt(a.year, 10));
 }
 
-const displayGroups = yearGroups || (groupByYear ? groupTalksByYear(talks) : null);
+const displayGroups =
+	yearGroups || (groupByYear ? groupTalksByYear(talks) : null);
 ---
 
 {displayGroups ? (

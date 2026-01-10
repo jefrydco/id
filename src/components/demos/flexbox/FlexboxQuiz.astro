@@ -1,48 +1,52 @@
 ---
-import DemoCard from '../shared/DemoCard.astro';
-import DemoButton from '../shared/DemoButton.astro';
-import DemoTextarea from '../shared/DemoTextarea.astro';
+import DemoCard from "../shared/DemoCard.astro";
+import DemoButton from "../shared/DemoButton.astro";
+import DemoTextarea from "../shared/DemoTextarea.astro";
 
 interface Props {
-  lang?: 'en' | 'id';
+	lang?: "en" | "id";
 }
 
-const { lang = 'en' } = Astro.props;
+const { lang = "en" } = Astro.props;
 
 const t = {
-  en: {
-    answer: "Your Answer",
-    flexboxIs: "Flexbox is.....",
-    addMoreComment: "Wanna add another comment?",
-    inMyOpinion: "In my opinion.....",
-    sending: "Sending...",
-    reset: "Reset",
-    send: "Send",
-    flexbox: "Flexbox is a layout system in CSS to organize and distribute items inside the container element",
-    commentInfoMore: "Please add more comments, it still needs {num} characters more.",
-    commentInfoCool: "Great, your comments is cool!",
-    commentsIsSaved: "Thank you, your answers and comments have been saved!",
-    yourOpinion: "So according to you:",
-    yourComments: "and your comment is:"
-  },
-  id: {
-    answer: "Jawaban Kamu",
-    flexboxIs: "Flexbox adalah.....",
-    addMoreComment: "Ingin menambahkan komentar lain?",
-    inMyOpinion: "Menurut pendapat saya.....",
-    sending: "Mengirim...",
-    reset: "Atur Ulang",
-    send: "Kirim",
-    flexbox: "Flexbox adalah sistem tata letak pada CSS untuk mengatur dan mendistribusikan item di dalam elemen kontainer",
-    commentInfoMore: "Ayo tambahin lagi ya komentarnya, masih kurang {num} karakter lagi nih.",
-    commentInfoCool: "Mantap, komentar Kamu keren!",
-    commentsIsSaved: "Terima kasih, jawaban dan komentar Kamu telah disimpan!",
-    yourOpinion: "Jadi menurut Kamu:",
-    yourComments: "dan komentar Kamu adalah:"
-  }
+	en: {
+		answer: "Your Answer",
+		flexboxIs: "Flexbox is.....",
+		addMoreComment: "Wanna add another comment?",
+		inMyOpinion: "In my opinion.....",
+		sending: "Sending...",
+		reset: "Reset",
+		send: "Send",
+		flexbox:
+			"Flexbox is a layout system in CSS to organize and distribute items inside the container element",
+		commentInfoMore:
+			"Please add more comments, it still needs {num} characters more.",
+		commentInfoCool: "Great, your comments is cool!",
+		commentsIsSaved: "Thank you, your answers and comments have been saved!",
+		yourOpinion: "So according to you:",
+		yourComments: "and your comment is:",
+	},
+	id: {
+		answer: "Jawaban Kamu",
+		flexboxIs: "Flexbox adalah.....",
+		addMoreComment: "Ingin menambahkan komentar lain?",
+		inMyOpinion: "Menurut pendapat saya.....",
+		sending: "Mengirim...",
+		reset: "Atur Ulang",
+		send: "Kirim",
+		flexbox:
+			"Flexbox adalah sistem tata letak pada CSS untuk mengatur dan mendistribusikan item di dalam elemen kontainer",
+		commentInfoMore:
+			"Ayo tambahin lagi ya komentarnya, masih kurang {num} karakter lagi nih.",
+		commentInfoCool: "Mantap, komentar Kamu keren!",
+		commentsIsSaved: "Terima kasih, jawaban dan komentar Kamu telah disimpan!",
+		yourOpinion: "Jadi menurut Kamu:",
+		yourComments: "dan komentar Kamu adalah:",
+	},
 }[lang];
 
-const STORAGE_KEY = 'flexbox-quiz-data';
+const STORAGE_KEY = "flexbox-quiz-data";
 const COMMENT_MIN_LENGTH = 50;
 ---
 

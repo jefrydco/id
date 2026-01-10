@@ -1,27 +1,21 @@
 ---
 interface Option {
-  value: string;
-  label: string;
-  checked?: boolean;
+	value: string;
+	label: string;
+	checked?: boolean;
 }
 
 interface Props {
-  name: string;
-  options: Option[];
-  labelId?: string;
-  class?: string;
-  [key: `data-${string}`]: string | number | undefined;
+	name: string;
+	options: Option[];
+	labelId?: string;
+	class?: string;
+	[key: `data-${string}`]: string | number | undefined;
 }
 
-const {
-  name,
-  options,
-  labelId,
-  class: className,
-  ...rest
-} = Astro.props;
+const { name, options, labelId, class: className, ...rest } = Astro.props;
 
-const classes = ['demo-radio-group', className].filter(Boolean).join(' ');
+const classes = ["demo-radio-group", className].filter(Boolean).join(" ");
 ---
 
 <div

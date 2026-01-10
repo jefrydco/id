@@ -1,33 +1,33 @@
 ---
 interface Props {
-  value?: string;
-  placeholder?: string;
-  rows?: number;
-  readonly?: boolean;
-  disabled?: boolean;
-  class?: string;
-  id?: string;
-  name?: string;
-  'aria-label'?: string;
-  'aria-labelledby'?: string;
-  [key: `data-${string}`]: string | number | undefined;
+	value?: string;
+	placeholder?: string;
+	rows?: number;
+	readonly?: boolean;
+	disabled?: boolean;
+	class?: string;
+	id?: string;
+	name?: string;
+	"aria-label"?: string;
+	"aria-labelledby"?: string;
+	[key: `data-${string}`]: string | number | undefined;
 }
 
 const {
-  value,
-  placeholder,
-  rows = 3,
-  readonly = false,
-  disabled = false,
-  class: className,
-  id,
-  name,
-  'aria-label': ariaLabel,
-  'aria-labelledby': ariaLabelledby,
-  ...rest
+	value,
+	placeholder,
+	rows = 3,
+	readonly = false,
+	disabled = false,
+	class: className,
+	id,
+	name,
+	"aria-label": ariaLabel,
+	"aria-labelledby": ariaLabelledby,
+	...rest
 } = Astro.props;
 
-const classes = ['demo-textarea', className].filter(Boolean).join(' ');
+const classes = ["demo-textarea", className].filter(Boolean).join(" ");
 ---
 
 <textarea

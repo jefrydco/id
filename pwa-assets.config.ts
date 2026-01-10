@@ -1,4 +1,4 @@
-import { readFile } from 'node:fs/promises'
+import { readFile } from "node:fs/promises";
 
 import {
 	createAppleSplashScreens,
@@ -11,22 +11,25 @@ export default defineConfig({
 		preset: "2023",
 	},
 	preset: {
-    ...minimal2023Preset,
-    appleSplashScreens: createAppleSplashScreens({
-      async darkImageResolver(imageName) {
-        return imageName === 'pwa/public/jefrydco-id-light.svg'
-          ? await readFile('pwa/public/jefrydco-id-dark.svg')
-          : undefined
-      },
-      padding: 0.3,
-      resizeOptions: { fit: 'contain', background: 'white' },
-      darkResizeOptions: { fit: 'contain', background: 'black' },
-      linkMediaOptions: {
-        log: true,
-        addMediaScreen: true,
-        xhtml: true,
-      },
-    }, ['iPad Air 9.7"']),
+		...minimal2023Preset,
+		appleSplashScreens: createAppleSplashScreens(
+			{
+				async darkImageResolver(imageName) {
+					return imageName === "pwa/public/jefrydco-id-light.svg"
+						? await readFile("pwa/public/jefrydco-id-dark.svg")
+						: undefined;
+				},
+				padding: 0.3,
+				resizeOptions: { fit: "contain", background: "white" },
+				darkResizeOptions: { fit: "contain", background: "black" },
+				linkMediaOptions: {
+					log: true,
+					addMediaScreen: true,
+					xhtml: true,
+				},
+			},
+			['iPad Air 9.7"'],
+		),
 	},
 	images: ["public/jefrydco-id-light.svg"],
 });
