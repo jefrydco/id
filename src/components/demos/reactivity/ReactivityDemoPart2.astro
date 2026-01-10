@@ -1,45 +1,45 @@
 ---
-import DemoCard from '../shared/DemoCard.astro';
-import DemoInput from '../shared/DemoInput.astro';
-import DemoSelect from '../shared/DemoSelect.astro';
-import DemoButton from '../shared/DemoButton.astro';
+import DemoCard from "../shared/DemoCard.astro";
+import DemoInput from "../shared/DemoInput.astro";
+import DemoSelect from "../shared/DemoSelect.astro";
+import DemoButton from "../shared/DemoButton.astro";
 
 interface Props {
-  variant: 11 | 12 | 13 | 14 | 15;
-  lang?: 'en' | 'id';
+	variant: 11 | 12 | 13 | 14 | 15;
+	lang?: "en" | "id";
 }
 
-const { variant, lang = 'en' } = Astro.props;
+const { variant, lang = "en" } = Astro.props;
 const demoId = `reactivity-demo-${variant}`;
 
 const t = {
-  en: {
-    calculator: "Calculator",
-    stopwatch: "Stopwatch",
-    start: "Start",
-    stop: "Stop",
-    reset: "Reset",
-    firstNumber: "First number",
-    secondNumber: "Second number",
-    operator: "Operator"
-  },
-  id: {
-    calculator: "Kalkulator",
-    stopwatch: "Stopwatch",
-    start: "Mulai",
-    stop: "Berhenti",
-    reset: "Atur Ulang",
-    firstNumber: "Angka pertama",
-    secondNumber: "Angka kedua",
-    operator: "Operator"
-  }
+	en: {
+		calculator: "Calculator",
+		stopwatch: "Stopwatch",
+		start: "Start",
+		stop: "Stop",
+		reset: "Reset",
+		firstNumber: "First number",
+		secondNumber: "Second number",
+		operator: "Operator",
+	},
+	id: {
+		calculator: "Kalkulator",
+		stopwatch: "Stopwatch",
+		start: "Mulai",
+		stop: "Berhenti",
+		reset: "Atur Ulang",
+		firstNumber: "Angka pertama",
+		secondNumber: "Angka kedua",
+		operator: "Operator",
+	},
 }[lang];
 
 const operatorOptions = [
-  { value: '+', label: '+' },
-  { value: '-', label: '-' },
-  { value: '*', label: 'x' },
-  { value: '/', label: '÷' },
+	{ value: "+", label: "+" },
+	{ value: "-", label: "-" },
+	{ value: "*", label: "x" },
+	{ value: "/", label: "÷" },
 ];
 ---
 

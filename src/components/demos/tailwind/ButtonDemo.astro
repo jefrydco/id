@@ -1,19 +1,19 @@
 ---
-import DemoCard from '../shared/DemoCard.astro';
+import DemoCard from "../shared/DemoCard.astro";
 
 interface Props {
-  lang?: 'en' | 'id';
+	lang?: "en" | "id";
 }
 
-const { lang = 'en' } = Astro.props;
+const { lang = "en" } = Astro.props;
 
 const t = {
-  en: {
-    button: "Button"
-  },
-  id: {
-    button: "Tombol"
-  }
+	en: {
+		button: "Button",
+	},
+	id: {
+		button: "Tombol",
+	},
 }[lang];
 ---
 

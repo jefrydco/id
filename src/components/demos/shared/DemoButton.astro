@@ -1,30 +1,32 @@
 ---
 interface Props {
-  variant?: 'default' | 'primary' | 'word';
-  size?: 'sm' | 'md';
-  disabled?: boolean;
-  type?: 'button' | 'submit' | 'reset';
-  class?: string;
-  'aria-label'?: string;
-  [key: `data-${string}`]: string | number | undefined;
+	variant?: "default" | "primary" | "word";
+	size?: "sm" | "md";
+	disabled?: boolean;
+	type?: "button" | "submit" | "reset";
+	class?: string;
+	"aria-label"?: string;
+	[key: `data-${string}`]: string | number | undefined;
 }
 
 const {
-  variant = 'default',
-  size = 'md',
-  disabled = false,
-  type = 'button',
-  class: className,
-  'aria-label': ariaLabel,
-  ...rest
+	variant = "default",
+	size = "md",
+	disabled = false,
+	type = "button",
+	class: className,
+	"aria-label": ariaLabel,
+	...rest
 } = Astro.props;
 
 const classes = [
-  'demo-btn',
-  variant !== 'default' && `demo-btn--${variant}`,
-  size !== 'md' && `demo-btn--${size}`,
-  className
-].filter(Boolean).join(' ');
+	"demo-btn",
+	variant !== "default" && `demo-btn--${variant}`,
+	size !== "md" && `demo-btn--${size}`,
+	className,
+]
+	.filter(Boolean)
+	.join(" ");
 ---
 
 <button

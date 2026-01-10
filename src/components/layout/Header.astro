@@ -17,8 +17,10 @@ const blogUrl = locale === "en" ? "/blog/" : `/${locale}/blog/`;
 const talkUrl = locale === "en" ? "/talk/" : `/${locale}/talk/`;
 
 const currentPath = Astro.url.pathname;
-const isBlogActive = currentPath.startsWith("/blog") || currentPath.startsWith(`/${locale}/blog`);
-const isTalkActive = currentPath.startsWith("/talk") || currentPath.startsWith(`/${locale}/talk`);
+const isBlogActive =
+	currentPath.startsWith("/blog") || currentPath.startsWith(`/${locale}/blog`);
+const isTalkActive =
+	currentPath.startsWith("/talk") || currentPath.startsWith(`/${locale}/talk`);
 ---
 
 <header data-pagefind-ignore="all">

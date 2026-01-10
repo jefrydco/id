@@ -103,10 +103,10 @@ export async function getTalksByTagGroupedByYear(
 		if (!grouped.has(year)) {
 			grouped.set(year, []);
 		}
-		grouped.get(year)!.push(talk);
+		grouped.get(year)?.push(talk);
 	}
 
 	return Array.from(grouped.entries())
 		.map(([year, talks]) => ({ year, talks }))
-		.sort((a, b) => parseInt(b.year) - parseInt(a.year));
+		.sort((a, b) => Number.parseInt(b.year, 10) - Number.parseInt(a.year, 10));
 }

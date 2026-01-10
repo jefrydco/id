@@ -1,27 +1,30 @@
 ---
 interface Props {
-  heading?: string;
-  headingId?: string;
-  headingLevel?: 'h3' | 'h4';
-  inline?: boolean;
-  class?: string;
+	heading?: string;
+	headingId?: string;
+	headingLevel?: "h3" | "h4";
+	inline?: boolean;
+	class?: string;
 }
 
 const {
-  heading,
-  headingId,
-  headingLevel = 'h4',
-  inline = false,
-  class: className,
+	heading,
+	headingId,
+	headingLevel = "h4",
+	inline = false,
+	class: className,
 } = Astro.props;
 
 const HeadingTag = headingLevel;
 const groupClasses = [
-  'demo-property-group',
-  inline && 'demo-property-group--inline',
-  className
-].filter(Boolean).join(' ');
-const headingClasses = headingLevel === 'h3' ? 'demo-section-heading' : 'demo-property-heading';
+	"demo-property-group",
+	inline && "demo-property-group--inline",
+	className,
+]
+	.filter(Boolean)
+	.join(" ");
+const headingClasses =
+	headingLevel === "h3" ? "demo-section-heading" : "demo-property-heading";
 ---
 
 <div class={groupClasses}>

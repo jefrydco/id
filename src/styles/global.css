@@ -18,7 +18,7 @@
 
 ::before,
 ::after {
-	--tw-content: '';
+	--tw-content: "";
 }
 
 html {
@@ -116,9 +116,9 @@ select {
 }
 
 button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
+[type="button"],
+[type="reset"],
+[type="submit"] {
 	-webkit-appearance: button;
 	background-color: transparent;
 	background-image: none;
@@ -141,7 +141,7 @@ progress {
 	height: auto;
 }
 
-[type='search'] {
+[type="search"] {
 	-webkit-appearance: textfield;
 	outline-offset: -2px;
 }
@@ -467,7 +467,9 @@ html {
 
 body {
 	font-family: var(--sans);
-	font-feature-settings: "ss03" 1, "zero" 1;
+	font-feature-settings:
+		"ss03" 1,
+		"zero" 1;
 	font-optical-sizing: auto;
 	font-size: var(--font-size-m);
 	text-autospace: normal;

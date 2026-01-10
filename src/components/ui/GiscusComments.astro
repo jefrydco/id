@@ -2,15 +2,15 @@
 import { getTranslations, defaultLocale, type Locale } from "@/i18n";
 
 interface Props {
-  locale?: Locale;
-  category?: string;
-  categoryId?: string;
+	locale?: Locale;
+	category?: string;
+	categoryId?: string;
 }
 
 const {
-  locale = defaultLocale,
-  category = "Blog",
-  categoryId = "DIC_kwDOQu-wFs4C0mhf"
+	locale = defaultLocale,
+	category = "Blog",
+	categoryId = "DIC_kwDOQu-wFs4C0mhf",
 } = Astro.props;
 const t = getTranslations(locale);
 ---

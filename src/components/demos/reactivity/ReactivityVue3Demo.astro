@@ -1,21 +1,21 @@
 ---
-import DemoCard from '../shared/DemoCard.astro';
-import DemoInput from '../shared/DemoInput.astro';
+import DemoCard from "../shared/DemoCard.astro";
+import DemoInput from "../shared/DemoInput.astro";
 
 interface Props {
-  lang?: 'en' | 'id';
+	lang?: "en" | "id";
 }
 
-const { lang = 'en' } = Astro.props;
+const { lang = "en" } = Astro.props;
 const demoId = `reactivity-vue3-demo-${Math.random().toString(36).substring(7)}`;
 
 const labels = {
-  en: {
-    placeholder: 'Enter your todo item here',
-  },
-  id: {
-    placeholder: 'Masukkan item todo teman-teman di sini',
-  },
+	en: {
+		placeholder: "Enter your todo item here",
+	},
+	id: {
+		placeholder: "Masukkan item todo teman-teman di sini",
+	},
 };
 
 const t = labels[lang];

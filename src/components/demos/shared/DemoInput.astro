@@ -1,45 +1,43 @@
 ---
 interface Props {
-  type?: 'text' | 'number';
-  value?: string | number;
-  placeholder?: string;
-  min?: number;
-  max?: number;
-  step?: number;
-  disabled?: boolean;
-  readonly?: boolean;
-  class?: string;
-  id?: string;
-  name?: string;
-  'aria-label'?: string;
-  'aria-labelledby'?: string;
-  width?: 'sm' | 'md' | 'full';
-  [key: `data-${string}`]: string | number | undefined;
+	type?: "text" | "number";
+	value?: string | number;
+	placeholder?: string;
+	min?: number;
+	max?: number;
+	step?: number;
+	disabled?: boolean;
+	readonly?: boolean;
+	class?: string;
+	id?: string;
+	name?: string;
+	"aria-label"?: string;
+	"aria-labelledby"?: string;
+	width?: "sm" | "md" | "full";
+	[key: `data-${string}`]: string | number | undefined;
 }
 
 const {
-  type = 'text',
-  value,
-  placeholder,
-  min,
-  max,
-  step,
-  disabled = false,
-  readonly = false,
-  class: className,
-  id,
-  name,
-  'aria-label': ariaLabel,
-  'aria-labelledby': ariaLabelledby,
-  width = 'md',
-  ...rest
+	type = "text",
+	value,
+	placeholder,
+	min,
+	max,
+	step,
+	disabled = false,
+	readonly = false,
+	class: className,
+	id,
+	name,
+	"aria-label": ariaLabel,
+	"aria-labelledby": ariaLabelledby,
+	width = "md",
+	...rest
 } = Astro.props;
 
-const classes = [
-  'demo-input',
-  `demo-input--${width}`,
-  className
-].filter(Boolean).join(' ');
+const classes = ["demo-input", `demo-input--${width}`, className]
+	.filter(Boolean)
+	.join(" ");
 ---
 
 <input

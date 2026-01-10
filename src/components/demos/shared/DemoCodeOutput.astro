@@ -1,23 +1,25 @@
 ---
 interface Props {
-  class?: string;
-  id?: string;
-  maxHeight?: string;
-  'aria-live'?: 'polite' | 'assertive' | 'off';
-  'aria-label'?: string;
-  copyButtonLabel?: string;
+	class?: string;
+	id?: string;
+	maxHeight?: string;
+	"aria-live"?: "polite" | "assertive" | "off";
+	"aria-label"?: string;
+	copyButtonLabel?: string;
 }
 
 const {
-  class: className,
-  id,
-  maxHeight = '20rem',
-  'aria-live': ariaLive = 'polite',
-  'aria-label': ariaLabel = 'Generated code',
-  copyButtonLabel = 'Copy code to clipboard',
+	class: className,
+	id,
+	maxHeight = "20rem",
+	"aria-live": ariaLive = "polite",
+	"aria-label": ariaLabel = "Generated code",
+	copyButtonLabel = "Copy code to clipboard",
 } = Astro.props;
 
-const wrapperClasses = ['demo-code-output', 'copy-code-wrapper', className].filter(Boolean).join(' ');
+const wrapperClasses = ["demo-code-output", "copy-code-wrapper", className]
+	.filter(Boolean)
+	.join(" ");
 ---
 
 <div class={wrapperClasses} id={id}>

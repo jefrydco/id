@@ -1,20 +1,20 @@
 ---
-import DemoCard from '../shared/DemoCard.astro';
-import DemoInput from '../shared/DemoInput.astro';
-import DemoSelect from '../shared/DemoSelect.astro';
+import DemoCard from "../shared/DemoCard.astro";
+import DemoInput from "../shared/DemoInput.astro";
+import DemoSelect from "../shared/DemoSelect.astro";
 
 interface Props {
-  variant: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+	variant: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 }
 
 const { variant } = Astro.props;
 const demoId = `reactivity-demo-${variant}`;
 
 const operatorOptions = [
-  { value: '+', label: '+' },
-  { value: '-', label: '-' },
-  { value: '*', label: 'x' },
-  { value: '/', label: '÷' },
+	{ value: "+", label: "+" },
+	{ value: "-", label: "-" },
+	{ value: "*", label: "x" },
+	{ value: "/", label: "÷" },
 ];
 ---
 

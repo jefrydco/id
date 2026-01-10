@@ -31,7 +31,20 @@ interface Props {
 const { talk, locale = defaultLocale, toc = [] } = Astro.props;
 const t = getTranslations(locale);
 
-const { title, description, poster, slide, playback, sourceCode, writeUp, startDate, endDate, organizer, organizerUrl, tags } = talk.data;
+const {
+	title,
+	description,
+	poster,
+	slide,
+	playback,
+	sourceCode,
+	writeUp,
+	startDate,
+	endDate,
+	organizer,
+	organizerUrl,
+	tags,
+} = talk.data;
 
 const talkSlug = getTalkSlug(talk);
 
@@ -39,9 +52,10 @@ const youtubeId = playback ? getYoutubeId(playback) : null;
 
 const talkListUrl = locale === "en" ? "/talk/" : `/${locale}/talk/`;
 
-const ogImage = locale === "en"
-	? `/open-graph/talk/${talkSlug}.png`
-	: `/open-graph/${locale}/talk/${talkSlug}.png`;
+const ogImage =
+	locale === "en"
+		? `/open-graph/talk/${talkSlug}.png`
+		: `/open-graph/${locale}/talk/${talkSlug}.png`;
 ---
 
 <BaseLayout

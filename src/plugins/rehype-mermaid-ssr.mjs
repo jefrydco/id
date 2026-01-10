@@ -405,7 +405,7 @@ async function renderMermaid(code, themeConfig) {
 					securityLevel: "loose",
 				});
 
-				const id = "mermaid-" + Math.random().toString(36).substr(2, 9);
+				const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`;
 				const { svg } = await mermaid.render(id, diagramCode);
 				return svg;
 			},
@@ -508,7 +508,8 @@ function createThemedContainer(lightSvg, darkSvg, readingSvg) {
 export default function rehypeMermaidSSR() {
 	return async (tree, file) => {
 		const mermaidNodes = [];
-		const filename = file?.history?.[0]?.replace(process.cwd() + "/", "") || "unknown";
+		const filename =
+			file?.history?.[0]?.replace(`${process.cwd()}/`, "") || "unknown";
 
 		// Collect all mermaid code blocks
 		// Mermaid blocks are: <pre><code class="language-mermaid">...</code></pre>

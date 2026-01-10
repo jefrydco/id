@@ -3,7 +3,10 @@ import IndexLayout from "@/layouts/IndexLayout.astro";
 import TalkList from "@/components/widgets/TalkList.astro";
 import Pagination from "@/components/widgets/Pagination.astro";
 import { themeConfig } from "@/config";
-import { getAllUniqueTalkTags, getTalksByTagGroupedByYear } from "@/utils/talk-tags";
+import {
+	getAllUniqueTalkTags,
+	getTalksByTagGroupedByYear,
+} from "@/utils/talk-tags";
 import { getTranslations } from "@/i18n";
 
 const locale = "id";
@@ -17,7 +20,7 @@ export async function getStaticPaths() {
 
 const t = getTranslations(locale);
 const { tag } = Astro.params;
-const yearGroups = await getTalksByTagGroupedByYear(tag!, locale);
+const yearGroups = await getTalksByTagGroupedByYear(tag ?? "", locale);
 const totalPages = yearGroups.length;
 const currentYearGroup = yearGroups[0];
 

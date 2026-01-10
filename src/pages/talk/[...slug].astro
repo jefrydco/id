@@ -54,10 +54,20 @@ contentToc.forEach((item) => {
 });
 
 if (slide || writeUp || sourceCode) {
-	combinedToc.push({ level: 2, text: t.ui.resources, id: 'resources', index: tocIndex++ });
+	combinedToc.push({
+		level: 2,
+		text: t.ui.resources,
+		id: "resources",
+		index: tocIndex++,
+	});
 }
 
-combinedToc.push({ level: 2, text: t.ui.organizer, id: 'organizer', index: tocIndex++ });
+combinedToc.push({
+	level: 2,
+	text: t.ui.organizer,
+	id: "organizer",
+	index: tocIndex++,
+});
 
 function getTalkUrlPath(talk: typeof prevTalk): string {
 	if (!talk) return "";
@@ -65,8 +75,12 @@ function getTalkUrlPath(talk: typeof prevTalk): string {
 	return `/talk/${talkSlug}/`;
 }
 
-const prevItem = prevTalk ? { title: prevTalk.data.title, url: getTalkUrlPath(prevTalk) } : null;
-const nextItem = nextTalk ? { title: nextTalk.data.title, url: getTalkUrlPath(nextTalk) } : null;
+const prevItem = prevTalk
+	? { title: prevTalk.data.title, url: getTalkUrlPath(prevTalk) }
+	: null;
+const nextItem = nextTalk
+	? { title: nextTalk.data.title, url: getTalkUrlPath(nextTalk) }
+	: null;
 ---
 
 <TalkLayout talk={talk} locale={locale} toc={combinedToc}>
