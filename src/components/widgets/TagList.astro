@@ -1,0 +1,75 @@
+---
+import type { Locale } from "@/i18n";
+import { defaultLocale, getTranslations } from "@/i18n";
+import { getTagUrl as defaultGetTagUrl } from "@/utils/tags";
+
+interface Props {
+	tags: string[];
+	locale?: Locale;
+	getTagUrl?: (tag: string, locale: Locale) => string;
+}
+
+const { tags, locale = defaultLocale, getTagUrl: customGetTagUrl } = Astro.props;
+const t = getTranslations(locale);
+const urlFn = customGetTagUrl || defaultGetTagUrl;
+---
+
+{
+  tags.length > 0 && (
+    <div class="tag-list" data-pagefind-ignore="all">
+      <span class="label">{t.ui.tags}:</span>
+      {tags.map((tag, index) => (
+        <>
+          <a href={urlFn(tag, locale)} class="tag">
+            {tag}
+          </a>
+          {index < tags.length - 1 && <span class="separator">,</span>}
+        </>
+      ))}
+    </div>
+  )
+}
+
+<style>
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+
+  .label {
+    margin-right: 0.25rem;
+  }
+
+  .tag {
+    color: var(--text-secondary);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    text-decoration-color: var(--text-tertiary);
+    transition: all 0.15s ease;
+  }
+
+  .tag:hover {
+    color: var(--text-primary);
+    text-decoration-color: var(--text-primary);
+  }
+
+  .tag:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 0.125rem;
+  }
+
+  .separator {
+    color: var(--text-tertiary);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tag {
+      transition: none;
+    }
+  }
+</style>

@@ -1,0 +1,79 @@
+---
+interface Props {
+  value?: string;
+  placeholder?: string;
+  rows?: number;
+  readonly?: boolean;
+  disabled?: boolean;
+  class?: string;
+  id?: string;
+  name?: string;
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
+  [key: `data-${string}`]: string | number | undefined;
+}
+
+const {
+  value,
+  placeholder,
+  rows = 3,
+  readonly = false,
+  disabled = false,
+  class: className,
+  id,
+  name,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledby,
+  ...rest
+} = Astro.props;
+
+const classes = ['demo-textarea', className].filter(Boolean).join(' ');
+---
+
+<textarea
+  class={classes}
+  rows={rows}
+  placeholder={placeholder}
+  readonly={readonly}
+  disabled={disabled}
+  id={id}
+  name={name}
+  aria-label={ariaLabel}
+  aria-labelledby={ariaLabelledby}
+  {...rest}
+>{value}</textarea>
+
+<style>
+  .demo-textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: var(--font-size-s);
+    resize: vertical;
+    transition: border-color 0.15s ease;
+  }
+
+  .demo-textarea:focus {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .demo-textarea:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .demo-textarea[readonly] {
+    background: var(--code-bg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .demo-textarea {
+      transition: none;
+    }
+  }
+</style>

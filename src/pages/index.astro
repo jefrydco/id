@@ -1,0 +1,14 @@
+---
+import IndexLayout from "@/layouts/IndexLayout.astro";
+import About from "@/components/widgets/About.astro";
+import { themeConfig } from "@/config";
+import { defaultLocale } from "@/i18n";
+
+const locale = defaultLocale;
+---
+
+<IndexLayout title={themeConfig.site.title} description={themeConfig.site.description} locale={locale}>
+  <div data-pagefind-ignore="all">
+    <About locale={locale} />
+  </div>
+</IndexLayout>

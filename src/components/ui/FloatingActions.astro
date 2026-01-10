@@ -1,0 +1,135 @@
+---
+import ThemeToggle from "@/components/ui/ThemeToggle.astro";
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher.astro";
+import SearchButton from "@/components/ui/SearchButton.astro";
+import FocusModeToggle from "@/components/ui/FocusModeToggle.astro";
+import FontToggle from "@/components/ui/FontToggle.astro";
+import { getTranslations, defaultLocale, type Locale } from "@/i18n";
+import { ArrowUp } from "@lucide/astro";
+
+interface Props {
+	locale?: Locale;
+	slug?: string;
+}
+
+const { locale = defaultLocale, slug } = Astro.props;
+const t = getTranslations(locale);
+---
+
+<div class="floating-actions" data-pagefind-ignore="all">
+  <SearchButton locale={locale} />
+  <LanguageSwitcher locale={locale} slug={slug} />
+  <FocusModeToggle locale={locale} />
+  <FontToggle locale={locale} />
+  <ThemeToggle />
+  <button
+    class="back-to-top"
+    id="back-to-top"
+    title={t.ui.backToTop}
+    aria-label={t.ui.backToTop}
+  >
+    <ArrowUp size={16} />
+  </button>
+</div>
+
+<script is:inline>
+;(function () {
+  const FADE_DELAY = 1500
+  let scrollTimeout = null
+
+  function init() {
+    const button = document.getElementById('back-to-top')
+    if (!button) return
+
+    button.addEventListener('click', (e) => {
+      e.preventDefault()
+      const motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      window.scrollTo({ top: 0, behavior: motionOK ? 'smooth' : 'auto' })
+    })
+  }
+
+  function handleScroll() {
+    const container = document.querySelector('.floating-actions')
+    if (!container) return
+
+    if (window.scrollY > 200) {
+      container.classList.add('visible')
+    } else {
+      container.classList.remove('visible')
+      return
+    }
+
+    if (window.innerWidth > 1336) return
+
+    if (scrollTimeout) clearTimeout(scrollTimeout)
+
+    scrollTimeout = setTimeout(() => {
+      if (!container.matches(':focus-within')) {
+        container.classList.remove('visible')
+      }
+    }, FADE_DELAY)
+  }
+
+  document.addEventListener('astro:page-load', init)
+  document.addEventListener('DOMContentLoaded', init)
+  window.addEventListener('scroll', handleScroll, { passive: true })
+})()
+</script>
+
+<style>
+  .floating-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1rem;
+    z-index: 50;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  @media (max-width: 1336px) {
+    .floating-actions {
+      opacity: 0;
+      transform: translateY(0.5rem);
+      pointer-events: none;
+    }
+
+    .floating-actions.visible,
+    .floating-actions:focus-within {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+  }
+
+  .back-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .back-to-top:hover {
+    opacity: 0.7;
+  }
+
+  .back-to-top:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .floating-actions,
+    .back-to-top {
+      transition: none;
+    }
+  }
+</style>

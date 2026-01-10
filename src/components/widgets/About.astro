@@ -1,0 +1,72 @@
+---
+import { getEntry } from "astro:content";
+import { render } from "astro:content";
+import { defaultLocale, getTranslations, type Locale } from "@/i18n";
+
+interface Props {
+	locale?: Locale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const t = getTranslations(locale);
+
+let aboutEntry = await getEntry("about", `${locale}/about`);
+if (!aboutEntry) {
+	aboutEntry = await getEntry("about", `${defaultLocale}/about`);
+}
+// Check if there is actual content (excluding comments)
+const hasContent = aboutEntry?.body
+	? aboutEntry.body.replace(/<!--[\s\S]*?-->/g, "").trim().length > 0
+	: false;
+const { Content } =
+	hasContent && aboutEntry ? await render(aboutEntry) : { Content: null };
+---
+
+{
+  hasContent && Content && (
+    <>
+      <a href="#after-social-links" class="skip-social-links" data-pagefind-ignore="all">
+        {t.ui.skipSocialLinks}
+      </a>
+      <div class="about prose">
+        <Content />
+      </div>
+      <span id="after-social-links" tabindex="-1"></span>
+    </>
+  )
+}
+
+<style>
+  .about:not(:empty) {
+    margin-bottom: 1.25rem;
+  }
+
+  .skip-social-links {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    z-index: 9999;
+    padding: 0.75rem 1rem;
+    background: var(--bg);
+    color: var(--text-primary);
+    border: 2px solid var(--text-primary);
+    border-radius: 0.25rem;
+    text-decoration: none;
+    font-weight: var(--font-weight-bold);
+    transition: top 0.2s ease;
+  }
+
+  .skip-social-links:visited {
+    color: var(--text-primary);
+  }
+
+  .skip-social-links:hover {
+    color: var(--text-primary);
+    opacity: 0.8;
+  }
+
+  .skip-social-links:focus {
+    top: 1rem;
+    outline: none;
+  }
+</style>

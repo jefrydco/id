@@ -1,0 +1,64 @@
+---
+import { render } from "astro:content";
+import PostLayout from "@/layouts/PostLayout.astro";
+import PostNavigation from "@/components/widgets/PostNavigation.astro";
+import ShareButtons from "@/components/widgets/ShareButtons.astro";
+import RelatedPosts from "@/components/widgets/RelatedPosts.astro";
+import GiscusComments from "@/components/ui/GiscusComments.astro";
+import {
+	getAllPostSlugs,
+	getPostBySlug,
+	getPostSlug,
+	getAdjacentPosts,
+	getRelatedPostsByTags,
+} from "@/utils/i18n-content";
+import { defaultLocale } from "@/i18n";
+import { themeConfig } from "@/config";
+
+export async function getStaticPaths() {
+	const slugs = await getAllPostSlugs();
+	return slugs.map((slug) => ({
+		params: { slug },
+		props: { slug },
+	}));
+}
+
+const { slug } = Astro.props;
+const locale = defaultLocale;
+const post = await getPostBySlug(slug, locale);
+
+if (!post) {
+	return Astro.redirect("/404");
+}
+
+const { Content, remarkPluginFrontmatter } = await render(post);
+const { prevPost, nextPost } = await getAdjacentPosts(slug, locale);
+const relatedPosts = await getRelatedPostsByTags(
+	slug,
+	post.data.tags || [],
+	locale,
+	3,
+);
+
+const readingTime = remarkPluginFrontmatter.readingTime;
+const toc = remarkPluginFrontmatter.toc || [];
+const postUrl = `${themeConfig.site.url}/blog/${slug}/`;
+
+function getPostUrl(post: typeof prevPost): string {
+	if (!post) return "";
+	const postSlug = getPostSlug(post);
+	return `/blog/${postSlug}/`;
+}
+
+const prevItem = prevPost ? { title: prevPost.data.title, url: getPostUrl(prevPost) } : null;
+const nextItem = nextPost ? { title: nextPost.data.title, url: getPostUrl(nextPost) } : null;
+---
+
+<PostLayout {...post.data} tags={post.data.tags || []} readingTime={readingTime} toc={toc} locale={locale}>
+  <Content />
+  <ShareButtons title={post.data.title} url={postUrl} locale={locale} />
+  <hr />
+  <RelatedPosts posts={relatedPosts} locale={locale} />
+  <PostNavigation prevItem={prevItem} nextItem={nextItem} locale={locale} />
+  <GiscusComments locale={locale} />
+</PostLayout>

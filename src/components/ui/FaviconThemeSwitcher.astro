@@ -1,0 +1,96 @@
+<script is:inline>
+;(function () {
+  if (window.FaviconThemeSwitcher && window.FaviconThemeSwitcher.initialized) {
+    return
+  }
+
+  window.FaviconThemeSwitcher = {
+    initialized: false,
+    faviconLink: null,
+    currentTheme: null,
+
+    svgUrls: {
+      light: '/jefrydco-id-light.svg',
+      dark: '/jefrydco-id-dark.svg',
+      reading: '/jefrydco-id-reading.svg'
+    },
+
+    findFaviconLink() {
+      return document.querySelector('link[rel="icon"]') ||
+        document.querySelector('link[rel="shortcut icon"]') ||
+        document.querySelector('link[rel="apple-touch-icon"]')
+    },
+
+    detectThemeFromDOM() {
+      if (document.documentElement.classList.contains('dark')) return 'dark'
+      if (document.documentElement.classList.contains('reading')) return 'reading'
+      return 'light'
+    },
+
+    updateFavicon(theme) {
+      if (this.currentTheme === theme) return
+      this.currentTheme = theme
+
+      if (!this.faviconLink) {
+        this.faviconLink = this.findFaviconLink()
+      }
+
+      if (this.faviconLink) {
+        this.faviconLink.href = this.svgUrls[theme] || this.svgUrls.light
+      }
+    },
+
+    refreshFaviconLink() {
+      this.faviconLink = this.findFaviconLink()
+      if (this.faviconLink && this.currentTheme) {
+        this.faviconLink.href = this.svgUrls[this.currentTheme] || this.svgUrls.light
+      }
+    },
+
+    init() {
+      this.faviconLink = this.findFaviconLink()
+      if (!this.faviconLink) {
+        console.warn('Favicon link not found, skipping theme switcher')
+        return
+      }
+
+      this.initialized = true
+
+      const theme = window.ThemeManager
+        ? window.ThemeManager.getEffectiveTheme()
+        : this.detectThemeFromDOM()
+
+      this.updateFavicon(theme)
+    }
+  }
+
+  if (!window._faviconThemeListenerBound) {
+    window._faviconThemeListenerBound = true
+    document.addEventListener('themechange', (e) => {
+      if (window.FaviconThemeSwitcher && e.detail && e.detail.theme) {
+        window.FaviconThemeSwitcher.updateFavicon(e.detail.theme)
+      }
+    })
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      window.FaviconThemeSwitcher.init()
+    })
+  } else {
+    window.FaviconThemeSwitcher.init()
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    if (window.FaviconThemeSwitcher) {
+      window.FaviconThemeSwitcher.refreshFaviconLink()
+
+      const theme = window.ThemeManager
+        ? window.ThemeManager.getEffectiveTheme()
+        : window.FaviconThemeSwitcher.detectThemeFromDOM()
+
+      window.FaviconThemeSwitcher.updateFavicon(theme)
+    }
+  })
+})()
+</script>

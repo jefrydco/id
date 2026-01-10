@@ -1,0 +1,46 @@
+---
+import { ClientRouter } from "astro:transitions";
+import ThemeManager from "@/components/ui/ThemeManager.astro";
+import FaviconThemeSwitcher from "@/components/ui/FaviconThemeSwitcher.astro";
+import TransitionWrapper from "@/components/layout/TransitionWrapper.astro";
+import SkipLink from "@/components/ui/SkipLink.astro";
+import type { LayoutProps } from "@/types";
+import { getLanguageTag, defaultLocale } from "@/i18n";
+
+type Props = LayoutProps;
+
+const { type = "page", locale = defaultLocale } = Astro.props;
+const language = getLanguageTag(locale);
+
+const CONTENT_WIDTH = "55rem";
+---
+
+<html lang={language}>
+  <head>
+    <ThemeManager />
+    <ClientRouter />
+    <script src="/src/pwa.ts"></script>
+    <slot name="head" />
+  </head>
+  <body data-centered="true" style={`max-width: ${CONTENT_WIDTH}; --content-width: 55rem;`}>
+    <SkipLink />
+    <FaviconThemeSwitcher />
+    <TransitionWrapper type={type} class="layout-wrapper">
+      <slot />
+    </TransitionWrapper>
+  </body>
+</html>
+
+<style is:global>
+  .layout-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 7.5rem);
+  }
+
+  @media (max-width: 1336px) {
+    .layout-wrapper {
+      min-height: calc(100vh - 3.35rem);
+    }
+  }
+</style>

@@ -1,0 +1,349 @@
+---
+import DemoCard from '../shared/DemoCard.astro';
+import DemoButton from '../shared/DemoButton.astro';
+import DemoTextarea from '../shared/DemoTextarea.astro';
+
+interface Props {
+  lang?: 'en' | 'id';
+}
+
+const { lang = 'en' } = Astro.props;
+
+const t = {
+  en: {
+    answer: "Your Answer",
+    flexboxIs: "Flexbox is.....",
+    addMoreComment: "Wanna add another comment?",
+    inMyOpinion: "In my opinion.....",
+    sending: "Sending...",
+    reset: "Reset",
+    send: "Send",
+    flexbox: "Flexbox is a layout system in CSS to organize and distribute items inside the container element",
+    commentInfoMore: "Please add more comments, it still needs {num} characters more.",
+    commentInfoCool: "Great, your comments is cool!",
+    commentsIsSaved: "Thank you, your answers and comments have been saved!",
+    yourOpinion: "So according to you:",
+    yourComments: "and your comment is:"
+  },
+  id: {
+    answer: "Jawaban Kamu",
+    flexboxIs: "Flexbox adalah.....",
+    addMoreComment: "Ingin menambahkan komentar lain?",
+    inMyOpinion: "Menurut pendapat saya.....",
+    sending: "Mengirim...",
+    reset: "Atur Ulang",
+    send: "Kirim",
+    flexbox: "Flexbox adalah sistem tata letak pada CSS untuk mengatur dan mendistribusikan item di dalam elemen kontainer",
+    commentInfoMore: "Ayo tambahin lagi ya komentarnya, masih kurang {num} karakter lagi nih.",
+    commentInfoCool: "Mantap, komentar Kamu keren!",
+    commentsIsSaved: "Terima kasih, jawaban dan komentar Kamu telah disimpan!",
+    yourOpinion: "Jadi menurut Kamu:",
+    yourComments: "dan komentar Kamu adalah:"
+  }
+}[lang];
+
+const STORAGE_KEY = 'flexbox-quiz-data';
+const COMMENT_MIN_LENGTH = 50;
+---
+
+<DemoCard class="flexbox-quiz" id="flexbox-quiz" data-lang={lang}>
+  <div class="quiz-content">
+    <div class="word-buttons"></div>
+
+    <div class="answer-section">
+      <label class="answer-label">
+        <span>{t.answer}</span>
+        <DemoTextarea class="answer-textarea" rows={3} readonly placeholder={t.flexboxIs} aria-label={t.answer} />
+      </label>
+    </div>
+
+    <div class="comment-section">
+      <label class="comment-label">
+        <span>{t.addMoreComment}</span>
+        <DemoTextarea class="comment-textarea" rows={3} placeholder={t.inMyOpinion} aria-label={t.addMoreComment} />
+        <small class="comment-info"></small>
+      </label>
+    </div>
+
+    <div class="action-buttons">
+      <DemoButton class="reset-btn">{t.reset}</DemoButton>
+      <DemoButton class="submit-btn" disabled>{t.send}</DemoButton>
+    </div>
+  </div>
+
+  <div class="quiz-success" style="display: none;">
+    <p>{t.commentsIsSaved}</p>
+    <p>{t.yourOpinion}</p>
+    <div class="saved-words"></div>
+    <div class="saved-comment-section">
+      <p>{t.yourComments}</p>
+      <blockquote class="saved-comment"></blockquote>
+    </div>
+    <div class="action-buttons">
+      <DemoButton class="reset-btn">{t.reset}</DemoButton>
+    </div>
+  </div>
+</DemoCard>
+
+<script define:vars={{ lang, STORAGE_KEY, COMMENT_MIN_LENGTH, t }}>
+  function initFlexboxQuiz() {
+    const container = document.getElementById('flexbox-quiz');
+    if (!container || container.dataset.initialized) return;
+    container.dataset.initialized = 'true';
+
+    const quizContent = container.querySelector('.quiz-content');
+    const quizSuccess = container.querySelector('.quiz-success');
+    const wordButtonsContainer = container.querySelector('.word-buttons');
+    const answerTextarea = container.querySelector('.answer-textarea');
+    const commentTextarea = container.querySelector('.comment-textarea');
+    const commentInfo = container.querySelector('.comment-info');
+    const submitBtn = container.querySelector('.submit-btn');
+    const resetBtns = container.querySelectorAll('.reset-btn');
+    const savedWordsContainer = container.querySelector('.saved-words');
+    const savedComment = container.querySelector('.saved-comment');
+    const savedCommentSection = container.querySelector('.saved-comment-section');
+
+    const ANSWERS_MIN_LENGTH = 20;
+    let words = [];
+    let answers = '';
+    let comment = '';
+
+    function shuffleArray(arr) {
+      return arr
+        .map((a) => [Math.random(), a])
+        .sort((a, b) => a[0] - b[0])
+        .map((a) => a[1]);
+    }
+
+    function initWords(shuffle = true, reset = false) {
+      if (reset) {
+        words = t.flexbox.split(' ');
+      }
+      if (shuffle) {
+        words = shuffleArray(words);
+      }
+      renderWords();
+    }
+
+    function renderWords() {
+      wordButtonsContainer.innerHTML = '';
+      words.forEach((word, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'word-btn';
+        btn.textContent = word;
+        btn.addEventListener('click', () => onChooseWord(word, i));
+        wordButtonsContainer.appendChild(btn);
+      });
+    }
+
+    function onChooseWord(word, index) {
+      if (answers.length === 0) {
+        answers = word;
+      } else if (!answers.split(' ').includes(word)) {
+        answers = answers + ' ' + word;
+      }
+      words.splice(index, 1);
+      answerTextarea.value = answers;
+      renderWords();
+      updateSubmitButton();
+    }
+
+    function updateSubmitButton() {
+      submitBtn.disabled = answers.length < ANSWERS_MIN_LENGTH;
+    }
+
+    function updateCommentInfo() {
+      const len = comment.length;
+      if (len >= 5 && len < COMMENT_MIN_LENGTH) {
+        const remaining = COMMENT_MIN_LENGTH - len;
+        commentInfo.textContent = t.commentInfoMore.replace('{num}', remaining);
+        commentInfo.style.display = 'block';
+      } else if (len >= COMMENT_MIN_LENGTH) {
+        commentInfo.textContent = t.commentInfoCool;
+        commentInfo.style.display = 'block';
+      } else {
+        commentInfo.style.display = 'none';
+      }
+    }
+
+    function onReset() {
+      answers = '';
+      comment = '';
+      answerTextarea.value = '';
+      commentTextarea.value = '';
+      commentInfo.style.display = 'none';
+      localStorage.removeItem(STORAGE_KEY);
+      quizContent.style.display = 'block';
+      quizSuccess.style.display = 'none';
+      initWords(true, true);
+      updateSubmitButton();
+    }
+
+    function onSubmit() {
+      if (answers.length >= ANSWERS_MIN_LENGTH) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          answers: answers,
+          comment: comment
+        }));
+        showSuccess();
+      }
+    }
+
+    function showSuccess() {
+      quizContent.style.display = 'none';
+      quizSuccess.style.display = 'block';
+
+      const savedData = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if (savedData) {
+        savedWordsContainer.innerHTML = '';
+        savedData.answers.split(' ').forEach(word => {
+          const btn = document.createElement('button');
+          btn.className = 'word-btn';
+          btn.textContent = word;
+          savedWordsContainer.appendChild(btn);
+        });
+
+        if (savedData.comment) {
+          savedComment.textContent = savedData.comment;
+          savedCommentSection.style.display = 'block';
+        } else {
+          savedCommentSection.style.display = 'none';
+        }
+      }
+    }
+
+    function loadData() {
+      try {
+        const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        if (data) {
+          words = data.answers.split(' ');
+          comment = data.comment || '';
+          showSuccess();
+          return true;
+        }
+      } catch (e) {}
+      return false;
+    }
+
+    // Event listeners
+    commentTextarea.addEventListener('input', (e) => {
+      comment = e.target.value;
+      updateCommentInfo();
+    });
+
+    submitBtn.addEventListener('click', onSubmit);
+    resetBtns.forEach(btn => btn.addEventListener('click', onReset));
+
+    // Initialize
+    const hasExistingData = loadData();
+    if (!hasExistingData) {
+      initWords(true, true);
+    }
+
+    let hasBeenVisible = false;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasBeenVisible) {
+          hasBeenVisible = true;
+          const savedData = localStorage.getItem(STORAGE_KEY);
+          if (!savedData && words.length > 0) {
+            initWords(true, false);
+          }
+        } else if (!entry.isIntersecting) {
+          hasBeenVisible = false;
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(container);
+  }
+
+  document.addEventListener('DOMContentLoaded', initFlexboxQuiz);
+  document.addEventListener('astro:page-load', initFlexboxQuiz);
+</script>
+
+<style>
+  .word-buttons,
+  .saved-words {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  :global(.word-btn) {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: var(--font-size-s);
+    transition: background-color 0.2s;
+  }
+
+  :global(.word-btn:hover) {
+    background: var(--code-bg);
+  }
+
+  :global(.word-btn:focus-visible) {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .quiz-success :global(.word-btn) {
+    cursor: default;
+  }
+
+  .answer-section,
+  .comment-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .answer-label,
+  .comment-label {
+    display: block;
+  }
+
+  .answer-label span,
+  .comment-label span {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .comment-info {
+    display: none;
+    margin-top: 0.5rem;
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+  }
+
+  .action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+
+  .quiz-success p {
+    margin: 0 0 1rem 0;
+  }
+
+  .saved-comment-section {
+    margin-top: 1.5rem;
+  }
+
+  .saved-comment {
+    margin: 0;
+    padding: 1rem;
+    background: var(--code-bg);
+    border-left: 3px solid var(--border);
+    border-radius: 0 0.25rem 0.25rem 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.word-btn) {
+      transition: none;
+    }
+  }
+</style>

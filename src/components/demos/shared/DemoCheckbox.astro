@@ -1,0 +1,104 @@
+---
+interface Props {
+  checked?: boolean;
+  label: string;
+  name?: string;
+  id?: string;
+  class?: string;
+  disabled?: boolean;
+  [key: `data-${string}`]: string | number | undefined;
+}
+
+const {
+  checked = false,
+  label,
+  name,
+  id,
+  class: className,
+  disabled = false,
+  ...rest
+} = Astro.props;
+
+const classes = ['demo-checkbox-label', className].filter(Boolean).join(' ');
+---
+
+<label class={classes}>
+  <input
+    type="checkbox"
+    checked={checked}
+    name={name}
+    id={id}
+    disabled={disabled}
+    {...rest}
+  />
+  <span>{label}</span>
+</label>
+
+<style>
+  .demo-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: var(--font-size-s);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.15s ease;
+  }
+
+  .demo-checkbox-label:hover {
+    color: var(--text-primary);
+  }
+
+  .demo-checkbox-label input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1rem;
+    height: 1rem;
+    border: 1.5px solid var(--text-tertiary);
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .demo-checkbox-label input[type="checkbox"]:checked {
+    border-color: var(--text-primary);
+    background: var(--text-primary);
+  }
+
+  .demo-checkbox-label input[type="checkbox"]:checked::after {
+    content: "\2713";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.625rem;
+    font-weight: bold;
+    color: var(--bg);
+    line-height: 1;
+  }
+
+  .demo-checkbox-label input[type="checkbox"]:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .demo-checkbox-label input[type="checkbox"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .demo-checkbox-label:has(input:disabled) {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .demo-checkbox-label,
+    .demo-checkbox-label input[type="checkbox"] {
+      transition: none;
+    }
+  }
+</style>

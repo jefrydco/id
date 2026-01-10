@@ -1,0 +1,151 @@
+---
+import { getTranslations, defaultLocale, type Locale } from "@/i18n";
+import { getPageNumbers, type PageNumber } from "@/utils/pagination";
+import { ChevronLeft, ChevronRight } from "@lucide/astro";
+
+interface Props {
+	currentPage: number;
+	totalPages: number;
+	locale?: Locale;
+	basePath?: string;
+}
+
+const {
+	currentPage,
+	totalPages,
+	locale = defaultLocale,
+	basePath,
+} = Astro.props;
+const t = getTranslations(locale);
+
+const pageNumbers = getPageNumbers(currentPage, totalPages);
+
+function getPageUrl(page: number): string {
+	if (basePath) {
+		if (page === 1) {
+			return `${basePath}/`;
+		}
+		return `${basePath}/page/${page}/`;
+	}
+
+	if (page === 1) {
+		return locale === defaultLocale ? "/" : `/${locale}/`;
+	}
+	return locale === defaultLocale
+		? `/blog/page/${page}/`
+		: `/${locale}/blog/page/${page}/`;
+}
+---
+
+{
+  totalPages > 1 && (
+    <nav class="pagination" aria-label={t.ui.pagination} data-pagefind-ignore="all">
+      <a
+        href={currentPage > 1 ? getPageUrl(currentPage - 1) : undefined}
+        class:list={['page-link', 'arrow', { disabled: currentPage === 1 }]}
+        aria-label={t.ui.previousPage}
+        aria-disabled={currentPage === 1}
+      >
+        <ChevronLeft size={16} />
+      </a>
+
+      <div class="page-numbers">
+        {pageNumbers.map((page: PageNumber) =>
+          page === 'ellipsis' ? (
+            <span class="ellipsis">...</span>
+          ) : (
+            <a
+              href={getPageUrl(page)}
+              class:list={['page-link', 'number', { current: page === currentPage }]}
+              aria-label={`${t.ui.page} ${page}`}
+              aria-current={page === currentPage ? 'page' : undefined}
+            >
+              {page}
+            </a>
+          )
+        )}
+      </div>
+
+      <a
+        href={currentPage < totalPages ? getPageUrl(currentPage + 1) : undefined}
+        class:list={['page-link', 'arrow', { disabled: currentPage === totalPages }]}
+        aria-label={t.ui.nextPage}
+        aria-disabled={currentPage === totalPages}
+      >
+        <ChevronRight size={16} />
+      </a>
+    </nav>
+  )
+}
+
+<style>
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    margin-top: 2rem;
+  }
+
+  .page-numbers {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .page-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    text-decoration: none;
+    color: var(--text-primary);
+    opacity: 0.4;
+    transition: opacity 0.15s ease-out;
+  }
+
+  .page-link:visited {
+    color: var(--text-primary);
+  }
+
+  .page-link:hover:not(.disabled) {
+    opacity: 1;
+    color: var(--text-primary);
+  }
+
+  .page-link:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 0.125rem;
+    opacity: 1;
+  }
+
+  .page-link.current {
+    opacity: 1;
+  }
+
+  .page-link.disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .page-link.arrow svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .ellipsis {
+    color: var(--text-primary);
+    opacity: 0.4;
+    min-width: 1.5rem;
+    text-align: center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .page-link {
+      transition: none;
+    }
+  }
+</style>

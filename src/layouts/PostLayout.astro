@@ -1,0 +1,121 @@
+---
+import "@/styles/global.css";
+import type { PostLayoutProps } from "@/types";
+import FormattedDate from "@/components/widgets/FormattedDate.astro";
+import FootnoteScroll from "@/components/widgets/FootnoteScroll.astro";
+import BaseHead from "@/components/layout/BaseHead.astro";
+import Footer from "@/components/layout/Footer.astro";
+import BackButton from "@/components/ui/BackButton.astro";
+import FloatingActions from "@/components/ui/FloatingActions.astro";
+import TableOfContents from "@/components/ui/TableOfContents.astro";
+import GradientMask from "@/components/ui/GradientMask.astro";
+import ImageOptimizer from "@/components/ui/ImageOptimizer.astro";
+import ImageViewer from "@/components/ui/ImageViewer.astro";
+import GitHubCard from "@/components/ui/GitHubCard.astro";
+import LinkCard from "@/components/ui/LinkCard.astro";
+import NeoDBCard from "@/components/ui/NeoDBCard.astro";
+import VideoEmbed from "@/components/ui/VideoEmbed.astro";
+import XPOST from "@/components/ui/XPOST.astro";
+import CopyCode from "@/components/ui/CopyCode.astro";
+import MathDownload from "@/components/ui/MathDownload.astro";
+import MermaidDownload from "@/components/ui/MermaidDownload.astro";
+import ImageDownload from "@/components/ui/ImageDownload.astro";
+import FocusModeOverlay from "@/components/ui/FocusModeOverlay.astro";
+import TwoslashFloating from "@/components/ui/TwoslashFloating.astro";
+import ReadingProgress from "@/components/ui/ReadingProgress.astro";
+import TagList from "@/components/widgets/TagList.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { themeConfig } from "@/config";
+import { defaultLocale, getTranslations } from "@/i18n";
+
+const {
+	title,
+	description,
+	publishedAt,
+	readingTime,
+	toc,
+	tags,
+	locale = defaultLocale,
+} = Astro.props as PostLayoutProps;
+
+const t = getTranslations(locale);
+const blogListUrl = locale === "en" ? "/blog/" : `/${locale}/blog/`;
+const postSlug = Astro.url.pathname.split("/").filter(Boolean).pop() || "";
+const ogImage =
+	locale === "en"
+		? `/open-graph/blog/${postSlug}.png`
+		: `/open-graph/${locale}/blog/${postSlug}.png`;
+---
+
+<BaseLayout
+  title={`${title} · ${themeConfig.site.title}`}
+  description={description || themeConfig.site.description}
+  type="post"
+  locale={locale}
+>
+  <ReadingProgress />
+  <BaseHead
+    title={`${title} · ${themeConfig.site.title}`}
+    description={description || themeConfig.site.description}
+    ogImage={ogImage}
+    locale={locale}
+    slot="head"
+  />
+  <div class="post-container">
+    <main id="main-content">
+      <div class="prose">
+        <GradientMask />
+        <BackButton locale={locale} href={blogListUrl} label={t.ui.blog} />
+        <TableOfContents toc={toc} locale={locale} />
+        <div class="title">
+          <h1>{title}</h1>
+          <div class="date">
+            <FormattedDate date={publishedAt} context="post" locale={locale} />
+            {
+              readingTime && (
+                <span class="reading-time">
+                  <span class="separator">·</span>
+                  {readingTime.text}
+                </span>
+              )
+            }
+          </div>
+          {tags && tags.length > 0 && <TagList tags={tags} locale={locale} />}
+        </div>
+        <div class="toc-mobile">
+          <TableOfContents toc={toc} locale={locale} />
+        </div>
+        <slot />
+      </div>
+    </main>
+    <ImageOptimizer />
+    <FootnoteScroll />
+    <CopyCode />
+    <MathDownload />
+    <MermaidDownload />
+    <ImageDownload />
+    <FocusModeOverlay locale={locale} />
+    <GitHubCard />
+    <XPOST />
+    <NeoDBCard />
+    <VideoEmbed />
+    <ImageViewer />
+    <LinkCard />
+    <TwoslashFloating />
+    <Footer locale={locale} />
+    <FloatingActions locale={locale} slug={postSlug} />
+  </div>
+</BaseLayout>
+
+<style>
+  .post-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .post-container main {
+    flex: 1;
+  }
+</style>
+

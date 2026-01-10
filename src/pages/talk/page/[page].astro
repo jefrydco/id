@@ -1,0 +1,63 @@
+---
+import IndexLayout from "@/layouts/IndexLayout.astro";
+import TalkList from "@/components/widgets/TalkList.astro";
+import Pagination from "@/components/widgets/Pagination.astro";
+import { themeConfig } from "@/config";
+import { getTalksByYear } from "@/utils/i18n-talk-content";
+import { defaultLocale, getTranslations } from "@/i18n";
+
+export async function getStaticPaths() {
+	const locale = defaultLocale;
+	const yearGroups = await getTalksByYear(locale);
+	const totalPages = yearGroups.length;
+
+	// Generate paths for pages 2 through totalPages (page 1 is handled by index.astro)
+	const paths = [];
+	for (let page = 2; page <= totalPages; page++) {
+		paths.push({ params: { page: String(page) } });
+	}
+
+	return paths;
+}
+
+const locale = defaultLocale;
+const t = getTranslations(locale);
+const { page } = Astro.params;
+const pageNum = parseInt(page || "1", 10);
+
+// Redirect page 1 to /talk/
+if (pageNum === 1) {
+	return Astro.redirect("/talk/");
+}
+
+const yearGroups = await getTalksByYear(locale);
+const totalPages = yearGroups.length;
+
+// Validate page number
+if (pageNum > totalPages || pageNum < 1) {
+	return Astro.redirect("/talk/");
+}
+
+const currentYearGroup = yearGroups[pageNum - 1];
+const pageTitle = `${t.ui.talk} - ${currentYearGroup.year} - ${themeConfig.site.title}`;
+---
+
+<IndexLayout title={pageTitle} description={t.ui.talkDescription} locale={locale}>
+  <div class="talk-page" data-pagefind-ignore="all">
+    <h1 class="page-title">{t.ui.talk}</h1>
+    <TalkList yearGroups={[currentYearGroup]} locale={locale} />
+    <Pagination currentPage={pageNum} totalPages={totalPages} locale={locale} basePath="/talk" />
+  </div>
+</IndexLayout>
+
+<style>
+  .talk-page {
+    margin-top: 1.25rem;
+  }
+
+  .page-title {
+    font-size: var(--heading-1);
+    font-weight: var(--font-weight-bold);
+    margin: 0 0 1.5rem 0;
+  }
+</style>

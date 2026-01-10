@@ -1,0 +1,68 @@
+---
+import IndexLayout from "@/layouts/IndexLayout.astro";
+import PostList from "@/components/widgets/PostList.astro";
+import Pagination from "@/components/widgets/Pagination.astro";
+import { themeConfig } from "@/config";
+import { getAllUniqueTags, getPostsByTag } from "@/utils/tags";
+import { paginatePosts, POSTS_PER_PAGE } from "@/utils/pagination";
+import { getTranslations, type Locale } from "@/i18n";
+
+export async function getStaticPaths() {
+	const locale: Locale = "id";
+	const tags = await getAllUniqueTags();
+	const paths = [];
+
+	for (const tag of tags) {
+		const posts = await getPostsByTag(tag, locale);
+		const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+
+		for (let page = 2; page <= totalPages; page++) {
+			paths.push({
+				params: { tag, page: String(page) },
+				props: { tag },
+			});
+		}
+	}
+
+	return paths;
+}
+
+const { tag } = Astro.props;
+const { page } = Astro.params;
+const locale: Locale = "id";
+const t = getTranslations(locale);
+const pageNum = parseInt(page || "1", 10);
+
+if (pageNum === 1) {
+	return Astro.redirect(`/id/blog/tags/${tag}/`);
+}
+
+const allPosts = await getPostsByTag(tag, locale);
+const { posts, currentPage, totalPages } = paginatePosts(allPosts, pageNum);
+
+if (currentPage !== pageNum || posts.length === 0) {
+	return Astro.redirect(`/id/blog/tags/${tag}/`);
+}
+
+const pageTitle = `${t.ui.postsTaggedWith} "${tag}" - ${t.ui.page} ${currentPage} - ${themeConfig.site.title}`;
+---
+
+<IndexLayout title={pageTitle} description={themeConfig.site.description} locale={locale}>
+  <div class="tag-page" data-pagefind-ignore="all">
+    <h1 class="page-title">
+      {t.ui.postsTaggedWith} <span class="tag-name">"{tag}"</span>
+    </h1>
+    <PostList posts={posts} locale={locale} />
+    <Pagination currentPage={currentPage} totalPages={totalPages} locale={locale} basePath={`/id/blog/tags/${tag}`} />
+  </div>
+</IndexLayout>
+
+<style>
+  .tag-page {
+    margin-top: 1.25rem;
+  }
+
+  .tag-name {
+    font-weight: 500;
+  }
+</style>

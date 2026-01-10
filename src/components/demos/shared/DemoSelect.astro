@@ -1,0 +1,78 @@
+---
+interface Option {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  options: Option[];
+  value?: string;
+  class?: string;
+  id?: string;
+  name?: string;
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
+  disabled?: boolean;
+  [key: `data-${string}`]: string | number | undefined;
+}
+
+const {
+  options,
+  value,
+  class: className,
+  id,
+  name,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledby,
+  disabled = false,
+  ...rest
+} = Astro.props;
+
+const classes = ['demo-select', className].filter(Boolean).join(' ');
+---
+
+<select
+  class={classes}
+  id={id}
+  name={name}
+  aria-label={ariaLabel}
+  aria-labelledby={ariaLabelledby}
+  disabled={disabled}
+  {...rest}
+>
+  {options.map((option) => (
+    <option value={option.value} selected={option.value === value}>
+      {option.label}
+    </option>
+  ))}
+</select>
+
+<style>
+  .demo-select {
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--mono);
+    font-size: var(--font-size-m);
+    cursor: pointer;
+    transition: border-color 0.15s ease;
+  }
+
+  .demo-select:focus {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .demo-select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .demo-select {
+      transition: none;
+    }
+  }
+</style>

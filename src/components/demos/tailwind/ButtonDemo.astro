@@ -1,0 +1,57 @@
+---
+import DemoCard from '../shared/DemoCard.astro';
+
+interface Props {
+  lang?: 'en' | 'id';
+}
+
+const { lang = 'en' } = Astro.props;
+
+const t = {
+  en: {
+    button: "Button"
+  },
+  id: {
+    button: "Tombol"
+  }
+}[lang];
+---
+
+<DemoCard class="button-demo" data-lang={lang}>
+  <button class="btn btn-indigo">{t.button}</button>
+</DemoCard>
+
+<style>
+  .button-demo {
+    text-align: center;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .btn-indigo {
+    background-color: #667eea;
+    color: white;
+  }
+
+  .btn-indigo:hover {
+    background-color: #5a67d8;
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn {
+      transition: none;
+    }
+  }
+</style>

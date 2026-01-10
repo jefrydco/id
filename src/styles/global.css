@@ -1,0 +1,695 @@
+@import "./fonts.css";
+@import "./post.css";
+
+/*
+ * Tailwind CSS Preflight
+ * A modern CSS reset based on modern-normalize
+ * Source: https://tailwindcss.com/docs/preflight
+ */
+
+*,
+::before,
+::after {
+	box-sizing: border-box;
+	border-width: 0;
+	border-style: solid;
+	border-color: currentColor;
+}
+
+::before,
+::after {
+	--tw-content: '';
+}
+
+html {
+	line-height: 1.5;
+	-webkit-text-size-adjust: 100%;
+	-moz-tab-size: 4;
+	tab-size: 4;
+}
+
+body {
+	margin: 0;
+	line-height: inherit;
+}
+
+hr {
+	height: 0;
+	color: inherit;
+	border-top-width: 1px;
+}
+
+abbr:where([title]) {
+	text-decoration: underline dotted;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+a {
+	color: inherit;
+	text-decoration: inherit;
+}
+
+b,
+strong {
+	font-weight: bolder;
+}
+
+code,
+kbd,
+samp,
+pre {
+	font-size: 1em;
+}
+
+small {
+	font-size: 80%;
+}
+
+sub,
+sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sub {
+	bottom: -0.25em;
+}
+
+sup {
+	top: -0.5em;
+}
+
+table {
+	text-indent: 0;
+	border-color: inherit;
+	border-collapse: collapse;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+	font-family: inherit;
+	font-size: 100%;
+	font-weight: inherit;
+	line-height: inherit;
+	color: inherit;
+	margin: 0;
+	padding: 0;
+}
+
+button,
+select {
+	text-transform: none;
+}
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+	-webkit-appearance: button;
+	background-color: transparent;
+	background-image: none;
+}
+
+:-moz-focusring {
+	outline: auto;
+}
+
+:-moz-ui-invalid {
+	box-shadow: none;
+}
+
+progress {
+	vertical-align: baseline;
+}
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+	height: auto;
+}
+
+[type='search'] {
+	-webkit-appearance: textfield;
+	outline-offset: -2px;
+}
+
+::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+	-webkit-appearance: button;
+	font: inherit;
+}
+
+summary {
+	display: list-item;
+}
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+	margin: 0;
+}
+
+fieldset {
+	margin: 0;
+	padding: 0;
+}
+
+legend {
+	padding: 0;
+}
+
+ol,
+ul,
+menu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+textarea {
+	resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+	opacity: 1;
+	color: #9ca3af;
+}
+
+button,
+[role="button"] {
+	cursor: pointer;
+}
+
+:disabled {
+	cursor: default;
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+	display: block;
+	vertical-align: middle;
+}
+
+img,
+video {
+	max-width: 100%;
+	height: auto;
+}
+
+[hidden] {
+	display: none;
+}
+
+:root {
+	/* Min Content Width */
+	--content-width: 25rem;
+
+	/* Typography */
+	--sans:
+		Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
+		Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	--serif:
+		Besley, Baskerville, Georgia, Cambria, "Times New Roman", Times, serif;
+	--mono:
+		"Fira Code", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+		"Courier New", monospace;
+
+	--font-size-xs: 0.75rem;
+	--font-size-s: 0.875rem;
+	--font-size-m: 1rem;
+	--font-size-l: 1.125rem;
+
+	/* Heading scale - minor third (1.2) */
+	--heading-1: 2.074rem;
+	--heading-2: 1.728rem;
+	--heading-3: 1.44rem;
+	--heading-4: 1.2rem;
+	--heading-5: 1rem;
+	--heading-6: 0.875rem;
+
+	--font-weight-light: 300;
+	--font-weight-regular: 400;
+	--font-weight-bold: 500;
+
+	--spacing-s: -0.08em;
+	--spacing-m: -0.02em;
+
+	/* Light Mode Colors (Default) */
+	--bg: #ffffff;
+	--poster-filter: grayscale(1);
+	--text-primary: rgba(0, 0, 0, 0.85);
+	--text-secondary: rgba(0, 0, 0, 0.4);
+	--text-tertiary: rgba(0, 0, 0, 0.55);
+	--border: rgba(0, 0, 0, 0.1);
+	--selection: rgba(0, 0, 0, 0.08);
+	--code-bg: rgba(0, 0, 0, 0.04);
+	--mark: rgba(200, 180, 0, 0.15);
+	--focus: rgba(0, 0, 0, 0.7);
+	--link: rgba(0, 0, 0, 0.85);
+	--link-visited: rgba(0, 0, 0, 0.6);
+	--link-hover: rgba(0, 0, 0, 1);
+
+	/* Syntax Theme  */
+	--astro-code-foreground: rgba(0, 0, 0, 0.85);
+	--astro-code-background: rgba(0, 0, 0, 0.03);
+	--astro-code-token-constant: rgba(0, 0, 0, 0.85);
+	--astro-code-token-string: rgba(0, 0, 0, 0.85);
+	--astro-code-token-comment: rgba(0, 0, 0, 0.35);
+	--astro-code-token-keyword: rgba(0, 0, 0, 0.55);
+	--astro-code-token-parameter: rgba(0, 0, 0, 0.85);
+	--astro-code-token-function: rgba(0, 0, 0, 0.85);
+	--astro-code-token-string-expression: rgba(0, 0, 0, 0.55);
+	--astro-code-token-punctuation: rgba(0, 0, 0, 0.55);
+	--astro-code-token-link: rgba(0, 0, 0, 0.55);
+
+	/* Code highlight/diff */
+	--code-highlight-bg: rgba(0, 0, 0, 0.05);
+	--code-diff-add-bg: rgba(0, 100, 200, 0.06);
+	--code-diff-add: rgba(0, 100, 200, 0.6);
+	--code-diff-remove-bg: rgba(200, 50, 50, 0.06);
+	--code-diff-remove: rgba(200, 50, 50, 0.6);
+
+	/* Twoslash - mapped from official style-rich.css */
+	--twoslash-border-color: var(--border);
+	--twoslash-underline-color: currentColor;
+	--twoslash-highlighted-border: rgba(195, 125, 13, 0.3);
+	--twoslash-highlighted-bg: rgba(195, 125, 13, 0.12);
+	--twoslash-popup-bg: var(--bg);
+	--twoslash-popup-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+	--twoslash-docs-color: var(--text-secondary);
+	--twoslash-docs-font: var(--sans);
+	--twoslash-code-font: var(--mono);
+	--twoslash-code-font-size: var(--font-size-s);
+	--twoslash-matched-color: var(--text-primary);
+	--twoslash-unmatched-color: var(--text-secondary);
+	--twoslash-cursor-color: var(--text-tertiary);
+	--twoslash-error-color: var(--code-diff-remove);
+	--twoslash-error-bg: var(--code-diff-remove-bg);
+	--twoslash-warn-color: rgba(195, 125, 13, 1);
+	--twoslash-warn-bg: rgba(195, 125, 13, 0.12);
+	--twoslash-tag-color: rgba(55, 114, 207, 1);
+	--twoslash-tag-bg: rgba(55, 114, 207, 0.12);
+	--twoslash-tag-warn-color: var(--twoslash-warn-color);
+	--twoslash-tag-warn-bg: var(--twoslash-warn-bg);
+	--twoslash-tag-annotate-color: rgba(27, 166, 115, 1);
+	--twoslash-tag-annotate-bg: rgba(27, 166, 115, 0.12);
+}
+
+/* Light Mode (Explicit) */
+html.light {
+	--bg: #ffffff;
+	--poster-filter: grayscale(1);
+	--text-primary: rgba(0, 0, 0, 0.85);
+	--text-secondary: rgba(0, 0, 0, 0.4);
+	--text-tertiary: rgba(0, 0, 0, 0.55);
+	--border: rgba(0, 0, 0, 0.1);
+	--selection: rgba(0, 0, 0, 0.08);
+	--code-bg: rgba(0, 0, 0, 0.04);
+	--mark: rgba(200, 180, 0, 0.15);
+	--focus: rgba(0, 0, 0, 0.7);
+	--link: rgba(0, 0, 0, 0.85);
+	--link-visited: rgba(0, 0, 0, 0.6);
+	--link-hover: rgba(0, 0, 0, 1);
+
+	/* Syntax Theme  */
+	--astro-code-foreground: rgba(0, 0, 0, 0.85);
+	--astro-code-background: rgba(0, 0, 0, 0.03);
+	--astro-code-token-constant: rgba(0, 0, 0, 0.85);
+	--astro-code-token-string: rgba(0, 0, 0, 0.85);
+	--astro-code-token-comment: rgba(0, 0, 0, 0.35);
+	--astro-code-token-keyword: rgba(0, 0, 0, 0.5);
+	--astro-code-token-parameter: rgba(0, 0, 0, 0.85);
+	--astro-code-token-function: rgba(0, 0, 0, 0.85);
+	--astro-code-token-string-expression: rgba(0, 0, 0, 0.55);
+	--astro-code-token-punctuation: rgba(0, 0, 0, 0.55);
+	--astro-code-token-link: rgba(0, 0, 0, 0.55);
+
+	/* Code highlight/diff */
+	--code-highlight-bg: rgba(0, 0, 0, 0.05);
+	--code-diff-add-bg: rgba(0, 100, 200, 0.06);
+	--code-diff-add: rgba(0, 100, 200, 0.6);
+	--code-diff-remove-bg: rgba(200, 50, 50, 0.06);
+	--code-diff-remove: rgba(200, 50, 50, 0.6);
+}
+
+/* Dark Mode (Explicit) */
+html.dark {
+	--bg: #1c1c1c;
+	--poster-filter: grayscale(1);
+	--text-primary: rgba(255, 255, 255, 0.9);
+	--text-secondary: rgba(255, 255, 255, 0.4);
+	--text-tertiary: rgba(255, 255, 255, 0.55);
+	--border: rgba(255, 255, 255, 0.1);
+	--selection: rgba(255, 255, 255, 0.08);
+	--code-bg: rgba(255, 255, 255, 0.04);
+	--mark: rgba(200, 180, 50, 0.2);
+	--focus: rgba(255, 255, 255, 0.7);
+	--link: rgba(255, 255, 255, 0.9);
+	--link-visited: rgba(255, 255, 255, 0.65);
+	--link-hover: rgba(255, 255, 255, 1);
+
+	/* Syntax Theme  */
+	--astro-code-foreground: rgba(255, 255, 255, 0.9);
+	--astro-code-background: rgba(255, 255, 255, 0.03);
+	--astro-code-token-constant: rgba(255, 255, 255, 0.9);
+	--astro-code-token-string: rgba(255, 255, 255, 0.9);
+	--astro-code-token-comment: rgba(255, 255, 255, 0.35);
+	--astro-code-token-keyword: rgba(255, 255, 255, 0.55);
+	--astro-code-token-parameter: rgba(255, 255, 255, 0.9);
+	--astro-code-token-function: rgba(255, 255, 255, 0.9);
+	--astro-code-token-string-expression: rgba(255, 255, 255, 0.55);
+	--astro-code-token-punctuation: rgba(255, 255, 255, 0.55);
+	--astro-code-token-link: rgba(255, 255, 255, 0.55);
+
+	/* Code highlight/diff */
+	--code-highlight-bg: rgba(255, 255, 255, 0.08);
+	--code-diff-add-bg: rgba(100, 160, 255, 0.08);
+	--code-diff-add: rgba(100, 160, 255, 0.7);
+	--code-diff-remove-bg: rgba(255, 100, 100, 0.08);
+	--code-diff-remove: rgba(255, 100, 100, 0.7);
+}
+
+/* Reading Mode - Warm Sepia Tones */
+html.reading {
+	--bg: #f4ecd8;
+	--poster-filter: sepia(0.6) grayscale(0.4);
+	--text-primary: rgba(62, 42, 26, 0.9);
+	--text-secondary: rgba(62, 42, 26, 0.5);
+	--text-tertiary: rgba(62, 42, 26, 0.55);
+	--border: rgba(62, 42, 26, 0.15);
+	--selection: rgba(62, 42, 26, 0.12);
+	--code-bg: rgba(62, 42, 26, 0.06);
+	--mark: rgba(180, 150, 50, 0.2);
+	--focus: rgba(62, 42, 26, 0.7);
+	--link: rgba(62, 42, 26, 0.9);
+	--link-visited: rgba(62, 42, 26, 0.65);
+	--link-hover: rgba(62, 42, 26, 1);
+
+	/* Syntax Theme  */
+	--astro-code-foreground: rgba(62, 42, 26, 0.9);
+	--astro-code-background: rgba(62, 42, 26, 0.05);
+	--astro-code-token-constant: rgba(62, 42, 26, 0.9);
+	--astro-code-token-string: rgba(62, 42, 26, 0.9);
+	--astro-code-token-comment: rgba(62, 42, 26, 0.4);
+	--astro-code-token-keyword: rgba(62, 42, 26, 0.6);
+	--astro-code-token-parameter: rgba(62, 42, 26, 0.9);
+	--astro-code-token-function: rgba(62, 42, 26, 0.9);
+	--astro-code-token-string-expression: rgba(62, 42, 26, 0.6);
+	--astro-code-token-punctuation: rgba(62, 42, 26, 0.6);
+	--astro-code-token-link: rgba(62, 42, 26, 0.6);
+
+	/* Code highlight/diff */
+	--code-highlight-bg: rgba(62, 42, 26, 0.08);
+	--code-diff-add-bg: rgba(50, 80, 120, 0.08);
+	--code-diff-add: rgba(50, 80, 120, 0.65);
+	--code-diff-remove-bg: rgba(150, 60, 60, 0.08);
+	--code-diff-remove: rgba(150, 60, 60, 0.65);
+}
+
+/* OpenDyslexic Font Mode */
+html.font-dyslexic {
+	--sans: "OpenDyslexic", -apple-system, BlinkMacSystemFont, sans-serif;
+	--serif: "OpenDyslexic", Georgia, serif;
+}
+
+html.font-dyslexic .prose {
+	font-size: 1.125rem;
+	line-height: 1.9;
+	letter-spacing: 0.02em;
+	word-spacing: 0.12em;
+}
+
+html.font-dyslexic .prose p,
+html.font-dyslexic .prose li {
+	max-width: 65ch;
+}
+
+html {
+	background-color: var(--bg);
+	scroll-behavior: smooth;
+	scrollbar-gutter: stable;
+	overscroll-behavior-y: contain;
+	-webkit-overflow-scrolling: touch;
+}
+
+body {
+	font-family: var(--sans);
+	font-feature-settings: "ss03" 1, "zero" 1;
+	font-optical-sizing: auto;
+	font-size: var(--font-size-m);
+	text-autospace: normal;
+	text-rendering: optimizeLegibility;
+	line-height: 1.75;
+	color: var(--text-primary);
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	margin: 0;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	letter-spacing: var(--spacing-m);
+	padding: 6rem 1.5rem 1.5rem 1.5rem;
+	overscroll-behavior-y: contain;
+	transition: background-color 0.2s ease-out;
+}
+
+.toc-mobile {
+	display: none;
+}
+
+@media (max-width: 1336px) {
+	body {
+		padding: 2rem 1.35rem 1.35rem 1.35rem;
+	}
+
+	.toc-mobile {
+		display: block;
+		margin-bottom: 2rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+::selection {
+	background-color: var(--selection);
+}
+
+:focus {
+	outline: 2px solid var(--focus);
+	outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+	outline: none;
+}
+
+:focus-visible {
+	outline: 2px solid var(--focus);
+	outline-offset: 2px;
+}
+
+body[data-width] {
+	max-width: var(--content-width);
+}
+
+body[data-centered="true"] {
+	margin: 0 auto;
+}
+
+main {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.date {
+	margin: 0;
+	font-weight: var(--font-weight-light);
+	color: var(--text-secondary);
+	opacity: 0.75;
+	flex-shrink: 0;
+	letter-spacing: var(--spacing-s);
+	font-variant-numeric: tabular-nums;
+	font-feature-settings:
+		"tnum" 1,
+		"zero" 1,
+		"cv01" 1,
+		"cv02" 1,
+		"calt" 1,
+		"ss03" 1,
+		"ordn" 1;
+}
+
+.date .month {
+	letter-spacing: var(--spacing-m);
+}
+
+.sr-only {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+a {
+	color: var(--link);
+	text-decoration: underline;
+	text-underline-offset: 0.15em;
+	transition: color 0.15s ease;
+}
+
+a:visited {
+	color: var(--link-visited);
+}
+
+a:hover {
+	color: var(--link-hover);
+}
+
+a:focus-visible {
+	outline: 2px solid var(--focus);
+	outline-offset: 2px;
+	border-radius: 0.125rem;
+}
+
+.page-title {
+	font-size: 1.25rem;
+	font-weight: 400;
+	margin: 0 0 1.5rem 0;
+}
+
+/* Switcher component - used for language switcher, nav links, toggle buttons */
+.switcher {
+	display: flex;
+	align-items: center;
+	gap: 0.375rem;
+}
+
+.switcher .separator {
+	color: var(--text-tertiary);
+	opacity: 0.5;
+}
+
+.switcher-item {
+	color: var(--text-secondary);
+	text-decoration: none;
+	font-size: var(--font-size-s);
+	transition: color 0.15s ease-out;
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+}
+
+.switcher-item:hover {
+	color: var(--text-primary);
+}
+
+.switcher-item.active {
+	color: var(--text-primary);
+	font-weight: 500;
+}
+
+.switcher-item.dimmed {
+	color: var(--text-tertiary);
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.switcher-item:focus-visible {
+	outline: 2px solid var(--focus);
+	outline-offset: 2px;
+	border-radius: 0.125rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.switcher-item {
+		transition: none;
+	}
+}
+
+@media print {
+	.back-button,
+	.floating-actions,
+	.toc-container,
+	.reading-progress,
+	.gradient-mask,
+	.share-buttons,
+	.related-posts,
+	footer {
+		display: none !important;
+	}
+
+	body {
+		background: white !important;
+		color: black !important;
+		padding: 1rem !important;
+	}
+
+	.prose a[href^="http"]::after {
+		content: " (" attr(href) ")";
+		font-size: 0.8em;
+		color: #666;
+	}
+
+	pre,
+	blockquote,
+	figure,
+	img {
+		break-inside: avoid;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		break-after: avoid;
+	}
+}

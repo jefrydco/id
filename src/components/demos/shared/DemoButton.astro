@@ -1,0 +1,100 @@
+---
+interface Props {
+  variant?: 'default' | 'primary' | 'word';
+  size?: 'sm' | 'md';
+  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+  'aria-label'?: string;
+  [key: `data-${string}`]: string | number | undefined;
+}
+
+const {
+  variant = 'default',
+  size = 'md',
+  disabled = false,
+  type = 'button',
+  class: className,
+  'aria-label': ariaLabel,
+  ...rest
+} = Astro.props;
+
+const classes = [
+  'demo-btn',
+  variant !== 'default' && `demo-btn--${variant}`,
+  size !== 'md' && `demo-btn--${size}`,
+  className
+].filter(Boolean).join(' ');
+---
+
+<button
+  type={type}
+  class={classes}
+  disabled={disabled}
+  aria-label={ariaLabel}
+  {...rest}
+>
+  <slot />
+</button>
+
+<style>
+  .demo-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: var(--font-size-s);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .demo-btn--sm {
+    padding: 0.25rem 0.75rem;
+    font-size: var(--font-size-xs);
+  }
+
+  .demo-btn--word {
+    padding: 0.5rem 1rem;
+    font-size: var(--font-size-s);
+  }
+
+  .demo-btn--primary {
+    background: var(--text-primary);
+    color: var(--bg);
+    border-color: var(--text-primary);
+  }
+
+  .demo-btn:hover:not(:disabled) {
+    background: var(--code-bg);
+  }
+
+  .demo-btn--primary:hover:not(:disabled) {
+    background: var(--text-tertiary);
+    border-color: var(--text-tertiary);
+  }
+
+  .demo-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .demo-btn:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .demo-btn:active:not(:disabled) {
+    background: var(--selection);
+  }
+
+  .demo-btn--primary:active:not(:disabled) {
+    background: var(--text-secondary);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .demo-btn {
+      transition: none;
+    }
+  }
+</style>

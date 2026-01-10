@@ -1,0 +1,127 @@
+---
+import { themeConfig } from "@/config";
+import ThemeToggle from "@/components/ui/ThemeToggle.astro";
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher.astro";
+import SearchButton from "@/components/ui/SearchButton.astro";
+import FontToggle from "@/components/ui/FontToggle.astro";
+import { defaultLocale, getTranslations, type Locale } from "@/i18n";
+
+interface Props {
+	locale?: Locale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const t = getTranslations(locale);
+const homeUrl = locale === "en" ? "/" : `/${locale}/`;
+const blogUrl = locale === "en" ? "/blog/" : `/${locale}/blog/`;
+const talkUrl = locale === "en" ? "/talk/" : `/${locale}/talk/`;
+
+const currentPath = Astro.url.pathname;
+const isBlogActive = currentPath.startsWith("/blog") || currentPath.startsWith(`/${locale}/blog`);
+const isTalkActive = currentPath.startsWith("/talk") || currentPath.startsWith(`/${locale}/talk`);
+---
+
+<header data-pagefind-ignore="all">
+  <nav>
+    <div class="nav-left">
+      <a href={homeUrl} class="site-title">
+        <img id="header-logo" class="logo" src="/jefrydco-id-light.svg" alt="" width="16" height="16" aria-hidden="true" />
+        <span class="site-name">{themeConfig.site.title}</span>
+      </a>
+      <div class="switcher">
+        <a href={blogUrl} class:list={["switcher-item", { active: isBlogActive }]}>{t.ui.blog}</a>
+        <span class="separator">|</span>
+        <a href={talkUrl} class:list={["switcher-item", { active: isTalkActive }]}>{t.ui.talk}</a>
+      </div>
+    </div>
+    <div class="header-actions">
+      <SearchButton locale={locale} />
+      <LanguageSwitcher locale={locale} />
+      <FontToggle locale={locale} />
+      <ThemeToggle />
+    </div>
+  </nav>
+</header>
+
+<style>
+  header {
+    margin: 0;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .site-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    text-decoration: none;
+    min-width: 3rem;
+  }
+
+  .site-title:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 0.125rem;
+  }
+
+  .logo {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    .nav-left .switcher {
+      display: none;
+    }
+  }
+</style>
+
+<script is:inline>
+;(function () {
+  const logoUrls = {
+    light: '/jefrydco-id-light.svg',
+    dark: '/jefrydco-id-dark.svg',
+    reading: '/jefrydco-id-reading.svg'
+  }
+
+  function detectTheme() {
+    if (document.documentElement.classList.contains('dark')) return 'dark'
+    if (document.documentElement.classList.contains('reading')) return 'reading'
+    return 'light'
+  }
+
+  function updateLogo() {
+    const logo = document.getElementById('header-logo')
+    if (!logo) return
+
+    const theme = window.ThemeManager
+      ? window.ThemeManager.getEffectiveTheme()
+      : detectTheme()
+
+    logo.src = logoUrls[theme] || logoUrls.light
+  }
+
+  updateLogo()
+  document.addEventListener('themechange', updateLogo)
+  document.addEventListener('astro:page-load', updateLogo)
+})()
+</script>

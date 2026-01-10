@@ -1,0 +1,16 @@
+---
+import { formatDate } from "@/utils/date";
+import { defaultLocale, type Locale } from "@/i18n";
+
+interface Props {
+	date: Date;
+	context?: "list" | "post" | "default";
+	locale?: Locale;
+}
+
+const { date, locale = defaultLocale } = Astro.props;
+---
+
+<time datetime={date.toISOString()}>
+  {formatDate(date, locale)}
+</time>

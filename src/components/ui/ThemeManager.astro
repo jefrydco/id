@@ -1,0 +1,171 @@
+<!--
+  This is a critical style block to prevent flashing on page load in dark mode.
+  It is injected into the <head> of the document before the main stylesheets are loaded.
+-->
+<style is:inline>
+  :root {
+    --bg: #ffffff;
+  }
+
+  html.dark {
+    --bg: #1c1c1c;
+  }
+
+  html.reading {
+    --bg: #f4ecd8;
+  }
+
+  html {
+    background-color: var(--bg);
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  html.reading {
+    color-scheme: light;
+  }
+</style>
+
+<script is:inline>
+  ;(function () {
+    if (window.ThemeManager && window.ThemeManager.initialized) {
+      return
+    }
+
+    window.ThemeManager = {
+      STORAGE_KEY: 'chiri-theme',
+      THEMES: ['light', 'dark', 'reading'],
+      THEME_COLORS: {
+        light: '#ffffff',
+        dark: '#1c1c1c',
+        reading: '#f4ecd8'
+      },
+      initialized: false,
+
+      getSystemTheme() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      },
+
+      getStoredTheme() {
+        try {
+          return localStorage.getItem(this.STORAGE_KEY)
+        } catch {
+          return null
+        }
+      },
+
+      setStoredTheme(theme) {
+        try {
+          if (theme === 'system') {
+            localStorage.removeItem(this.STORAGE_KEY)
+          } else {
+            localStorage.setItem(this.STORAGE_KEY, theme)
+          }
+        } catch (e) {
+          console.warn('Failed to store theme preference:', e)
+        }
+      },
+
+      getEffectiveTheme() {
+        const stored = this.getStoredTheme()
+        if (stored && this.THEMES.includes(stored)) {
+          return stored
+        }
+        return this.getSystemTheme()
+      },
+
+      isUsingSystemTheme() {
+        return this.getStoredTheme() === null
+      },
+
+      applyTheme(theme) {
+        document.documentElement.classList.remove('light', 'dark', 'reading')
+        document.documentElement.classList.add(theme)
+
+        // Update theme-color meta tag for PWA
+        const metaThemeColor = document.getElementById('theme-color-meta')
+        if (metaThemeColor) {
+          metaThemeColor.setAttribute('content', this.THEME_COLORS[theme] || '#ffffff')
+        }
+
+        document.dispatchEvent(
+          new CustomEvent('themechange', {
+            detail: {
+              theme,
+              isUserChoice: !this.isUsingSystemTheme(),
+              isSystemTheme: this.isUsingSystemTheme()
+            }
+          })
+        )
+      },
+
+      toggle() {
+        const currentTheme = this.getEffectiveTheme()
+        const currentIndex = this.THEMES.indexOf(currentTheme)
+        const nextIndex = (currentIndex + 1) % this.THEMES.length
+        const newTheme = this.THEMES[nextIndex]
+
+        this.setStoredTheme(newTheme)
+        this.applyTheme(newTheme)
+      },
+
+      init() {
+        if (this.initialized) return
+
+        this.applyTheme(this.getEffectiveTheme())
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+          const storedTheme = this.getStoredTheme()
+          if (storedTheme !== 'reading') {
+            const newSystemTheme = e.matches ? 'dark' : 'light'
+            this.setStoredTheme(newSystemTheme)
+            this.applyTheme(newSystemTheme)
+          }
+        })
+
+        this.initialized = true
+      }
+    }
+
+    window.ThemeManager.init()
+
+    const applyTheme = () => {
+      if (window.ThemeManager) {
+        const theme = window.ThemeManager.getEffectiveTheme()
+        window.ThemeManager.applyTheme(theme)
+      }
+    }
+
+    applyTheme()
+
+    document.addEventListener('astro:before-preparation', applyTheme)
+
+    const applyThemeAfterNavigation = () => {
+      if (window.ThemeManager) {
+        const currentTheme = window.ThemeManager.getEffectiveTheme()
+        const html = document.documentElement
+        let appliedTheme = 'light'
+        if (html.classList.contains('dark')) appliedTheme = 'dark'
+        else if (html.classList.contains('reading')) appliedTheme = 'reading'
+
+        if (currentTheme !== appliedTheme) {
+          requestAnimationFrame(() => {
+            window.ThemeManager.applyTheme(currentTheme)
+          })
+        }
+      }
+    }
+
+    document.addEventListener('astro:after-swap', applyThemeAfterNavigation)
+    document.addEventListener('astro:page-load', applyThemeAfterNavigation)
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if (window.ThemeManager && window.ThemeManager.isUsingSystemTheme()) {
+        setTimeout(applyTheme, 0)
+      }
+    })
+  })()
+</script>

@@ -1,0 +1,157 @@
+---
+import { getTranslations, defaultLocale, type Locale } from "@/i18n";
+import { Link, Twitter, Linkedin } from "@lucide/astro";
+
+interface Props {
+	title: string;
+	url: string;
+	locale?: Locale;
+}
+
+const { title, url, locale = defaultLocale } = Astro.props;
+const t = getTranslations(locale);
+
+const encodedTitle = encodeURIComponent(title);
+const encodedUrl = encodeURIComponent(url);
+const xShareUrl = `https://x.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`;
+const linkedInShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+---
+
+<div class="share-buttons" aria-label={t.ui.share} data-pagefind-ignore="all">
+  <button
+    class="share-button copy-link"
+    title={t.ui.copyLink}
+    aria-label={t.ui.copyLink}
+    data-url={url}
+    data-copied-text={t.ui.copied}
+    data-copy-text={t.ui.copyLink}
+  >
+    <Link size={16} />
+    <span class="button-text">{t.ui.copyLink}</span>
+  </button>
+
+  <a
+    href={xShareUrl}
+    class="share-button"
+    title={t.ui.shareOnX}
+    aria-label={t.ui.shareOnX}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <Twitter size={16} />
+  </a>
+
+  <a
+    href={linkedInShareUrl}
+    class="share-button"
+    title={t.ui.shareOnLinkedIn}
+    aria-label={t.ui.shareOnLinkedIn}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <Linkedin size={16} />
+  </a>
+</div>
+
+<script is:inline>
+;(function() {
+  function initShareButtons() {
+    const copyButtons = document.querySelectorAll('.share-buttons .copy-link')
+
+    copyButtons.forEach(function(button) {
+      if (button.dataset.bound === 'true') return
+      button.dataset.bound = 'true'
+
+      button.addEventListener('click', async function() {
+        const url = button.dataset.url
+        const copiedText = button.dataset.copiedText
+        const copyText = button.dataset.copyText
+        const textSpan = button.querySelector('.button-text')
+
+        try {
+          await navigator.clipboard.writeText(url)
+          if (textSpan) {
+            textSpan.textContent = copiedText
+          }
+          button.classList.add('copied')
+
+          setTimeout(function() {
+            if (textSpan) {
+              textSpan.textContent = copyText
+            }
+            button.classList.remove('copied')
+          }, 2000)
+        } catch (err) {
+          console.error('Failed to copy:', err)
+        }
+      })
+    })
+  }
+
+  document.addEventListener('DOMContentLoaded', initShareButtons)
+  document.addEventListener('astro:page-load', initShareButtons)
+})()
+</script>
+
+<style>
+  .share-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 3rem;
+  }
+
+  .share-button {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: var(--font-size-s);
+    cursor: pointer;
+    transition: color 0.15s ease;
+  }
+
+  .share-button:visited {
+    color: var(--text-secondary);
+  }
+
+  .share-button:hover {
+    color: var(--text-tertiary);
+  }
+
+  .share-button:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 0.125rem;
+  }
+
+  .share-button.copied {
+    color: var(--text-primary);
+  }
+
+  .share-button svg {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+  }
+
+  .button-text {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 480px) {
+    .share-button .button-text {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .share-button {
+      transition: none;
+    }
+  }
+</style>

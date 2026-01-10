@@ -1,0 +1,264 @@
+---
+import DemoCard from '../shared/DemoCard.astro';
+import DemoInput from '../shared/DemoInput.astro';
+import DemoSelect from '../shared/DemoSelect.astro';
+
+interface Props {
+  variant: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+}
+
+const { variant } = Astro.props;
+const demoId = `reactivity-demo-${variant}`;
+
+const operatorOptions = [
+  { value: '+', label: '+' },
+  { value: '-', label: '-' },
+  { value: '*', label: 'x' },
+  { value: '/', label: '÷' },
+];
+---
+
+<DemoCard id={demoId}>
+  <pre class="demo-state"></pre>
+
+  <div class="demo-controls">
+    <DemoInput type="number" class="demo-input1" min={0} value={0} aria-label="First number" />
+    <DemoSelect class="demo-operator" options={operatorOptions} value="+" aria-label="Operator" />
+    <DemoInput type="number" class="demo-input2" min={0} value={0} aria-label="Second number" />
+  </div>
+
+  <div class="demo-result">0</div>
+</DemoCard>
+
+<script define:vars={{ variant, demoId }}>
+  (function() {
+    const OPERATOR = {
+      PLUS: '+',
+      SUBSTRACT: '-',
+      MULTIPLY: '*',
+      DIVIDE: '/'
+    };
+
+    const state = {
+      result: 0,
+      operator: OPERATOR.PLUS,
+      input1: 0,
+      input2: 0
+    };
+
+    function init() {
+      const container = document.getElementById(demoId);
+      if (!container) return;
+
+      const stateDisplay = container.querySelector('.demo-state');
+      const resultDisplay = container.querySelector('.demo-result');
+      const input1Display = container.querySelector('.demo-input1');
+      const input2Display = container.querySelector('.demo-input2');
+      const operatorDisplay = container.querySelector('.demo-operator');
+
+      function updateDisplay() {
+        // Variant 1: No display
+        if (variant === 1) return;
+
+        // Variant 2+: Show state
+        if (stateDisplay) {
+          stateDisplay.innerText = JSON.stringify(state, null, 2);
+        }
+
+        // Variant 3+: Show result
+        if (variant >= 3 && resultDisplay) {
+          resultDisplay.innerText = state.result.toString();
+        }
+
+        // Variant 4+: Sync inputs
+        if (variant >= 4) {
+          if (input1Display) input1Display.value = state.input1.toString();
+          if (input2Display) input2Display.value = state.input2.toString();
+        }
+
+        // Variant 5+: Sync operator
+        if (variant >= 5 && operatorDisplay) {
+          operatorDisplay.value = state.operator;
+        }
+      }
+
+      function calculateResult() {
+        switch (state.operator) {
+          case OPERATOR.PLUS:
+            state.result = state.input1 + state.input2;
+            break;
+          case OPERATOR.SUBSTRACT:
+            state.result = state.input1 - state.input2;
+            break;
+          case OPERATOR.MULTIPLY:
+            state.result = state.input1 * state.input2;
+            break;
+          case OPERATOR.DIVIDE:
+            state.result = state.input1 / state.input2;
+            break;
+        }
+      }
+
+      if (variant === 8) {
+        const tampilanKeadaan = stateDisplay;
+        const tampilanHasil = resultDisplay;
+        const tampilanInput1 = input1Display;
+        const tampilanInput2 = input2Display;
+        const tampilanOperator = operatorDisplay;
+
+        function perbaruiTampilan() {
+          if (tampilanKeadaan) tampilanKeadaan.innerText = JSON.stringify(state, null, 2);
+          if (tampilanHasil) tampilanHasil.innerText = state.result.toString();
+          if (tampilanInput1) tampilanInput1.value = state.input1.toString();
+          if (tampilanInput2) tampilanInput2.value = state.input2.toString();
+          if (tampilanOperator) tampilanOperator.value = state.operator;
+        }
+
+        function hitungHasil() {
+          switch (state.operator) {
+            case OPERATOR.PLUS: state.result = state.input1 + state.input2; break;
+            case OPERATOR.SUBSTRACT: state.result = state.input1 - state.input2; break;
+            case OPERATOR.MULTIPLY: state.result = state.input1 * state.input2; break;
+            case OPERATOR.DIVIDE: state.result = state.input1 / state.input2; break;
+          }
+        }
+
+        perbaruiTampilan();
+
+        if (tampilanInput1) {
+          tampilanInput1.addEventListener('input', function(event) {
+            state.input1 = parseInt(event.target.value) || 0;
+            hitungHasil();
+            perbaruiTampilan();
+          });
+        }
+        if (tampilanInput2) {
+          tampilanInput2.addEventListener('input', function(event) {
+            state.input2 = parseInt(event.target.value) || 0;
+            hitungHasil();
+            perbaruiTampilan();
+          });
+        }
+        if (tampilanOperator) {
+          tampilanOperator.addEventListener('change', function(event) {
+            state.operator = event.target.value;
+            hitungHasil();
+            perbaruiTampilan();
+          });
+        }
+        return;
+      }
+
+      if (variant === 9) {
+        let input1Value = state.input1;
+        Object.defineProperty(state, 'input1', {
+          enumerable: true,
+          configurable: true,
+          get: function() {
+            return input1Value;
+          },
+          set: function(newValue) {
+            if (newValue === input1Value) return;
+            input1Value = newValue;
+            calculateResult();
+            updateDisplay();
+          }
+        });
+      }
+
+      // Variant 10: Full reactivity with Object.defineProperty on ALL properties
+      if (variant === 10) {
+        Object.keys(state).forEach(function(key) {
+          let value = state[key];
+          Object.defineProperty(state, key, {
+            enumerable: true,
+            configurable: true,
+            get: function() {
+              return value;
+            },
+            set: function(newValue) {
+              if (newValue === value) return;
+              value = newValue;
+              updateDisplay();
+              calculateResult();
+            }
+          });
+        });
+      }
+
+      updateDisplay();
+
+      // Variant 6+: Add event listeners
+      if (variant >= 6) {
+        if (input1Display) {
+          input1Display.addEventListener('input', function(event) {
+            state.input1 = parseInt(event.target.value) || 0;
+            // Variant 7-9: Manual calculate
+            if (variant >= 7 && variant < 10) {
+              calculateResult();
+              updateDisplay();
+            }
+          });
+        }
+
+        if (input2Display) {
+          input2Display.addEventListener('input', function(event) {
+            state.input2 = parseInt(event.target.value) || 0;
+            if (variant >= 7 && variant < 10) {
+              calculateResult();
+              updateDisplay();
+            }
+          });
+        }
+
+        if (operatorDisplay) {
+          operatorDisplay.addEventListener('change', function(event) {
+            state.operator = event.target.value;
+            if (variant >= 7 && variant < 10) {
+              calculateResult();
+              updateDisplay();
+            }
+          });
+        }
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+    document.addEventListener('astro:page-load', init);
+  })();
+</script>
+
+<style>
+  .demo-state {
+    background: var(--astro-code-background);
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    font-family: var(--mono);
+    font-size: var(--font-size-s);
+    overflow-x: auto;
+    min-height: 6rem;
+  }
+
+  .demo-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .demo-result {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-primary);
+    text-align: center;
+    padding: 1rem;
+    background: var(--astro-code-background);
+    border-radius: 6px;
+  }
+</style>

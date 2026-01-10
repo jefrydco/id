@@ -1,0 +1,61 @@
+---
+interface Props {
+  heading?: string;
+  headingId?: string;
+  headingLevel?: 'h3' | 'h4';
+  inline?: boolean;
+  class?: string;
+}
+
+const {
+  heading,
+  headingId,
+  headingLevel = 'h4',
+  inline = false,
+  class: className,
+} = Astro.props;
+
+const HeadingTag = headingLevel;
+const groupClasses = [
+  'demo-property-group',
+  inline && 'demo-property-group--inline',
+  className
+].filter(Boolean).join(' ');
+const headingClasses = headingLevel === 'h3' ? 'demo-section-heading' : 'demo-property-heading';
+---
+
+<div class={groupClasses}>
+  {heading && (
+    <HeadingTag class={headingClasses} id={headingId}>
+      {heading}
+    </HeadingTag>
+  )}
+  <slot />
+</div>
+
+<style>
+  .demo-property-group {
+    margin-right: 1.5rem;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+  }
+
+  .demo-property-group--inline {
+    display: flex;
+    align-items: center;
+  }
+
+  .demo-section-heading {
+    margin: 0 0 0.75rem 0;
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+  }
+
+  .demo-property-heading {
+    margin: 0 0 0.5rem 0;
+    font-size: var(--font-size-s);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-secondary);
+  }
+</style>

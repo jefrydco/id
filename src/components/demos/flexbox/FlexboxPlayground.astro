@@ -1,0 +1,814 @@
+---
+import DemoCard from '../shared/DemoCard.astro';
+import DemoButton from '../shared/DemoButton.astro';
+
+interface Props {
+  lang?: 'en' | 'id';
+}
+
+const { lang = 'en' } = Astro.props;
+
+const t = {
+  en: {
+    container: "Container",
+    item: "Item",
+    itemCount: "Item Count",
+    reset: "Reset",
+    value: "Value",
+    differentHeight: "Set Different Height"
+  },
+  id: {
+    container: "Kontainer",
+    item: "Item",
+    itemCount: "Jumlah Item",
+    reset: "Atur Ulang",
+    value: "Nilai",
+    differentHeight: "Atur Ketinggian Berbeda"
+  }
+}[lang];
+---
+
+<DemoCard class="flexbox-playground" id="flexbox-playground-demo" data-lang={lang}>
+  <div class="playground-layout">
+    <div class="demo-container" role="region" aria-label="Flexbox demo preview">
+      <div class="flex-container">
+      </div>
+    </div>
+
+    <div class="controls">
+      <h3 class="section-heading">{t.container}</h3>
+
+      <div class="flex-properties">
+        <div class="property-group">
+          <h4 class="property-heading" id="flex-direction-label">Flex Direction</h4>
+          <div class="radio-group" data-property="flexDirection" role="radiogroup" aria-labelledby="flex-direction-label">
+            <label><input type="radio" name="flex-direction" value="row" checked /> row</label>
+            <label><input type="radio" name="flex-direction" value="row-reverse" /> row-reverse</label>
+            <label><input type="radio" name="flex-direction" value="column" /> column</label>
+            <label><input type="radio" name="flex-direction" value="column-reverse" /> column-reverse</label>
+          </div>
+        </div>
+
+        <div class="property-group">
+          <h4 class="property-heading" id="flex-wrap-label">Flex Wrap</h4>
+          <div class="radio-group" data-property="flexWrap" role="radiogroup" aria-labelledby="flex-wrap-label">
+            <label><input type="radio" name="flex-wrap" value="nowrap" checked /> nowrap</label>
+            <label><input type="radio" name="flex-wrap" value="wrap" /> wrap</label>
+            <label><input type="radio" name="flex-wrap" value="wrap-reverse" /> wrap-reverse</label>
+          </div>
+        </div>
+
+        <div class="property-group">
+          <h4 class="property-heading" id="justify-content-label">Justify Content</h4>
+          <div class="radio-group" data-property="justifyContent" role="radiogroup" aria-labelledby="justify-content-label">
+            <label><input type="radio" name="justify-content" value="flex-start" checked /> flex-start</label>
+            <label><input type="radio" name="justify-content" value="flex-end" /> flex-end</label>
+            <label><input type="radio" name="justify-content" value="center" /> center</label>
+            <label><input type="radio" name="justify-content" value="space-between" /> space-between</label>
+            <label><input type="radio" name="justify-content" value="space-around" /> space-around</label>
+            <label><input type="radio" name="justify-content" value="space-evenly" /> space-evenly</label>
+          </div>
+        </div>
+
+        <div class="property-group">
+          <h4 class="property-heading" id="align-items-label">Align Items</h4>
+          <div class="radio-group" data-property="alignItems" role="radiogroup" aria-labelledby="align-items-label">
+            <label><input type="radio" name="align-items" value="stretch" checked /> stretch</label>
+            <label><input type="radio" name="align-items" value="flex-start" /> flex-start</label>
+            <label><input type="radio" name="align-items" value="flex-end" /> flex-end</label>
+            <label><input type="radio" name="align-items" value="center" /> center</label>
+            <label><input type="radio" name="align-items" value="baseline" /> baseline</label>
+          </div>
+        </div>
+
+        <div class="property-group">
+          <h4 class="property-heading" id="align-content-label">Align Content</h4>
+          <div class="radio-group" data-property="alignContent" role="radiogroup" aria-labelledby="align-content-label">
+            <label><input type="radio" name="align-content" value="stretch" checked /> stretch</label>
+            <label><input type="radio" name="align-content" value="flex-start" /> flex-start</label>
+            <label><input type="radio" name="align-content" value="flex-end" /> flex-end</label>
+            <label><input type="radio" name="align-content" value="center" /> center</label>
+            <label><input type="radio" name="align-content" value="space-between" /> space-between</label>
+            <label><input type="radio" name="align-content" value="space-around" /> space-around</label>
+            <label><input type="radio" name="align-content" value="space-evenly" /> space-evenly</label>
+          </div>
+        </div>
+
+        <div class="property-group property-group--inline">
+          <label>
+            <span>{t.itemCount}</span>
+            <input type="number" class="number-input" data-property="itemCount" min="3" max="27" value="3" />
+          </label>
+        </div>
+      </div>
+
+      <h3 class="section-heading">{t.item}</h3>
+
+      <div class="flex-properties">
+        <div class="property-group">
+          <label class="checkbox-label">
+            <input type="checkbox" data-property="differentHeight" />
+            <span>{t.differentHeight}</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="items-scrollable">
+      </div>
+
+      <div class="flex-properties">
+        <DemoButton class="reset-btn" aria-label={t.reset}>{t.reset}</DemoButton>
+      </div>
+    </div>
+
+    <div class="code-output copy-code-wrapper">
+      <button class="copy-button" type="button" title="Copy code to clipboard" aria-label="Copy code to clipboard"></button>
+      <pre class="code-block copy-code-block" aria-live="polite" aria-label="Generated CSS code"><code></code></pre>
+    </div>
+  </div>
+</DemoCard>
+
+<script define:vars={{ t }}>
+  const themeColors = {
+    light: {
+      bg: 'rgba(0, 0, 0, 0.55)',
+      bgHover: 'rgba(0, 0, 0, 0.85)',
+      bgActive: 'rgba(0, 0, 0, 0.85)',
+      text: '#ffffff'
+    },
+    dark: {
+      bg: 'rgba(255, 255, 255, 0.55)',
+      bgHover: 'rgba(255, 255, 255, 0.9)',
+      bgActive: 'rgba(255, 255, 255, 0.9)',
+      text: '#1c1c1c'
+    },
+    reading: {
+      bg: 'rgba(62, 42, 26, 0.55)',
+      bgHover: 'rgba(62, 42, 26, 0.85)',
+      bgActive: 'rgba(62, 42, 26, 0.85)',
+      text: '#f4ecd8'
+    }
+  };
+
+  function getTheme() {
+    const html = document.documentElement;
+    if (html.classList.contains('dark')) return 'dark';
+    if (html.classList.contains('reading')) return 'reading';
+    return 'light';
+  }
+
+  function initFlexboxPlayground() {
+    const container = document.getElementById('flexbox-playground-demo');
+    if (!container || container.dataset.initialized) return;
+    container.dataset.initialized = 'true';
+    const flexContainer = container.querySelector('.demo-container .flex-container');
+    const codeBlock = container.querySelector('.code-block code');
+    const resetBtn = container.querySelector('.reset-btn');
+    const itemsScrollable = container.querySelector('.items-scrollable');
+
+    const containerClass = (t.container || 'container').toLowerCase();
+    const itemClass = (t.item || 'item').toLowerCase();
+
+    const state = {
+      flexDirection: 'row',
+      flexWrap: 'nowrap',
+      justifyContent: 'flex-start',
+      alignItems: 'stretch',
+      alignContent: 'stretch',
+      itemCount: 3,
+      differentHeight: false,
+      items: []
+    };
+
+    function createDefaultItem(index) {
+      return {
+        index,
+        order: 0,
+        flexGrow: 0,
+        flexShrink: 1,
+        flexBasis: 'auto',
+        flexBasisValue: 0,
+        isFlexBasisAuto: true,
+        alignSelf: 'auto'
+      };
+    }
+
+    function initItems() {
+      state.items = Array.from({ length: state.itemCount }, (_, i) => createDefaultItem(i + 1));
+      renderItemControls();
+      renderFlexItems();
+    }
+
+    function renderItemControls() {
+      if (!itemsScrollable) return;
+
+      itemsScrollable.innerHTML = state.items.map((item, i) => `
+        <div class="item-control ${i % 2 === 0 ? 'item-control--alt' : ''}" data-item-index="${item.index}">
+          <h4 class="item-control-heading">${t.item || 'Item'} ${item.index}</h4>
+          <div class="item-properties">
+            <div class="item-property">
+              <label>
+                <span>Order</span>
+                <input type="number" class="number-input" data-item-prop="order" value="${item.order}" min="0" max="12" />
+              </label>
+            </div>
+            <div class="item-property">
+              <label>
+                <span>Flex Grow</span>
+                <input type="number" class="number-input" data-item-prop="flexGrow" value="${item.flexGrow}" min="0" max="12" />
+              </label>
+            </div>
+            <div class="item-property">
+              <label>
+                <span>Flex Shrink</span>
+                <input type="number" class="number-input" data-item-prop="flexShrink" value="${item.flexShrink}" min="0" max="12" />
+              </label>
+            </div>
+            <div class="item-property">
+              <label class="checkbox-label">
+                <input type="checkbox" data-item-prop="isFlexBasisAuto" ${item.isFlexBasisAuto ? 'checked' : ''} />
+                <span>Flex Basis Auto</span>
+              </label>
+              <label>
+                <span>${t.value || 'Value'} (%)</span>
+                <input type="number" class="number-input" data-item-prop="flexBasisValue" value="${item.flexBasisValue}" min="0" max="100" step="10" ${item.isFlexBasisAuto ? 'disabled' : ''} />
+              </label>
+            </div>
+            <div class="item-property">
+              <span id="align-self-label-${item.index}">Align Self</span>
+              <div class="radio-group" data-item-prop="alignSelf" role="radiogroup" aria-labelledby="align-self-label-${item.index}">
+                <label><input type="radio" name="align-self-${item.index}" value="auto" ${item.alignSelf === 'auto' ? 'checked' : ''} /> auto</label>
+                <label><input type="radio" name="align-self-${item.index}" value="stretch" ${item.alignSelf === 'stretch' ? 'checked' : ''} /> stretch</label>
+                <label><input type="radio" name="align-self-${item.index}" value="flex-start" ${item.alignSelf === 'flex-start' ? 'checked' : ''} /> flex-start</label>
+                <label><input type="radio" name="align-self-${item.index}" value="flex-end" ${item.alignSelf === 'flex-end' ? 'checked' : ''} /> flex-end</label>
+                <label><input type="radio" name="align-self-${item.index}" value="center" ${item.alignSelf === 'center' ? 'checked' : ''} /> center</label>
+                <label><input type="radio" name="align-self-${item.index}" value="baseline" ${item.alignSelf === 'baseline' ? 'checked' : ''} /> baseline</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      itemsScrollable.querySelectorAll('.item-control').forEach(control => {
+        const index = parseInt(control.dataset.itemIndex);
+        const item = state.items.find(i => i.index === index);
+        if (!item) return;
+
+        control.querySelectorAll('input[type="number"]').forEach(input => {
+          input.addEventListener('input', (e) => {
+            const prop = e.target.dataset.itemProp;
+            item[prop] = parseInt(e.target.value) || 0;
+            updatePreview();
+          });
+        });
+
+        control.querySelectorAll('input[type="checkbox"]').forEach(input => {
+          input.addEventListener('change', (e) => {
+            const prop = e.target.dataset.itemProp;
+            item[prop] = e.target.checked;
+            if (prop === 'isFlexBasisAuto') {
+              const basisInput = control.querySelector('input[data-item-prop="flexBasisValue"]');
+              if (basisInput) basisInput.disabled = e.target.checked;
+              item.flexBasis = e.target.checked ? 'auto' : `${item.flexBasisValue}%`;
+            }
+            updatePreview();
+          });
+        });
+
+        control.querySelectorAll('input[type="radio"]').forEach(input => {
+          input.addEventListener('change', (e) => {
+            item.alignSelf = e.target.value;
+            updatePreview();
+          });
+        });
+      });
+    }
+
+    function renderFlexItems() {
+      const html = state.items.map(item => `
+        <button
+          class="flex-item ${state.differentHeight ? 'flex-item--different-height' : ''}"
+          data-index="${item.index}"
+          aria-label="${t.item || 'Item'} ${item.index}"
+        >
+          ${item.index}
+        </button>
+      `).join('');
+
+      if (flexContainer) {
+        flexContainer.innerHTML = html;
+        flexContainer.querySelectorAll('.flex-item').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const index = parseInt(btn.dataset.index);
+            scrollToItemControl(index);
+          });
+        });
+      }
+
+      updateItemStyles();
+    }
+
+    function updateItemStyles() {
+      if (!flexContainer) return;
+      flexContainer.querySelectorAll('.flex-item').forEach(el => {
+        const index = parseInt(el.dataset.index);
+        const item = state.items.find(i => i.index === index);
+        if (!item) return;
+
+        el.style.order = item.order;
+        el.style.flexGrow = item.flexGrow;
+        el.style.flexShrink = item.flexShrink;
+        el.style.flexBasis = item.isFlexBasisAuto ? 'auto' : `${item.flexBasisValue}%`;
+        el.style.alignSelf = item.alignSelf;
+
+        el.classList.toggle('flex-item--different-height', state.differentHeight);
+      });
+    }
+
+    function scrollToItemControl(index) {
+      const control = itemsScrollable?.querySelector(`[data-item-index="${index}"]`);
+      if (control && itemsScrollable) {
+        const parentRect = itemsScrollable.getBoundingClientRect();
+        const childRect = control.getBoundingClientRect();
+        const isViewable = childRect.top >= parentRect.top && childRect.bottom <= parentRect.top + itemsScrollable.clientHeight;
+
+        if (!isViewable) {
+          itemsScrollable.scrollTo({
+            top: childRect.top + itemsScrollable.scrollTop - parentRect.top - 20,
+            behavior: 'smooth'
+          });
+        }
+      }
+    }
+
+    function updatePreview() {
+      if (flexContainer) {
+        flexContainer.style.display = 'flex';
+        flexContainer.style.flexDirection = state.flexDirection;
+        flexContainer.style.flexWrap = state.flexWrap;
+        flexContainer.style.justifyContent = state.justifyContent;
+        flexContainer.style.alignItems = state.alignItems;
+        flexContainer.style.alignContent = state.alignContent;
+        flexContainer.style.height = '100%';
+      }
+
+      updateItemStyles();
+      updateCodeOutput();
+    }
+
+    function updateCodeOutput() {
+      if (!codeBlock) return;
+
+      const colors = themeColors[getTheme()];
+
+      const containerStyle = `.${containerClass} {
+  display: flex;
+  flex-direction: ${state.flexDirection};
+  flex-wrap: ${state.flexWrap};
+  justify-content: ${state.justifyContent};
+  align-items: ${state.alignItems};
+  align-content: ${state.alignContent};
+  height: 100%;
+}`;
+
+      const itemStyle = `.${itemClass} {
+  background: ${colors.bg};
+  color: ${colors.text};
+  width: 5rem;
+  height: 5rem;
+  border-radius: 4px;
+  margin: 0.25rem;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.${itemClass}:hover {
+  background: ${colors.bgHover};
+}
+
+.${itemClass}:active {
+  background: ${colors.bgActive};
+}`;
+
+      // Add different height CSS when enabled
+      const differentHeightStyle = state.differentHeight ? `
+
+.${itemClass}:nth-child(odd) {
+  height: 5rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.${itemClass}:nth-child(even) {
+  height: 7.5rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}` : '';
+
+      const itemStyles = state.items
+        .filter(item => !(item.order === 0 && item.flexGrow === 0 && item.flexShrink === 1 && item.isFlexBasisAuto && item.alignSelf === 'auto'))
+        .map(item => {
+          const props = [];
+          if (item.order !== 0) props.push(`  order: ${item.order};`);
+          if (item.flexGrow !== 0) props.push(`  flex-grow: ${item.flexGrow};`);
+          if (item.flexShrink !== 1) props.push(`  flex-shrink: ${item.flexShrink};`);
+          if (!item.isFlexBasisAuto) props.push(`  flex-basis: ${item.flexBasisValue}%;`);
+          if (item.alignSelf !== 'auto') props.push(`  align-self: ${item.alignSelf};`);
+          return props.length ? `.${itemClass}-${item.index} {\n${props.join('\n')}\n}` : '';
+        })
+        .filter(Boolean)
+        .join('\n\n');
+
+      const itemsHtml = state.items.map(item =>
+        `  <div class="${itemClass} ${itemClass}-${item.index}">${item.index}</div>`
+      ).join('\n');
+
+      const html = `<div class="${containerClass}">
+${itemsHtml}
+</div>
+
+<style>
+${containerStyle}
+
+${itemStyle}${differentHeightStyle}${itemStyles ? '\n\n' + itemStyles : ''}
+</style>`;
+
+      codeBlock.textContent = html;
+    }
+
+    container.querySelectorAll('.controls > .flex-properties .radio-group input[type="radio"]').forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        const property = e.target.closest('.radio-group')?.dataset.property;
+        if (property && property in state) {
+          state[property] = e.target.value;
+
+          if (property === 'flexWrap' && e.target.value === 'nowrap') {
+            state.alignContent = 'stretch';
+            container.querySelector('input[name="align-content"][value="stretch"]').checked = true;
+          }
+          if (property === 'alignContent') {
+            if (e.target.value === 'stretch') {
+              state.flexWrap = 'nowrap';
+              state.itemCount = 3;
+              container.querySelector('input[name="flex-wrap"][value="nowrap"]').checked = true;
+              container.querySelector('input[data-property="itemCount"]').value = '3';
+            } else {
+              state.flexWrap = 'wrap';
+              state.itemCount = 27;
+              container.querySelector('input[name="flex-wrap"][value="wrap"]').checked = true;
+              container.querySelector('input[data-property="itemCount"]').value = '27';
+            }
+            initItems();
+          }
+          if (property === 'alignItems') {
+            state.differentHeight = e.target.value === 'baseline';
+            container.querySelector('input[data-property="differentHeight"]').checked = state.differentHeight;
+            renderFlexItems();
+          }
+
+          updatePreview();
+        }
+      });
+    });
+
+    const itemCountInput = container.querySelector('input[data-property="itemCount"]');
+    itemCountInput?.addEventListener('input', (e) => {
+      let count = parseInt(e.target.value) || 3;
+      if (count < 3) count = 3;
+      if (count > 27) count = 27;
+      state.itemCount = count;
+      initItems();
+      updatePreview();
+    });
+
+    const diffHeightInput = container.querySelector('input[data-property="differentHeight"]');
+    diffHeightInput?.addEventListener('change', (e) => {
+      state.differentHeight = e.target.checked;
+      renderFlexItems();
+      updatePreview();
+    });
+
+    resetBtn?.addEventListener('click', () => {
+      state.flexDirection = 'row';
+      state.flexWrap = 'nowrap';
+      state.justifyContent = 'flex-start';
+      state.alignItems = 'stretch';
+      state.alignContent = 'stretch';
+      state.itemCount = 3;
+      state.differentHeight = false;
+
+      container.querySelectorAll('input[type="radio"]').forEach(radio => {
+        const group = radio.closest('.radio-group');
+        if (group && !group.dataset.itemProp) {
+          const prop = group.dataset.property;
+          radio.checked = radio.value === state[prop];
+        }
+      });
+
+      itemCountInput.value = '3';
+      diffHeightInput.checked = false;
+
+      initItems();
+      updatePreview();
+      scrollToItemControl(1);
+      container.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    const themeObserver = new MutationObserver(() => updateCodeOutput());
+    themeObserver.observe(document.documentElement, { attributes: true });
+
+    initItems();
+    updatePreview();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFlexboxPlayground);
+  } else {
+    initFlexboxPlayground();
+  }
+  document.addEventListener('astro:page-load', initFlexboxPlayground);
+</script>
+
+<style>
+  .playground-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* Typography */
+  .section-heading {
+    margin: 0 0 0.75rem 0;
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+  }
+
+  .property-heading {
+    margin: 0 0 0.5rem 0;
+    font-size: var(--font-size-s);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-secondary);
+  }
+
+  /* Property groups */
+  .flex-properties {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .property-group {
+    margin-right: 1.5rem;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+  }
+
+  .property-group--inline {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Radio and checkbox groups - :global() for dynamic elements */
+  :global(.radio-group) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  :global(.radio-group label),
+  :global(.checkbox-label) {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: var(--font-size-s);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.15s ease;
+  }
+
+  :global(.radio-group label:hover),
+  :global(.checkbox-label:hover) {
+    color: var(--text-primary);
+  }
+
+  /* Custom radio button styling */
+  :global(.radio-group input[type="radio"]),
+  :global(.checkbox-label input[type="checkbox"]) {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1rem;
+    height: 1rem;
+    border: 1.5px solid var(--text-tertiary);
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  :global(.radio-group input[type="radio"]:checked) {
+    border-color: var(--text-primary);
+    background: var(--text-primary);
+    box-shadow: inset 0 0 0 3px var(--bg);
+  }
+
+  :global(.radio-group input[type="radio"]:focus-visible),
+  :global(.checkbox-label input[type="checkbox"]:focus-visible) {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  :global(.checkbox-label input[type="checkbox"]) {
+    border-radius: 4px;
+    position: relative;
+  }
+
+  :global(.checkbox-label input[type="checkbox"]:checked) {
+    border-color: var(--text-primary);
+    background: var(--text-primary);
+  }
+
+  :global(.checkbox-label input[type="checkbox"]:checked::after) {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.625rem;
+    font-weight: bold;
+    color: var(--bg);
+    line-height: 1;
+  }
+
+  /* Number input - :global() for dynamic elements */
+  :global(.number-input) {
+    width: 4rem;
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--mono);
+    font-size: var(--font-size-s);
+    transition: border-color 0.15s ease;
+  }
+
+  :global(.number-input:focus) {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  :global(.number-input:disabled) {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Items scrollable container */
+  .items-scrollable {
+    max-height: 24rem;
+    overflow-y: auto;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    background: var(--astro-code-background);
+    border: 1px solid var(--border);
+  }
+
+  /* Item control cards - :global() for dynamic elements */
+  :global(.item-control) {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+  }
+
+  :global(.item-control--alt) {
+    background: var(--code-bg);
+  }
+
+  :global(.item-control-heading) {
+    margin: 0 0 0.75rem 0;
+    font-size: var(--font-size-s);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+  }
+
+  :global(.item-properties) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  :global(.item-property) {
+    min-width: 120px;
+  }
+
+  :global(.item-property label) {
+    display: block;
+    font-size: var(--font-size-s);
+    color: var(--text-primary);
+  }
+
+  :global(.item-property label span) {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: var(--text-secondary);
+  }
+
+  .demo-container {
+    position: sticky;
+    top: 6rem;
+    z-index: 5;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    height: 20rem;
+    background: var(--bg);
+    overflow: hidden;
+  }
+
+  .flex-container {
+    /* display and height applied via inline style like old Vue */
+  }
+
+  /* Flex items (demo buttons) - Theme aware, :global() for dynamic elements */
+  :global(.flex-item) {
+    min-width: 5rem;
+    width: 5rem;
+    border-radius: 4px;
+    margin: 0.25rem;
+    padding: 1rem;
+    text-align: center;
+    font-size: var(--font-size-l);
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+    z-index: 20;
+    background: var(--text-tertiary);
+    color: var(--bg);
+    border: none;
+    transition: background 0.15s ease;
+  }
+
+  :global(.flex-item:hover) {
+    background: var(--text-primary);
+  }
+
+  :global(.flex-item:focus-visible) {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  :global(.flex-item:active) {
+    background: var(--text-primary);
+  }
+
+  :global(.flex-item--different-height:nth-child(odd)) {
+    height: 5rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
+  :global(.flex-item--different-height:nth-child(even)) {
+    height: 7.5rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  /* Code output */
+  .code-output {
+    margin-top: 1rem;
+    flex: 1;
+  }
+
+  .code-block {
+    background: var(--astro-code-background);
+    border-radius: 6px;
+    padding: 1rem;
+    font-family: var(--mono);
+    font-size: var(--font-size-s);
+    color: var(--text-primary);
+    margin: 0;
+    overflow: auto;
+    max-height: 20rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  /* Accessibility - Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    :global(.flex-item),
+    .reset-btn,
+    :global(.number-input),
+    :global(.radio-group label),
+    :global(.checkbox-label),
+    :global(.radio-group input[type="radio"]),
+    :global(.checkbox-label input[type="checkbox"]) {
+      transition: none;
+    }
+  }
+</style>
