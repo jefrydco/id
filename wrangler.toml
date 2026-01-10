@@ -13,11 +13,3 @@ enabled = true
 [[routes]]
 pattern = "jefrydco.id"
 custom_domain = true
-
-[[routes]]
-pattern = "jefrydco.dev"
-custom_domain = true
-
-[[routes]]
-pattern = "jefryd.co"
-custom_domain = true
