@@ -9,7 +9,6 @@ organizer: JatimDev
 organizerUrl: https://www.instagram.com/jatimdevday/
 tags:
   - open-source
-  - oss
 ---
 
 JatimDev adalah grup pengembang dan pemimpin industri teknologi yang tertarik dengan teknologi dan ekosistemnya di area Jawa Timur.

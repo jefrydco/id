@@ -9,7 +9,7 @@ endDate: 2020-02-20T14:00:00.000Z
 organizer: JakartaJS
 organizerUrl: https://www.jakartajs.org/
 tags:
-  - vue
+  - vuejs
   - reactivity
   - javascript
 ---

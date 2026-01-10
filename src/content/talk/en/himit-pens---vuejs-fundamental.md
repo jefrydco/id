@@ -10,8 +10,7 @@ endDate: 2020-07-26T05:10:00.000Z
 organizer: Himpunan Mahasiswa Informatika PENS
 organizerUrl: https://himitpens.com/
 tags:
-  - vue
-  - fundamental
+  - vuejs
 ---
 
 HIMIT (Himpunan Mahasiswa Informatika PENS) is Informatics Student Association of PENS.

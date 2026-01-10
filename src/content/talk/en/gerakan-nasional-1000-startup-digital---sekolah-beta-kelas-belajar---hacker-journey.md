@@ -9,8 +9,7 @@ endDate: 2021-11-04T13:30:00.000Z
 organizer: Gerakan 1000 Startup Digital
 organizerUrl: https://1000startupdigital.id/
 tags:
-  - startup
-  - career
+  - misc
 ---
 
 The National 1000 Startup Digital Movement is a collaborative effort to connect and exchange information and experiences in Indonesia's digital startup ecosystem.

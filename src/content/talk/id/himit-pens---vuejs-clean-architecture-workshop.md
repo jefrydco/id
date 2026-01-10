@@ -9,9 +9,8 @@ endDate: 2021-11-20T04:50:00.000Z
 organizer: Himpunan Mahasiswa Informatika PENS
 organizerUrl: https://himitpens.com/
 tags:
-  - vue
+  - vuejs
   - architecture
-  - workshop
 ---
 
 HIMIT adalah Himpunan Mahasiswa Informatika PENS.

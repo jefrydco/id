@@ -10,8 +10,7 @@ endDate: 2021-04-25T09:00:00.000Z
 organizer: Tutor Teknik
 organizerUrl: https://tutorteknik.com/
 tags:
-  - vue
-  - vue3
+  - vuejs
   - reactivity
 ---
 

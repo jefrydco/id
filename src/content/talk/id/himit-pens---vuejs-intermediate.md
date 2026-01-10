@@ -9,8 +9,7 @@ endDate: 2020-10-04T07:00:00.000Z
 organizer: Himpunan Mahasiswa Informatika PENS
 organizerUrl: https://himitpens.com/
 tags:
-  - vue
-  - intermediate
+  - vuejs
 ---
 
 HIMIT adalah Himpunan Mahasiswa Informatika PENS.

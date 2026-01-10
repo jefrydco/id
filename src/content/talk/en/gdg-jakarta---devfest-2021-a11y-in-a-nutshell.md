@@ -9,9 +9,7 @@ endDate: 2021-11-28T09:00:00.000Z
 organizer: GDG Jakarta
 organizerUrl: https://gdg.community.dev/gdg-jakarta/
 tags:
-  - a11y
   - accessibility
-  - devfest
 ---
 
 DevFest brings together thousands of developers globally for the largest virtual of community-led technical learning and a shared passion for Google technologies.
