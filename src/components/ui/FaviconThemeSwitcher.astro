@@ -6,7 +6,7 @@
 
   window.FaviconThemeSwitcher = {
     initialized: false,
-    faviconLink: null,
+    faviconLinks: [],
     currentTheme: null,
 
     svgUrls: {
@@ -15,10 +15,8 @@
       reading: '/jefrydco-id-reading.svg'
     },
 
-    findFaviconLink() {
-      return document.querySelector('link[rel="icon"]') ||
-        document.querySelector('link[rel="shortcut icon"]') ||
-        document.querySelector('link[rel="apple-touch-icon"]')
+    findFaviconLinks() {
+      return Array.from(document.querySelectorAll('link[rel="icon"]'))
     },
 
     detectThemeFromDOM() {
@@ -31,26 +29,30 @@
       if (this.currentTheme === theme) return
       this.currentTheme = theme
 
-      if (!this.faviconLink) {
-        this.faviconLink = this.findFaviconLink()
+      if (this.faviconLinks.length === 0) {
+        this.faviconLinks = this.findFaviconLinks()
       }
 
-      if (this.faviconLink) {
-        this.faviconLink.href = this.svgUrls[theme] || this.svgUrls.light
+      var url = this.svgUrls[theme] || this.svgUrls.light
+      for (var i = 0; i < this.faviconLinks.length; i++) {
+        this.faviconLinks[i].href = url
       }
     },
 
-    refreshFaviconLink() {
-      this.faviconLink = this.findFaviconLink()
-      if (this.faviconLink && this.currentTheme) {
-        this.faviconLink.href = this.svgUrls[this.currentTheme] || this.svgUrls.light
+    refreshFaviconLinks() {
+      this.faviconLinks = this.findFaviconLinks()
+      if (this.faviconLinks.length > 0 && this.currentTheme) {
+        var url = this.svgUrls[this.currentTheme] || this.svgUrls.light
+        for (var i = 0; i < this.faviconLinks.length; i++) {
+          this.faviconLinks[i].href = url
+        }
       }
     },
 
     init() {
-      this.faviconLink = this.findFaviconLink()
-      if (!this.faviconLink) {
-        console.warn('Favicon link not found, skipping theme switcher')
+      this.faviconLinks = this.findFaviconLinks()
+      if (this.faviconLinks.length === 0) {
+        console.warn('Favicon links not found, skipping theme switcher')
         return
       }
 
@@ -83,7 +85,7 @@
 
   document.addEventListener('astro:page-load', () => {
     if (window.FaviconThemeSwitcher) {
-      window.FaviconThemeSwitcher.refreshFaviconLink()
+      window.FaviconThemeSwitcher.refreshFaviconLinks()
 
       const theme = window.ThemeManager
         ? window.ThemeManager.getEffectiveTheme()
