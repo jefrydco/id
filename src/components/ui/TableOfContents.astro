@@ -381,6 +381,42 @@ const t = getTranslations(locale);
     left: 2rem;
   }
 
+  .toc-level-3 .toc-link::after {
+    left: 0;
+  }
+
+  .toc-level-3 .toc-link:hover::after,
+  .toc-level-3 .toc-link:focus-visible::after {
+    left: -0.25rem;
+  }
+
+  .toc-level-4 .toc-link::after {
+    left: 0.5rem;
+  }
+
+  .toc-level-4 .toc-link:hover::after,
+  .toc-level-4 .toc-link:focus-visible::after {
+    left: 0.25rem;
+  }
+
+  .toc-level-5 .toc-link::after {
+    left: 1rem;
+  }
+
+  .toc-level-5 .toc-link:hover::after,
+  .toc-level-5 .toc-link:focus-visible::after {
+    left: 0.75rem;
+  }
+
+  .toc-level-6 .toc-link::after {
+    left: 1.5rem;
+  }
+
+  .toc-level-6 .toc-link:hover::after,
+  .toc-level-6 .toc-link:focus-visible::after {
+    left: 1.25rem;
+  }
+
   .toc-link:hover::before,
   .toc-link:focus-visible::before,
   .toc-link.active::before {
