@@ -9,8 +9,6 @@ organizer: GDG Jakarta
 organizerUrl: https://gdg.community.dev/gdg-jakarta/
 tags:
   - performance
-  - adaptive-loading
-  - chrome-dev-summit
 ---
 
 Chrome Dev Summit adalah konferensi tahunan dimana developer dapat mempelajari teknologi termutakhir dari peramban Google Chrome.

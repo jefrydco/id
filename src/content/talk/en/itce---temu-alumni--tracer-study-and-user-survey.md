@@ -8,8 +8,7 @@ endDate: 2021-10-16T06:00:00.000Z
 organizer: Departemen Teknik Informatika dan Komputer
 organizerUrl: https://www.pens.ac.id/departemen-teknik-informatika-dan-komputer/
 tags:
-  - alumni
-  - survey
+  - misc
 ---
 
 ITCE is department of Informatics Engineering and Computer Engineering in PENS.

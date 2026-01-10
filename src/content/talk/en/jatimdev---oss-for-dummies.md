@@ -9,7 +9,6 @@ organizer: JatimDev
 organizerUrl: https://www.instagram.com/jatimdevday/
 tags:
   - open-source
-  - oss
 ---
 
 JatimDev is a group of developers & industry leaders interested in technology and its ecosystem in the province of East Java.

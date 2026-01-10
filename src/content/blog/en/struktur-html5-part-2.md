@@ -6,7 +6,6 @@ tags:
   - javascript
   - typescript
   - html
-  - tutorial
 ---
 
 > Read the first part here, [Good HTML5 Structure - Part 1](/en/blog/struktur-html5-part-1)

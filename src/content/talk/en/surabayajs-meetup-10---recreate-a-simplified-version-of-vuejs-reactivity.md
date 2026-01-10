@@ -9,7 +9,7 @@ endDate: 2020-07-31T14:00:00.000Z
 organizer: SurabayaJS
 organizerUrl: https://surabayajs.org/
 tags:
-  - vue
+  - vuejs
   - reactivity
   - javascript
 ---
