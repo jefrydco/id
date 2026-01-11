@@ -2,6 +2,10 @@ export const en = {
 	ui: {
 		index: "index",
 		backToTop: "Back to top",
+		openMenu: "Open menu",
+		closeMenu: "Close menu",
+		navigation: "Navigation",
+		settings: "Settings",
 		poweredBy: "Powered by",
 		pageNotFound: "Page Not Found",
 		notFoundMessage: "The page you're looking for doesn't exist.",

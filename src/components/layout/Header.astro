@@ -8,9 +8,10 @@ import { defaultLocale, getTranslations, type Locale } from "@/i18n";
 
 interface Props {
 	locale?: Locale;
+	slug?: string;
 }
 
-const { locale = defaultLocale } = Astro.props;
+const { locale = defaultLocale, slug } = Astro.props;
 const t = getTranslations(locale);
 const homeUrl = locale === "en" ? "/" : `/${locale}/`;
 const blogUrl = locale === "en" ? "/blog/" : `/${locale}/blog/`;
@@ -30,15 +31,15 @@ const isTalkActive =
         <img id="header-logo" class="logo" src="/jefrydco-id-light.svg" alt="" width="16" height="16" aria-hidden="true" />
         <span class="site-name">{themeConfig.site.title}</span>
       </a>
-      <div class="switcher">
+      <div class="switcher desktop-only">
         <a href={blogUrl} class:list={["switcher-item", { active: isBlogActive }]}>{t.ui.blog}</a>
         <span class="separator">|</span>
         <a href={talkUrl} class:list={["switcher-item", { active: isTalkActive }]}>{t.ui.talk}</a>
       </div>
     </div>
-    <div class="header-actions">
+    <div class="header-actions desktop-only">
       <SearchButton locale={locale} />
-      <LanguageSwitcher locale={locale} />
+      <LanguageSwitcher locale={locale} slug={slug} />
       <FontToggle locale={locale} />
       <ThemeToggle />
     </div>
@@ -90,8 +91,8 @@ const isTalkActive =
     gap: 1rem;
   }
 
-  @media (max-width: 480px) {
-    .nav-left .switcher {
+  @media (max-width: 1335px) {
+    .desktop-only {
       display: none;
     }
   }

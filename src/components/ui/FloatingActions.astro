@@ -1,45 +1,46 @@
 ---
 import { ArrowUp } from "@lucide/astro";
+import BottomSheet from "@/components/ui/BottomSheet.astro";
 import FocusModeToggle from "@/components/ui/FocusModeToggle.astro";
-import FontToggle from "@/components/ui/FontToggle.astro";
-import LanguageSwitcher from "@/components/ui/LanguageSwitcher.astro";
-import SearchButton from "@/components/ui/SearchButton.astro";
-import ThemeToggle from "@/components/ui/ThemeToggle.astro";
+import MenuTrigger from "@/components/ui/MenuTrigger.astro";
 import { defaultLocale, getTranslations, type Locale } from "@/i18n";
 
 interface Props {
 	locale?: Locale;
 	slug?: string;
+	isDetailPage?: boolean;
 }
 
-const { locale = defaultLocale, slug } = Astro.props;
+const { locale = defaultLocale, slug, isDetailPage = false } = Astro.props;
 const t = getTranslations(locale);
 ---
 
 <div class="floating-actions" data-pagefind-ignore="all">
-  <SearchButton locale={locale} />
-  <LanguageSwitcher locale={locale} slug={slug} />
-  <FocusModeToggle locale={locale} />
-  <FontToggle locale={locale} />
-  <ThemeToggle />
-  <button
-    class="back-to-top"
-    id="back-to-top"
-    title={t.ui.backToTop}
-    aria-label={t.ui.backToTop}
-  >
-    <ArrowUp size={16} />
-  </button>
+  <div class="desktop-only">
+    {isDetailPage && <FocusModeToggle locale={locale} />}
+  </div>
+  <div class="mobile-only">
+    <MenuTrigger locale={locale} />
+  </div>
+  {isDetailPage && (
+    <button
+      class="back-to-top"
+      id="back-to-top"
+      title={t.ui.backToTop}
+      aria-label={t.ui.backToTop}
+    >
+      <ArrowUp size={16} />
+    </button>
+  )}
 </div>
+<BottomSheet locale={locale} slug={slug} isDetailPage={isDetailPage} />
 
 <script is:inline>
 ;(function () {
-  const FADE_DELAY = 1500
-  let scrollTimeout = null
-
   function init() {
     const button = document.getElementById('back-to-top')
-    if (!button) return
+    if (!button || button.dataset.bound === 'true') return
+    button.dataset.bound = 'true'
 
     button.addEventListener('click', (e) => {
       e.preventDefault()
@@ -48,31 +49,8 @@ const t = getTranslations(locale);
     })
   }
 
-  function handleScroll() {
-    const container = document.querySelector('.floating-actions')
-    if (!container) return
-
-    if (window.scrollY > 200) {
-      container.classList.add('visible')
-    } else {
-      container.classList.remove('visible')
-      return
-    }
-
-    if (window.innerWidth > 1336) return
-
-    if (scrollTimeout) clearTimeout(scrollTimeout)
-
-    scrollTimeout = setTimeout(() => {
-      if (!container.matches(':focus-within')) {
-        container.classList.remove('visible')
-      }
-    }, FADE_DELAY)
-  }
-
   document.addEventListener('astro:page-load', init)
   document.addEventListener('DOMContentLoaded', init)
-  window.addEventListener('scroll', handleScroll, { passive: true })
 })()
 </script>
 
@@ -86,22 +64,6 @@ const t = getTranslations(locale);
     bottom: 1.5rem;
     right: 1rem;
     z-index: 50;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-
-  @media (max-width: 1336px) {
-    .floating-actions {
-      opacity: 0;
-      transform: translateY(0.5rem);
-      pointer-events: none;
-    }
-
-    .floating-actions.visible,
-    .floating-actions:focus-within {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
   }
 
   .back-to-top {
@@ -127,9 +89,20 @@ const t = getTranslations(locale);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .floating-actions,
     .back-to-top {
       transition: none;
+    }
+  }
+
+  @media (min-width: 1336px) {
+    .mobile-only {
+      display: none;
+    }
+  }
+
+  @media (max-width: 1335px) {
+    .desktop-only {
+      display: none;
     }
   }
 </style>

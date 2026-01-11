@@ -5,6 +5,7 @@ import type { CollectionEntry } from "astro:content";
 import { ExternalLink } from "@lucide/astro";
 import BaseHead from "@/components/layout/BaseHead.astro";
 import Footer from "@/components/layout/Footer.astro";
+import Header from "@/components/layout/Header.astro";
 import BackButton from "@/components/ui/BackButton.astro";
 import FloatingActions from "@/components/ui/FloatingActions.astro";
 import FocusModeOverlay from "@/components/ui/FocusModeOverlay.astro";
@@ -73,6 +74,9 @@ const ogImage =
     slot="head"
   />
   <div class="talk-container">
+    <div class="talk-header">
+      <Header locale={locale} slug={talkSlug} />
+    </div>
     <main id="main-content">
       <div class="prose">
         <GradientMask />
@@ -209,7 +213,7 @@ const ogImage =
     </main>
     <FocusModeOverlay locale={locale} />
     <Footer locale={locale} />
-    <FloatingActions locale={locale} slug={talkSlug} />
+    <FloatingActions locale={locale} slug={talkSlug} isDetailPage={true} />
   </div>
 </BaseLayout>
 
@@ -256,6 +260,10 @@ const ogImage =
 
   .talk-container main {
     flex: 1;
+  }
+
+  .talk-header {
+    margin-bottom: 1rem;
   }
 
   .media-section {
