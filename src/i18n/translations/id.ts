@@ -4,6 +4,10 @@ export const id: Translations = {
 	ui: {
 		index: "indeks",
 		backToTop: "Kembali ke atas",
+		openMenu: "Buka menu",
+		closeMenu: "Tutup menu",
+		navigation: "Navigasi",
+		settings: "Pengaturan",
 		poweredBy: "Diberdayakan oleh",
 		pageNotFound: "Halaman Tidak Ditemukan",
 		notFoundMessage: "Halaman yang Anda cari tidak ada.",

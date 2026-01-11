@@ -2,6 +2,7 @@
 import "@/styles/global.css";
 import BaseHead from "@/components/layout/BaseHead.astro";
 import Footer from "@/components/layout/Footer.astro";
+import Header from "@/components/layout/Header.astro";
 import BackButton from "@/components/ui/BackButton.astro";
 import CopyCode from "@/components/ui/CopyCode.astro";
 import FloatingActions from "@/components/ui/FloatingActions.astro";
@@ -62,6 +63,9 @@ const ogImage =
     slot="head"
   />
   <div class="post-container">
+    <div class="post-header">
+      <Header locale={locale} slug={postSlug} />
+    </div>
     <main id="main-content">
       <div class="prose">
         <GradientMask />
@@ -103,7 +107,7 @@ const ogImage =
     <LinkCard />
     <TwoslashFloating />
     <Footer locale={locale} />
-    <FloatingActions locale={locale} slug={postSlug} />
+    <FloatingActions locale={locale} slug={postSlug} isDetailPage={true} />
   </div>
 </BaseLayout>
 
@@ -116,6 +120,10 @@ const ogImage =
 
   .post-container main {
     flex: 1;
+  }
+
+  .post-header {
+    margin-bottom: 1rem;
   }
 </style>
 
