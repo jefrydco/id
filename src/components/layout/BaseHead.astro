@@ -111,12 +111,37 @@ const atomUrl = new URL(`${feedPrefix}/atom.xml`, Astro.site);
 <!-- Mastodon -->
 <meta name="fediverse:creator" content="@jefrydco@mastodon.social">
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TGN6FFKR2D"></script>
-<script is:inline>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
 
-  gtag('config', 'G-TGN6FFKR2D');
+<script is:inline>
+  (function() {
+    var GA_ID = 'G-TGN6FFKR2D';
+    var IDLE_TIMEOUT_MS = 5000;
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA_ID);
+
+    var loaded = false;
+    function loadGA() {
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+      document.head.appendChild(s);
+    }
+
+    ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach(function(evt) {
+      window.addEventListener(evt, loadGA, { once: true, passive: true });
+    });
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadGA, { timeout: IDLE_TIMEOUT_MS });
+    } else {
+      setTimeout(loadGA, IDLE_TIMEOUT_MS);
+    }
+  })();
 </script>
