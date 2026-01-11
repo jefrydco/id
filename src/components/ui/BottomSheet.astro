@@ -1,0 +1,425 @@
+---
+import FocusModeToggle from "@/components/ui/FocusModeToggle.astro";
+import FontToggle from "@/components/ui/FontToggle.astro";
+import SearchButton from "@/components/ui/SearchButton.astro";
+import ThemeToggle from "@/components/ui/ThemeToggle.astro";
+import {
+	defaultLocale,
+	getLocalizedPath,
+	getTranslations,
+	type Locale,
+	localeLabels,
+	locales,
+} from "@/i18n";
+import { hasTranslation } from "@/utils/i18n-content";
+
+interface Props {
+	locale?: Locale;
+	slug?: string;
+	isDetailPage?: boolean;
+}
+
+const { locale = defaultLocale, slug, isDetailPage = false } = Astro.props;
+const t = getTranslations(locale);
+
+const blogUrl = locale === "en" ? "/blog/" : `/${locale}/blog/`;
+const talkUrl = locale === "en" ? "/talk/" : `/${locale}/talk/`;
+const currentPath = Astro.url.pathname;
+
+const isBlogActive =
+	currentPath.startsWith("/blog") || currentPath.startsWith(`/${locale}/blog`);
+const isTalkActive =
+	currentPath.startsWith("/talk") || currentPath.startsWith(`/${locale}/talk`);
+
+const isPostPage = slug !== undefined;
+const translationAvailable: Record<Locale, boolean> = { en: true, id: true };
+if (isPostPage && slug) {
+	for (const loc of locales) {
+		translationAvailable[loc] = await hasTranslation(slug, loc);
+	}
+}
+---
+
+<div
+  id="bottom-sheet-menu"
+  class="bottom-sheet"
+  role="dialog"
+  aria-modal="true"
+  aria-label={t.ui.navigation}
+  hidden
+  data-pagefind-ignore="all"
+>
+  <div class="sheet-overlay"></div>
+  <div class="sheet-panel">
+    <div class="sheet-handle" aria-hidden="true"></div>
+
+    <div class="sheet-content">
+      <nav class="sheet-nav" aria-label={t.ui.navigation}>
+        <div class="switcher">
+          <a href={blogUrl} class:list={["switcher-item", { active: isBlogActive }]}>
+            {t.ui.blog}
+          </a>
+          <span class="separator">|</span>
+          <a href={talkUrl} class:list={["switcher-item", { active: isTalkActive }]}>
+            {t.ui.talk}
+          </a>
+        </div>
+        <div class="switcher">
+          {
+            locales.map((loc, index) => {
+              const isActive = loc === locale
+              const hasContent = isPostPage ? translationAvailable[loc] : true
+              const targetPath = isPostPage && slug
+                ? getLocalizedPath(`/blog/${slug}`, loc)
+                : getLocalizedPath(currentPath, loc)
+
+              return (
+                <>
+                  {index > 0 && <span class="separator">|</span>}
+                  {isActive ? (
+                    <span class="switcher-item active">{localeLabels[loc]}</span>
+                  ) : hasContent ? (
+                    <a href={targetPath} class="switcher-item" hreflang={loc}>
+                      {localeLabels[loc]}
+                    </a>
+                  ) : (
+                    <span class="switcher-item dimmed" title="Translation not available">
+                      {localeLabels[loc]}
+                    </span>
+                  )}
+                </>
+              )
+            })
+          }
+        </div>
+      </nav>
+
+      <div class="sheet-actions" role="group" aria-label={t.ui.settings}>
+        <SearchButton locale={locale} />
+        <FontToggle locale={locale} />
+        <ThemeToggle />
+        {isDetailPage && <FocusModeToggle locale={locale} />}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+;(function () {
+  let previouslyFocusedElement = null
+  let isOpen = false
+  let touchStartY = 0
+  let touchCurrentY = 0
+  let isDragging = false
+
+  function getElements() {
+    return {
+      sheet: document.getElementById('bottom-sheet-menu'),
+      trigger: document.getElementById('menu-trigger'),
+      overlay: document.querySelector('.sheet-overlay'),
+      panel: document.querySelector('.sheet-panel')
+    }
+  }
+
+  function getFocusableElements(container) {
+    return container.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )
+  }
+
+  function openSheet() {
+    const { sheet, trigger } = getElements()
+    if (!sheet || isOpen) return
+
+    previouslyFocusedElement = document.activeElement
+    isOpen = true
+
+    sheet.hidden = false
+    sheet.classList.add('open')
+
+    if (trigger) {
+      trigger.setAttribute('aria-expanded', 'true')
+    }
+
+    document.body.style.overflow = 'hidden'
+
+    requestAnimationFrame(() => {
+      const focusables = getFocusableElements(sheet)
+      if (focusables.length) {
+        focusables[0].focus()
+      }
+    })
+  }
+
+  function closeSheet() {
+    const { sheet, trigger } = getElements()
+    if (!sheet || !isOpen) return
+
+    isOpen = false
+    sheet.classList.remove('open')
+
+    if (trigger) {
+      trigger.setAttribute('aria-expanded', 'false')
+    }
+
+    document.body.style.overflow = ''
+
+    const motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const duration = motionOK ? 300 : 0
+
+    setTimeout(() => {
+      sheet.hidden = true
+      if (previouslyFocusedElement && previouslyFocusedElement.focus) {
+        previouslyFocusedElement.focus()
+      }
+    }, duration)
+  }
+
+  function handleKeyDown(e) {
+    const { sheet } = getElements()
+    if (!sheet || !isOpen) return
+
+    if (e.key === 'Escape') {
+      e.preventDefault()
+      closeSheet()
+      return
+    }
+
+    if (e.key === 'Tab') {
+      const focusables = getFocusableElements(sheet)
+      if (focusables.length === 0) return
+
+      const firstFocusable = focusables[0]
+      const lastFocusable = focusables[focusables.length - 1]
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstFocusable) {
+          e.preventDefault()
+          lastFocusable.focus()
+        }
+      } else {
+        if (document.activeElement === lastFocusable) {
+          e.preventDefault()
+          firstFocusable.focus()
+        }
+      }
+    }
+  }
+
+  function handleTouchStart(e) {
+    const { panel } = getElements()
+    if (!panel || !isOpen) return
+
+    touchStartY = e.touches[0].clientY
+    touchCurrentY = touchStartY
+    isDragging = true
+    panel.style.transition = 'none'
+  }
+
+  function handleTouchMove(e) {
+    const { panel } = getElements()
+    if (!panel || !isDragging) return
+
+    touchCurrentY = e.touches[0].clientY
+    const diff = touchCurrentY - touchStartY
+
+    if (diff > 0) {
+      panel.style.transform = `translateY(${diff}px)`
+    }
+  }
+
+  function handleTouchEnd() {
+    const { panel } = getElements()
+    if (!panel || !isDragging) return
+
+    isDragging = false
+    const diff = touchCurrentY - touchStartY
+
+    panel.style.transition = ''
+    panel.style.transform = ''
+
+    if (diff > 100) {
+      closeSheet()
+    }
+  }
+
+  function init() {
+    const { sheet, trigger, overlay, panel } = getElements()
+
+    if (trigger && !trigger.dataset.sheetBound) {
+      trigger.dataset.sheetBound = 'true'
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault()
+        if (isOpen) {
+          closeSheet()
+        } else {
+          openSheet()
+        }
+      })
+    }
+
+    if (overlay && !overlay.dataset.sheetBound) {
+      overlay.dataset.sheetBound = 'true'
+      overlay.addEventListener('click', closeSheet)
+    }
+
+    if (panel && !panel.dataset.sheetBound) {
+      panel.dataset.sheetBound = 'true'
+      panel.addEventListener('touchstart', handleTouchStart, { passive: true })
+      panel.addEventListener('touchmove', handleTouchMove, { passive: true })
+      panel.addEventListener('touchend', handleTouchEnd, { passive: true })
+    }
+
+    if (sheet && !sheet.dataset.sheetBound) {
+      sheet.dataset.sheetBound = 'true'
+      document.addEventListener('keydown', handleKeyDown)
+    }
+  }
+
+  function cleanup() {
+    const { sheet, trigger } = getElements()
+    if (sheet && isOpen) {
+      isOpen = false
+      sheet.hidden = true
+      sheet.classList.remove('open')
+      document.body.style.overflow = ''
+    }
+    if (trigger) {
+      trigger.setAttribute('aria-expanded', 'false')
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', init)
+  document.addEventListener('astro:page-load', init)
+  document.addEventListener('astro:before-preparation', cleanup)
+})()
+</script>
+
+<style>
+  .bottom-sheet {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+  }
+
+  .bottom-sheet[hidden] {
+    display: none;
+  }
+
+  .bottom-sheet.open {
+    pointer-events: auto;
+  }
+
+  .sheet-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .bottom-sheet.open .sheet-overlay {
+    opacity: 1;
+  }
+
+  .sheet-panel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-radius: 1rem 1rem 0 0;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    padding: 0.75rem 1.5rem;
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .bottom-sheet.open .sheet-panel {
+    transform: translateY(0);
+  }
+
+  .sheet-handle {
+    width: 2.5rem;
+    height: 0.25rem;
+    background: var(--text-tertiary);
+    border-radius: 0.125rem;
+    margin: 0 auto 1rem;
+    opacity: 0.5;
+  }
+
+  .sheet-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .sheet-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .switcher-item {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: var(--font-size-s);
+    transition: color 0.15s ease-out;
+  }
+
+  .switcher-item:hover:not(.active):not(.dimmed) {
+    color: var(--text-primary);
+  }
+
+  .switcher-item.active {
+    color: var(--text-primary);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .switcher-item.dimmed {
+    opacity: 0.5;
+    cursor: not-allowed;
+    color: var(--text-tertiary);
+  }
+
+  .switcher-item:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+
+  .separator {
+    color: var(--text-tertiary);
+  }
+
+  .sheet-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sheet-overlay,
+    .sheet-panel,
+    .switcher-item {
+      transition: none;
+    }
+  }
+
+  @media (min-width: 1336px) {
+    .bottom-sheet {
+      display: none;
+    }
+  }
+</style>
