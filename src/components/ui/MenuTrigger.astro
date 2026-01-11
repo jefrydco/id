@@ -1,0 +1,58 @@
+---
+import { Menu } from "@lucide/astro";
+import { defaultLocale, getTranslations, type Locale } from "@/i18n";
+
+interface Props {
+	locale?: Locale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const t = getTranslations(locale);
+---
+
+<button
+  class="menu-trigger"
+  id="menu-trigger"
+  aria-expanded="false"
+  aria-controls="bottom-sheet-menu"
+  aria-label={t.ui.openMenu}
+  title={t.ui.openMenu}
+>
+  <Menu size={20} aria-hidden="true" />
+</button>
+
+<style>
+  .menu-trigger {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  @media (max-width: 1335px) {
+    .menu-trigger {
+      display: flex;
+    }
+  }
+
+  .menu-trigger:hover {
+    opacity: 0.7;
+  }
+
+  .menu-trigger:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .menu-trigger {
+      transition: none;
+    }
+  }
+</style>
