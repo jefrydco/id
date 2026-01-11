@@ -13,3 +13,6 @@ enabled = true
 [[routes]]
 pattern = "jefrydco.id"
 custom_domain = true
+
+[placement]
+mode = "smart"
