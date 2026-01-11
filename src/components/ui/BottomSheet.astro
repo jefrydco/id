@@ -30,7 +30,8 @@ const currentPath = Astro.url.pathname;
 const isBlogActive =
 	currentPath.startsWith("/blog") || currentPath.startsWith(`/${locale}/blog`);
 const isNotesActive =
-	currentPath.startsWith("/notes") || currentPath.startsWith(`/${locale}/notes`);
+	currentPath.startsWith("/notes") ||
+	currentPath.startsWith(`/${locale}/notes`);
 const isTalkActive =
 	currentPath.startsWith("/talk") || currentPath.startsWith(`/${locale}/talk`);
 
