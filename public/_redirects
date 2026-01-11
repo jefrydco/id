@@ -1,0 +1,9 @@
+# Redirect old /en/ URLs to new structure (EN is now default)
+# Before: EN at /en/*, ID at /* (ID was default)
+# Now: EN at /*, ID at /id/* (EN is default)
+
+/en/ / 301
+/en/blog/ /blog/ 301
+/en/blog/* /blog/:splat 301
+/en/talk/ /talk/ 301
+/en/talk/* /talk/:splat 301
