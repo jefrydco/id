@@ -40,8 +40,15 @@ const pageTitle = `${t.ui.page} ${currentPage} - ${themeConfig.site.title}`;
 ---
 
 <IndexLayout title={pageTitle} description={themeConfig.site.description} locale={locale}>
-  <div data-pagefind-ignore="all">
+  <div class="blog-page" data-pagefind-ignore="all">
+    <h1 class="page-title">{t.ui.blog}</h1>
     <PostList posts={posts} locale={locale} />
     <Pagination currentPage={currentPage} totalPages={totalPages} locale={locale} basePath="/id/blog" />
   </div>
 </IndexLayout>
+
+<style>
+  .blog-page {
+    margin-top: 1.25rem;
+  }
+</style>
