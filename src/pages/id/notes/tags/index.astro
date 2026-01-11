@@ -1,0 +1,75 @@
+---
+import { themeConfig } from "@/config";
+import { getTranslations, type Locale } from "@/i18n";
+import IndexLayout from "@/layouts/IndexLayout.astro";
+import { getAllNoteTags, getNoteTagUrl } from "@/utils/note-tags";
+
+const locale: Locale = "id";
+const t = getTranslations(locale);
+const tags = await getAllNoteTags(locale);
+
+const pageTitle = `${t.ui.allNoteTags} - ${themeConfig.site.title}`;
+---
+
+<IndexLayout title={pageTitle} description={themeConfig.site.description} locale={locale}>
+  <div class="tags-page" data-pagefind-ignore="all">
+    <h1 class="page-title">{t.ui.allNoteTags}</h1>
+    <ul class="tag-list">
+      {
+        tags.map(({ tag, count }) => (
+          <li>
+            <a href={getNoteTagUrl(tag, locale)} class="tag">
+              {tag}
+            </a>
+            <span class="count">({count})</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</IndexLayout>
+
+<style>
+  .tags-page {
+    margin-top: 1.25rem;
+  }
+
+  .tag-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 2rem;
+  }
+
+  .tag-list li {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.25rem;
+  }
+
+  .tag {
+    color: var(--text-secondary);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    text-decoration-color: var(--text-tertiary);
+    transition: all 0.15s ease;
+  }
+
+  .tag:hover {
+    color: var(--text-primary);
+    text-decoration-color: var(--text-primary);
+  }
+
+  .tag:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 0.125rem;
+  }
+
+  .count {
+    color: var(--text-tertiary);
+    font-size: 0.875rem;
+  }
+</style>

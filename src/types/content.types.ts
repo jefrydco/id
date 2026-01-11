@@ -22,3 +22,9 @@ export interface PostListProps {
 	posts: CollectionEntry<"blog">[];
 	locale?: Locale;
 }
+
+// NoteList component props interface
+export interface NoteListProps {
+	notes: CollectionEntry<"notes">[];
+	locale?: Locale;
+}

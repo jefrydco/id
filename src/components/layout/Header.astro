@@ -16,12 +16,15 @@ const t = getTranslations(locale);
 const homeUrl = locale === "en" ? "/" : `/${locale}/`;
 const blogUrl = locale === "en" ? "/blog/" : `/${locale}/blog/`;
 const talkUrl = locale === "en" ? "/talk/" : `/${locale}/talk/`;
+const notesUrl = locale === "en" ? "/notes/" : `/${locale}/notes/`;
 
 const currentPath = Astro.url.pathname;
 const isBlogActive =
 	currentPath.startsWith("/blog") || currentPath.startsWith(`/${locale}/blog`);
 const isTalkActive =
 	currentPath.startsWith("/talk") || currentPath.startsWith(`/${locale}/talk`);
+const isNotesActive =
+	currentPath.startsWith("/notes") || currentPath.startsWith(`/${locale}/notes`);
 ---
 
 <header data-pagefind-ignore="all">
@@ -33,6 +36,8 @@ const isTalkActive =
       </a>
       <div class="switcher desktop-only">
         <a href={blogUrl} class:list={["switcher-item", { active: isBlogActive }]}>{t.ui.blog}</a>
+        <span class="separator">|</span>
+        <a href={notesUrl} class:list={["switcher-item", { active: isNotesActive }]}>{t.ui.notes}</a>
         <span class="separator">|</span>
         <a href={talkUrl} class:list={["switcher-item", { active: isTalkActive }]}>{t.ui.talk}</a>
       </div>
