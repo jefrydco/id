@@ -17,6 +17,9 @@ export interface PostLayoutProps {
 	readingTime?: ReadingTime;
 	toc?: TOCItem[];
 	locale?: Locale;
+	backUrl?: string;
+	backLabel?: string;
+	getTagUrl?: (tag: string, locale: Locale) => string;
 }
 
 // Transition props interface

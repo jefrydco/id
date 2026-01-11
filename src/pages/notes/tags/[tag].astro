@@ -1,0 +1,55 @@
+---
+import Pagination from "@/components/widgets/Pagination.astro";
+import NoteList from "@/components/widgets/NoteList.astro";
+import { themeConfig } from "@/config";
+import { defaultLocale, getTranslations } from "@/i18n";
+import IndexLayout from "@/layouts/IndexLayout.astro";
+import { paginatePosts } from "@/utils/pagination";
+import { getAllUniqueNoteTags, getNotesByTag } from "@/utils/note-tags";
+
+export async function getStaticPaths() {
+	const tags = await getAllUniqueNoteTags();
+	return tags.map((tag) => ({
+		params: { tag },
+		props: { tag },
+	}));
+}
+
+const { tag } = Astro.props;
+const locale = defaultLocale;
+const t = getTranslations(locale);
+const allNotes = await getNotesByTag(tag, locale);
+const { posts: notes, currentPage, totalPages } = paginatePosts(allNotes, 1);
+
+const pageTitle = `${t.ui.notesTaggedWith} "${tag}" - ${themeConfig.site.title}`;
+---
+
+<IndexLayout title={pageTitle} description={themeConfig.site.description} locale={locale}>
+  <div class="tag-page" data-pagefind-ignore="all">
+    <h1 class="page-title">
+      {t.ui.notesTaggedWith} <span class="tag-name">"{tag}"</span>
+    </h1>
+    {notes.length > 0 ? (
+      <>
+        <NoteList notes={notes} locale={locale} />
+        <Pagination currentPage={currentPage} totalPages={totalPages} locale={locale} basePath={`/notes/tags/${tag}`} />
+      </>
+    ) : (
+      <p class="no-notes">{t.ui.noNotesWithTag}</p>
+    )}
+  </div>
+</IndexLayout>
+
+<style>
+  .tag-page {
+    margin-top: 1.25rem;
+  }
+
+  .tag-name {
+    font-weight: 500;
+  }
+
+  .no-notes {
+    color: var(--text-secondary);
+  }
+</style>

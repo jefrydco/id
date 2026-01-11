@@ -51,6 +51,12 @@ export const en = {
 		talkNavigation: "Talk navigation",
 		relatedTalks: "Related Talks",
 		skipSocialLinks: "Skip social links",
+		notes: "Notes",
+		allNoteTags: "All Note Tags",
+		notesTaggedWith: "Notes tagged with",
+		noNotesWithTag: "No notes found with this tag.",
+		noteNavigation: "Note navigation",
+		relatedNotes: "Related Notes",
 	},
 	date: {
 		months: {

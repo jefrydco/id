@@ -53,6 +53,12 @@ export const id: Translations = {
 		talkNavigation: "Navigasi talk",
 		relatedTalks: "Talk Terkait",
 		skipSocialLinks: "Lewati tautan sosial",
+		notes: "Catatan",
+		allNoteTags: "Semua Tag Catatan",
+		notesTaggedWith: "Catatan dengan tag",
+		noNotesWithTag: "Tidak ada catatan dengan tag ini.",
+		noteNavigation: "Navigasi catatan",
+		relatedNotes: "Catatan Terkait",
 	},
 	date: {
 		months: {

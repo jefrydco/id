@@ -1,0 +1,71 @@
+---
+import { render } from "astro:content";
+import GiscusComments from "@/components/ui/GiscusComments.astro";
+import PostNavigation from "@/components/widgets/PostNavigation.astro";
+import RelatedNotes from "@/components/widgets/RelatedNotes.astro";
+import ShareButtons from "@/components/widgets/ShareButtons.astro";
+import { themeConfig } from "@/config";
+import { defaultLocale, getTranslations } from "@/i18n";
+import PostLayout from "@/layouts/PostLayout.astro";
+import {
+	getAdjacentNotes,
+	getAllNoteSlugs,
+	getNoteBySlug,
+	getNoteSlug,
+	getRelatedNotesByTags,
+} from "@/utils/i18n-notes";
+import { getNoteTagUrl } from "@/utils/note-tags";
+
+export async function getStaticPaths() {
+	const slugs = await getAllNoteSlugs();
+	return slugs.map((slug) => ({
+		params: { slug },
+		props: { slug },
+	}));
+}
+
+const { slug } = Astro.props;
+const locale = defaultLocale;
+const t = getTranslations(locale);
+const note = await getNoteBySlug(slug, locale);
+const notesListUrl = "/notes/";
+
+if (!note) {
+	return Astro.redirect("/404");
+}
+
+const { Content, remarkPluginFrontmatter } = await render(note);
+const { prevNote, nextNote } = await getAdjacentNotes(slug, locale);
+const relatedNotes = await getRelatedNotesByTags(
+	slug,
+	note.data.tags || [],
+	locale,
+	3,
+);
+
+const readingTime = remarkPluginFrontmatter.readingTime;
+const toc = remarkPluginFrontmatter.toc || [];
+const noteUrl = `${themeConfig.site.url}/notes/${slug}/`;
+
+function getNoteUrl(note: typeof prevNote): string {
+	if (!note) return "";
+	const noteSlug = getNoteSlug(note);
+	return `/notes/${noteSlug}/`;
+}
+
+const prevItem = prevNote
+	? { title: prevNote.data.title, url: getNoteUrl(prevNote) }
+	: null;
+const nextItem = nextNote
+	? { title: nextNote.data.title, url: getNoteUrl(nextNote) }
+	: null;
+---
+
+<PostLayout {...note.data} tags={note.data.tags || []} readingTime={readingTime} toc={toc} locale={locale} backUrl={notesListUrl} backLabel={t.ui.notes} getTagUrl={getNoteTagUrl}>
+  <Content />
+  <ShareButtons title={note.data.title} url={noteUrl} locale={locale} />
+  <hr />
+  <RelatedNotes notes={relatedNotes} locale={locale} />
+  <PostNavigation prevItem={prevItem} nextItem={nextItem} locale={locale} />
+  <GiscusComments locale={locale} />
+</PostLayout>

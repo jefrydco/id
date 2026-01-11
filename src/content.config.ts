@@ -38,4 +38,16 @@ const talk = defineCollection({
 		}),
 });
 
-export const collections = { blog, about, talk };
+const notes = defineCollection({
+	loader: glob({ base: "./src/content/notes", pattern: "**/*.{md,mdx}" }),
+	schema: () =>
+		z.object({
+			title: z.string(),
+			description: z.string().optional(),
+			publishedAt: z.coerce.date(),
+			updatedAt: z.coerce.date().optional(),
+			tags: z.array(z.string()),
+		}),
+});
+
+export const collections = { blog, about, talk, notes };

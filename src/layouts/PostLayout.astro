@@ -37,10 +37,15 @@ const {
 	toc,
 	tags,
 	locale = defaultLocale,
+	backUrl,
+	backLabel,
+	getTagUrl,
 } = Astro.props as PostLayoutProps;
 
 const t = getTranslations(locale);
-const blogListUrl = locale === "en" ? "/blog/" : `/${locale}/blog/`;
+const defaultBackUrl = locale === "en" ? "/blog/" : `/${locale}/blog/`;
+const finalBackUrl = backUrl || defaultBackUrl;
+const finalBackLabel = backLabel || t.ui.blog;
 const postSlug = Astro.url.pathname.split("/").filter(Boolean).pop() || "";
 const ogImage =
 	locale === "en"
@@ -69,7 +74,7 @@ const ogImage =
     <main id="main-content">
       <div class="prose">
         <GradientMask />
-        <BackButton locale={locale} href={blogListUrl} label={t.ui.blog} />
+        <BackButton locale={locale} href={finalBackUrl} label={finalBackLabel} />
         <TableOfContents toc={toc} locale={locale} />
         <div class="title">
           <h1>{title}</h1>
@@ -84,7 +89,7 @@ const ogImage =
               )
             }
           </div>
-          {tags && tags.length > 0 && <TagList tags={tags} locale={locale} />}
+          {tags && tags.length > 0 && <TagList tags={tags} locale={locale} getTagUrl={getTagUrl} />}
         </div>
         <div class="toc-mobile">
           <TableOfContents toc={toc} locale={locale} />
