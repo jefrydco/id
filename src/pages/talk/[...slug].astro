@@ -83,7 +83,7 @@ const nextItem = nextTalk
 	: null;
 ---
 
-<TalkLayout talk={talk} locale={locale} toc={combinedToc}>
+<TalkLayout talk={talk} locale={locale} toc={combinedToc} feedSection="talk">
   <Content slot="content" />
   <ShareButtons title={talk.data.title} url={talkUrl} locale={locale} />
   <hr />

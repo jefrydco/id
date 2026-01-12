@@ -61,7 +61,7 @@ const nextItem = nextNote
 	: null;
 ---
 
-<PostLayout {...note.data} tags={note.data.tags || []} readingTime={readingTime} toc={toc} locale={locale} backUrl={notesListUrl} backLabel={t.ui.notes} getTagUrl={getNoteTagUrl}>
+<PostLayout {...note.data} tags={note.data.tags || []} readingTime={readingTime} toc={toc} locale={locale} backUrl={notesListUrl} backLabel={t.ui.notes} getTagUrl={getNoteTagUrl} feedSection="notes">
   <Content />
   <ShareButtons title={note.data.title} url={noteUrl} locale={locale} />
   <hr />

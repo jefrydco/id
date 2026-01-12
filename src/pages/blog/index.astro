@@ -15,7 +15,7 @@ const { posts, currentPage, totalPages } = paginatePosts(allPosts, 1);
 const pageTitle = `${t.ui.blog} - ${themeConfig.site.title}`;
 ---
 
-<IndexLayout title={pageTitle} description={themeConfig.site.description} locale={locale}>
+<IndexLayout title={pageTitle} description={themeConfig.site.description} locale={locale} feedSection="blog">
   <div class="blog-page" data-pagefind-ignore="all">
     <h1 class="page-title">{t.ui.blog}</h1>
     <PostList posts={posts} locale={locale} />

@@ -58,7 +58,7 @@ const nextItem = nextPost
 	: null;
 ---
 
-<PostLayout {...post.data} tags={post.data.tags || []} readingTime={readingTime} toc={toc} locale={locale}>
+<PostLayout {...post.data} tags={post.data.tags || []} readingTime={readingTime} toc={toc} locale={locale} feedSection="blog">
   <Content />
   <ShareButtons title={post.data.title} url={postUrl} locale={locale} />
   <hr />

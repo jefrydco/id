@@ -51,7 +51,7 @@ if (currentPage !== pageNum || notes.length === 0) {
 const pageTitle = `${t.ui.notesTaggedWith} "${tag}" - ${t.ui.page} ${currentPage} - ${themeConfig.site.title}`;
 ---
 
-<IndexLayout title={pageTitle} description={themeConfig.site.description} locale={locale}>
+<IndexLayout title={pageTitle} description={themeConfig.site.description} locale={locale} feedSection="notes">
   <div class="tag-page" data-pagefind-ignore="all">
     <h1 class="page-title">
       {t.ui.notesTaggedWith} <span class="tag-name">"{tag}"</span>

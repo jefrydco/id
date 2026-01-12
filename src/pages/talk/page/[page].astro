@@ -42,7 +42,7 @@ const currentYearGroup = yearGroups[pageNum - 1];
 const pageTitle = `${t.ui.talk} - ${currentYearGroup.year} - ${themeConfig.site.title}`;
 ---
 
-<IndexLayout title={pageTitle} description={t.ui.talkDescription} locale={locale}>
+<IndexLayout title={pageTitle} description={t.ui.talkDescription} locale={locale} feedSection="talk">
   <div class="talk-page" data-pagefind-ignore="all">
     <h1 class="page-title">{t.ui.talk}</h1>
     <TalkList yearGroups={[currentYearGroup]} locale={locale} />

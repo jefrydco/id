@@ -39,7 +39,7 @@ if (currentPage !== pageNum || posts.length === 0) {
 const pageTitle = `${t.ui.page} ${currentPage} - ${themeConfig.site.title}`;
 ---
 
-<IndexLayout title={pageTitle} description={themeConfig.site.description} locale={locale}>
+<IndexLayout title={pageTitle} description={themeConfig.site.description} locale={locale} feedSection="blog">
   <div class="blog-page" data-pagefind-ignore="all">
     <h1 class="page-title">{t.ui.blog}</h1>
     <PostList posts={posts} locale={locale} />
