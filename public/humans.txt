@@ -1,9 +1,10 @@
 /* AUTHOR */
-	Author		  : Jefry Dewangga
-	From	  	  : Surabaya, East Java, Indonesia
-	Twitter		  : @jefrydco
+	Author:      Jefry Dewangga
+	From:        Earth
+	X:           @jefrydco
+	Mastodon:    @jefrydco@mastodon.social
 
 /* SITE */
-	Language	  : Indonesian / English
-	Built with	: Vue.js, Nuxt.js, Tailwind CSS
-	Launched	  : 2017
+	Language:    English / Indonesian
+	Built with:  Astro
+	Launched:    2017

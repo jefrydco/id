@@ -68,6 +68,7 @@ const atomUrl = new URL(`${feedPrefix}/atom.xml`, Astro.site);
   title={`${themeConfig.site.title} Atom Feed`}
   href={atomUrl}
 />
+<link rel="author" type="text/plain" href="/humans.txt" />
 
 <!-- Webmention -->
 <link rel="webmention" href="https://webmention.io/jefrydco.id/webmention" />
