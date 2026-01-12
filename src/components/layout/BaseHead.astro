@@ -111,37 +111,4 @@ const atomUrl = new URL(`${feedPrefix}/atom.xml`, Astro.site);
 <!-- Mastodon -->
 <meta name="fediverse:creator" content="@jefrydco@mastodon.social">
 
-<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
-<link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
-
-<script is:inline>
-  (function() {
-    var GA_ID = 'G-TGN6FFKR2D';
-    var IDLE_TIMEOUT_MS = 5000;
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    window.gtag = gtag;
-    gtag('js', new Date());
-    gtag('config', GA_ID);
-
-    var loaded = false;
-    function loadGA() {
-      if (loaded) return;
-      loaded = true;
-      var s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-      document.head.appendChild(s);
-    }
-
-    ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach(function(evt) {
-      window.addEventListener(evt, loadGA, { once: true, passive: true });
-    });
-
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(loadGA, { timeout: IDLE_TIMEOUT_MS });
-    } else {
-      setTimeout(loadGA, IDLE_TIMEOUT_MS);
-    }
-  })();
-</script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="3b3c7f52-a843-4f74-9ed4-add36cec1376"></script>
