@@ -20,6 +20,7 @@ export interface PostLayoutProps {
 	backUrl?: string;
 	backLabel?: string;
 	getTagUrl?: (tag: string, locale: Locale) => string;
+	feedSection?: string;
 }
 
 // Transition props interface
@@ -41,6 +42,7 @@ export interface BaseHeadProps {
 	description: string;
 	ogImage?: string;
 	locale?: Locale;
+	feedSection?: string;
 }
 
 // ImageOptimizer component props interface

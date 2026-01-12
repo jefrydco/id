@@ -12,13 +12,14 @@ interface Props {
 	title: string;
 	description: string;
 	locale?: Locale;
+	feedSection?: string;
 }
 
-const { title, description, locale = defaultLocale } = Astro.props;
+const { title, description, locale = defaultLocale, feedSection } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description} type="page" locale={locale}>
-  <BaseHead title={title} description={description} locale={locale} slot="head" />
+  <BaseHead title={title} description={description} locale={locale} feedSection={feedSection} slot="head" />
   <div class="page-content">
     <GradientMask />
     <div>

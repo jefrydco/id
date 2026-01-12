@@ -11,7 +11,7 @@ const tags = await getAllNoteTags(locale);
 const pageTitle = `${t.ui.allNoteTags} - ${themeConfig.site.title}`;
 ---
 
-<IndexLayout title={pageTitle} description={themeConfig.site.description} locale={locale}>
+<IndexLayout title={pageTitle} description={themeConfig.site.description} locale={locale} feedSection="notes">
   <div class="tags-page" data-pagefind-ignore="all">
     <h1 class="page-title">{t.ui.allNoteTags}</h1>
     <ul class="tag-list">

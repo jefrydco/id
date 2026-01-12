@@ -27,9 +27,10 @@ interface Props {
 	talk: CollectionEntry<"talk">;
 	locale?: Locale;
 	toc?: TOCItem[];
+	feedSection?: string;
 }
 
-const { talk, locale = defaultLocale, toc = [] } = Astro.props;
+const { talk, locale = defaultLocale, toc = [], feedSection } = Astro.props;
 const t = getTranslations(locale);
 
 const {
@@ -71,6 +72,7 @@ const ogImage =
     description={description || themeConfig.site.description}
     ogImage={ogImage}
     locale={locale}
+    feedSection={feedSection}
     slot="head"
   />
   <div class="talk-container">

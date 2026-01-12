@@ -29,7 +29,7 @@ const pageTitle = currentYearGroup
 	: `${t.ui.talksTaggedWith} "${tag}" - ${themeConfig.site.title}`;
 ---
 
-<IndexLayout title={pageTitle} description={`${t.ui.talksTaggedWith} ${tag}`} locale={locale}>
+<IndexLayout title={pageTitle} description={`${t.ui.talksTaggedWith} ${tag}`} locale={locale} feedSection="talk">
   <div class="tag-page" data-pagefind-ignore="all">
     <h1 class="page-title">{t.ui.talksTaggedWith} <span class="tag-name">"{tag}"</span></h1>
     {currentYearGroup ? (

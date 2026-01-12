@@ -40,6 +40,7 @@ const {
 	backUrl,
 	backLabel,
 	getTagUrl,
+	feedSection,
 } = Astro.props as PostLayoutProps;
 
 const t = getTranslations(locale);
@@ -65,6 +66,7 @@ const ogImage =
     description={description || themeConfig.site.description}
     ogImage={ogImage}
     locale={locale}
+    feedSection={feedSection}
     slot="head"
   />
   <div class="post-container">
