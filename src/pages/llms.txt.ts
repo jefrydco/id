@@ -40,6 +40,24 @@ export const GET: APIRoute = async () => {
 		})
 		.join("\n");
 
+	const blogTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
+	const talkTags = [...new Set(talks.flatMap((talk) => talk.data.tags))].sort();
+	const notesTags = [
+		...new Set(notes.flatMap((note) => note.data.tags)),
+	].sort();
+
+	const blogTagsSection = blogTags
+		.map((tag) => `- [${tag}](${baseUrl}/blog/tags/${tag}/)`)
+		.join("\n");
+
+	const talkTagsSection = talkTags
+		.map((tag) => `- [${tag}](${baseUrl}/talk/tags/${tag}/)`)
+		.join("\n");
+
+	const notesTagsSection = notesTags
+		.map((tag) => `- [${tag}](${baseUrl}/notes/tags/${tag}/)`)
+		.join("\n");
+
 	const content = `# ${themeConfig.site.title}
 
 > ${themeConfig.site.description}
@@ -63,6 +81,20 @@ ${talksSection}
 ## Notes (Markdown)
 
 ${notesSection}
+
+## Tags
+
+### Blog Tags
+
+${blogTagsSection}
+
+### Talk Tags
+
+${talkTagsSection}
+
+### Notes Tags
+
+${notesTagsSection}
 
 ## Feeds
 
