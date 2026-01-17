@@ -4,7 +4,7 @@ import MarkdownIt from "markdown-it";
 import sanitizeHtml from "sanitize-html";
 import { themeConfig } from "@/config";
 import { defaultLocale, getLanguageTag, type Locale } from "@/i18n";
-import { getSortedNotesByLocale, getNoteSlug } from "@/utils/i18n-notes";
+import { getNoteSlug, getSortedNotesByLocale } from "@/utils/i18n-notes";
 
 const markdownParser = new MarkdownIt({
 	html: true,

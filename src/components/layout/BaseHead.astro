@@ -35,8 +35,12 @@ const alternateUrls = locales.map((loc) => ({
 
 // Build locale-aware feed URLs (only when feedSection is provided)
 const feedPrefix = locale === defaultLocale ? "" : `/${locale}`;
-const rssUrl = feedSection ? new URL(`${feedPrefix}/${feedSection}/rss.xml`, Astro.site) : null;
-const atomUrl = feedSection ? new URL(`${feedPrefix}/${feedSection}/atom.xml`, Astro.site) : null;
+const rssUrl = feedSection
+	? new URL(`${feedPrefix}/${feedSection}/rss.xml`, Astro.site)
+	: null;
+const atomUrl = feedSection
+	? new URL(`${feedPrefix}/${feedSection}/atom.xml`, Astro.site)
+	: null;
 ---
 
 <!-- Global Metadata -->
