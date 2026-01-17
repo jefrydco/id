@@ -459,6 +459,9 @@
 .prose hr::before {
 	content: "***";
 	font-family: var(--mono);
+	font-feature-settings:
+		"liga" 0,
+		"calt" 0;
 	color: var(--text-tertiary);
 	font-size: 0.875em;
 	letter-spacing: 0.25em;
@@ -467,6 +470,9 @@
 /* Keyboard input */
 .prose kbd {
 	font-family: var(--mono);
+	font-feature-settings:
+		"liga" 0,
+		"calt" 0;
 	font-size: var(--font-size-s);
 	border: 1px solid var(--text-tertiary);
 	padding: 1px 4px;
@@ -509,6 +515,9 @@
 .prose [data-footnote-backref] {
 	position: relative;
 	font-family: var(--mono);
+	font-feature-settings:
+		"liga" 0,
+		"calt" 0;
 	font-size: var(--font-size-l);
 	top: -0.05em;
 }
@@ -840,6 +849,9 @@ mjx-container[jax="SVG"] > svg {
 
 .twoslash-floating-popup .twoslash-popup-code {
 	font-family: var(--mono);
+	font-feature-settings:
+		"liga" 0,
+		"calt" 0;
 	font-size: var(--font-size-s);
 }
 
@@ -870,6 +882,9 @@ mjx-container[jax="SVG"] > svg {
 
 .twoslash-floating-popup .twoslash-popup-docs-tag-name {
 	font-family: var(--mono);
+	font-feature-settings:
+		"liga" 0,
+		"calt" 0;
 }
 
 /* ===== Query Line ===== */
