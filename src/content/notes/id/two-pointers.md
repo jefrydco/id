@@ -37,7 +37,6 @@ Contoh kasus: [Remove Duplicates](https://leetcode.com/problems/remove-duplicate
 int slow = 0;
 for (int fast = 0; fast < nums.size(); ++fast) {
   if (condition) {
-    swap(nums[slow], nums[fast]);
     ++slow;
   }
 }
@@ -85,7 +84,6 @@ int slow = 0;
 int fast = 0;
 while (fast < nums.size()) {
   if (condition) {
-    swap(nums[slow], nums[fast]);
     ++slow;
   }
   ++fast;
