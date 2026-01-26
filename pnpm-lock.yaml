@@ -24,8 +24,8 @@ importers:
         specifier: ^3.7.0
         version: 3.7.0
       '@lucide/astro':
-        specifier: ^0.562.0
-        version: 0.562.0(astro@5.16.15(@netlify/blobs@10.5.0)(@types/node@25.0.10)(jiti@2.6.1)(rollup@2.79.2)(terser@5.46.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))
+        specifier: ^0.563.0
+        version: 0.563.0(astro@5.16.15(@netlify/blobs@10.5.0)(@types/node@25.0.10)(jiti@2.6.1)(rollup@2.79.2)(terser@5.46.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))
       '@mathjax/src':
         specifier: ^4.1.0
         version: 4.1.0
@@ -226,8 +226,8 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0
 
-  '@babel/helper-define-polyfill-provider@0.6.5':
-    resolution: {integrity: sha512-uJnGFcPsWQK8fvjgGP5LZUZZsYGIoPeRjSF5PGwrelYgq7Q15/Ft9NGFp1zglwgIv//W0uG4BevRuSJRyylZPg==}
+  '@babel/helper-define-polyfill-provider@0.6.6':
+    resolution: {integrity: sha512-mOAsxeeKkUKayvZR3HeTYD/fICpCPLJrU5ZjelT/PA6WHtNDBOE436YiaEUvHN454bRM3CebhDsIpieCc4texA==}
     peerDependencies:
       '@babel/core': ^7.4.0 || ^8.0.0-0 <8.0.0
 
@@ -1462,8 +1462,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@lucide/astro@0.562.0':
-    resolution: {integrity: sha512-Rdtykh/VmH3M7n4ckBWY2X7wTMyJX/At5MuJDZ+5M+QZNebxAa75TU7xmM0OVmQj60UsHvdmqRIRNTqEYIieKg==}
+  '@lucide/astro@0.563.0':
+    resolution: {integrity: sha512-X9fNJvRR6pLJfkIEAFQkizWaNVvcduunJoFyR3fwPu30Y6jOu5S9k4k7HTSk3ZrEfqK2eFEqrBqqWH4fwSNKCg==}
     peerDependencies:
       astro: ^4 || ^5
 
@@ -2530,8 +2530,8 @@ packages:
       react-native-b4a:
         optional: true
 
-  babel-plugin-polyfill-corejs2@0.4.14:
-    resolution: {integrity: sha512-Co2Y9wX854ts6U8gAAPXfn0GmAyctHuK8n0Yhfjd6t30g7yvKjspvvOo9yG+z52PZRgFErt7Ka2pYnXCjLKEpg==}
+  babel-plugin-polyfill-corejs2@0.4.15:
+    resolution: {integrity: sha512-hR3GwrRwHUfYwGfrisXPIDP3JcYfBrW7wKE7+Au6wDYl7fm/ka1NEII6kORzxNU556JjfidZeBsO10kYvtV1aw==}
     peerDependencies:
       '@babel/core': ^7.4.0 || ^8.0.0-0 <8.0.0
 
@@ -2540,8 +2540,8 @@ packages:
     peerDependencies:
       '@babel/core': ^7.4.0 || ^8.0.0-0 <8.0.0
 
-  babel-plugin-polyfill-regenerator@0.6.5:
-    resolution: {integrity: sha512-ISqQ2frbiNU9vIJkzg7dlPpznPZ4jOiUQ1uSmB0fEHeowtN3COYRsXr/xexn64NpU13P06jc/L5TgiJXOgrbEg==}
+  babel-plugin-polyfill-regenerator@0.6.6:
+    resolution: {integrity: sha512-hYm+XLYRMvupxiQzrvXUj7YyvFFVfv5gI0R71AJzudg1g2AI2vyCPPIFEBjk162/wFzti3inBHo7isWFuEVS/A==}
     peerDependencies:
       '@babel/core': ^7.4.0 || ^8.0.0-0 <8.0.0
 
@@ -5843,7 +5843,7 @@ snapshots:
       regexpu-core: 6.4.0
       semver: 6.3.1
 
-  '@babel/helper-define-polyfill-provider@0.6.5(@babel/core@7.28.6)':
+  '@babel/helper-define-polyfill-provider@0.6.6(@babel/core@7.28.6)':
     dependencies:
       '@babel/core': 7.28.6
       '@babel/helper-compilation-targets': 7.28.6
@@ -6389,9 +6389,9 @@ snapshots:
       '@babel/plugin-transform-unicode-regex': 7.27.1(@babel/core@7.28.6)
       '@babel/plugin-transform-unicode-sets-regex': 7.28.6(@babel/core@7.28.6)
       '@babel/preset-modules': 0.1.6-no-external-plugins(@babel/core@7.28.6)
-      babel-plugin-polyfill-corejs2: 0.4.14(@babel/core@7.28.6)
+      babel-plugin-polyfill-corejs2: 0.4.15(@babel/core@7.28.6)
       babel-plugin-polyfill-corejs3: 0.13.0(@babel/core@7.28.6)
-      babel-plugin-polyfill-regenerator: 0.6.5(@babel/core@7.28.6)
+      babel-plugin-polyfill-regenerator: 0.6.6(@babel/core@7.28.6)
       core-js-compat: 3.48.0
       semver: 6.3.1
     transitivePeerDependencies:
@@ -6913,7 +6913,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@lucide/astro@0.562.0(astro@5.16.15(@netlify/blobs@10.5.0)(@types/node@25.0.10)(jiti@2.6.1)(rollup@2.79.2)(terser@5.46.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))':
+  '@lucide/astro@0.563.0(astro@5.16.15(@netlify/blobs@10.5.0)(@types/node@25.0.10)(jiti@2.6.1)(rollup@2.79.2)(terser@5.46.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))':
     dependencies:
       astro: 5.16.15(@netlify/blobs@10.5.0)(@types/node@25.0.10)(jiti@2.6.1)(rollup@2.79.2)(terser@5.46.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)
 
@@ -8283,11 +8283,11 @@ snapshots:
 
   b4a@1.7.3: {}
 
-  babel-plugin-polyfill-corejs2@0.4.14(@babel/core@7.28.6):
+  babel-plugin-polyfill-corejs2@0.4.15(@babel/core@7.28.6):
     dependencies:
       '@babel/compat-data': 7.28.6
       '@babel/core': 7.28.6
-      '@babel/helper-define-polyfill-provider': 0.6.5(@babel/core@7.28.6)
+      '@babel/helper-define-polyfill-provider': 0.6.6(@babel/core@7.28.6)
       semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
@@ -8295,15 +8295,15 @@ snapshots:
   babel-plugin-polyfill-corejs3@0.13.0(@babel/core@7.28.6):
     dependencies:
       '@babel/core': 7.28.6
-      '@babel/helper-define-polyfill-provider': 0.6.5(@babel/core@7.28.6)
+      '@babel/helper-define-polyfill-provider': 0.6.6(@babel/core@7.28.6)
       core-js-compat: 3.48.0
     transitivePeerDependencies:
       - supports-color
 
-  babel-plugin-polyfill-regenerator@0.6.5(@babel/core@7.28.6):
+  babel-plugin-polyfill-regenerator@0.6.6(@babel/core@7.28.6):
     dependencies:
       '@babel/core': 7.28.6
-      '@babel/helper-define-polyfill-provider': 0.6.5(@babel/core@7.28.6)
+      '@babel/helper-define-polyfill-provider': 0.6.6(@babel/core@7.28.6)
     transitivePeerDependencies:
       - supports-color
 
