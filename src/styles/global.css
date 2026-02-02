@@ -246,6 +246,7 @@ video {
 	--mono:
 		"Fira Code", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
 		"Courier New", monospace;
+	--arabic: "Uthman Taha Naskh", "Noto Naskh Arabic", Tahoma, sans-serif;
 
 	--font-size-xs: 0.75rem;
 	--font-size-s: 0.875rem;

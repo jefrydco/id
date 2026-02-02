@@ -274,3 +274,24 @@
 	font-display: swap;
 	src: url(/fonts/opendyslexic/OpenDyslexic-BoldItalic.woff) format("woff");
 }
+
+/* Uthman Taha Naskh - King Fahd Complex Quranic Font */
+@font-face {
+	font-family: "Uthman Taha Naskh";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url(/fonts/UthmanTN_v2-0.woff2) format("woff2");
+	unicode-range:
+		U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+}
+
+@font-face {
+	font-family: "Uthman Taha Naskh";
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url(/fonts/UthmanTNB_v2-0.woff2) format("woff2");
+	unicode-range:
+		U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+}

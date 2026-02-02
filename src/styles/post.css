@@ -1048,3 +1048,13 @@ mjx-container[jax="SVG"] > svg {
 	border-left: 3px solid var(--twoslash-tag-annotate-color);
 	color: var(--twoslash-tag-annotate-color);
 }
+
+/* Arabic RTL Support */
+.prose [lang="ar"],
+.prose .arabic {
+	font-family: var(--arabic);
+	direction: rtl;
+	text-align: right;
+	line-height: 2.25;
+	font-size: 1.75em;
+}
