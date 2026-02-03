@@ -136,7 +136,7 @@ export async function getAllPostSlugs(): Promise<string[]> {
 /**
  * Check if a translation exists for a given slug and locale
  */
-export async function hasTranslation(
+export async function hasBlogTranslation(
 	slug: string,
 	locale: Locale,
 ): Promise<boolean> {

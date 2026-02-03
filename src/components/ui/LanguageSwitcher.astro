@@ -6,7 +6,7 @@ import {
 	localeLabels,
 	locales,
 } from "@/i18n";
-import { getPostSlug, hasTranslation } from "@/utils/i18n-content";
+import { contentConfigs, detectContentType } from "@/utils/i18n-config";
 
 interface Props {
 	locale?: Locale;
@@ -16,14 +16,14 @@ interface Props {
 const { locale = defaultLocale, slug } = Astro.props;
 const currentPath = Astro.url.pathname;
 
-// Check if we're on a post page
 const isPostPage = slug !== undefined;
+const contentType = detectContentType(currentPath);
+const config = contentConfigs[contentType];
 
-// Build translation availability map for post pages
 const translationAvailable: Record<Locale, boolean> = { en: true, id: true };
 if (isPostPage && slug) {
 	for (const loc of locales) {
-		translationAvailable[loc] = await hasTranslation(slug, loc);
+		translationAvailable[loc] = await config.hasTranslation(slug, loc);
 	}
 }
 ---
@@ -33,7 +33,7 @@ if (isPostPage && slug) {
     locales.map((loc, index) => {
       const isActive = loc === locale
       const hasContent = isPostPage ? translationAvailable[loc] : true
-      const targetPath = isPostPage && slug ? getLocalizedPath(`/blog/${slug}`, loc) : getLocalizedPath(currentPath, loc)
+      const targetPath = isPostPage && slug ? getLocalizedPath(`${config.path}${slug}`, loc) : getLocalizedPath(currentPath, loc)
 
       return (
         <>
