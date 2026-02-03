@@ -8,7 +8,15 @@ tags:
   - doa
 ---
 
-## 1. Takbiratul Ihram (Takbir Pembuka)
+## 1. Niat
+
+Niat dilakukan **di dalam hati**, bukan dilafalkan. Hal ini berdasarkan hadits:
+
+> "Sesungguhnya amal perbuatan itu tergantung pada niatnya, dan setiap orang akan mendapatkan sesuai dengan apa yang diniatkannya." ([Shahih Bukhari 1](https://sunnah.com/bukhari:1), [Shahih Muslim 1907](https://sunnah.com/muslim:1907))
+
+Cukup niatkan di dalam hati shalat apa yang akan dikerjakan (Subuh, Dzuhur, Ashar, Maghrib, atau Isya) sebelum mengucapkan Takbiratul Ihram.
+
+## 2. Takbiratul Ihram (Takbir Pembuka)
 
 <p lang="ar">اللهُ أَكْبَرُ</p>
 
@@ -17,14 +25,6 @@ tags:
 **Terjemahan:** Allah Maha Besar
 
 **Sumber:** [Sunan Abi Dawud 61](https://sunnah.com/abudawud:61), [Jami' At-Tirmidzi 3](https://sunnah.com/tirmidhi:3)
-
-## 2. Niat
-
-Niat dilakukan **di dalam hati**, bukan dilafalkan. Hal ini berdasarkan hadits:
-
-> "Sesungguhnya amal perbuatan itu tergantung pada niatnya, dan setiap orang akan mendapatkan sesuai dengan apa yang diniatkannya." ([Shahih Bukhari 1](https://sunnah.com/bukhari:1), [Shahih Muslim 1907](https://sunnah.com/muslim:1907))
-
-Cukup niatkan di dalam hati shalat apa yang akan dikerjakan (Subuh, Dzuhur, Ashar, Maghrib, atau Isya) sebelum mengucapkan Takbiratul Ihram.
 
 ## 3. Doa Iftitah (Doa Pembuka)
 

@@ -8,7 +8,15 @@ tags:
   - prayer
 ---
 
-## 1. Takbiratul Ihram (Opening Takbir)
+## 1. Niyyah (Intention)
+
+The intention is made **in the heart**, not verbally. This is based on the hadith:
+
+> "Actions are judged by intentions, and every person will have what they intended." ([Sahih Bukhari 1](https://sunnah.com/bukhari:1), [Sahih Muslim 1907](https://sunnah.com/muslim:1907))
+
+Simply intend in your heart which prayer you are performing (Fajr, Dhuhr, Asr, Maghrib, or Isha) before saying Takbiratul Ihram.
+
+## 2. Takbiratul Ihram (Opening Takbir)
 
 <p lang="ar">اللهُ أَكْبَرُ</p>
 
@@ -17,14 +25,6 @@ tags:
 **Translation:** Allah is the Greatest
 
 **Source:** [Sunan Abi Dawud 61](https://sunnah.com/abudawud:61), [Jami' At-Tirmidhi 3](https://sunnah.com/tirmidhi:3)
-
-## 2. Niyyah (Intention)
-
-The intention is made **in the heart**, not verbally. This is based on the hadith:
-
-> "Actions are judged by intentions, and every person will have what they intended." ([Sahih Bukhari 1](https://sunnah.com/bukhari:1), [Sahih Muslim 1907](https://sunnah.com/muslim:1907))
-
-Simply intend in your heart which prayer you are performing (Fajr, Dhuhr, Asr, Maghrib, or Isha) before saying Takbiratul Ihram.
 
 ## 3. Dua Al-Istiftah (Opening Supplication)
 
