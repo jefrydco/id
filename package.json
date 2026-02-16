@@ -69,7 +69,7 @@
 		"@types/sanitize-html": "^2.16.0",
 		"@vite-pwa/assets-generator": "^1.0.2",
 		"@vite-pwa/astro": "^1.2.0",
-		"lefthook": "^2.0.16",
+		"lefthook": "^2.1.1",
 		"tsx": "^4.21.0",
 		"typescript": "^5.9.3",
 		"workbox-window": "^7.4.0"
