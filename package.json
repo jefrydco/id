@@ -64,7 +64,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.4.4",
-		"@shikijs/transformers": "^3.22.0",
+		"@shikijs/transformers": "^3.23.0",
 		"@types/markdown-it": "^14.1.2",
 		"@types/sanitize-html": "^2.16.0",
 		"@vite-pwa/assets-generator": "^1.0.2",
