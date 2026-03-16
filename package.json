@@ -21,7 +21,7 @@
 	"dependencies": {
 		"@astrojs/cloudflare": "^12.6.12",
 		"@astrojs/mdx": "^4.3.13",
-		"@astrojs/rss": "^4.0.15",
+		"@astrojs/rss": "^4.0.17",
 		"@astrojs/sitemap": "^3.7.0",
 		"@lucide/astro": "^0.577.0",
 		"@mathjax/src": "^4.1.1",
