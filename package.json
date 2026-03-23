@@ -19,7 +19,7 @@
 		"update-theme": "tsx scripts/update-theme.ts"
 	},
 	"dependencies": {
-		"@astrojs/cloudflare": "^12.6.12",
+		"@astrojs/cloudflare": "^12.6.13",
 		"@astrojs/mdx": "^4.3.14",
 		"@astrojs/rss": "^4.0.17",
 		"@astrojs/sitemap": "^3.7.1",
