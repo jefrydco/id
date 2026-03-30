@@ -29,7 +29,7 @@
 		"@sentry/astro": "^10.39.0",
 		"@shikijs/twoslash": "^3.23.0",
 		"astro": "^5.18.1",
-		"astro-pagefind": "^1.8.5",
+		"astro-pagefind": "^1.8.6",
 		"feed": "^5.2.0",
 		"hast-util-to-text": "^4.0.2",
 		"hastscript": "^9.0.1",
