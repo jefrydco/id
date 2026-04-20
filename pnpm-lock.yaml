@@ -96,8 +96,8 @@ importers:
         specifier: ^0.34.5
         version: 0.34.5
       twoslash:
-        specifier: ^0.3.7
-        version: 0.3.7(typescript@5.9.3)
+        specifier: ^0.3.8
+        version: 0.3.8(typescript@5.9.3)
       unist-util-visit:
         specifier: ^5.1.0
         version: 5.1.0
@@ -5352,11 +5352,11 @@ packages:
     engines: {node: '>=18.0.0'}
     hasBin: true
 
-  twoslash-protocol@0.3.7:
-    resolution: {integrity: sha512-mwDFdclG7DbFW3aZA/CGATzV2efV2uPai90mmRSblqPbrc1Z1cu+DpI5oKMNciGY4rw8EOXc7QGY8O0iw1hnzg==}
+  twoslash-protocol@0.3.8:
+    resolution: {integrity: sha512-HmvAHoiEviK8LqvAQyc9/irkdvwTUiR1fHmNwH/0gq8EHxyBt4PWVPixjEXg6wJu1u6yBrILEWXGK9Kw58/8yQ==}
 
-  twoslash@0.3.7:
-    resolution: {integrity: sha512-f7YgM+6G5e3wRGwMiOV8Z0wfusR4zCcdDPSqgGjpLSiW0ymT9r/dM6g++IvOMtSO0KnP/yGTUFhH04y6uqpL6g==}
+  twoslash@0.3.8:
+    resolution: {integrity: sha512-OeDz0kDl8sqPUN3nr7gqcvOs70f5lZsdhKYTX3/SgB9OvdadzzoYJI/4SBXhXV1HG8E9fLc+e17itoRYTxmoig==}
     peerDependencies:
       typescript: ^5.5.0 || ^6.0.0
 
@@ -8116,7 +8116,7 @@ snapshots:
     dependencies:
       '@shikijs/core': 3.23.0
       '@shikijs/types': 3.23.0
-      twoslash: 0.3.7(typescript@5.9.3)
+      twoslash: 0.3.8(typescript@5.9.3)
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
@@ -12138,12 +12138,12 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
-  twoslash-protocol@0.3.7: {}
+  twoslash-protocol@0.3.8: {}
 
-  twoslash@0.3.7(typescript@5.9.3):
+  twoslash@0.3.8(typescript@5.9.3):
     dependencies:
       '@typescript/vfs': 1.6.4(typescript@5.9.3)
-      twoslash-protocol: 0.3.7
+      twoslash-protocol: 0.3.8
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
