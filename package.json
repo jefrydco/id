@@ -26,7 +26,7 @@
 		"@lucide/astro": "^0.577.0",
 		"@mathjax/src": "^4.1.1",
 		"@playform/inline": "^0.1.4",
-		"@sentry/astro": "^10.39.0",
+		"@sentry/astro": "^10.50.0",
 		"@shikijs/twoslash": "^3.23.0",
 		"astro": "^5.18.1",
 		"astro-pagefind": "^1.8.6",
