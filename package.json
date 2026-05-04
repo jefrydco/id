@@ -24,7 +24,7 @@
 		"@astrojs/rss": "^4.0.18",
 		"@astrojs/sitemap": "^3.7.2",
 		"@lucide/astro": "^0.577.0",
-		"@mathjax/src": "^4.1.1",
+		"@mathjax/src": "^4.1.2",
 		"@playform/inline": "^0.1.4",
 		"@sentry/astro": "^10.51.0",
 		"@sentry/cloudflare": "^10.51.0",
