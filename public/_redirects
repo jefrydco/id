@@ -2,13 +2,13 @@
 # Before: EN at /en/*, ID at /* (ID was default)
 # Now: EN at /*, ID at /id/* (EN is default)
 
+# --- Exact-match rules first (evaluated before splat rules) ---
+
 /en/ / 301
 /en/blog/ /blog/ 301
-/en/blog/* /blog/:splat 301
 /en/talk/ /talk/ 301
-/en/talk/* /talk/:splat 301
 
-# Redirect old AMP URLs to non-AMP versions
+# Old AMP URLs (exact)
 /amp / 301
 /amp/ / 301
 /id/amp /id/ 301
@@ -19,27 +19,12 @@
 /id/blog/amp /id/blog/ 301
 /id/blog/amp/ /id/blog/ 301
 
-/blog/page/*/amp /blog/page/:splat 301
-/blog/page/*/amp/ /blog/page/:splat 301
-/id/blog/page/*/amp /id/blog/page/:splat 301
-/id/blog/page/*/amp/ /id/blog/page/:splat 301
-
-/blog/*/amp /blog/:splat 301
-/blog/*/amp/ /blog/:splat 301
-/id/blog/*/amp /id/blog/:splat 301
-/id/blog/*/amp/ /id/blog/:splat 301
-
 /talk/amp /talk/ 301
 /talk/amp/ /talk/ 301
 /id/talk/amp /id/talk/ 301
 /id/talk/amp/ /id/talk/ 301
 
-/talk/*/amp /talk/:splat 301
-/talk/*/amp/ /talk/:splat 301
-/id/talk/*/amp /id/talk/:splat 301
-/id/talk/*/amp/ /id/talk/:splat 301
-
-# Redirect old /speed page (no longer exists)
+# Old /speed page (exact)
 /speed / 301
 /speed/ / 301
 /id/speed /id/ 301
@@ -48,3 +33,25 @@
 /speed/amp/ / 301
 /id/speed/amp /id/ 301
 /id/speed/amp/ /id/ 301
+
+# --- Splat rules (more specific patterns first) ---
+
+/en/blog/* /blog/:splat 301
+/en/talk/* /talk/:splat 301
+
+# Paginated blog AMP (must come before generic /blog/*/amp)
+/blog/page/*/amp /blog/page/:splat 301
+/blog/page/*/amp/ /blog/page/:splat 301
+/id/blog/page/*/amp /id/blog/page/:splat 301
+/id/blog/page/*/amp/ /id/blog/page/:splat 301
+
+# Generic AMP under /blog and /talk
+/blog/*/amp /blog/:splat 301
+/blog/*/amp/ /blog/:splat 301
+/id/blog/*/amp /id/blog/:splat 301
+/id/blog/*/amp/ /id/blog/:splat 301
+
+/talk/*/amp /talk/:splat 301
+/talk/*/amp/ /talk/:splat 301
+/id/talk/*/amp /id/talk/:splat 301
+/id/talk/*/amp/ /id/talk/:splat 301
