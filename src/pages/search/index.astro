@@ -1,5 +1,5 @@
 ---
-import Search from "astro-pagefind/components/Search.astro";
+import PagefindSearch from "@/components/PagefindSearch.astro";
 import { themeConfig } from "@/config";
 import { defaultLocale, getTranslations } from "@/i18n";
 import IndexLayout from "@/layouts/IndexLayout.astro";
@@ -12,7 +12,7 @@ const pageTitle = `${t.ui.search} - ${themeConfig.site.title}`;
 <IndexLayout title={pageTitle} description={themeConfig.site.description} locale={locale}>
   <div class="search-page" data-pagefind-ignore="all">
     <h1 class="page-title">{t.ui.search}</h1>
-    <Search id="search" className="pagefind-ui" uiOptions={{ showImages: false }} />
+    <PagefindSearch id="search" className="pagefind-ui" uiOptions={{ showImages: false }} />
   </div>
 </IndexLayout>
 
