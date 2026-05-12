@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"scripts": {
 		"dev": "astro dev",
-		"prebuild": "pnpm exec tsx scripts/toggle-proxy.ts",
+		"prebuild": "pnpm exec tsx scripts/toggle-proxy.ts && pnpm exec tsx scripts/generate-og-images.ts",
 		"build": "pnpm run prebuild && astro build",
 		"preview": "astro preview",
 		"astro": "astro",
@@ -79,6 +79,7 @@
 		"@types/sanitize-html": "^2.16.1",
 		"@vite-pwa/assets-generator": "^1.0.2",
 		"@vite-pwa/astro": "^1.2.0",
+		"gray-matter": "^4.0.3",
 		"lefthook": "^2.1.6",
 		"tsx": "^4.21.0",
 		"typescript": "^6.0.3",
