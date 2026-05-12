@@ -12,7 +12,7 @@ import {
 } from "@shikijs/transformers";
 import { rendererRich, transformerTwoslash } from "@shikijs/twoslash";
 import AstroPWA from "@vite-pwa/astro";
-import { defineConfig } from "astro/config";
+import { defineConfig, svgoOptimizer } from "astro/config";
 import pagefind from "astro-pagefind";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
@@ -21,6 +21,7 @@ import remarkMath from "remark-math";
 import remarkSmartypants from "remark-smartypants";
 import { themeConfig } from "./src/config";
 import rehypeCleanup from "./src/plugins/rehype-cleanup.mjs";
+import rehypeCollapsibleCode from "./src/plugins/rehype-collapsible-code.mjs";
 import rehypeCopyCode from "./src/plugins/rehype-copy-code.mjs";
 import rehypeImageProcessor from "./src/plugins/rehype-image-processor.mjs";
 import rehypeMathDownload from "./src/plugins/rehype-math-download.mjs";
@@ -47,7 +48,7 @@ export default defineConfig({
 	}),
 	prefetch: true,
 	experimental: {
-		svgo: true,
+		svgOptimizer: svgoOptimizer(),
 	},
 	image: {
 		service: {
@@ -106,6 +107,7 @@ export default defineConfig({
 			rehypeCleanup,
 			rehypeImageProcessor,
 			rehypeCopyCode,
+			rehypeCollapsibleCode,
 			[
 				rehypeAutolinkHeadings,
 				{

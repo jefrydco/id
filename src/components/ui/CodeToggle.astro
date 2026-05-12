@@ -1,0 +1,147 @@
+---
+import { ChevronDown, ChevronUp } from "@lucide/astro";
+---
+
+<template id="code-toggle-icons-template" data-pagefind-ignore="all">
+  <ChevronDown class="toggle-icon toggle-icon-collapsed" size={16} />
+  <ChevronUp class="toggle-icon toggle-icon-expanded" size={16} />
+</template>
+
+<script is:inline>
+  function initCodeToggle() {
+    const template = document.getElementById('code-toggle-icons-template')
+    const toggles = document.querySelectorAll('.code-toggle')
+
+    toggles.forEach((button) => {
+      if (button.dataset.toggleInit) return
+      button.dataset.toggleInit = '1'
+
+      const slot = button.querySelector('.toggle-icon-slot')
+      if (slot && !slot.querySelector('svg') && template) {
+        const icons = template.content.cloneNode(true)
+        slot.appendChild(icons)
+      }
+
+      const wrapper = button.closest('.copy-code-wrapper')
+      if (!wrapper) return
+
+      wrapper.addEventListener('mouseenter', () => {
+        button.classList.add('visible')
+      })
+
+      wrapper.addEventListener('mouseleave', () => {
+        button.classList.remove('visible')
+      })
+
+      button.addEventListener('click', () => {
+        const wasCollapsed = wrapper.getAttribute('data-collapsed') === 'true'
+        const nowCollapsed = !wasCollapsed
+        wrapper.setAttribute('data-collapsed', String(nowCollapsed))
+        button.setAttribute('aria-expanded', String(!nowCollapsed))
+
+        const count = button.getAttribute('data-line-count') || ''
+        if (nowCollapsed) {
+          button.setAttribute('aria-label', `Show full code, ${count} lines`)
+          button.setAttribute('title', `Show full code, ${count} lines`)
+        } else {
+          button.setAttribute('aria-label', 'Show less')
+          button.setAttribute('title', 'Show less')
+        }
+      })
+    })
+  }
+
+  document.addEventListener('astro:page-load', initCodeToggle)
+  document.addEventListener('DOMContentLoaded', initCodeToggle)
+</script>
+
+<style is:inline>
+  .copy-code-wrapper[data-collapsible="true"][data-collapsed="true"] .copy-code-block {
+    max-height: 22em;
+    overflow: hidden;
+  }
+
+  .code-toggle {
+    position: absolute;
+    top: 3rem;
+    right: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    z-index: 10;
+    background: var(--bg);
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    backdrop-filter: blur(48px);
+    opacity: 0;
+  }
+
+  .code-toggle.visible,
+  .code-toggle:focus,
+  .code-toggle:focus-visible {
+    opacity: 1;
+  }
+
+  .code-toggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--code-bg);
+    border-radius: 0.325rem;
+    opacity: 0;
+    transition: opacity 0.15s ease-out;
+    pointer-events: none;
+  }
+
+  .code-toggle:hover::before {
+    opacity: 1;
+  }
+
+  .code-toggle:hover {
+    color: var(--text-primary);
+  }
+
+  .code-toggle:focus,
+  .code-toggle:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    color: var(--text-primary);
+  }
+
+  .code-toggle .toggle-icon-slot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .code-toggle .toggle-icon {
+    flex-shrink: 0;
+  }
+
+  .copy-code-wrapper[data-collapsible="true"][data-collapsed="true"] .code-toggle .toggle-icon-expanded {
+    display: none;
+  }
+
+  .copy-code-wrapper[data-collapsible="true"]:not([data-collapsed="true"]) .code-toggle .toggle-icon-collapsed {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .code-toggle,
+    .code-toggle::before {
+      transition: none;
+    }
+  }
+</style>
