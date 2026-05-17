@@ -25,8 +25,8 @@ const markdownUrl = `${url.replace(/\/$/, "")}.md`;
     aria-label={t.ui.copyLink}
     data-url={url}
   >
-    <Link class="copy-icon" size={16} />
-    <Check class="copied-icon" size={16} />
+    <span class="copy-icon"><Link size={16} /></span>
+    <span class="copied-icon"><Check size={16} /></span>
   </button>
 
   <button
@@ -35,8 +35,8 @@ const markdownUrl = `${url.replace(/\/$/, "")}.md`;
     aria-label={t.ui.copyMarkdown}
     data-markdown-url={markdownUrl}
   >
-    <FileCode class="copy-icon" size={16} />
-    <Check class="copied-icon" size={16} />
+    <span class="copy-icon"><FileCode size={16} /></span>
+    <span class="copied-icon"><Check size={16} /></span>
   </button>
 
   <a
@@ -170,16 +170,22 @@ const markdownUrl = `${url.replace(/\/$/, "")}.md`;
     flex-shrink: 0;
   }
 
-  .share-button :global(.copied-icon) {
+  .share-button .copy-icon {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .share-button .copied-icon {
+    display: none;
+    align-items: center;
+  }
+
+  .share-button.copied .copy-icon {
     display: none;
   }
 
-  .share-button.copied :global(.copy-icon) {
-    display: none;
-  }
-
-  .share-button.copied :global(.copied-icon) {
-    display: block;
+  .share-button.copied .copied-icon {
+    display: inline-flex;
   }
 
   @media (prefers-reduced-motion: reduce) {
