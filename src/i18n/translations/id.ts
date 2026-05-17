@@ -27,7 +27,7 @@ export const id: Translations = {
 		search: "Cari",
 		share: "Bagikan",
 		copyLink: "Salin tautan",
-		copied: "Disalin!",
+		copyMarkdown: "Salin sebagai Markdown",
 		shareOnX: "Bagikan di X",
 		shareOnLinkedIn: "Bagikan di LinkedIn",
 		relatedPosts: "Pos Terkait",

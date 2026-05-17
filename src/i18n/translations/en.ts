@@ -25,7 +25,7 @@ export const en = {
 		search: "Search",
 		share: "Share",
 		copyLink: "Copy link",
-		copied: "Copied!",
+		copyMarkdown: "Copy as Markdown",
 		shareOnX: "Share on X",
 		shareOnLinkedIn: "Share on LinkedIn",
 		relatedPosts: "Related Posts",
