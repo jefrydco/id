@@ -107,6 +107,16 @@
 	letter-spacing: 0;
 }
 
+.prose h1 em,
+.prose h2 em,
+.prose h3 em,
+.prose h4 em,
+.prose h5 em,
+.prose h6 em {
+	font-family: inherit;
+	font-size: inherit;
+}
+
 /* Links */
 .prose a {
 	color: var(--link);
