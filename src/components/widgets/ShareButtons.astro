@@ -170,15 +170,15 @@ const markdownUrl = `${url.replace(/\/$/, "")}.md`;
     flex-shrink: 0;
   }
 
-  .share-button .copied-icon {
+  .share-button :global(.copied-icon) {
     display: none;
   }
 
-  .share-button.copied .copy-icon {
+  .share-button.copied :global(.copy-icon) {
     display: none;
   }
 
-  .share-button.copied .copied-icon {
+  .share-button.copied :global(.copied-icon) {
     display: block;
   }
 
