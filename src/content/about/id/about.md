@@ -2,7 +2,7 @@
 title: 'Tentang'
 ---
 
-Jefry Dewangga adalah seorang Software Engineer di Jitera yang berbasis di Jakarta, Indonesia, dengan pengalaman lebih dari 8 tahun yang mengkhususkan diri di React.js, Node.js, dan pengembangan JavaScript modern. Saat ini ia bekerja pada ekstensi IDE untuk Eclipse, JetBrains, dan VSCode, membangun perangkat yang membantu para pengembang menjadi lebih produktif.
+Jefry Dewangga adalah seorang Software Engineer di Jitera yang berbasis di Jakarta, Indonesia, dengan pengalaman lebih dari 8 tahun yang mengkhususkan diri di React.js, Node.js, dan pengembangan JavaScript modern.
 
 Perjalanan kariernya mencakup DANA Indonesia—salah satu perusahaan fintech terkemuka di Asia Tenggara—serta teknologi pemerintahan (Kantor Staf Presiden Republik Indonesia) dan kesehatan (Reblood), memberikannya perspektif unik dalam membangun aplikasi yang berperforma tinggi dan ramah pengguna di berbagai domain.
 
