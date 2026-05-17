@@ -14,7 +14,7 @@ export const GET: APIRoute = async ({ props }) => {
 	if (!note) {
 		return new Response("Not found", { status: 404 });
 	}
-	return new Response(note.body, {
+	return new Response(`# ${note.data.title}\n\n${note.body}`, {
 		headers: { "Content-Type": "text/markdown; charset=utf-8" },
 	});
 };

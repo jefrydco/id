@@ -15,7 +15,7 @@ export const GET: APIRoute = async ({ props }) => {
 	if (!talk) {
 		return new Response("Not found", { status: 404 });
 	}
-	return new Response(talk.body, {
+	return new Response(`# ${talk.data.title}\n\n${talk.body}`, {
 		headers: { "Content-Type": "text/markdown; charset=utf-8" },
 	});
 };
