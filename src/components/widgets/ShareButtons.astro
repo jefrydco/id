@@ -1,5 +1,5 @@
 ---
-import { Check, FileCode, Link } from "@lucide/astro";
+import { Check, CircleX, FileCode, Link, LoaderCircle } from "@lucide/astro";
 import { defaultLocale, getTranslations, type Locale } from "@/i18n";
 
 interface Props {
@@ -27,6 +27,7 @@ const markdownUrl = `${url.replace(/\/$/, "")}.md`;
   >
     <span class="copy-icon"><Link size={16} /></span>
     <span class="copied-icon"><Check size={16} /></span>
+    <span class="error-icon"><CircleX size={16} /></span>
   </button>
 
   <button
@@ -36,7 +37,9 @@ const markdownUrl = `${url.replace(/\/$/, "")}.md`;
     data-markdown-url={markdownUrl}
   >
     <span class="copy-icon"><FileCode size={16} /></span>
+    <span class="loading-icon"><LoaderCircle size={16} /></span>
     <span class="copied-icon"><Check size={16} /></span>
+    <span class="error-icon"><CircleX size={16} /></span>
   </button>
 
   <a
@@ -68,10 +71,10 @@ const markdownUrl = `${url.replace(/\/$/, "")}.md`;
 
 <script is:inline>
 ;(function() {
-  function flashCopied(button) {
-    button.classList.add('copied')
+  function flashState(button, stateClass) {
+    button.classList.add(stateClass)
     setTimeout(function() {
-      button.classList.remove('copied')
+      button.classList.remove(stateClass)
     }, 2000)
   }
 
@@ -85,9 +88,10 @@ const markdownUrl = `${url.replace(/\/$/, "")}.md`;
       button.addEventListener('click', async function() {
         try {
           await navigator.clipboard.writeText(button.dataset.url)
-          flashCopied(button)
+          flashState(button, 'copied')
         } catch (err) {
           console.error('Failed to copy:', err)
+          flashState(button, 'error')
         }
       })
     })
@@ -99,8 +103,8 @@ const markdownUrl = `${url.replace(/\/$/, "")}.md`;
       button.dataset.bound = 'true'
 
       button.addEventListener('click', async function() {
-        if (button.dataset.loading === 'true') return
-        button.dataset.loading = 'true'
+        if (button.classList.contains('loading')) return
+        button.classList.add('loading')
 
         try {
           const response = await fetch(button.dataset.markdownUrl)
@@ -109,11 +113,12 @@ const markdownUrl = `${url.replace(/\/$/, "")}.md`;
           }
           const markdown = await response.text()
           await navigator.clipboard.writeText(markdown)
-          flashCopied(button)
+          flashState(button, 'copied')
         } catch (err) {
           console.error('Failed to copy markdown:', err)
+          flashState(button, 'error')
         } finally {
-          button.dataset.loading = 'false'
+          button.classList.remove('loading')
         }
       })
     })
@@ -175,12 +180,16 @@ const markdownUrl = `${url.replace(/\/$/, "")}.md`;
     align-items: center;
   }
 
-  .share-button .copied-icon {
+  .share-button .copied-icon,
+  .share-button .loading-icon,
+  .share-button .error-icon {
     display: none;
     align-items: center;
   }
 
-  .share-button.copied .copy-icon {
+  .share-button.copied .copy-icon,
+  .share-button.loading .copy-icon,
+  .share-button.error .copy-icon {
     display: none;
   }
 
@@ -188,9 +197,28 @@ const markdownUrl = `${url.replace(/\/$/, "")}.md`;
     display: inline-flex;
   }
 
+  .share-button.loading .loading-icon {
+    display: inline-flex;
+    animation: share-button-spin 0.8s linear infinite;
+  }
+
+  .share-button.error .error-icon {
+    display: inline-flex;
+  }
+
+  @keyframes share-button-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .share-button {
       transition: none;
+    }
+
+    .share-button.loading .loading-icon {
+      animation: none;
     }
   }
 </style>
