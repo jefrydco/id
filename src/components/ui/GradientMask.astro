@@ -3,8 +3,35 @@
 </div>
 
 <script>
+  let isMobileSafariBrowser = false
+
+  function isMobileSafari(): boolean {
+    if (typeof window === 'undefined') return false
+
+    const ua = navigator.userAgent
+    const platform = navigator.platform
+
+    const isIOSDevice =
+      /iP(ad|hone|od)/.test(ua) || (platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+
+    if (!isIOSDevice) return false
+
+    const isSafari = /Safari\//.test(ua) && !/(CriOS|FxiOS|EdgiOS|OPiOS|DuckDuckGo)/.test(ua)
+    if (!isSafari) return false
+
+    const isMobileLike =
+      window.matchMedia?.('(pointer: coarse)').matches ||
+      window.matchMedia?.('(max-width: 768px)').matches
+
+    return Boolean(isMobileLike)
+  }
+
   function updateMask() {
+    if (isMobileSafariBrowser) return
+
     const mask = document.querySelector('.gradient-mask') as HTMLElement
+    if (!mask) return
+
     const threshold = 64
     const scrollY = window.scrollY
 
@@ -16,6 +43,14 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    isMobileSafariBrowser = isMobileSafari()
+    const mask = document.querySelector('.gradient-mask') as HTMLElement
+
+    if (isMobileSafariBrowser && mask) {
+      mask.style.display = 'none'
+      return
+    }
+
     updateMask()
     window.addEventListener('scroll', updateMask)
   })
