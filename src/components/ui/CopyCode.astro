@@ -54,58 +54,24 @@ import { Check, Copy } from "@lucide/astro";
 
         try {
           await navigator.clipboard.writeText(codeText)
-          button.setAttribute('data-copying', 'true')
-          button.classList.add('copied')
-
-          setTimeout(() => {
-            if (!container.matches(':hover')) {
-              button.classList.remove('visible')
-            }
-            button.removeAttribute('data-copying')
-
-            setTimeout(() => {
-              button.classList.remove('copied')
-            }, 500)
-          }, 1500)
         } catch (err) {
           console.error('Failed to copy code:', err)
+          return
+        }
 
-          try {
-            const textArea = document.createElement('textarea')
-            textArea.value = codeText
-            textArea.style.position = 'fixed'
-            textArea.style.opacity = '0'
-            document.body.appendChild(textArea)
-            textArea.focus()
-            textArea.select()
+        button.setAttribute('data-copying', 'true')
+        button.classList.add('copied')
 
-            navigator.clipboard
-              .writeText(codeText)
-              .then(() => {
-                document.body.removeChild(textArea)
-              })
-              .catch(() => {
-                console.error('Both clipboard methods failed')
-                document.body.removeChild(textArea)
-              })
-          } catch (fallbackErr) {
-            console.error('All clipboard methods failed:', fallbackErr)
+        setTimeout(() => {
+          if (!container.matches(':hover')) {
+            button.classList.remove('visible')
           }
-
-          button.setAttribute('data-copying', 'true')
-          button.classList.add('copied')
+          button.removeAttribute('data-copying')
 
           setTimeout(() => {
-            if (!container.matches(':hover')) {
-              button.classList.remove('visible')
-            }
-            button.removeAttribute('data-copying')
-
-            setTimeout(() => {
-              button.classList.remove('copied')
-            }, 500)
-          }, 1500)
-        }
+            button.classList.remove('copied')
+          }, 500)
+        }, 1500)
       })
     })
   }
