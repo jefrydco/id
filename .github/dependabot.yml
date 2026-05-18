@@ -4,18 +4,18 @@ updates:
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      # Check for updates every Monday at 09:00 (Asia/Shanghai)
+      # Check for updates every Monday at 09:00 (Asia/Jakarta)
       interval: 'weekly'
       day: 'monday'
       time: '09:00'
-      timezone: 'Asia/Shanghai'
+      timezone: 'Asia/Jakarta'
     # Limit the number of open PRs created by Dependabot
     open-pull-requests-limit: 10
     # Allow automatic merging of non-major version updates
     allow:
       - dependency-type: 'all'
     assignees:
-      - 'the3ash'
+      - 'jefrydco'
     commit-message:
       # Use 'deps' for production dependencies, 'dev' for development dependencies
       prefix: 'deps'
@@ -35,14 +35,14 @@ updates:
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
-      # Check for updates every Monday at 09:00 (Asia/Shanghai)
+      # Check for updates every Monday at 09:00 (Asia/Jakarta)
       interval: 'weekly'
       day: 'monday'
       time: '09:00'
-      timezone: 'Asia/Shanghai'
+      timezone: 'Asia/Jakarta'
     open-pull-requests-limit: 10
     assignees:
-      - 'the3ash'
+      - 'jefrydco'
     commit-message:
       prefix: 'github-actions'
       include: 'scope'
