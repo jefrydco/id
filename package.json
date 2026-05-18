@@ -82,7 +82,7 @@
 		"@vite-pwa/astro": "^1.2.0",
 		"gray-matter": "^4.0.3",
 		"lefthook": "^2.1.6",
-		"tsx": "^4.22.0",
+		"tsx": "^4.22.1",
 		"typescript": "^6.0.3",
 		"workbox-window": "^7.4.1"
 	},
