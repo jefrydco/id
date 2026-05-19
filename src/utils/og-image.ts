@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import satori from "satori";
 import sharp from "sharp";
-import { OGImageTemplate } from "@/components/og/OGImageTemplate";
+import { OGImageTemplate } from "../components/og/OGImageTemplate.ts";
 
 // Cache for fonts and images
 let fontCache: { medium: ArrayBuffer; semiBold: ArrayBuffer } | null = null;

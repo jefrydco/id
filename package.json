@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"scripts": {
 		"dev": "astro dev",
-		"prebuild": "pnpm exec tsx scripts/toggle-proxy.ts && pnpm exec tsx scripts/generate-og-images.ts",
+		"prebuild": "node scripts/toggle-proxy.ts && node scripts/generate-og-images.ts",
 		"build": "pnpm run prebuild && astro build",
 		"preview": "astro preview",
 		"astro": "astro",
@@ -15,11 +15,11 @@
 		"lint:fix": "biome lint --write .",
 		"check": "biome check .",
 		"check:fix": "biome check --write .",
-		"new": "tsx scripts/new-post.ts",
-		"update-theme": "tsx scripts/update-theme.ts"
+		"new": "node scripts/new-post.ts",
+		"update-theme": "node scripts/update-theme.ts"
 	},
 	"dependencies": {
-		"@astrojs/cloudflare": "^13.5.1",
+		"@astrojs/cloudflare": "^13.5.2",
 		"@astrojs/mdx": "^5.0.6",
 		"@astrojs/rss": "^4.0.18",
 		"@astrojs/sitemap": "^3.7.2",
@@ -29,7 +29,7 @@
 		"@sentry/astro": "^10.53.1",
 		"@sentry/cloudflare": "^10.53.1",
 		"@shikijs/twoslash": "^4.0.2",
-		"astro": "^6.3.3",
+		"astro": "^6.3.4",
 		"astro-pagefind": "^2.0.0",
 		"feed": "^5.2.1",
 		"hast-util-to-text": "^4.0.2",
@@ -38,7 +38,7 @@
 		"mdast-util-to-string": "^4.0.0",
 		"mermaid": "^11.15.0",
 		"node-html-parser": "^7.1.0",
-		"puppeteer": "^25.0.3",
+		"puppeteer": "^25.0.4",
 		"reading-time": "^1.5.0",
 		"rehype-autolink-headings": "^7.1.0",
 		"rehype-external-links": "^3.0.0",
@@ -52,26 +52,6 @@
 		"unist-util-visit": "^5.1.0",
 		"unist-util-visit-parents": "^6.0.2"
 	},
-	"pnpm": {
-		"overrides": {
-			"sharp": "^0.34.5",
-			"wrangler": "^4.90.1"
-		},
-		"onlyBuiltDependencies": [
-			"@sentry/cli",
-			"esbuild",
-			"lefthook",
-			"puppeteer",
-			"sharp",
-			"workerd"
-		],
-		"peerDependencyRules": {
-			"allowedVersions": {
-				"@vite-pwa/astro>astro": "^6.0.0",
-				"@astrojs/cloudflare>astro": "^6.0.0"
-			}
-		}
-	},
 	"devDependencies": {
 		"@biomejs/biome": "2.4.15",
 		"@pagefind/default-ui": "^1.5.2",
@@ -82,9 +62,8 @@
 		"@vite-pwa/astro": "^1.2.0",
 		"gray-matter": "^4.0.3",
 		"lefthook": "^2.1.6",
-		"tsx": "^4.22.1",
 		"typescript": "^6.0.3",
 		"workbox-window": "^7.4.1"
 	},
-	"packageManager": "pnpm@11.1.2+sha512.415a1cc25974731e75455c1468371be74c5aa5fb7621b50d4056d222451609f11412f23fd602e6169f1e060466641f798597e1be961a10688836a67b16569499"
+	"packageManager": "pnpm@11.1.3+sha512.c85357fe17ca12dd23dd7071822666dfd7e3cb76fe214e3370b5ea2fb34f2a231185509b63e717f3cd0acb38dd3f8d82bcd5e8172400ae678b70ea4fbed0896d"
 }

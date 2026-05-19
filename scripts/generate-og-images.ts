@@ -1,4 +1,4 @@
-#!/usr/bin/env tsx
+#!/usr/bin/env node
 
 /**
  * Pre-generate OG images for all blog posts and talks at build time.
@@ -10,8 +10,8 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import matter from "gray-matter";
-import { themeConfig } from "../src/config";
-import { generateOGImage } from "../src/utils/og-image";
+import { themeConfig } from "../src/config.ts";
+import { generateOGImage } from "../src/utils/og-image.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

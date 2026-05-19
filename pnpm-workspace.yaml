@@ -5,3 +5,12 @@ allowBuilds:
   puppeteer: true
   sharp: true
   workerd: true
+
+overrides:
+  sharp: "^0.34.5"
+  wrangler: "^4.90.1"
+
+peerDependencyRules:
+  allowedVersions:
+    '@vite-pwa/astro>astro': "^6.0.0"
+    '@astrojs/cloudflare>astro': "^6.0.0"
