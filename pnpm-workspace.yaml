@@ -8,7 +8,7 @@ allowBuilds:
 
 overrides:
   sharp: "^0.34.5"
-  wrangler: "^4.90.1"
+  wrangler: "^4.93.0"
 
 peerDependencyRules:
   allowedVersions:
