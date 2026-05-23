@@ -19,7 +19,7 @@
 		"update-theme": "node scripts/update-theme.ts"
 	},
 	"dependencies": {
-		"@astrojs/cloudflare": "^13.5.3",
+		"@astrojs/cloudflare": "^13.5.4",
 		"@astrojs/mdx": "^5.0.6",
 		"@astrojs/rss": "^4.0.18",
 		"@astrojs/sitemap": "^3.7.2",
@@ -29,7 +29,7 @@
 		"@sentry/astro": "^10.53.1",
 		"@sentry/cloudflare": "^10.53.1",
 		"@shikijs/twoslash": "^4.1.0",
-		"astro": "^6.3.6",
+		"astro": "^6.3.7",
 		"astro-pagefind": "^2.0.0",
 		"feed": "^5.2.1",
 		"hast-util-to-text": "^4.0.2",
