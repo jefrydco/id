@@ -6,6 +6,7 @@
  * (light, dark, reading) that are toggled via CSS based on html class.
  */
 
+import chromium from "@sparticuz/chromium";
 import { toText } from "hast-util-to-text";
 import puppeteer from "puppeteer";
 import { visit } from "unist-util-visit";
@@ -356,7 +357,6 @@ async function getBrowser() {
 		};
 
 		if (process.platform === "linux") {
-			const { default: chromium } = await import("@sparticuz/chromium");
 			launchOptions.args = chromium.args;
 			launchOptions.executablePath = await chromium.executablePath();
 		}
