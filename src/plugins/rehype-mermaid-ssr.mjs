@@ -350,10 +350,18 @@ let browser = null;
 
 async function getBrowser() {
 	if (!browser) {
-		browser = await puppeteer.launch({
+		const launchOptions = {
 			headless: true,
 			args: ["--no-sandbox", "--disable-setuid-sandbox"],
-		});
+		};
+
+		if (process.env.CF_PAGES || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+			const { default: chromium } = await import("@sparticuz/chromium");
+			launchOptions.args = chromium.args;
+			launchOptions.executablePath = await chromium.executablePath();
+		}
+
+		browser = await puppeteer.launch(launchOptions);
 	}
 	return browser;
 }

@@ -29,6 +29,7 @@
 		"@sentry/astro": "^10.53.1",
 		"@sentry/cloudflare": "^10.53.1",
 		"@shikijs/twoslash": "^4.1.0",
+		"@sparticuz/chromium": "^148.0.0",
 		"astro": "^6.3.7",
 		"astro-pagefind": "^2.0.0",
 		"feed": "^5.2.1",
