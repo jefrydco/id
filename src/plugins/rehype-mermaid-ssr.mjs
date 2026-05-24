@@ -355,7 +355,7 @@ async function getBrowser() {
 			args: ["--no-sandbox", "--disable-setuid-sandbox"],
 		};
 
-		if (process.env.CF_PAGES || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+		if (process.platform === "linux") {
 			const { default: chromium } = await import("@sparticuz/chromium");
 			launchOptions.args = chromium.args;
 			launchOptions.executablePath = await chromium.executablePath();
