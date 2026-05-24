@@ -1,7 +1,7 @@
 ---
 title: "Menelusuri Tahap Kompilasi Clang"
 description: "Hentikan clang di tiap tahap untuk melihat output-nya: preprocessor, LLVM IR, assembly, object file, dan executable hasil link."
-publishedAt: 2026-05-26
+publishedAt: 2026-05-27
 tags:
   - clang
   - llvm

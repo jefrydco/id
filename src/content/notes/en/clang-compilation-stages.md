@@ -1,7 +1,7 @@
 ---
 title: "Inspecting Clang Compilation Stages"
 description: "Stop clang at each stage to see the output: preprocessor, LLVM IR, assembly, object file, and the linked executable."
-publishedAt: 2026-05-26
+publishedAt: 2026-05-27
 tags:
   - clang
   - llvm

@@ -347,23 +347,25 @@ const mermaidThemes = {
 	},
 };
 
-let browser = null;
+let browserPromise = null;
 
-async function getBrowser() {
-	if (!browser) {
-		const launchOptions = {
-			headless: true,
-			args: ["--no-sandbox", "--disable-setuid-sandbox"],
-		};
+function getBrowser() {
+	if (!browserPromise) {
+		browserPromise = (async () => {
+			const launchOptions = {
+				headless: true,
+				args: ["--no-sandbox", "--disable-setuid-sandbox"],
+			};
 
-		if (process.platform === "linux") {
-			launchOptions.args = chromium.args;
-			launchOptions.executablePath = await chromium.executablePath();
-		}
+			if (process.platform === "linux") {
+				launchOptions.args = chromium.args;
+				launchOptions.executablePath = await chromium.executablePath();
+			}
 
-		browser = await puppeteer.launch(launchOptions);
+			return puppeteer.launch(launchOptions);
+		})();
 	}
-	return browser;
+	return browserPromise;
 }
 
 /**
