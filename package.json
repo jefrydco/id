@@ -35,7 +35,7 @@
 		"feed": "^5.2.1",
 		"hast-util-to-text": "^4.0.2",
 		"hastscript": "^9.0.1",
-		"markdown-it": "^14.1.1",
+		"markdown-it": "^14.2.0",
 		"mdast-util-to-string": "^4.0.0",
 		"mermaid": "^11.15.0",
 		"node-html-parser": "^7.1.0",
