@@ -29,7 +29,7 @@
 		"@sentry/astro": "^10.54.0",
 		"@sentry/cloudflare": "^10.54.0",
 		"@shikijs/twoslash": "^4.1.0",
-		"@sparticuz/chromium": "^148.0.0",
+		"@sparticuz/chromium": "^149.0.0",
 		"astro": "^6.3.8",
 		"astro-pagefind": "^2.0.0",
 		"feed": "^5.2.1",
@@ -54,7 +54,7 @@
 		"unist-util-visit-parents": "^6.0.2"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.4.15",
+		"@biomejs/biome": "2.4.16",
 		"@pagefind/default-ui": "^1.5.2",
 		"@shikijs/transformers": "^4.1.0",
 		"@types/markdown-it": "^14.1.2",
