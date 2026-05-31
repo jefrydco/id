@@ -20,7 +20,7 @@
 	},
 	"dependencies": {
 		"@astrojs/cloudflare": "^13.5.5",
-		"@astrojs/mdx": "^5.0.6",
+		"@astrojs/mdx": "^6.0.1",
 		"@astrojs/rss": "^4.0.18",
 		"@astrojs/sitemap": "^3.7.3",
 		"@lucide/astro": "^1.17.0",
@@ -62,7 +62,7 @@
 		"@vite-pwa/assets-generator": "^1.0.2",
 		"@vite-pwa/astro": "^1.2.0",
 		"gray-matter": "^4.0.3",
-		"lefthook": "^2.1.8",
+		"lefthook": "^2.1.9",
 		"typescript": "^6.0.3",
 		"workbox-window": "^7.4.1"
 	},
