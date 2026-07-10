@@ -19,7 +19,7 @@
 		"update-theme": "node scripts/update-theme.ts"
 	},
 	"dependencies": {
-		"@astrojs/cloudflare": "^14.1.1",
+		"@astrojs/cloudflare": "^14.1.2",
 		"@astrojs/markdown-remark": "^7.2.1",
 		"@astrojs/mdx": "^7.0.2",
 		"@astrojs/rss": "^4.0.18",
@@ -31,7 +31,7 @@
 		"@sentry/cloudflare": "^10.64.0",
 		"@shikijs/twoslash": "^4.3.1",
 		"@sparticuz/chromium": "^149.0.0",
-		"astro": "^7.0.6",
+		"astro": "^7.0.7",
 		"astro-pagefind": "^2.0.1",
 		"feed": "^6.0.0",
 		"hast-util-to-text": "^4.0.2",
@@ -55,7 +55,7 @@
 		"unist-util-visit-parents": "^6.0.2"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.5.2",
+		"@biomejs/biome": "2.5.3",
 		"@pagefind/default-ui": "^1.5.2",
 		"@shikijs/transformers": "^4.3.1",
 		"@types/markdown-it": "^14.1.2",
@@ -63,9 +63,9 @@
 		"@vite-pwa/assets-generator": "^1.0.2",
 		"@vite-pwa/astro": "^1.2.0",
 		"gray-matter": "^4.0.3",
-		"lefthook": "^2.1.9",
+		"lefthook": "^2.1.10",
 		"typescript": "^6.0.3",
 		"workbox-window": "^7.4.1"
 	},
-	"packageManager": "pnpm@11.10.0+sha512.0b7f8b98060031904c017e3a41eb187a16d40eeb829b95c4f8cb03681761fc4ab53dd219115b9b447f4dce1a05a214764461e7d3703392a9f32f9511ce8c86c8"
+	"packageManager": "pnpm@11.11.0+sha512.4463f65fd80ed80d69bc1d4bf163ee94f605c7380fc318bb5b2ebe15f8cd12d49c51a4d59e951b401e764d3b6ca751cbf51bc50ed7001a6bcb4935e684c34882"
 }
