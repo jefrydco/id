@@ -28,8 +28,8 @@ importers:
         specifier: ^3.7.3
         version: 3.7.3
       '@lucide/astro':
-        specifier: ^1.23.0
-        version: 1.23.0(astro@7.0.7(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))
+        specifier: ^1.24.0
+        version: 1.24.0(astro@7.0.7(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))
       '@mathjax/src':
         specifier: ^4.1.3
         version: 4.1.3
@@ -1322,8 +1322,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@lucide/astro@1.23.0':
-    resolution: {integrity: sha512-SP5JHwI46QJjCJGzS8BTQsUXcHJoGkVIeywN12NraSiTEt4uh0iNLPs4hEHTSJr+LbZeHxc3W1BiRJPF2tS5Yw==}
+  '@lucide/astro@1.24.0':
+    resolution: {integrity: sha512-UmQrHv3/SfulzmALy6M0H4TOAaql/OG68V7yoFDW4g4F49vQ8o32NQHK4xBm+8k8zD/JQNHt00z2YRKXJ6bnCA==}
     peerDependencies:
       astro: ^4 || ^5 || ^6 || ^7
 
@@ -6329,7 +6329,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@lucide/astro@1.23.0(astro@7.0.7(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))':
+  '@lucide/astro@1.24.0(astro@7.0.7(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))':
     dependencies:
       astro: 7.0.7(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0)
 
