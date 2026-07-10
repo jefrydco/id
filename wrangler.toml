@@ -1,7 +1,7 @@
 main = "@astrojs/cloudflare/entrypoints/server"
 name = "jefrydco"
 compatibility_date = "2026-01-11"
-compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public", "disable_nodejs_process_v2"]
+compatibility_flags = ["nodejs_compat", "fetch_iterable_type_support"]
 
 [assets]
 binding = "ASSETS"
