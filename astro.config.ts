@@ -163,7 +163,11 @@ export default defineConfig({
 		}),
 	},
 	integrations: [
-		playformInline(),
+		playformInline({
+			Beasties: {
+				allowRules: [/\[data-theme=(dark|reading)\]/],
+			},
+		}),
 		mdx(),
 		sitemap(),
 		pagefind(),
