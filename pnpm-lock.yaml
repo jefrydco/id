@@ -14,13 +14,13 @@ importers:
     dependencies:
       '@astrojs/cloudflare':
         specifier: ^14.1.3
-        version: 14.1.3(@types/node@25.0.3)(astro@7.0.9(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)(workerd@1.20260708.1)(wrangler@4.110.0(@types/node@25.0.3))
+        version: 14.1.3(@types/node@25.0.3)(astro@7.1.1(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)(workerd@1.20260708.1)(wrangler@4.110.0(@types/node@25.0.3))
       '@astrojs/markdown-remark':
         specifier: ^7.2.1
         version: 7.2.1
       '@astrojs/mdx':
         specifier: ^7.0.3
-        version: 7.0.3(@astrojs/markdown-satteri@0.3.4)(astro@7.0.9(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))
+        version: 7.0.3(@astrojs/markdown-satteri@0.3.4)(astro@7.1.1(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))
       '@astrojs/rss':
         specifier: ^4.0.18
         version: 4.0.19
@@ -28,8 +28,8 @@ importers:
         specifier: ^3.7.3
         version: 3.7.3
       '@lucide/astro':
-        specifier: ^1.24.0
-        version: 1.24.0(astro@7.0.9(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))
+        specifier: ^1.25.0
+        version: 1.25.0(astro@7.1.1(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))
       '@mathjax/src':
         specifier: ^4.1.3
         version: 4.1.3
@@ -37,11 +37,11 @@ importers:
         specifier: ^0.1.4
         version: 0.1.4(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0)
       '@sentry/astro':
-        specifier: ^10.65.0
-        version: 10.65.0(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))(astro@7.0.9(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))(rollup@4.62.2)
+        specifier: ^10.66.0
+        version: 10.66.0(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))(astro@7.1.1(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))(rollup@4.62.2)
       '@sentry/cloudflare':
-        specifier: ^10.65.0
-        version: 10.65.0(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))
+        specifier: ^10.66.0
+        version: 10.66.0(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))
       '@shikijs/twoslash':
         specifier: ^4.3.1
         version: 4.3.1(typescript@6.0.3)
@@ -49,11 +49,11 @@ importers:
         specifier: ^149.0.0
         version: 149.0.0
       astro:
-        specifier: ^7.0.9
-        version: 7.0.9(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0)
+        specifier: ^7.1.1
+        version: 7.1.1(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0)
       astro-pagefind:
         specifier: ^2.0.1
-        version: 2.0.1(astro@7.0.9(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))
+        version: 2.0.1(astro@7.1.1(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))
       feed:
         specifier: ^6.0.0
         version: 6.0.0
@@ -135,7 +135,7 @@ importers:
         version: 1.0.2(@types/node@25.0.3)
       '@vite-pwa/astro':
         specifier: ^1.2.0
-        version: 1.2.0(@vite-pwa/assets-generator@1.0.2(@types/node@25.0.3))(astro@7.0.9(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))(vite-plugin-pwa@1.3.0(@vite-pwa/assets-generator@1.0.2(@types/node@25.0.3))(vite@8.1.4(@types/node@25.0.3)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0))(workbox-build@7.4.1)(workbox-window@7.4.1))
+        version: 1.2.0(@vite-pwa/assets-generator@1.0.2(@types/node@25.0.3))(astro@7.1.1(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))(vite-plugin-pwa@1.3.0(@vite-pwa/assets-generator@1.0.2(@types/node@25.0.3))(vite@8.1.4(@types/node@25.0.3)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0))(workbox-build@7.4.1)(workbox-window@7.4.1))
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
@@ -160,16 +160,16 @@ packages:
     peerDependencies:
       ajv: '>=8'
 
-  '@apm-js-collab/code-transformer-bundler-plugins@0.5.0':
-    resolution: {integrity: sha512-YxLBY5nGlurL7QeJLq6e5g0ouBpAp0pwgyA/5rHXEXwhiPLn9ZHbT+Y2LlP90GT872cSocfjWRYu/fnpuBudNQ==}
+  '@apm-js-collab/code-transformer-bundler-plugins@0.6.2':
+    resolution: {integrity: sha512-5vBrtIEL+UVbO0YWWoyYG4QMgR+ZfnIL3xlteIkAmU7YaAPhc28k3md/NM14tnkfXKjKOn9yUzEA9AYUmNpvJg==}
     engines: {node: '>=18.0.0'}
 
-  '@apm-js-collab/code-transformer@0.15.0':
-    resolution: {integrity: sha512-XmXYVs8CzJ1Aj79noVbn2weUO/XWtRyURpGqx7aU7DOXlUQhR0WKOQNF0okh7PCeY37vxf7kU3v57OAkEPm3ww==}
+  '@apm-js-collab/code-transformer@0.18.0':
+    resolution: {integrity: sha512-aN3Oq8r1J3gPJtCwErP664gM0+HhM1I1lujPr9TMTCcEl/joQQbpGpeMdts9B1+W2wHMsvioDMv5F4PvMWE6gw==}
     hasBin: true
 
-  '@apm-js-collab/tracing-hooks@0.10.1':
-    resolution: {integrity: sha512-w2OWXR7FWrKqSziuE9+QclaZrStxO/8+OwbXM635s/zs0Eez1Qo3ivSPdB2WsaPY/iznKTytONPx/PitD7IXcA==}
+  '@apm-js-collab/tracing-hooks@0.13.0':
+    resolution: {integrity: sha512-mTvWz9rnQwx1U3h0XPTHaX7bgfkpipLLTQyjlC2cdhQpQEuoLT0AGzoydeoq2NxfEVv6fWOOETcSbb2nptleyw==}
 
   '@astrojs/cloudflare@14.1.3':
     resolution: {integrity: sha512-idZndLb/cm64JNayPepaM0Ews971KviYPIcj/xB7Pwp2RKvBjs3MePjZLE50n6EoggeWag3iAMYpAuEKs+3o5g==}
@@ -1322,8 +1322,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@lucide/astro@1.24.0':
-    resolution: {integrity: sha512-UmQrHv3/SfulzmALy6M0H4TOAaql/OG68V7yoFDW4g4F49vQ8o32NQHK4xBm+8k8zD/JQNHt00z2YRKXJ6bnCA==}
+  '@lucide/astro@1.25.0':
+    resolution: {integrity: sha512-Ff9/vyOgeWoED4Uof2uRtO68KYcOA3eOZbEJ+SN5dW4PuMPz68Kze7Il6gfB6axq+xDocY/zz4j2Qs7ix/SkPQ==}
     peerDependencies:
       astro: ^4 || ^5 || ^6 || ^7
 
@@ -1768,22 +1768,22 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@sentry/astro@10.65.0':
-    resolution: {integrity: sha512-qnlmc59eSbgk/EpZzO7R8Re8q/pSZgVZ2KPqZP5u3bhKa8L7l0y+N7DUpznwuT/+B27LwlsgwPeW1UrUMf94tg==}
+  '@sentry/astro@10.66.0':
+    resolution: {integrity: sha512-0cm09GPu2aZSqYPfC0jjubijZcYfdK5Y0J4L940I+5z97Qnx9c0lVEfEKle9nbJV+xupuPmZS0WCyyV/Zboblw==}
     engines: {node: '>=18.19.1'}
     peerDependencies:
       astro: '>=3.x || >=4.0.0-beta || >=7.0.0-beta'
 
-  '@sentry/browser-utils@10.65.0':
-    resolution: {integrity: sha512-4J0mkfNJAGUOkpg1ZggizyftFTn9N20b+Jl87UnWsDUkNG0Ic1l/FIzMPTVxXrAnhBGu0ULO0TFWMoQ5s3QtZw==}
+  '@sentry/browser-utils@10.66.0':
+    resolution: {integrity: sha512-sHuALvJMMEilUz84F1ZOQuDoZ3MhjwUHWHkXcElcVMrDIlnTO7Ra0E6Kh0e8JyJaLBMk4Sy9srKSqH9zimQVTQ==}
     engines: {node: '>=18'}
 
-  '@sentry/browser@10.65.0':
-    resolution: {integrity: sha512-XUDDsx0qxzeIlcOu1fDEqTcDl0eiOqghsgV+ReuuNP4jYjZ9kUQxE3rXWM5mlT1pBi4VaQ4FHqvQZZrRXy+oDw==}
+  '@sentry/browser@10.66.0':
+    resolution: {integrity: sha512-MaPoBqKvI7O3UhexSJ/KO/o6T4Tr3A+vQWLZYTos0mxd59jVKMKbbJ6LxM/0uWQ5JAO2XYC/kCMRvk6VqQ5QZw==}
     engines: {node: '>=18'}
 
-  '@sentry/bundler-plugins@10.65.0':
-    resolution: {integrity: sha512-AYgv31l4wY/CwYAD/2Og59RT+TNjvhatcLOrEe5tFOpi9VcPAQ4xfPZIM6fXYGawofT52p6LhUECNSfNkNnc7Q==}
+  '@sentry/bundler-plugins@10.66.0':
+    resolution: {integrity: sha512-u0Dzji4GouTR3zhNzCDal+mDxzOsnCVzA4mxOkTq89k2vKX6cuAVrrBWlSOcVYa8qbt43c0QNJxFnD0AqjhJtw==}
     engines: {node: '>= 18'}
     peerDependencies:
       rollup: '>=3.2.0'
@@ -1846,29 +1846,29 @@ packages:
     engines: {node: '>= 10'}
     hasBin: true
 
-  '@sentry/cloudflare@10.65.0':
-    resolution: {integrity: sha512-IzSLb20r9nYdZg4oeNq5Rz3G125NYFMV9LMv2eQQ1q2I5QJSY4v2iCDmo5VljnlYEA2N7CqS+iM+J755Ni+dHg==}
+  '@sentry/cloudflare@10.66.0':
+    resolution: {integrity: sha512-QYEZQsR09OO/0nfyZP4J56JG8zNO5PCPon7TM96fjjbKIbshpbUcr73XmUhHh3h1Kv0Ic/M5LWBm9eV6H5Cmmw==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@cloudflare/workers-types': ^4.x
+      '@cloudflare/workers-types': ^4.x || ^5.x
     peerDependenciesMeta:
       '@cloudflare/workers-types':
         optional: true
 
-  '@sentry/conventions@0.15.1':
-    resolution: {integrity: sha512-ZLP8bRdMON3prWE2tJyImuYscCxdcJeIPIhrOs/rgyFm3C1nCh1B6gdvPj3AZ5zW08oSFFCsq7T+tYEW3h8MNA==}
+  '@sentry/conventions@0.16.0':
+    resolution: {integrity: sha512-fO9PLmHdVURcSPUpWCItWAtgKiMwGdJHbovoSEyLplX5sxs2ugvI4CBPTrkkgqhObnZOD0CnWBKDzSVQYBKEyQ==}
     engines: {node: '>=14'}
 
-  '@sentry/core@10.65.0':
-    resolution: {integrity: sha512-3aqtmM5NgNGo45BNaaBzi0LPQZAw//NEL4HKS5fXm12pJMa4KEkze8DEKnkTEIrGnWaOJKamecHKlnNg/Mqf/Q==}
+  '@sentry/core@10.66.0':
+    resolution: {integrity: sha512-9UbgSvds7bMJsP561eWmeyMLcfOmnwxtnx2QuW3yLobzP2Ob7CyJCOzP4tGzlTAGDrzShkFEZhiyuBUKiEK2oQ==}
     engines: {node: '>=18'}
 
-  '@sentry/feedback@10.65.0':
-    resolution: {integrity: sha512-ck8h7wgd3F3bYNk0v1OgohmyLBeXcKxqlfBJRtQq4k6KZUq+pXimOG7ckNguVMYjCo3PEfuG+ckKc21yqotKug==}
+  '@sentry/feedback@10.66.0':
+    resolution: {integrity: sha512-fr69K76Gz7RRyfMerChdNjWIeQdFh+k21GJcmPCqk43dscUChOsLc3cYLS5cK7iZ/XiUmH9lVzf7EYL2kf2qsA==}
     engines: {node: '>=18'}
 
-  '@sentry/node-core@10.65.0':
-    resolution: {integrity: sha512-U01X9mPT+jZnsLPmPWfBU67Ka+t/Sdd9RGAuvGoKdrI6N47a/9PDkM9oCW+kj0fmZwogZHTgSnzJU5oi3pImgA==}
+  '@sentry/node-core@10.66.0':
+    resolution: {integrity: sha512-SUnXHROqSdSetKgZC1goDEKCuMz3OmQ1h4rxzWeexLyqan+pensZXfLouP6jzZXlA8e/HP7uQg78LnfqYDcZlQ==}
     engines: {node: '>=18'}
     peerDependencies:
       '@opentelemetry/api': ^1.9.0
@@ -1888,28 +1888,28 @@ packages:
       '@opentelemetry/sdk-trace-base':
         optional: true
 
-  '@sentry/node@10.65.0':
-    resolution: {integrity: sha512-t35dcdyksysVch/m/XdLgGJqGKJhr9eMD30Ctn3TeQ8yMB0wNXySfjPR5Yg93fpjmfaHtzc6iYIXRAvgNVfrvA==}
+  '@sentry/node@10.66.0':
+    resolution: {integrity: sha512-5Ow7iQiRjaSaEOmqEIkYV368hFFzShIZCXPoj+wX3JtOmKFrsNu6lr8/VJlQs7cyjFS6tzE50PrLrD8iAPS/8w==}
     engines: {node: '>=18'}
 
-  '@sentry/opentelemetry@10.65.0':
-    resolution: {integrity: sha512-8C6FPvm3XBvUrkM52dX3Gz0p2H0Ij8t4sahUA+GTiCz0WM0fnyPeQPGC/b6I4jamV9UXyCZRnE1UEEGCoD+c7A==}
+  '@sentry/opentelemetry@10.66.0':
+    resolution: {integrity: sha512-K5Y9IettN9yIOnpqCs40HRLGqaGUoaQ50+ZsLqX2kPCk3TzJVpKZ9icKwaJ4Nxm72QgGVT5Ovfr/9FXbgd3b/Q==}
     engines: {node: '>=18'}
     peerDependencies:
       '@opentelemetry/api': ^1.9.0
       '@opentelemetry/core': ^1.30.1 || ^2.1.0
       '@opentelemetry/sdk-trace-base': ^1.30.1 || ^2.1.0
 
-  '@sentry/replay-canvas@10.65.0':
-    resolution: {integrity: sha512-A7X3RVk1Gk+knK8Ip/2EjejckNCLgCfRZo6eGlsy6qyz904KBpYmys1a0o7QkzFRjhIndjHAfcVxwt6jSLJlrQ==}
+  '@sentry/replay-canvas@10.66.0':
+    resolution: {integrity: sha512-z7fPWEIfAJMJySKXFIqXAzFpkHjp13WGMAmB9+hlHhi9+gjAO8owD9R4XTd86lBswveGwMHKvIx5lFKNVqDcow==}
     engines: {node: '>=18'}
 
-  '@sentry/replay@10.65.0':
-    resolution: {integrity: sha512-aW988CcQBNArbOMzOFOziipHz6uQyXSa4i5CPWsu+nhVPTJHafosi5Lv9n6NM/icDX5e23VdnX6mZd8SyJuo8A==}
+  '@sentry/replay@10.66.0':
+    resolution: {integrity: sha512-Djb4FxQa9bF8z3PoCO00Nw1u+6hma2YuI8JkMoE+F14KWRfCZKQ28sScsvk+OokbXgjtuIsxDEZj/qFGY0w01w==}
     engines: {node: '>=18'}
 
-  '@sentry/server-utils@10.65.0':
-    resolution: {integrity: sha512-80toEFD6s+0Le7jrYB6pHWLF703WSg0WyavAWqrBGWG8JkREHgedAxzFYgoY5GlMI756qk6Ea7UzhJTHd2zAXA==}
+  '@sentry/server-utils@10.66.0':
+    resolution: {integrity: sha512-h9EM9Wz9Mc6w2Vn7Fyh6ozjy4JC2UbUvWf9Ra1HYA4KMeYqjFA5/o0oB4pg4w/TF+rb+9OF/HNqxjuczxpudpA==}
     engines: {node: '>=18'}
 
   '@sentry/vite-plugin@5.4.0':
@@ -2239,8 +2239,8 @@ packages:
     peerDependencies:
       astro: ^2.0.4 || ^3 || ^4 || ^5 || ^6 || ^7
 
-  astro@7.0.9:
-    resolution: {integrity: sha512-WB5pA4LLQnmqjBh6EIu0z8aUV4q2/AoThgSZq57Rsp+oqqvPu7OwZ5eF+W4ku20TUTxIhiJW8dccuGvJPiW2UA==}
+  astro@7.1.1:
+    resolution: {integrity: sha512-yfKhuvbz+DORHihJRL1DHcxyLcX9uTrxvz2nCSTzHH54k2DdACBfuOu2OAAAhdUC9xlu2IRXAiagqcPL3DftCg==}
     engines: {node: '>=22.12.0', npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
     peerDependencies:
@@ -3994,8 +3994,8 @@ packages:
     resolution: {integrity: sha512-nK28WOo+QIjBkDduTINE4JkF/UJJKyf2EJxvJKfblDpyg0Q+pkOHNTL0Qwy6NP6FhE/EnzV73BxxqcJaXY9anw==}
     engines: {node: '>= 0.4'}
 
-  obug@2.1.3:
-    resolution: {integrity: sha512-9miFgM2OFba7hB+pRgvtV84pYTBaoTHohvmIgiRt6dRIzbwEOIaNaP+dIlGs2fNFoB0SeISs0Jz5WFVRid6Xyg==}
+  obug@2.1.4:
+    resolution: {integrity: sha512-4a+OsYv9UktOJKE+l1A4OufDgdRF9PifWj+tJnHURo/P+WOxpG4GzUFL9qCalmWauao6ogiG+QvnCovwPoyAWA==}
     engines: {node: '>=12.20.0'}
 
   ofetch@1.5.1:
@@ -4920,6 +4920,49 @@ packages:
       yaml:
         optional: true
 
+  vite@8.1.5:
+    resolution: {integrity: sha512-7ULLwsCdYx/nRyrpiEwvqb5TFHrMVZyBt+rg/OAXT7rgj/z+DtTDyKFeLAdDkubDVDKD8jOsndmy7m55XcfUsw==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': ^20.19.0 || >=22.12.0
+      '@vitejs/devtools': ^0.3.0
+      esbuild: ^0.27.0 || ^0.28.0
+      jiti: '>=1.21.0'
+      less: ^4.0.0
+      sass: ^1.70.0
+      sass-embedded: ^1.70.0
+      stylus: '>=0.54.8'
+      sugarss: ^5.0.0
+      terser: ^5.16.0
+      tsx: ^4.8.1
+      yaml: ^2.4.2
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      '@vitejs/devtools':
+        optional: true
+      esbuild:
+        optional: true
+      jiti:
+        optional: true
+      less:
+        optional: true
+      sass:
+        optional: true
+      sass-embedded:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+      tsx:
+        optional: true
+      yaml:
+        optional: true
+
   vitefu@1.1.3:
     resolution: {integrity: sha512-ub4okH7Z5KLjb6hDyjqrGXqWtWvoYdU3IGm/NorpgHncKoLTCfRIbvlhBm7r0YstIaQRYlp4yEbFqDcKSzXSSg==}
     peerDependencies:
@@ -5118,14 +5161,14 @@ snapshots:
       jsonpointer: 5.0.1
       leven: 3.1.0
 
-  '@apm-js-collab/code-transformer-bundler-plugins@0.5.0':
+  '@apm-js-collab/code-transformer-bundler-plugins@0.6.2':
     dependencies:
-      '@apm-js-collab/code-transformer': 0.15.0
+      '@apm-js-collab/code-transformer': 0.18.0
       es-module-lexer: 2.3.1
       magic-string: 0.30.21
       module-details-from-path: 1.0.4
 
-  '@apm-js-collab/code-transformer@0.15.0':
+  '@apm-js-collab/code-transformer@0.18.0':
     dependencies:
       '@types/estree': 1.0.9
       astring: 1.9.0
@@ -5134,20 +5177,20 @@ snapshots:
       semifies: 1.0.0
       source-map: 0.6.1
 
-  '@apm-js-collab/tracing-hooks@0.10.1':
+  '@apm-js-collab/tracing-hooks@0.13.0':
     dependencies:
-      '@apm-js-collab/code-transformer': 0.15.0
+      '@apm-js-collab/code-transformer': 0.18.0
       debug: 4.4.3
       module-details-from-path: 1.0.4
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/cloudflare@14.1.3(@types/node@25.0.3)(astro@7.0.9(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)(workerd@1.20260708.1)(wrangler@4.110.0(@types/node@25.0.3))':
+  '@astrojs/cloudflare@14.1.3(@types/node@25.0.3)(astro@7.1.1(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)(workerd@1.20260708.1)(wrangler@4.110.0(@types/node@25.0.3))':
     dependencies:
       '@astrojs/internal-helpers': 0.10.1
       '@astrojs/underscore-redirects': 1.0.3
       '@cloudflare/vite-plugin': 1.44.0(@types/node@25.0.3)(vite@8.1.4(@types/node@25.0.3)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0))(workerd@1.20260708.1)(wrangler@4.110.0(@types/node@25.0.3))
-      astro: 7.0.9(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0)
+      astro: 7.1.1(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0)
       piccolore: 0.1.3
       vite: 8.1.4(@types/node@25.0.3)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)
       wrangler: 4.110.0(@types/node@25.0.3)
@@ -5263,13 +5306,13 @@ snapshots:
       hast-util-from-html: 2.0.3
       satteri: 0.9.5
 
-  '@astrojs/mdx@7.0.3(@astrojs/markdown-satteri@0.3.4)(astro@7.0.9(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))':
+  '@astrojs/mdx@7.0.3(@astrojs/markdown-satteri@0.3.4)(astro@7.1.1(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))':
     dependencies:
       '@astrojs/internal-helpers': 0.10.1
       '@astrojs/markdown-remark': 7.2.1
       '@mdx-js/mdx': 3.1.1
       acorn: 8.17.0
-      astro: 7.0.9(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0)
+      astro: 7.1.1(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0)
       es-module-lexer: 2.3.1
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.5
@@ -6346,9 +6389,9 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@lucide/astro@1.24.0(astro@7.0.9(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))':
+  '@lucide/astro@1.25.0(astro@7.1.1(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))':
     dependencies:
-      astro: 7.0.9(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0)
+      astro: 7.1.1(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0)
 
   '@mathjax/mathjax-newcm-font@4.1.3': {}
 
@@ -6499,7 +6542,7 @@ snapshots:
   '@playform/inline@0.1.4(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0)':
     dependencies:
       '@playform/pipe': 0.1.4
-      astro: 7.0.9(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0)
+      astro: 7.1.1(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0)
       beasties: 0.4.1
       deepmerge-ts: 7.1.5
     transitivePeerDependencies:
@@ -6736,14 +6779,14 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.62.2':
     optional: true
 
-  '@sentry/astro@10.65.0(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))(astro@7.0.9(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))(rollup@4.62.2)':
+  '@sentry/astro@10.66.0(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))(astro@7.1.1(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))(rollup@4.62.2)':
     dependencies:
-      '@sentry/browser': 10.65.0
-      '@sentry/conventions': 0.15.1
-      '@sentry/core': 10.65.0
-      '@sentry/node': 10.65.0(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))
+      '@sentry/browser': 10.66.0
+      '@sentry/conventions': 0.16.0
+      '@sentry/core': 10.66.0
+      '@sentry/node': 10.66.0(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))
       '@sentry/vite-plugin': 5.4.0(rollup@4.62.2)
-      astro: 7.0.9(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0)
+      astro: 7.1.1(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0)
     transitivePeerDependencies:
       - '@opentelemetry/core'
       - '@opentelemetry/exporter-trace-otlp-http'
@@ -6752,25 +6795,25 @@ snapshots:
       - supports-color
       - webpack
 
-  '@sentry/browser-utils@10.65.0':
+  '@sentry/browser-utils@10.66.0':
     dependencies:
-      '@sentry/conventions': 0.15.1
-      '@sentry/core': 10.65.0
+      '@sentry/conventions': 0.16.0
+      '@sentry/core': 10.66.0
 
-  '@sentry/browser@10.65.0':
+  '@sentry/browser@10.66.0':
     dependencies:
-      '@sentry/browser-utils': 10.65.0
-      '@sentry/conventions': 0.15.1
-      '@sentry/core': 10.65.0
-      '@sentry/feedback': 10.65.0
-      '@sentry/replay': 10.65.0
-      '@sentry/replay-canvas': 10.65.0
+      '@sentry/browser-utils': 10.66.0
+      '@sentry/conventions': 0.16.0
+      '@sentry/core': 10.66.0
+      '@sentry/feedback': 10.66.0
+      '@sentry/replay': 10.66.0
+      '@sentry/replay-canvas': 10.66.0
 
-  '@sentry/bundler-plugins@10.65.0(rollup@4.62.2)':
+  '@sentry/bundler-plugins@10.66.0(rollup@4.62.2)':
     dependencies:
       '@babel/core': 7.29.7
       '@sentry/cli': 2.58.6
-      '@sentry/core': 10.65.0
+      '@sentry/core': 10.66.0
       dotenv: 17.4.2
       find-up: 5.0.0
       glob: 13.0.6
@@ -6825,32 +6868,32 @@ snapshots:
       - encoding
       - supports-color
 
-  '@sentry/cloudflare@10.65.0(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))':
+  '@sentry/cloudflare@10.66.0(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))':
     dependencies:
       '@opentelemetry/api': 1.9.1
-      '@sentry/core': 10.65.0
-      '@sentry/node': 10.65.0(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))
-      '@sentry/server-utils': 10.65.0
+      '@sentry/core': 10.66.0
+      '@sentry/node': 10.66.0(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))
+      '@sentry/server-utils': 10.66.0
     transitivePeerDependencies:
       - '@opentelemetry/core'
       - '@opentelemetry/exporter-trace-otlp-http'
       - supports-color
 
-  '@sentry/conventions@0.15.1': {}
+  '@sentry/conventions@0.16.0': {}
 
-  '@sentry/core@10.65.0':
+  '@sentry/core@10.66.0':
     dependencies:
-      '@sentry/conventions': 0.15.1
+      '@sentry/conventions': 0.16.0
 
-  '@sentry/feedback@10.65.0':
+  '@sentry/feedback@10.66.0':
     dependencies:
-      '@sentry/core': 10.65.0
+      '@sentry/core': 10.66.0
 
-  '@sentry/node-core@10.65.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))(@opentelemetry/instrumentation@0.220.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.1))':
+  '@sentry/node-core@10.66.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))(@opentelemetry/instrumentation@0.220.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.1))':
     dependencies:
-      '@sentry/conventions': 0.15.1
-      '@sentry/core': 10.65.0
-      '@sentry/opentelemetry': 10.65.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.1))
+      '@sentry/conventions': 0.16.0
+      '@sentry/core': 10.66.0
+      '@sentry/opentelemetry': 10.66.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.1))
       import-in-the-middle: 3.3.1
     optionalDependencies:
       '@opentelemetry/api': 1.9.1
@@ -6858,54 +6901,53 @@ snapshots:
       '@opentelemetry/instrumentation': 0.220.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/sdk-trace-base': 2.9.0(@opentelemetry/api@1.9.1)
 
-  '@sentry/node@10.65.0(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))':
+  '@sentry/node@10.66.0(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))':
     dependencies:
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/instrumentation': 0.220.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/sdk-trace-base': 2.9.0(@opentelemetry/api@1.9.1)
-      '@sentry/conventions': 0.15.1
-      '@sentry/core': 10.65.0
-      '@sentry/node-core': 10.65.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))(@opentelemetry/instrumentation@0.220.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.1))
-      '@sentry/opentelemetry': 10.65.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.1))
-      '@sentry/server-utils': 10.65.0
+      '@sentry/conventions': 0.16.0
+      '@sentry/core': 10.66.0
+      '@sentry/node-core': 10.66.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))(@opentelemetry/instrumentation@0.220.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.1))
+      '@sentry/opentelemetry': 10.66.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.1))
+      '@sentry/server-utils': 10.66.0
       import-in-the-middle: 3.3.1
     transitivePeerDependencies:
       - '@opentelemetry/core'
       - '@opentelemetry/exporter-trace-otlp-http'
       - supports-color
 
-  '@sentry/opentelemetry@10.65.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.1))':
+  '@sentry/opentelemetry@10.66.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.9.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.1))':
     dependencies:
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/core': 2.9.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/sdk-trace-base': 2.9.0(@opentelemetry/api@1.9.1)
-      '@sentry/conventions': 0.15.1
-      '@sentry/core': 10.65.0
+      '@sentry/conventions': 0.16.0
+      '@sentry/core': 10.66.0
 
-  '@sentry/replay-canvas@10.65.0':
+  '@sentry/replay-canvas@10.66.0':
     dependencies:
-      '@sentry/core': 10.65.0
-      '@sentry/replay': 10.65.0
+      '@sentry/core': 10.66.0
+      '@sentry/replay': 10.66.0
 
-  '@sentry/replay@10.65.0':
+  '@sentry/replay@10.66.0':
     dependencies:
-      '@sentry/browser-utils': 10.65.0
-      '@sentry/core': 10.65.0
+      '@sentry/browser-utils': 10.66.0
+      '@sentry/core': 10.66.0
 
-  '@sentry/server-utils@10.65.0':
+  '@sentry/server-utils@10.66.0':
     dependencies:
-      '@apm-js-collab/code-transformer': 0.15.0
-      '@apm-js-collab/code-transformer-bundler-plugins': 0.5.0
-      '@apm-js-collab/tracing-hooks': 0.10.1
-      '@sentry/conventions': 0.15.1
-      '@sentry/core': 10.65.0
-      magic-string: 0.30.21
+      '@apm-js-collab/code-transformer': 0.18.0
+      '@apm-js-collab/code-transformer-bundler-plugins': 0.6.2
+      '@apm-js-collab/tracing-hooks': 0.13.0
+      '@sentry/conventions': 0.16.0
+      '@sentry/core': 10.66.0
     transitivePeerDependencies:
       - supports-color
 
   '@sentry/vite-plugin@5.4.0(rollup@4.62.2)':
     dependencies:
-      '@sentry/bundler-plugins': 10.65.0(rollup@4.62.2)
+      '@sentry/bundler-plugins': 10.66.0(rollup@4.62.2)
     transitivePeerDependencies:
       - encoding
       - rollup
@@ -7200,9 +7242,9 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
-  '@vite-pwa/astro@1.2.0(@vite-pwa/assets-generator@1.0.2(@types/node@25.0.3))(astro@7.0.9(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))(vite-plugin-pwa@1.3.0(@vite-pwa/assets-generator@1.0.2(@types/node@25.0.3))(vite@8.1.4(@types/node@25.0.3)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0))(workbox-build@7.4.1)(workbox-window@7.4.1))':
+  '@vite-pwa/astro@1.2.0(@vite-pwa/assets-generator@1.0.2(@types/node@25.0.3))(astro@7.1.1(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0))(vite-plugin-pwa@1.3.0(@vite-pwa/assets-generator@1.0.2(@types/node@25.0.3))(vite@8.1.4(@types/node@25.0.3)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0))(workbox-build@7.4.1)(workbox-window@7.4.1))':
     dependencies:
-      astro: 7.0.9(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0)
+      astro: 7.1.1(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0)
       vite-plugin-pwa: 1.3.0(@vite-pwa/assets-generator@1.0.2(@types/node@25.0.3))(vite@8.1.4(@types/node@25.0.3)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0))(workbox-build@7.4.1)(workbox-window@7.4.1)
     optionalDependencies:
       '@vite-pwa/assets-generator': 1.0.2(@types/node@25.0.3)
@@ -7274,14 +7316,14 @@ snapshots:
 
   astring@1.9.0: {}
 
-  astro-pagefind@2.0.1(astro@7.0.9(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0)):
+  astro-pagefind@2.0.1(astro@7.1.1(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0)):
     dependencies:
       '@pagefind/component-ui': 1.5.2
-      astro: 7.0.9(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0)
+      astro: 7.1.1(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0)
       pagefind: 1.5.2
       sirv: 3.0.2
 
-  astro@7.0.9(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0):
+  astro@7.1.1(@astrojs/markdown-remark@7.2.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@25.0.3)(jiti@2.7.0)(rollup@4.62.2)(terser@5.49.0):
     dependencies:
       '@astrojs/compiler-rs': 0.3.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)
       '@astrojs/internal-helpers': 0.10.1
@@ -7315,7 +7357,7 @@ snapshots:
       magicast: 0.5.3
       mrmime: 2.0.1
       neotraverse: 0.6.18
-      obug: 2.1.3
+      obug: 2.1.4
       p-limit: 7.3.0
       p-queue: 9.3.1
       package-manager-detector: 1.7.0
@@ -7331,8 +7373,8 @@ snapshots:
       ultrahtml: 1.7.0
       unifont: 0.7.4
       unstorage: 1.17.5
-      vite: 8.1.4(@types/node@25.0.3)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)
-      vitefu: 1.1.3(vite@8.1.4(@types/node@25.0.3)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0))
+      vite: 8.1.5(@types/node@25.0.3)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)
+      vitefu: 1.1.3(vite@8.1.5(@types/node@25.0.3)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0))
       xxhash-wasm: 1.1.0
       yargs-parser: 22.0.0
       zod: 4.4.3
@@ -9556,7 +9598,7 @@ snapshots:
       has-symbols: 1.1.0
       object-keys: 1.1.1
 
-  obug@2.1.3: {}
+  obug@2.1.4: {}
 
   ofetch@1.5.1:
     dependencies:
@@ -10723,9 +10765,23 @@ snapshots:
       jiti: 2.7.0
       terser: 5.49.0
 
-  vitefu@1.1.3(vite@8.1.4(@types/node@25.0.3)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)):
+  vite@8.1.5(@types/node@25.0.3)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0):
+    dependencies:
+      lightningcss: 1.32.0
+      picomatch: 4.0.5
+      postcss: 8.5.19
+      rolldown: 1.1.5
+      tinyglobby: 0.2.17
     optionalDependencies:
-      vite: 8.1.4(@types/node@25.0.3)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)
+      '@types/node': 25.0.3
+      esbuild: 0.28.1
+      fsevents: 2.3.3
+      jiti: 2.7.0
+      terser: 5.49.0
+
+  vitefu@1.1.3(vite@8.1.5(@types/node@25.0.3)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)):
+    optionalDependencies:
+      vite: 8.1.5(@types/node@25.0.3)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)
 
   web-namespaces@2.0.1: {}
 
