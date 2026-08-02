@@ -29,7 +29,7 @@
 		"@playform/inline": "^0.1.4",
 		"@sentry/astro": "^10.69.0",
 		"@sentry/cloudflare": "^10.69.0",
-		"@shikijs/twoslash": "^4.3.1",
+		"@shikijs/twoslash": "^4.4.1",
 		"@sparticuz/chromium": "^149.0.0",
 		"astro": "^7.1.6",
 		"astro-pagefind": "^2.0.1",
@@ -57,7 +57,7 @@
 	"devDependencies": {
 		"@biomejs/biome": "2.5.6",
 		"@pagefind/default-ui": "^1.5.2",
-		"@shikijs/transformers": "^4.3.1",
+		"@shikijs/transformers": "^4.4.1",
 		"@types/markdown-it": "^14.1.2",
 		"@types/sanitize-html": "^2.16.1",
 		"@vite-pwa/assets-generator": "^1.0.2",
