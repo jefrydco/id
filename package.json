@@ -40,7 +40,7 @@
 		"mdast-util-to-string": "^4.0.0",
 		"mermaid": "^11.16.1",
 		"node-html-parser": "^9.0.1",
-		"puppeteer": "^25.6.0",
+		"puppeteer": "^25.7.0",
 		"reading-time": "^1.5.0",
 		"rehype-autolink-headings": "^7.1.0",
 		"rehype-external-links": "^3.0.0",
