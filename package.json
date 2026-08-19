@@ -40,7 +40,7 @@
 		"mdast-util-to-string": "^4.0.0",
 		"mermaid": "^11.16.1",
 		"node-html-parser": "^9.0.1",
-		"puppeteer": "^25.7.0",
+		"puppeteer": "^25.8.0",
 		"reading-time": "^1.5.0",
 		"rehype-autolink-headings": "^7.1.0",
 		"rehype-external-links": "^3.0.0",
@@ -55,10 +55,10 @@
 		"unist-util-visit-parents": "^6.0.2"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.5.8",
+		"@biomejs/biome": "2.5.9",
 		"@pagefind/default-ui": "^1.5.2",
 		"@shikijs/transformers": "^4.4.3",
-		"@types/markdown-it": "^14.1.2",
+		"@types/markdown-it": "^14.2.0",
 		"@types/sanitize-html": "^2.16.1",
 		"@vite-pwa/assets-generator": "^1.0.2",
 		"@vite-pwa/astro": "^1.2.0",
