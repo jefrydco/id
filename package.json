@@ -48,7 +48,7 @@
 		"remark-math": "^6.0.0",
 		"remark-smartypants": "^3.0.3",
 		"sanitize-html": "^2.17.7",
-		"satori": "^0.29.0",
+		"satori": "^0.33.0",
 		"sharp": "^0.35.3",
 		"twoslash": "^0.3.9",
 		"unist-util-visit": "^5.1.0",
