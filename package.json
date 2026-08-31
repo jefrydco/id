@@ -55,7 +55,7 @@
 		"unist-util-visit-parents": "^6.0.2"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.5.10",
+		"@biomejs/biome": "2.5.11",
 		"@pagefind/default-ui": "^1.5.2",
 		"@shikijs/transformers": "^4.4.3",
 		"@types/markdown-it": "^14.2.0",
