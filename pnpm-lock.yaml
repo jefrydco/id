@@ -73,8 +73,8 @@ importers:
         specifier: ^11.17.2
         version: 11.17.2
       node-html-parser:
-        specifier: ^9.0.1
-        version: 9.0.2
+        specifier: ^9.0.3
+        version: 9.0.3
       puppeteer:
         specifier: ^25.9.0
         version: 25.9.0
@@ -4136,8 +4136,8 @@ packages:
       encoding:
         optional: true
 
-  node-html-parser@9.0.2:
-    resolution: {integrity: sha512-XhM0CTeF4Hkw3el7VCyasGJCEvp500Xf0s1J3ZigYfTOkVqZRQRY3EiAw1CbJzNrxaKSDthXiT9c/4CBwIJyfw==}
+  node-html-parser@9.0.3:
+    resolution: {integrity: sha512-iaQ9rokcYNp99IY0h82q04Wtc27SObRT+OEytdJh0bFv2IN0fypnU63KUNVavkPSiwsmIELG1eUenajGhzrvpg==}
 
   node-mock-http@1.0.5:
     resolution: {integrity: sha512-KQyt/wLjG3TAc7DOUhpqWzgd4ERxR80JOlTK5VE5R1S12IaPVN5qkj4klBce9HPG1Njuup4Sb5bljaT34lIyjw==}
@@ -9871,7 +9871,7 @@ snapshots:
     dependencies:
       whatwg-url: 5.0.0
 
-  node-html-parser@9.0.2:
+  node-html-parser@9.0.3:
     dependencies:
       css-select: 5.2.2
       entities: 8.0.0
