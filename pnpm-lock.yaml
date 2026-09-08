@@ -115,13 +115,13 @@ importers:
     dependencies:
       '@astrojs/cloudflare':
         specifier: ^14.3.0
-        version: 14.3.0(@types/node@26.4.0)(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.0.3)(jiti@2.7.0)(terser@5.51.2))(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(wrangler@4.129.0(@types/node@26.4.0))
+        version: 14.3.0(@types/node@26.4.0)(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(wrangler@4.129.0(@types/node@26.4.0))
       '@astrojs/markdown-remark':
         specifier: ^7.3.0
         version: 7.3.0(supports-color@10.2.2)
       '@astrojs/mdx':
         specifier: ^8.0.0
-        version: 8.0.0(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@astrojs/markdown-satteri@0.4.0)(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.0.3)(jiti@2.7.0)(terser@5.51.2))
+        version: 8.0.0(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@astrojs/markdown-satteri@0.4.0)(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))
       '@astrojs/rss':
         specifier: ^4.0.18
         version: 4.0.19
@@ -130,7 +130,7 @@ importers:
         version: 3.7.4
       '@lucide/astro':
         specifier: ^1.41.0
-        version: 1.41.0(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.0.3)(jiti@2.7.0)(terser@5.51.2))
+        version: 1.41.0(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))
       '@mathjax/src':
         specifier: ^4.1.3
         version: 4.1.3
@@ -139,7 +139,7 @@ importers:
         version: 0.1.4(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
       '@sentry/astro':
         specifier: ^10.73.0
-        version: 10.73.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.0.3)(jiti@2.7.0)(terser@5.51.2))(rollup@4.63.1)(supports-color@10.2.2)
+        version: 10.73.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(rollup@4.63.1)(supports-color@10.2.2)
       '@sentry/cloudflare':
         specifier: ^10.73.0
         version: 10.73.0(wrangler@4.129.0(@types/node@26.4.0))
@@ -151,10 +151,10 @@ importers:
         version: 149.0.0
       astro:
         specifier: ^7.3.1
-        version: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.0.3)(jiti@2.7.0)(terser@5.51.2)
+        version: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
       astro-pagefind:
         specifier: ^2.0.1
-        version: 2.0.1(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.0.3)(jiti@2.7.0)(terser@5.51.2))
+        version: 2.0.1(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))
       feed:
         specifier: ^6.0.0
         version: 6.0.0
@@ -174,8 +174,8 @@ importers:
         specifier: ^11.17.2
         version: 11.17.2
       node-html-parser:
-        specifier: ^9.0.3
-        version: 9.0.3
+        specifier: ^9.0.4
+        version: 9.0.4
       puppeteer:
         specifier: ^25.10.0
         version: 25.10.0
@@ -205,7 +205,7 @@ importers:
         version: 0.33.4
       sharp:
         specifier: ^0.35.3
-        version: 0.35.4(@types/node@25.0.3)
+        version: 0.35.4(@types/node@26.4.0)
       twoslash:
         specifier: ^0.3.9
         version: 0.3.9(supports-color@10.2.2)(typescript@6.0.3)
@@ -233,10 +233,10 @@ importers:
         version: 2.16.1
       '@vite-pwa/assets-generator':
         specifier: ^1.0.2
-        version: 1.0.2(@types/node@25.0.3)
+        version: 1.0.2(@types/node@26.4.0)
       '@vite-pwa/astro':
         specifier: ^1.2.0
-        version: 1.2.0(@vite-pwa/assets-generator@1.0.2(@types/node@25.0.3))(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.0.3)(jiti@2.7.0)(terser@5.51.2))(vite-plugin-pwa@1.3.0(@vite-pwa/assets-generator@1.0.2(@types/node@25.0.3))(supports-color@10.2.2)(vite@8.2.2(@types/node@25.0.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(workbox-build@7.4.1(supports-color@10.2.2))(workbox-window@7.4.1))
+        version: 1.2.0(@vite-pwa/assets-generator@1.0.2(@types/node@26.4.0))(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(vite-plugin-pwa@1.3.0(@vite-pwa/assets-generator@1.0.2(@types/node@26.4.0))(supports-color@10.2.2)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(workbox-build@7.4.1(supports-color@10.2.2))(workbox-window@7.4.1))
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
@@ -4237,8 +4237,8 @@ packages:
       encoding:
         optional: true
 
-  node-html-parser@9.0.3:
-    resolution: {integrity: sha512-iaQ9rokcYNp99IY0h82q04Wtc27SObRT+OEytdJh0bFv2IN0fypnU63KUNVavkPSiwsmIELG1eUenajGhzrvpg==}
+  node-html-parser@9.0.4:
+    resolution: {integrity: sha512-reUSrZkF1rO7hEYe5mJwtbVcQ6mB5QrViCZH6Wv+iz3er/PA9Q50gol15dMLQRDfdli4VzqPMPR24HNRFgVKFw==}
 
   node-mock-http@1.0.5:
     resolution: {integrity: sha512-KQyt/wLjG3TAc7DOUhpqWzgd4ERxR80JOlTK5VE5R1S12IaPVN5qkj4klBce9HPG1Njuup4Sb5bljaT34lIyjw==}
@@ -5400,12 +5400,12 @@ snapshots:
       jsonpointer: 5.0.1
       leven: 3.1.0
 
-  '@astrojs/cloudflare@14.3.0(@types/node@26.4.0)(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.0.3)(jiti@2.7.0)(terser@5.51.2))(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(wrangler@4.129.0(@types/node@26.4.0))':
+  '@astrojs/cloudflare@14.3.0(@types/node@26.4.0)(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(wrangler@4.129.0(@types/node@26.4.0))':
     dependencies:
       '@astrojs/internal-helpers': 0.11.0
       '@astrojs/underscore-redirects': 1.0.4
-      '@cloudflare/vite-plugin': 1.54.4(@types/node@26.4.0)(vite@8.2.2(@types/node@25.0.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(wrangler@4.129.0(@types/node@26.4.0))
-      astro: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.0.3)(jiti@2.7.0)(terser@5.51.2)
+      '@cloudflare/vite-plugin': 1.54.4(@types/node@26.4.0)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(wrangler@4.129.0(@types/node@26.4.0))
+      astro: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
       piccolore: 0.1.3
       vite: 8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)
       wrangler: 4.129.0(@types/node@26.4.0)
@@ -5524,11 +5524,11 @@ snapshots:
       github-slugger: 2.0.0
       satteri: 0.10.5
 
-  '@astrojs/mdx@8.0.0(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@astrojs/markdown-satteri@0.4.0)(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.0.3)(jiti@2.7.0)(terser@5.51.2))':
+  '@astrojs/mdx@8.0.0(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@astrojs/markdown-satteri@0.4.0)(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))':
     dependencies:
       '@astrojs/internal-helpers': 0.11.0
       '@astrojs/markdown-satteri': 0.4.0
-      astro: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.0.3)(jiti@2.7.0)(terser@5.51.2)
+      astro: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
       es-module-lexer: 2.3.2
     optionalDependencies:
       '@astrojs/markdown-remark': 7.3.0(supports-color@10.2.2)
@@ -6316,12 +6316,12 @@ snapshots:
     optionalDependencies:
       workerd: 1.20260903.1
 
-  '@cloudflare/vite-plugin@1.54.4(@types/node@26.4.0)(vite@8.2.2(@types/node@25.0.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(wrangler@4.129.0(@types/node@26.4.0))':
+  '@cloudflare/vite-plugin@1.54.4(@types/node@26.4.0)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(wrangler@4.129.0(@types/node@26.4.0))':
     dependencies:
       '@cloudflare/unenv-preset': 2.16.1(unenv@2.0.0-rc.24)(workerd@1.20260903.1)
       miniflare: 5.20260903.0-alpha(@types/node@26.4.0)
       unenv: 2.0.0-rc.24
-      vite: 8.2.2(@types/node@25.0.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)
+      vite: 8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)
       workerd: 1.20260903.1
       wrangler: 4.129.0(@types/node@26.4.0)
       ws: 8.21.0
@@ -6671,9 +6671,9 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
 
-  '@lucide/astro@1.41.0(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.0.3)(jiti@2.7.0)(terser@5.51.2))':
+  '@lucide/astro@1.41.0(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))':
     dependencies:
-      astro: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.0.3)(jiti@2.7.0)(terser@5.51.2)
+      astro: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
 
   '@mathjax/mathjax-newcm-font@4.1.3': {}
 
@@ -7059,14 +7059,14 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.63.1':
     optional: true
 
-  '@sentry/astro@10.73.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.0.3)(jiti@2.7.0)(terser@5.51.2))(rollup@4.63.1)(supports-color@10.2.2)':
+  '@sentry/astro@10.73.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(rollup@4.63.1)(supports-color@10.2.2)':
     dependencies:
       '@sentry/browser': 10.73.0
       '@sentry/conventions': 0.16.0
       '@sentry/core': 10.73.0
       '@sentry/node': 10.73.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(supports-color@10.2.2)
       '@sentry/vite-plugin': 5.4.0(rollup@4.63.1)(supports-color@10.2.2)
-      astro: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.0.3)(jiti@2.7.0)(terser@5.51.2)
+      astro: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
     transitivePeerDependencies:
       - '@opentelemetry/core'
       - '@opentelemetry/exporter-trace-otlp-http'
@@ -7508,23 +7508,23 @@ snapshots:
       d3-selection: 3.0.0
       d3-transition: 3.0.1(d3-selection@3.0.0)
 
-  '@vite-pwa/assets-generator@1.0.2(@types/node@25.0.3)':
+  '@vite-pwa/assets-generator@1.0.2(@types/node@26.4.0)':
     dependencies:
       cac: 6.7.14
       colorette: 2.0.20
       consola: 3.4.2
-      sharp: 0.35.4(@types/node@25.0.3)
-      sharp-ico: 0.1.5(@types/node@25.0.3)
+      sharp: 0.35.4(@types/node@26.4.0)
+      sharp-ico: 0.1.5(@types/node@26.4.0)
       unconfig: 7.5.0
     transitivePeerDependencies:
       - '@types/node'
 
-  '@vite-pwa/astro@1.2.0(@vite-pwa/assets-generator@1.0.2(@types/node@25.0.3))(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.0.3)(jiti@2.7.0)(terser@5.51.2))(vite-plugin-pwa@1.3.0(@vite-pwa/assets-generator@1.0.2(@types/node@25.0.3))(supports-color@10.2.2)(vite@8.2.2(@types/node@25.0.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(workbox-build@7.4.1(supports-color@10.2.2))(workbox-window@7.4.1))':
+  '@vite-pwa/astro@1.2.0(@vite-pwa/assets-generator@1.0.2(@types/node@26.4.0))(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(vite-plugin-pwa@1.3.0(@vite-pwa/assets-generator@1.0.2(@types/node@26.4.0))(supports-color@10.2.2)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(workbox-build@7.4.1(supports-color@10.2.2))(workbox-window@7.4.1))':
     dependencies:
-      astro: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.0.3)(jiti@2.7.0)(terser@5.51.2)
-      vite-plugin-pwa: 1.3.0(@vite-pwa/assets-generator@1.0.2(@types/node@25.0.3))(supports-color@10.2.2)(vite@8.2.2(@types/node@25.0.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(workbox-build@7.4.1(supports-color@10.2.2))(workbox-window@7.4.1)
+      astro: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
+      vite-plugin-pwa: 1.3.0(@vite-pwa/assets-generator@1.0.2(@types/node@26.4.0))(supports-color@10.2.2)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(workbox-build@7.4.1(supports-color@10.2.2))(workbox-window@7.4.1)
     optionalDependencies:
-      '@vite-pwa/assets-generator': 1.0.2(@types/node@25.0.3)
+      '@vite-pwa/assets-generator': 1.0.2(@types/node@26.4.0)
 
   '@xmldom/xmldom@0.9.12': {}
 
@@ -7595,104 +7595,12 @@ snapshots:
 
   astring@1.9.0: {}
 
-  astro-pagefind@2.0.1(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.0.3)(jiti@2.7.0)(terser@5.51.2)):
+  astro-pagefind@2.0.1(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)):
     dependencies:
       '@pagefind/component-ui': 1.5.2
-      astro: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.0.3)(jiti@2.7.0)(terser@5.51.2)
+      astro: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
       pagefind: 1.5.2
       sirv: 3.0.2
-
-  astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@25.0.3)(jiti@2.7.0)(terser@5.51.2):
-    dependencies:
-      '@astrojs/compiler-rs': 0.4.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)
-      '@astrojs/internal-helpers': 0.11.0
-      '@astrojs/markdown-satteri': 0.4.0
-      '@astrojs/telemetry': 3.3.3
-      '@capsizecss/unpack': 4.0.1
-      '@clack/prompts': 1.7.0
-      '@oslojs/encoding': 1.1.0
-      am-i-vibing: 0.4.0
-      aria-query: 5.3.2
-      axobject-query: 4.1.0
-      ci-info: 4.4.0
-      clsx: 2.1.1
-      common-ancestor-path: 2.0.0
-      cookie: 2.0.1
-      devalue: 5.9.2
-      diff: 9.0.0
-      dset: 3.1.4
-      es-module-lexer: 2.3.2
-      esbuild: 0.28.2
-      find-proc: 0.1.0
-      flattie: 1.1.1
-      fontace: 0.4.1
-      get-tsconfig: 5.0.0-beta.4
-      github-slugger: 2.0.0
-      html-escaper: 3.0.3
-      http-cache-semantics: 4.2.0
-      js-yaml: 4.3.2
-      jsonc-parser: 3.3.1
-      magic-string: 1.2.3
-      magicast: 0.5.4
-      mrmime: 2.0.1
-      neotraverse: 1.0.1
-      obug: 2.1.4
-      p-limit: 7.3.2
-      p-queue: 9.3.3
-      package-manager-detector: 1.8.0
-      piccolore: 0.1.3
-      picomatch: 4.0.7
-      semver: 7.8.5
-      shiki: 4.4.3
-      smol-toml: 1.8.0
-      svgo: 4.1.0
-      tinyclip: 0.1.15
-      tinyexec: 1.3.1
-      tinyglobby: 0.2.17
-      ultrahtml: 1.7.0
-      unifont: 0.7.5
-      unstorage: 1.17.5
-      vite: 8.2.2(@types/node@25.0.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)
-      vitefu: 1.1.3(vite@8.2.2(@types/node@25.0.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))
-      xxhash-wasm: 1.1.0
-      yargs-parser: 22.0.0
-      zod: 4.5.4
-    optionalDependencies:
-      '@astrojs/markdown-remark': 7.3.0(supports-color@10.2.2)
-      sharp: 0.35.4(@types/node@25.0.3)
-    transitivePeerDependencies:
-      - '@azure/app-configuration'
-      - '@azure/cosmos'
-      - '@azure/data-tables'
-      - '@azure/identity'
-      - '@azure/keyvault-secrets'
-      - '@azure/storage-blob'
-      - '@capacitor/preferences'
-      - '@deno/kv'
-      - '@emnapi/core'
-      - '@emnapi/runtime'
-      - '@netlify/blobs'
-      - '@planetscale/database'
-      - '@types/node'
-      - '@upstash/redis'
-      - '@vercel/blob'
-      - '@vercel/functions'
-      - '@vercel/kv'
-      - '@vitejs/devtools'
-      - aws4fetch
-      - db0
-      - idb-keyval
-      - ioredis
-      - jiti
-      - less
-      - sass
-      - sass-embedded
-      - stylus
-      - sugarss
-      - terser
-      - tsx
-      - uploadthing
-      - yaml
 
   astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2):
     dependencies:
@@ -7745,7 +7653,7 @@ snapshots:
       unifont: 0.7.5
       unstorage: 1.17.5
       vite: 8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)
-      vitefu: 1.1.3(vite@8.2.2(@types/node@25.0.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))
+      vitefu: 1.1.3(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))
       xxhash-wasm: 1.1.0
       yargs-parser: 22.0.0
       zod: 4.5.4
@@ -9976,7 +9884,7 @@ snapshots:
     dependencies:
       whatwg-url: 5.0.0
 
-  node-html-parser@9.0.3:
+  node-html-parser@9.0.4:
     dependencies:
       css-select: 5.2.2
       entities: 8.0.0
@@ -10608,46 +10516,13 @@ snapshots:
       es-errors: 1.3.0
       es-object-atoms: 1.1.2
 
-  sharp-ico@0.1.5(@types/node@25.0.3):
+  sharp-ico@0.1.5(@types/node@26.4.0):
     dependencies:
       decode-ico: 0.4.1
       ico-endec: 0.1.6
-      sharp: 0.35.4(@types/node@25.0.3)
+      sharp: 0.35.4(@types/node@26.4.0)
     transitivePeerDependencies:
       - '@types/node'
-
-  sharp@0.35.4(@types/node@25.0.3):
-    dependencies:
-      '@img/colour': 1.1.0
-      detect-libc: 2.1.2
-      semver: 7.8.5
-    optionalDependencies:
-      '@img/sharp-darwin-arm64': 0.35.4
-      '@img/sharp-darwin-x64': 0.35.4
-      '@img/sharp-freebsd-wasm32': 0.35.4
-      '@img/sharp-libvips-darwin-arm64': 1.3.3
-      '@img/sharp-libvips-darwin-x64': 1.3.3
-      '@img/sharp-libvips-linux-arm': 1.3.3
-      '@img/sharp-libvips-linux-arm64': 1.3.3
-      '@img/sharp-libvips-linux-ppc64': 1.3.3
-      '@img/sharp-libvips-linux-riscv64': 1.3.3
-      '@img/sharp-libvips-linux-s390x': 1.3.3
-      '@img/sharp-libvips-linux-x64': 1.3.3
-      '@img/sharp-libvips-linuxmusl-arm64': 1.3.3
-      '@img/sharp-libvips-linuxmusl-x64': 1.3.3
-      '@img/sharp-linux-arm': 0.35.4
-      '@img/sharp-linux-arm64': 0.35.4
-      '@img/sharp-linux-ppc64': 0.35.4
-      '@img/sharp-linux-riscv64': 0.35.4
-      '@img/sharp-linux-s390x': 0.35.4
-      '@img/sharp-linux-x64': 0.35.4
-      '@img/sharp-linuxmusl-arm64': 0.35.4
-      '@img/sharp-linuxmusl-x64': 0.35.4
-      '@img/sharp-webcontainers-wasm32': 0.35.4
-      '@img/sharp-win32-arm64': 0.35.4
-      '@img/sharp-win32-ia32': 0.35.4
-      '@img/sharp-win32-x64': 0.35.4
-      '@types/node': 25.0.3
 
   sharp@0.35.4(@types/node@26.4.0):
     dependencies:
@@ -11182,32 +11057,18 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.3
 
-  vite-plugin-pwa@1.3.0(@vite-pwa/assets-generator@1.0.2(@types/node@25.0.3))(supports-color@10.2.2)(vite@8.2.2(@types/node@25.0.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(workbox-build@7.4.1(supports-color@10.2.2))(workbox-window@7.4.1):
+  vite-plugin-pwa@1.3.0(@vite-pwa/assets-generator@1.0.2(@types/node@26.4.0))(supports-color@10.2.2)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(workbox-build@7.4.1(supports-color@10.2.2))(workbox-window@7.4.1):
     dependencies:
       debug: 4.4.3(supports-color@10.2.2)
       pretty-bytes: 6.1.1
       tinyglobby: 0.2.17
-      vite: 8.2.2(@types/node@25.0.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)
+      vite: 8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)
       workbox-build: 7.4.1(supports-color@10.2.2)
       workbox-window: 7.4.1
     optionalDependencies:
-      '@vite-pwa/assets-generator': 1.0.2(@types/node@25.0.3)
+      '@vite-pwa/assets-generator': 1.0.2(@types/node@26.4.0)
     transitivePeerDependencies:
       - supports-color
-
-  vite@8.2.2(@types/node@25.0.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2):
-    dependencies:
-      lightningcss: 1.33.0
-      picomatch: 4.0.7
-      postcss: 8.5.26
-      rolldown: 1.2.6
-      tinyglobby: 0.2.17
-    optionalDependencies:
-      '@types/node': 25.0.3
-      esbuild: 0.28.2
-      fsevents: 2.3.3
-      jiti: 2.7.0
-      terser: 5.51.2
 
   vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2):
     dependencies:
@@ -11223,9 +11084,9 @@ snapshots:
       jiti: 2.7.0
       terser: 5.51.2
 
-  vitefu@1.1.3(vite@8.2.2(@types/node@25.0.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)):
+  vitefu@1.1.3(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)):
     optionalDependencies:
-      vite: 8.2.2(@types/node@25.0.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)
+      vite: 8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)
 
   web-namespaces@2.0.1: {}
 
