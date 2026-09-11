@@ -114,14 +114,14 @@ importers:
   .:
     dependencies:
       '@astrojs/cloudflare':
-        specifier: ^14.3.0
-        version: 14.3.0(@types/node@26.4.0)(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(wrangler@4.129.0(@types/node@26.4.0))
+        specifier: ^14.3.1
+        version: 14.3.1(@types/node@26.4.0)(astro@7.3.2(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(wrangler@4.129.0(@types/node@26.4.0))
       '@astrojs/markdown-remark':
-        specifier: ^7.3.0
-        version: 7.3.0(supports-color@10.2.2)
+        specifier: ^7.3.1
+        version: 7.3.1(supports-color@10.2.2)
       '@astrojs/mdx':
-        specifier: ^8.0.0
-        version: 8.0.0(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@astrojs/markdown-satteri@0.4.0)(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))
+        specifier: ^8.0.1
+        version: 8.0.1(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@astrojs/markdown-satteri@0.4.1)(astro@7.3.2(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))
       '@astrojs/rss':
         specifier: ^4.0.18
         version: 4.0.19
@@ -129,32 +129,32 @@ importers:
         specifier: ^3.7.4
         version: 3.7.4
       '@lucide/astro':
-        specifier: ^1.42.0
-        version: 1.42.0(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))
+        specifier: ^1.44.0
+        version: 1.44.0(astro@7.3.2(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))
       '@mathjax/src':
         specifier: ^4.1.3
         version: 4.1.3
       '@playform/inline':
         specifier: ^0.1.4
-        version: 0.1.4(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
+        version: 0.1.4(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
       '@sentry/astro':
-        specifier: ^10.73.0
-        version: 10.73.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(rollup@4.63.1)(supports-color@10.2.2)
+        specifier: ^10.74.0
+        version: 10.74.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(astro@7.3.2(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(rollup@4.63.1)(supports-color@10.2.2)
       '@sentry/cloudflare':
-        specifier: ^10.73.0
-        version: 10.73.0(wrangler@4.129.0(@types/node@26.4.0))
+        specifier: ^10.74.0
+        version: 10.74.0(wrangler@4.129.0(@types/node@26.4.0))
       '@shikijs/twoslash':
         specifier: ^4.4.3
         version: 4.4.3(supports-color@10.2.2)(typescript@6.0.3)
       '@sparticuz/chromium':
-        specifier: ^149.0.0
-        version: 149.0.0
+        specifier: ^152.0.0
+        version: 152.0.0
       astro:
-        specifier: ^7.3.1
-        version: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
+        specifier: ^7.3.2
+        version: 7.3.2(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
       astro-pagefind:
         specifier: ^2.0.1
-        version: 2.0.1(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))
+        version: 2.0.1(astro@7.3.2(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))
       feed:
         specifier: ^6.0.0
         version: 6.0.0
@@ -171,8 +171,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       mermaid:
-        specifier: ^11.17.2
-        version: 11.17.2
+        specifier: ^12.0.0
+        version: 12.0.0
       node-html-parser:
         specifier: ^9.0.4
         version: 9.0.4
@@ -236,7 +236,7 @@ importers:
         version: 1.0.2(@types/node@26.4.0)
       '@vite-pwa/astro':
         specifier: ^1.2.0
-        version: 1.2.0(@vite-pwa/assets-generator@1.0.2(@types/node@26.4.0))(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(vite-plugin-pwa@1.3.0(@vite-pwa/assets-generator@1.0.2(@types/node@26.4.0))(supports-color@10.2.2)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(workbox-build@7.4.1(supports-color@10.2.2))(workbox-window@7.4.1))
+        version: 1.2.0(@vite-pwa/assets-generator@1.0.2(@types/node@26.4.0))(astro@7.3.2(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(vite-plugin-pwa@1.3.0(@vite-pwa/assets-generator@1.0.2(@types/node@26.4.0))(supports-color@10.2.2)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(workbox-build@7.4.1(supports-color@10.2.2))(workbox-window@7.4.1))
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
@@ -261,8 +261,8 @@ packages:
     peerDependencies:
       ajv: '>=8'
 
-  '@astrojs/cloudflare@14.3.0':
-    resolution: {integrity: sha512-sJZH33jpin7IM4NW0xREPSmqzxyNtzmdywMyXah8VID/MhvNwaOiu6Wwha97QNAKZQwZoPbgAblZjxqisyfDnA==}
+  '@astrojs/cloudflare@14.3.1':
+    resolution: {integrity: sha512-sIweOA4GWpTr/M71akzEVypVO5b0FyLKll+4V9gtPOKAO4NejpaanRoQ/97wT9v1dSsFyACWDzL+u9xyT9BqUQ==}
     peerDependencies:
       astro: ^7.2.0
       wrangler: ^4.129.0
@@ -335,14 +335,14 @@ packages:
   '@astrojs/internal-helpers@0.11.0':
     resolution: {integrity: sha512-3rzxJ+xbo0+8YyqOzLziIN32wmsHdCjEVz2sGOpRxJ+Ben/KiLph4ItxBy1abEL+E8fkRzqjg0rfXmaHJGw9JA==}
 
-  '@astrojs/markdown-remark@7.3.0':
-    resolution: {integrity: sha512-mRwn2W2PKkOj8XEAiD3b9RIF4qq6FKB6U4c98GxFLkEJH7uA6ZZv8TiqVjJSPMANLb1NtwBTgkY+KO4mTXnT/Q==}
+  '@astrojs/markdown-remark@7.3.1':
+    resolution: {integrity: sha512-QCjsjZQl0+Cgb91+T3Ip9hyUe1r5aLm4udi584rML9YO3syupbAYE+jWpAxYg+z4lFLNUugPrylFxZ+8qFTClg==}
 
-  '@astrojs/markdown-satteri@0.4.0':
-    resolution: {integrity: sha512-wykOOW9KsUVcZweOpY/CeXpdKcCKZy6fQbdcteWFuI75+sQCiqxYM7VKsGa5b+aGl3cYQscFY37rsbbyal5MRw==}
+  '@astrojs/markdown-satteri@0.4.1':
+    resolution: {integrity: sha512-EniHbFNa6SQHDih7JnpPos3NWXO6hdt4raBcOosfGmlfc3gP9CI/sESA3VOf1PgJZ7SFfewlZW9Livn0JugEZg==}
 
-  '@astrojs/mdx@8.0.0':
-    resolution: {integrity: sha512-4I/z+VgUO0B9I/+yhzIEpLyBYQZNJsInmrtqClP4lqX9yvUpbuV72zfRTZ8VqJLKABETUE5CYOl+23va8nqxZg==}
+  '@astrojs/mdx@8.0.1':
+    resolution: {integrity: sha512-VKodp/f3+XE6L0950K+ZOAolY47vdt0R78Ao+L2RdJ1hfAdYffL7IEjc/MsoyuS7CPVvCsd5/I3RP0ZyAIewdQ==}
     engines: {node: '>=22.12.0'}
     peerDependencies:
       '@astrojs/markdown-remark': ^7.3.0
@@ -986,8 +986,20 @@ packages:
     resolution: {integrity: sha512-CuNiSqg7+e1cO/GjffyMOm5Tt2jUF9CWHHnvQ/UkqvtkGfHdgwEC0wpmq7fkN3gxwpRnrAN0WzO3vREKmNolMQ==}
     engines: {node: '>=18'}
 
+  '@chevrotain/cst-dts-gen@11.1.2':
+    resolution: {integrity: sha512-XTsjvDVB5nDZBQB8o0o/0ozNelQtn2KrUVteIHSlPd2VAV2utEb6JzyCJaJ8tGxACR4RiBNWy5uYUHX2eji88Q==}
+
+  '@chevrotain/gast@11.1.2':
+    resolution: {integrity: sha512-Z9zfXR5jNZb1Hlsd/p+4XWeUFugrHirq36bKzPWDSIacV+GPSVXdk+ahVWZTwjhNwofAWg/sZg58fyucKSQx5g==}
+
+  '@chevrotain/regexp-to-ast@11.1.2':
+    resolution: {integrity: sha512-nMU3Uj8naWer7xpZTYJdxbAs6RIv/dxYzkYU8GSwgUtcAAlzjcPfX1w+RKRcYG8POlzMeayOQ/znfwxEGo5ulw==}
+
   '@chevrotain/types@11.1.2':
     resolution: {integrity: sha512-U+HFai5+zmJCkK86QsaJtoITlboZHBqrVketcO2ROv865xfCMSFpELQoz1GkX5GzME8pTa+3kbKrZHQtI0gdbw==}
+
+  '@chevrotain/utils@11.1.2':
+    resolution: {integrity: sha512-4mudFAQ6H+MqBTfqLmU7G1ZwRzCLfJEooL/fsF6rCX5eePMbGhoy5n4g+G4vlh2muDcsCTJtL+uKbOzWxs5LHA==}
 
   '@clack/core@1.4.3':
     resolution: {integrity: sha512-/kr3UWNtdJfxZtPgDqUOmG2pvwlmcLGheex5yiZKdwbzZJxhV+HMNR9QNmyY5cGwTNV6LrR7Jtp+KjhUAP1qBQ==}
@@ -1569,8 +1581,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@lucide/astro@1.42.0':
-    resolution: {integrity: sha512-rdvRg1ytvtTjqETQCZX2DhScGXJCF+MK0pwq6Yj6warmo3+VesrqUMc2O0rpH7k5l/OQazkPmxfYOcVucb7kBw==}
+  '@lucide/astro@1.44.0':
+    resolution: {integrity: sha512-WA7/f3slXUhrffeEGeYtBhKItnG6FitVawY6M40EU26prnJDUcGNQcGb+8Mpyu9ZKu2EnLI3JYGr6AMIVImGFw==}
     peerDependencies:
       astro: ^4 || ^5 || ^6 || ^7
 
@@ -1583,8 +1595,9 @@ packages:
   '@mdx-js/mdx@3.1.1':
     resolution: {integrity: sha512-f6ZO2ifpwAQIpzGWaBQT2TXxPv6z3RBzQKpVftEWN78Vl/YweF1uwussDx8ECAXVtr3Rs89fKyG9YlzUs9DyGQ==}
 
-  '@mermaid-js/parser@1.2.1':
-    resolution: {integrity: sha512-n12NohV3mrUyUL2o93IgG/ifeW9FTyeJn3zDxkhwa8MJ9Fxg3HQMlA3RiGmD/3UnJvheztkjjQAjA2T4LmUcpw==}
+  '@mermaid-js/parser@2.0.0':
+    resolution: {integrity: sha512-K8BeapFUfrfxbRAUQAG5oBOCwo1+bNWzaVnPxTCutkfrTBn6T/j91FIhqxWJ32SUeQ9T3iy1zcmPZ5ROZEvDrg==}
+    engines: {node: '>=22.12.0'}
 
   '@napi-rs/lzma-linux-x64-gnu@1.5.1':
     resolution: {integrity: sha512-oTXEIha4SsuXdTA4Iyskj0kpdx2yVXdhd75c2v3xGrHFfVMsbhTPZU/nMPL4sWKo4pBHm3aucLaqGlF696dTyQ==}
@@ -2024,18 +2037,18 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@sentry/astro@10.73.0':
-    resolution: {integrity: sha512-4RNs73IWjA+FnGpbJIz1JNeg0Q+kCldnMWlTqHA7mat3y8LiY0TZ6TX1wHZe1EymVNAnVf1YYU+JNqpkv6OCjw==}
+  '@sentry/astro@10.74.0':
+    resolution: {integrity: sha512-jxD7M8SC8CudQy+p3omDzEWTMRYC68Tl72G6skeV+75qITj+mM+FhYWR9IYR+QZ8jCjzUytYz3dvmTOhs8kenQ==}
     engines: {node: '>=18.19.1'}
     peerDependencies:
       astro: '>=3.x || >=4.0.0-beta || >=7.0.0-beta'
 
-  '@sentry/browser-utils@10.73.0':
-    resolution: {integrity: sha512-qQygxJZ+RV779+iL1+lrJ4f4sZLgbgW0/JWPNp0YlcEAE62yCsdKbqoTEjB/EugdS4mSjBMX0chZC6rblu2Ycw==}
+  '@sentry/browser-utils@10.74.0':
+    resolution: {integrity: sha512-/Rh3WH4i2nStdOqHpaWocbpSMFPjKhlxKQgp9vkJBSolqjJzXlIpLYXOrldZHHZLG1iDoX3PFBQkNDYcPXCg0A==}
     engines: {node: '>=18'}
 
-  '@sentry/browser@10.73.0':
-    resolution: {integrity: sha512-HqTe1S5RrWLufhX2LaFP3yNoMxfNDroh120bq1zdGHZfFDBMJQ0CDXxHO+L4UJfQ5dWdCCzWbXIAiZuWGa/DFQ==}
+  '@sentry/browser@10.74.0':
+    resolution: {integrity: sha512-U6Zn+YcAgnR7bXZmpjMxivptPSsOeDKV+SlSqbJZqViOaCcZSG/vJiQr50UrdTccCwiU1LnwuOOoclJOvW+cLQ==}
     engines: {node: '>=18'}
 
   '@sentry/bundler-plugins@10.73.0':
@@ -2102,8 +2115,8 @@ packages:
     engines: {node: '>= 10'}
     hasBin: true
 
-  '@sentry/cloudflare@10.73.0':
-    resolution: {integrity: sha512-6BmvIbstT8GLdA7xDrjd3oR98tdXh7uwDbnm/Hu3HjO3py0HEQlTypeSZIDVdRpR3veYZ9eT0hJ/74Gp+QZZtQ==}
+  '@sentry/cloudflare@10.74.0':
+    resolution: {integrity: sha512-7TgISdDF306CETi4iYEhKK8f5wY7ldLrYriFDrSQRvfGByBytleW8eduBpEgmtAFZQl8WDk8vRzqk0RZ9is0gA==}
     engines: {node: '>=18'}
     peerDependencies:
       '@cloudflare/workers-types': ^4.x || ^5.x
@@ -2122,12 +2135,16 @@ packages:
     resolution: {integrity: sha512-FLO1UgH19RyasVpofu612WCOgb2nEH0dZy+R72d7p65XU9i0wxlMKm3+sgfwKmiSJp1Qhilaaxs4Jg6BbiM5HA==}
     engines: {node: '>=18'}
 
-  '@sentry/feedback@10.73.0':
-    resolution: {integrity: sha512-D6nSngX+e46Mae2/oh2bxBvxNK1z2NERbuMAhB5sx9x4xMBWIyGnYYTECehvEqV9+AqGAgxxhOZoYIG3AmRwww==}
+  '@sentry/core@10.74.0':
+    resolution: {integrity: sha512-u9rY8vcZfktccwm6LznfCZlqP5C9A+p76r4/pFS1grqpuTO0m21Cl8rosnlESrDGP/Xd9tfr91rWYk0jPH8jeQ==}
     engines: {node: '>=18'}
 
-  '@sentry/node-core@10.73.0':
-    resolution: {integrity: sha512-GHAGUmZPmm6FKfxfv2maVVJ/A99YAmd7oFOuKMDmITI6O/Msl6JB3vPTEpopVAHLW0LYJQBOjddL9C7o+Jt44g==}
+  '@sentry/feedback@10.74.0':
+    resolution: {integrity: sha512-WwUao9K2XgRIxTUTaBhm7aglhsyP7LQTGi2lxvFbXzlSagUzwew/EL2c5oqQ23Mjn94i5SY+rM4wMdgyWdtpAw==}
+    engines: {node: '>=18'}
+
+  '@sentry/node-core@10.74.0':
+    resolution: {integrity: sha512-btgZXcGmkOGgojbxHo/gfGiyqYpzC9E8zVR78Q3MtM6Xnemk9gwJiQlhNmEX/FM+C36WBRPZrdcZcnMaJhbfJw==}
     engines: {node: '>=18'}
     peerDependencies:
       '@opentelemetry/api': ^1.9.0
@@ -2147,28 +2164,28 @@ packages:
       '@opentelemetry/sdk-trace-base':
         optional: true
 
-  '@sentry/node@10.73.0':
-    resolution: {integrity: sha512-jiMJ6GgXDw6UMGzJY+o0c8OoeA9OfHqZ/xEpHfDqy75hn+9CEkRkbNGCIdMvsc7wW/Se1Os394hHfTpU+YEskg==}
+  '@sentry/node@10.74.0':
+    resolution: {integrity: sha512-u1wsarTOWHn9CCev81Da5T4IQHZgdcosXRfX2+4DMII/lVJMBYesKixTQuMwXexjVG2+pkf16zTmgjZDa+75jA==}
     engines: {node: '>=18'}
 
-  '@sentry/opentelemetry@10.73.0':
-    resolution: {integrity: sha512-fQouPQKsH0CQrw6oAn1k0Z2I+tgyochCovifr5qNS69i0OzjknLa03WJyiZ/IuzXc4AVa5jAKfOeE9slABz8Qw==}
+  '@sentry/opentelemetry@10.74.0':
+    resolution: {integrity: sha512-ua5mt0NDBfye+/ACKjAw9Ad2i+y42lOLvhxXZepZXjszblMz80MEsIZflMB7uLZUCTNH7MbZN8tlzCy8KsJKmQ==}
     engines: {node: '>=18'}
     peerDependencies:
       '@opentelemetry/api': ^1.9.0
       '@opentelemetry/core': ^1.30.1 || ^2.1.0
       '@opentelemetry/sdk-trace-base': ^1.30.1 || ^2.1.0
 
-  '@sentry/replay-canvas@10.73.0':
-    resolution: {integrity: sha512-sxa2lKkHPfF/j5xFpW7gocthWXRqyoHz8KCPy6yGc8plT477nl57iGSKhQDYsx1Ny10TLjs7YkIuPP1GY/Ax2Q==}
+  '@sentry/replay-canvas@10.74.0':
+    resolution: {integrity: sha512-HAdu4ViRsuOD5ifphQR24HugL0geZXV8LnGQVkA8vlzZWiuYgGNqDRoUWI75IgVcCYLYSaVBoKN+jTimdzG/sQ==}
     engines: {node: '>=18'}
 
-  '@sentry/replay@10.73.0':
-    resolution: {integrity: sha512-nN2wjN/Y0J5BOJV5hqRHUEBfxwUsipp1PKjcDHh6Fpxnrtfldu3Y99E8cQInseo5heFdzEvrOHBBrqWZXOHVKQ==}
+  '@sentry/replay@10.74.0':
+    resolution: {integrity: sha512-amIu0zKzhQJZoWmlwfFnn/uKRGyF+Tikph3lBgYwj5XbHv4U94PQXi9Ll8CYzzLVS7BkrCVc2Hl7RvpRg5M2Yg==}
     engines: {node: '>=18'}
 
-  '@sentry/server-utils@10.73.0':
-    resolution: {integrity: sha512-QskripdKFbM/+gipC6mpa2crLwL7+VbkX84IpHg2z9UlYQ1kNKd3aMT+Qk9NLRSw/zu1rSIAvlbWfx4D3rgNAA==}
+  '@sentry/server-utils@10.74.0':
+    resolution: {integrity: sha512-AHmPIGE8yVRyywpZRhAkm/H0cHTgsQSPhFZFbaeQLcYHFE/eOP9bAMh8Nj/Apr7WMagFXYHd04tR/63BxtLgKw==}
     engines: {node: '>=18'}
 
   '@sentry/vite-plugin@5.4.0':
@@ -2225,8 +2242,8 @@ packages:
     resolution: {integrity: sha512-P1Cz1dWaFfR4IR+U13mqqiGsLFf1KbayybWwdd2vfctdV6hDpUkgCY0nKOLLTMSoRd/jJNjtbqzf13K8DCCXQw==}
     engines: {node: '>=18'}
 
-  '@sparticuz/chromium@149.0.0':
-    resolution: {integrity: sha512-2NECBVKlUA9xIUXb4fT8OoGKdAJs+I2tNYscO8FwcxCKCWA7FmpPI0fdVxGJoIJglrFZYn+4YEJqChq4rdrxQg==}
+  '@sparticuz/chromium@152.0.0':
+    resolution: {integrity: sha512-ULl8f7LgwR9SaFRq7YqXEjZQoVlt+N1DAl5QgUiXDTtkqyNyLdSsbHAlSx+aya09xiv+EbBNyyok4+r2n4iQ6g==}
     engines: {node: ^22.17.0 || >=24.0.0}
 
   '@speed-highlight/core@1.2.24':
@@ -2504,8 +2521,8 @@ packages:
     peerDependencies:
       astro: ^2.0.4 || ^3 || ^4 || ^5 || ^6 || ^7
 
-  astro@7.3.1:
-    resolution: {integrity: sha512-A/bJYHtc6n0UAdROY9W948fW6lX0pnUA+JWKW+IGCXRyDIGN2MsXC0OlS8onZGJjr+sv8htemwOc9W5PBRXCkw==}
+  astro@7.3.2:
+    resolution: {integrity: sha512-ysTcdpGP61XZpHoMRYC/CK19DQ94qkBvzXMtXEo0gEqPNkmOU/Tv++CtWmzaI4nF2Ck8RXFdiWvdlTWa2oOr9w==}
     engines: {node: '>=22.12.0', npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
     peerDependencies:
@@ -2680,6 +2697,9 @@ packages:
 
   character-reference-invalid@2.0.1:
     resolution: {integrity: sha512-iBZ4F4wRbyORVsu0jPV7gXkOsGYjGHPmAyv+HiHG8gi5PtC9KI2j1+v8/tlibRvjoWX027ypmG/n0HtO5t7unw==}
+
+  chevrotain@11.1.2:
+    resolution: {integrity: sha512-opLQzEVriiH1uUQ4Kctsd49bRoFDXGGSC4GUqj7pGyxM3RehRhvTlZJc1FL/Flew2p5uwxa1tUDWKzI4wNM8pg==}
 
   chokidar@5.0.0:
     resolution: {integrity: sha512-TQMmc3w+5AxjpL8iIiwebF73dRDF4fBIieAqGn9RGCWaEVwQ6Fb2cGe31Yns0RRIzii5goJ1Y7xbMwo1TxMplw==}
@@ -3116,6 +3136,9 @@ packages:
   electron-to-chromium@1.5.416:
     resolution: {integrity: sha512-K6bvB2BjnNrugtIih6ewlbBI9DXa976jIdiIlRLHhBoEI9a4JaQjjHyF+A1IQI543aQYR4LnmOrT/K5fZj0aPA==}
 
+  elkjs@0.9.3:
+    resolution: {integrity: sha512-f/ZeWvW/BCXbhGEf1Ujp29EASo/lk1FDnETgNKwJrsVvGZhUWCZyg3xLJjAsxfOmt8KjswHmI5EwCQcPMpOYhQ==}
+
   emoji-regex-xs@2.0.1:
     resolution: {integrity: sha512-1QFuh8l7LqUcKe24LsPUNzjrzJQ7pgRwp1QMcZ5MX6mFplk2zQ08NVCM84++1cveaUUYtcCYHmeFEuNg16sU4g==}
     engines: {node: '>=10.0.0'}
@@ -3291,9 +3314,6 @@ packages:
   fast-xml-parser@5.11.1:
     resolution: {integrity: sha512-TBw6K/fxoQGGjCmZDw9w/ZwP3uDcnTM4YH/g+PFRWr8sbe5idXtxNN6vITh4+1ruCZaho6uBFurElsA7F0zzgw==}
     hasBin: true
-
-  fastdom@1.0.12:
-    resolution: {integrity: sha512-LB+xjSTEbjHE1cWsxu+tN2Xqr1kpi+V9aADI7sVM5ZMaXyYGPHULQMzpJMYqOTULK/73pUkWVzzObFRBkPr+hg==}
 
   fastq@1.20.3:
     resolution: {integrity: sha512-XKv5nnLs6nLF71NgiKJLIZFLkPyIEuOselLG7ujZnGrRfQK8HpvY+WqKhAJUAdLomwVHErVS4LfxFlPq0/FTAw==}
@@ -3941,6 +3961,9 @@ packages:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
     engines: {node: '>=10'}
 
+  lodash-es@4.17.23:
+    resolution: {integrity: sha512-kVI48u3PZr38HdYz98UmfPnXl2DXrpdctLrFLCd3kOx1xUkOmpFPx7gCWWM5MPkL/fD8zb+Ph0QzjGFs4+hHWg==}
+
   lodash-es@4.18.1:
     resolution: {integrity: sha512-J8xewKD/Gk22OZbhpOVSwcs60zhd95ESDwezOFuA3/099925PdHJ7OFHNTGtajL3AlZkykD32HykiMo+BIBI8A==}
 
@@ -4056,8 +4079,9 @@ packages:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
     engines: {node: '>= 8'}
 
-  mermaid@11.17.2:
-    resolution: {integrity: sha512-V6K3C8EBdEsPFZXSKMJe6ppQOENxuHARr9GvHX4hh47lAbhMRD9qf4oEK7LoaRQxULMa80/qt5gHO73aCleBBg==}
+  mermaid@12.0.0:
+    resolution: {integrity: sha512-/wQXC9iBxoGV8p3erbvaXs9h77VyLDBH6GdayVjj3hEcSQhFU4N1WUhUppotCEqlIxI2pRMwjwBSwTB1MfZBgQ==}
+    engines: {node: '>=22.12.0'}
 
   mhchemparser@4.2.1:
     resolution: {integrity: sha512-kYmyrCirqJf3zZ9t/0wGgRZ4/ZJw//VwaRVGA75C4nhE60vtnIzhl9J9ndkX/h6hxSN7pjg/cE0VxbnNM+bnDQ==}
@@ -4770,9 +4794,6 @@ packages:
   streamx@2.28.1:
     resolution: {integrity: sha512-zEzXb0s5Cds7tqMH6rhZ05lcJydCWiQPEwiNngVqzsxCc962vLY4Uw+mW7od8kDH258k2Uz/JrOkdIAAhSh9VA==}
 
-  strictdom@1.0.1:
-    resolution: {integrity: sha512-cEmp9QeXXRmjj/rVp9oyiqcvyocWab/HaoN4+bwFeZ7QzykJD6L3yD4v12K1x0tHpqRqVpJevN3gW7kyM39Bqg==}
-
   string-width@7.2.0:
     resolution: {integrity: sha512-tsaTIkKW9b4N+AEj+SVA+WhJzV7/zMhcSu78mLKWSk7cXMOSHsBKFWUs0fWwq8QyK3MgJBQRX6Gbi4kYbdvGkQ==}
     engines: {node: '>=18'}
@@ -4875,10 +4896,6 @@ packages:
   tinyclip@0.1.15:
     resolution: {integrity: sha512-uo33abH+Ays0xYaDysoBt494Hb3hsEczMpcC0MwFl773pazORx4fmvKhclhR1wonUbB6vvpRsvVMwnhfqeMc+A==}
     engines: {node: ^16.14.0 || >= 17.3.0}
-
-  tinyexec@1.3.0:
-    resolution: {integrity: sha512-QKAl9m8gWWGHV8jZcPeym6j+XULi6tOf1mT83WYJ4Lk2ytW/uwAWkrP0uFsdoYMdueVJ0qs26wZ+23xeB4ibNQ==}
-    engines: {node: '>=18'}
 
   tinyexec@1.3.1:
     resolution: {integrity: sha512-GCvB3aoys96IuDFBMcTB46JOR6mdMtAToqwiW8JlWhsoh1mhHi/xn9ss/Dg7N555GiJyEt2qzoG/NHCwM6h1EA==}
@@ -5392,7 +5409,7 @@ snapshots:
   '@antfu/install-pkg@1.1.0':
     dependencies:
       package-manager-detector: 1.8.0
-      tinyexec: 1.3.0
+      tinyexec: 1.3.1
 
   '@apideck/better-ajv-errors@0.3.7(ajv@8.20.0)':
     dependencies:
@@ -5400,12 +5417,12 @@ snapshots:
       jsonpointer: 5.0.1
       leven: 3.1.0
 
-  '@astrojs/cloudflare@14.3.0(@types/node@26.4.0)(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(wrangler@4.129.0(@types/node@26.4.0))':
+  '@astrojs/cloudflare@14.3.1(@types/node@26.4.0)(astro@7.3.2(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(wrangler@4.129.0(@types/node@26.4.0))':
     dependencies:
       '@astrojs/internal-helpers': 0.11.0
       '@astrojs/underscore-redirects': 1.0.4
       '@cloudflare/vite-plugin': 1.54.4(@types/node@26.4.0)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(wrangler@4.129.0(@types/node@26.4.0))
-      astro: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
+      astro: 7.3.2(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
       piccolore: 0.1.3
       vite: 8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)
       wrangler: 4.129.0(@types/node@26.4.0)
@@ -5490,7 +5507,7 @@ snapshots:
       smol-toml: 1.8.0
       unified: 11.0.5
 
-  '@astrojs/markdown-remark@7.3.0(supports-color@10.2.2)':
+  '@astrojs/markdown-remark@7.3.1(supports-color@10.2.2)':
     dependencies:
       '@astrojs/internal-helpers': 0.11.0
       '@astrojs/prism': 4.0.2
@@ -5517,21 +5534,21 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/markdown-satteri@0.4.0':
+  '@astrojs/markdown-satteri@0.4.1':
     dependencies:
       '@astrojs/internal-helpers': 0.11.0
       '@astrojs/prism': 4.0.2
       github-slugger: 2.0.0
       satteri: 0.10.5
 
-  '@astrojs/mdx@8.0.0(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@astrojs/markdown-satteri@0.4.0)(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))':
+  '@astrojs/mdx@8.0.1(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@astrojs/markdown-satteri@0.4.1)(astro@7.3.2(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))':
     dependencies:
       '@astrojs/internal-helpers': 0.11.0
-      '@astrojs/markdown-satteri': 0.4.0
-      astro: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
+      '@astrojs/markdown-satteri': 0.4.1
+      astro: 7.3.2(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
       es-module-lexer: 2.3.2
     optionalDependencies:
-      '@astrojs/markdown-remark': 7.3.0(supports-color@10.2.2)
+      '@astrojs/markdown-remark': 7.3.1(supports-color@10.2.2)
 
   '@astrojs/prism@4.0.2':
     dependencies:
@@ -6294,7 +6311,22 @@ snapshots:
     dependencies:
       fontkitten: 1.0.3
 
+  '@chevrotain/cst-dts-gen@11.1.2':
+    dependencies:
+      '@chevrotain/gast': 11.1.2
+      '@chevrotain/types': 11.1.2
+      lodash-es: 4.17.23
+
+  '@chevrotain/gast@11.1.2':
+    dependencies:
+      '@chevrotain/types': 11.1.2
+      lodash-es: 4.17.23
+
+  '@chevrotain/regexp-to-ast@11.1.2': {}
+
   '@chevrotain/types@11.1.2': {}
+
+  '@chevrotain/utils@11.1.2': {}
 
   '@clack/core@1.4.3':
     dependencies:
@@ -6671,9 +6703,9 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
 
-  '@lucide/astro@1.42.0(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))':
+  '@lucide/astro@1.44.0(astro@7.3.2(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))':
     dependencies:
-      astro: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
+      astro: 7.3.2(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
 
   '@mathjax/mathjax-newcm-font@4.1.3': {}
 
@@ -6714,7 +6746,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@mermaid-js/parser@1.2.1':
+  '@mermaid-js/parser@2.0.0':
     dependencies:
       '@chevrotain/types': 11.1.2
 
@@ -6824,10 +6856,10 @@ snapshots:
   '@pagefind/windows-x64@1.5.2':
     optional: true
 
-  '@playform/inline@0.1.4(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)':
+  '@playform/inline@0.1.4(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)':
     dependencies:
       '@playform/pipe': 0.1.4
-      astro: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
+      astro: 7.3.2(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
       beasties: 0.4.1
       deepmerge-ts: 7.1.5
     transitivePeerDependencies:
@@ -7059,14 +7091,14 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.63.1':
     optional: true
 
-  '@sentry/astro@10.73.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(rollup@4.63.1)(supports-color@10.2.2)':
+  '@sentry/astro@10.74.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(astro@7.3.2(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(rollup@4.63.1)(supports-color@10.2.2)':
     dependencies:
-      '@sentry/browser': 10.73.0
+      '@sentry/browser': 10.74.0
       '@sentry/conventions': 0.16.0
-      '@sentry/core': 10.73.0
-      '@sentry/node': 10.73.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(supports-color@10.2.2)
+      '@sentry/core': 10.74.0
+      '@sentry/node': 10.74.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(supports-color@10.2.2)
       '@sentry/vite-plugin': 5.4.0(rollup@4.63.1)(supports-color@10.2.2)
-      astro: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
+      astro: 7.3.2(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
     transitivePeerDependencies:
       - '@opentelemetry/core'
       - '@opentelemetry/exporter-trace-otlp-http'
@@ -7075,19 +7107,19 @@ snapshots:
       - supports-color
       - webpack
 
-  '@sentry/browser-utils@10.73.0':
+  '@sentry/browser-utils@10.74.0':
     dependencies:
       '@sentry/conventions': 0.16.0
-      '@sentry/core': 10.73.0
+      '@sentry/core': 10.74.0
 
-  '@sentry/browser@10.73.0':
+  '@sentry/browser@10.74.0':
     dependencies:
-      '@sentry/browser-utils': 10.73.0
+      '@sentry/browser-utils': 10.74.0
       '@sentry/conventions': 0.16.0
-      '@sentry/core': 10.73.0
-      '@sentry/feedback': 10.73.0
-      '@sentry/replay': 10.73.0
-      '@sentry/replay-canvas': 10.73.0
+      '@sentry/core': 10.74.0
+      '@sentry/feedback': 10.74.0
+      '@sentry/replay': 10.74.0
+      '@sentry/replay-canvas': 10.74.0
 
   '@sentry/bundler-plugins@10.73.0(rollup@4.63.1)(supports-color@10.2.2)':
     dependencies:
@@ -7148,11 +7180,11 @@ snapshots:
       - encoding
       - supports-color
 
-  '@sentry/cloudflare@10.73.0(wrangler@4.129.0(@types/node@26.4.0))':
+  '@sentry/cloudflare@10.74.0(wrangler@4.129.0(@types/node@26.4.0))':
     dependencies:
       '@opentelemetry/api': 1.9.1
-      '@sentry/core': 10.73.0
-      '@sentry/server-utils': 10.73.0
+      '@sentry/core': 10.74.0
+      '@sentry/server-utils': 10.74.0
       magic-string: 0.30.21
     optionalDependencies:
       wrangler: 4.129.0(@types/node@26.4.0)
@@ -7163,15 +7195,19 @@ snapshots:
     dependencies:
       '@sentry/conventions': 0.16.0
 
-  '@sentry/feedback@10.73.0':
-    dependencies:
-      '@sentry/core': 10.73.0
-
-  '@sentry/node-core@10.73.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/instrumentation@0.220.0(@opentelemetry/api@1.9.1)(supports-color@10.2.2))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))':
+  '@sentry/core@10.74.0':
     dependencies:
       '@sentry/conventions': 0.16.0
-      '@sentry/core': 10.73.0
-      '@sentry/opentelemetry': 10.73.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))
+
+  '@sentry/feedback@10.74.0':
+    dependencies:
+      '@sentry/core': 10.74.0
+
+  '@sentry/node-core@10.74.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/instrumentation@0.220.0(@opentelemetry/api@1.9.1)(supports-color@10.2.2))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))':
+    dependencies:
+      '@sentry/conventions': 0.16.0
+      '@sentry/core': 10.74.0
+      '@sentry/opentelemetry': 10.74.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))
       import-in-the-middle: 3.4.0
     optionalDependencies:
       '@opentelemetry/api': 1.9.1
@@ -7179,44 +7215,44 @@ snapshots:
       '@opentelemetry/instrumentation': 0.220.0(@opentelemetry/api@1.9.1)(supports-color@10.2.2)
       '@opentelemetry/sdk-trace-base': 2.11.0(@opentelemetry/api@1.9.1)
 
-  '@sentry/node@10.73.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(supports-color@10.2.2)':
+  '@sentry/node@10.74.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(supports-color@10.2.2)':
     dependencies:
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/instrumentation': 0.220.0(@opentelemetry/api@1.9.1)(supports-color@10.2.2)
       '@opentelemetry/sdk-trace-base': 2.11.0(@opentelemetry/api@1.9.1)
       '@sentry/conventions': 0.16.0
-      '@sentry/core': 10.73.0
-      '@sentry/node-core': 10.73.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/instrumentation@0.220.0(@opentelemetry/api@1.9.1)(supports-color@10.2.2))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))
-      '@sentry/opentelemetry': 10.73.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))
-      '@sentry/server-utils': 10.73.0
+      '@sentry/core': 10.74.0
+      '@sentry/node-core': 10.74.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/instrumentation@0.220.0(@opentelemetry/api@1.9.1)(supports-color@10.2.2))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))
+      '@sentry/opentelemetry': 10.74.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))
+      '@sentry/server-utils': 10.74.0
       import-in-the-middle: 3.4.0
     transitivePeerDependencies:
       - '@opentelemetry/core'
       - '@opentelemetry/exporter-trace-otlp-http'
       - supports-color
 
-  '@sentry/opentelemetry@10.73.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))':
+  '@sentry/opentelemetry@10.74.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))':
     dependencies:
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/sdk-trace-base': 2.11.0(@opentelemetry/api@1.9.1)
       '@sentry/conventions': 0.16.0
-      '@sentry/core': 10.73.0
+      '@sentry/core': 10.74.0
 
-  '@sentry/replay-canvas@10.73.0':
+  '@sentry/replay-canvas@10.74.0':
     dependencies:
-      '@sentry/core': 10.73.0
-      '@sentry/replay': 10.73.0
+      '@sentry/core': 10.74.0
+      '@sentry/replay': 10.74.0
 
-  '@sentry/replay@10.73.0':
+  '@sentry/replay@10.74.0':
     dependencies:
-      '@sentry/browser-utils': 10.73.0
-      '@sentry/core': 10.73.0
+      '@sentry/browser-utils': 10.74.0
+      '@sentry/core': 10.74.0
 
-  '@sentry/server-utils@10.73.0':
+  '@sentry/server-utils@10.74.0':
     dependencies:
       '@sentry/conventions': 0.16.0
-      '@sentry/core': 10.73.0
+      '@sentry/core': 10.74.0
 
   '@sentry/vite-plugin@5.4.0(rollup@4.63.1)(supports-color@10.2.2)':
     dependencies:
@@ -7288,7 +7324,7 @@ snapshots:
 
   '@sindresorhus/is@7.2.0': {}
 
-  '@sparticuz/chromium@149.0.0':
+  '@sparticuz/chromium@152.0.0':
     dependencies:
       tar-fs: 3.1.3
     transitivePeerDependencies:
@@ -7519,9 +7555,9 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
-  '@vite-pwa/astro@1.2.0(@vite-pwa/assets-generator@1.0.2(@types/node@26.4.0))(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(vite-plugin-pwa@1.3.0(@vite-pwa/assets-generator@1.0.2(@types/node@26.4.0))(supports-color@10.2.2)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(workbox-build@7.4.1(supports-color@10.2.2))(workbox-window@7.4.1))':
+  '@vite-pwa/astro@1.2.0(@vite-pwa/assets-generator@1.0.2(@types/node@26.4.0))(astro@7.3.2(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(vite-plugin-pwa@1.3.0(@vite-pwa/assets-generator@1.0.2(@types/node@26.4.0))(supports-color@10.2.2)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(workbox-build@7.4.1(supports-color@10.2.2))(workbox-window@7.4.1))':
     dependencies:
-      astro: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
+      astro: 7.3.2(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
       vite-plugin-pwa: 1.3.0(@vite-pwa/assets-generator@1.0.2(@types/node@26.4.0))(supports-color@10.2.2)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(workbox-build@7.4.1(supports-color@10.2.2))(workbox-window@7.4.1)
     optionalDependencies:
       '@vite-pwa/assets-generator': 1.0.2(@types/node@26.4.0)
@@ -7595,18 +7631,18 @@ snapshots:
 
   astring@1.9.0: {}
 
-  astro-pagefind@2.0.1(astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)):
+  astro-pagefind@2.0.1(astro@7.3.2(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)):
     dependencies:
       '@pagefind/component-ui': 1.5.2
-      astro: 7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
+      astro: 7.3.2(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
       pagefind: 1.5.2
       sirv: 3.0.2
 
-  astro@7.3.1(@astrojs/markdown-remark@7.3.0(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2):
+  astro@7.3.2(@astrojs/markdown-remark@7.3.1(supports-color@10.2.2))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2):
     dependencies:
       '@astrojs/compiler-rs': 0.4.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)
       '@astrojs/internal-helpers': 0.11.0
-      '@astrojs/markdown-satteri': 0.4.0
+      '@astrojs/markdown-satteri': 0.4.1
       '@astrojs/telemetry': 3.3.3
       '@capsizecss/unpack': 4.0.1
       '@clack/prompts': 1.7.0
@@ -7658,7 +7694,7 @@ snapshots:
       yargs-parser: 22.0.0
       zod: 4.5.4
     optionalDependencies:
-      '@astrojs/markdown-remark': 7.3.0(supports-color@10.2.2)
+      '@astrojs/markdown-remark': 7.3.1(supports-color@10.2.2)
       sharp: 0.35.4(@types/node@26.4.0)
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -7847,6 +7883,15 @@ snapshots:
   character-entities@2.0.2: {}
 
   character-reference-invalid@2.0.1: {}
+
+  chevrotain@11.1.2:
+    dependencies:
+      '@chevrotain/cst-dts-gen': 11.1.2
+      '@chevrotain/gast': 11.1.2
+      '@chevrotain/regexp-to-ast': 11.1.2
+      '@chevrotain/types': 11.1.2
+      '@chevrotain/utils': 11.1.2
+      lodash-es: 4.17.23
 
   chokidar@5.0.0:
     dependencies:
@@ -8293,6 +8338,8 @@ snapshots:
 
   electron-to-chromium@1.5.416: {}
 
+  elkjs@0.9.3: {}
+
   emoji-regex-xs@2.0.1: {}
 
   emoji-regex@10.6.0: {}
@@ -8577,10 +8624,6 @@ snapshots:
       path-expression-matcher: 1.6.2
       strnum: 2.4.2
       xml-naming: 0.3.0
-
-  fastdom@1.0.12:
-    dependencies:
-      strictdom: 1.0.1
 
   fastq@1.20.3:
     dependencies:
@@ -9271,6 +9314,8 @@ snapshots:
     dependencies:
       p-locate: 5.0.0
 
+  lodash-es@4.17.23: {}
+
   lodash-es@4.18.1: {}
 
   lodash.debounce@4.0.8: {}
@@ -9517,13 +9562,14 @@ snapshots:
 
   merge2@1.4.1: {}
 
-  mermaid@11.17.2:
+  mermaid@12.0.0:
     dependencies:
       '@braintree/sanitize-url': 7.1.2
       '@iconify/utils': 3.1.4
-      '@mermaid-js/parser': 1.2.1
+      '@mermaid-js/parser': 2.0.0
       '@types/d3': 7.4.3
       '@upsetjs/venn.js': 2.0.0
+      chevrotain: 11.1.2
       cytoscape: 3.34.2
       cytoscape-cose-bilkent: 4.1.0(cytoscape@3.34.2)
       cytoscape-fcose: 2.2.0(cytoscape@3.34.2)
@@ -9532,8 +9578,8 @@ snapshots:
       dagre-d3-es: 7.0.14
       dayjs: 1.11.23
       dompurify: 3.4.14
+      elkjs: 0.9.3
       es-toolkit: 1.52.0
-      fastdom: 1.0.12
       katex: 0.16.47
       khroma: 2.1.0
       marked: 16.4.2
@@ -10660,8 +10706,6 @@ snapshots:
       - bare-abort-controller
       - react-native-b4a
 
-  strictdom@1.0.1: {}
-
   string-width@7.2.0:
     dependencies:
       emoji-regex: 10.6.0
@@ -10817,8 +10861,6 @@ snapshots:
   tiny-inflate@1.0.3: {}
 
   tinyclip@0.1.15: {}
-
-  tinyexec@1.3.0: {}
 
   tinyexec@1.3.1: {}
 
