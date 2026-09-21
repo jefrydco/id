@@ -2051,8 +2051,8 @@ packages:
     resolution: {integrity: sha512-CKGSJLWISQ6LgMaGnMpY+XvwWQ2iiHTayUs6SGLIvYeaGo2GTjS/Z4pnbCVHb2t1VxLZksyehgcC6ZYGJeQpzQ==}
     engines: {node: '>=18'}
 
-  '@sentry/bundler-plugins@10.73.0':
-    resolution: {integrity: sha512-4X5m2hoqgKO6SxHR7MF9QnvxPNk0hwTJFixDJ/pzQGVM+C34j/rSabouBqd0M+ZdxFeAt/9kA5X0TyeceNo9YQ==}
+  '@sentry/bundler-plugins@10.75.0':
+    resolution: {integrity: sha512-kpMO7NhvfqsobpShyW/YnNJmJpw7mPEAQorJnEzf0ZRqNvEGFjKKN19SZWbbBNdcQDvHPlRIVOC00zdXuw3y/w==}
     engines: {node: '>= 18'}
     peerDependencies:
       rollup: '>=3.2.0'
@@ -2130,10 +2130,6 @@ packages:
   '@sentry/conventions@0.16.0':
     resolution: {integrity: sha512-fO9PLmHdVURcSPUpWCItWAtgKiMwGdJHbovoSEyLplX5sxs2ugvI4CBPTrkkgqhObnZOD0CnWBKDzSVQYBKEyQ==}
     engines: {node: '>=14'}
-
-  '@sentry/core@10.73.0':
-    resolution: {integrity: sha512-FLO1UgH19RyasVpofu612WCOgb2nEH0dZy+R72d7p65XU9i0wxlMKm3+sgfwKmiSJp1Qhilaaxs4Jg6BbiM5HA==}
-    engines: {node: '>=18'}
 
   '@sentry/core@10.75.0':
     resolution: {integrity: sha512-5wDQpQqjJ6RHdPR+z6Q+47XlwoxRKBv0yyB0LKHqL/1azPOQbR+nllyLmmQDcoJpaksuLSmLA1q6hFX7gjDT2w==}
@@ -7126,11 +7122,11 @@ snapshots:
       '@sentry/replay': 10.75.0
       '@sentry/replay-canvas': 10.75.0
 
-  '@sentry/bundler-plugins@10.73.0(rollup@4.63.1)(supports-color@10.2.2)':
+  '@sentry/bundler-plugins@10.75.0(rollup@4.63.1)(supports-color@10.2.2)':
     dependencies:
       '@babel/core': 7.29.7(supports-color@10.2.2)
       '@sentry/cli': 2.58.6(supports-color@10.2.2)
-      '@sentry/core': 10.73.0
+      '@sentry/core': 10.75.0
       dotenv: 17.4.2
       find-up: 5.0.0
       glob: 13.0.6
@@ -7196,10 +7192,6 @@ snapshots:
 
   '@sentry/conventions@0.16.0': {}
 
-  '@sentry/core@10.73.0':
-    dependencies:
-      '@sentry/conventions': 0.16.0
-
   '@sentry/core@10.75.0':
     dependencies:
       '@sentry/conventions': 0.16.0
@@ -7261,7 +7253,7 @@ snapshots:
 
   '@sentry/vite-plugin@5.4.0(rollup@4.63.1)(supports-color@10.2.2)':
     dependencies:
-      '@sentry/bundler-plugins': 10.73.0(rollup@4.63.1)(supports-color@10.2.2)
+      '@sentry/bundler-plugins': 10.75.0(rollup@4.63.1)(supports-color@10.2.2)
     transitivePeerDependencies:
       - encoding
       - rollup
