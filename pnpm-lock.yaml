@@ -107,7 +107,6 @@ settings:
 
 overrides:
   sharp: ^0.35.3
-  wrangler: ^4.129.0
 
 importers:
 
@@ -249,6 +248,9 @@ importers:
       workbox-window:
         specifier: ^7.4.1
         version: 7.4.1
+      wrangler:
+        specifier: ^4.129.0
+        version: 4.129.0(@types/node@26.4.0)
 
 packages:
 
@@ -265,7 +267,7 @@ packages:
     resolution: {integrity: sha512-4aWixXcCsxOGUH/alrJ/a/Nm5pKYBy8vqDj6YDmG+yPSLrx5QptLVCJTGyKPRRWtWG4rExPXrD2ClO7jqpYauw==}
     peerDependencies:
       astro: ^7.2.0
-      wrangler: ^4.129.0
+      wrangler: ^4.125.0
 
   '@astrojs/compiler-binding-darwin-arm64@0.4.0':
     resolution: {integrity: sha512-ZVUwHundaQyFNjE6uoa0usaC0WOCitDCLS/4mdb4rOiJXwVUuKJBMxI5WMzXLWmamsXtK/Z//ifLXvV5Yeh4Hw==}
@@ -2120,7 +2122,7 @@ packages:
     engines: {node: '>=18'}
     peerDependencies:
       '@cloudflare/workers-types': ^4.x || ^5.x
-      wrangler: ^4.129.0
+      wrangler: ^4.x
     peerDependenciesMeta:
       '@cloudflare/workers-types':
         optional: true
