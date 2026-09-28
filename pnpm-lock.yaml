@@ -2476,8 +2476,8 @@ packages:
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
 
-  '@typescript/vfs@1.6.4':
-    resolution: {integrity: sha512-PJFXFS4ZJKiJ9Qiuix6Dz/OwEIqHD7Dme1UwZhTK11vR+5dqW2ACbdndWQexBzCx+CPuMe5WBYQWCsFyGlQLlQ==}
+  '@typescript/vfs@1.6.5':
+    resolution: {integrity: sha512-gobLHQLmvQGJInFk31NvgMd1uYzRXsd8qgnOssyLD055R2QPnw1ubRbBQ4+T+5qC7IQVuYXdvNDE2G7tMDVHgw==}
     peerDependencies:
       typescript: '*'
 
@@ -7526,7 +7526,7 @@ snapshots:
 
   '@types/unist@3.0.3': {}
 
-  '@typescript/vfs@1.6.4(supports-color@8.1.1)(typescript@6.0.3)':
+  '@typescript/vfs@1.6.5(supports-color@8.1.1)(typescript@6.0.3)':
     dependencies:
       debug: 4.4.3(supports-color@8.1.1)
       typescript: 6.0.3
@@ -10870,7 +10870,7 @@ snapshots:
 
   twoslash@0.3.9(supports-color@8.1.1)(typescript@6.0.3):
     dependencies:
-      '@typescript/vfs': 1.6.4(supports-color@8.1.1)(typescript@6.0.3)
+      '@typescript/vfs': 1.6.5(supports-color@8.1.1)(typescript@6.0.3)
       twoslash-protocol: 0.3.9
       typescript: 6.0.3
     transitivePeerDependencies:
