@@ -235,7 +235,7 @@ importers:
         version: 2.0.0(@types/node@26.4.0)
       '@vite-pwa/astro':
         specifier: ^1.2.0
-        version: 1.2.0(@vite-pwa/assets-generator@2.0.0(@types/node@26.4.0))(astro@7.3.5(@astrojs/markdown-remark@7.3.1(supports-color@8.1.1))(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(vite-plugin-pwa@1.3.0(@vite-pwa/assets-generator@2.0.0(@types/node@26.4.0))(supports-color@8.1.1)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(workbox-build@7.4.1(supports-color@8.1.1))(workbox-window@7.4.1))
+        version: 1.2.0(@vite-pwa/assets-generator@2.0.0(@types/node@26.4.0))(astro@7.3.5(@astrojs/markdown-remark@7.3.1(supports-color@8.1.1))(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(vite-plugin-pwa@1.3.0(@vite-pwa/assets-generator@2.0.0(@types/node@26.4.0))(supports-color@8.1.1)(vite@8.3.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(workbox-build@7.4.1(supports-color@8.1.1))(workbox-window@7.4.1))
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
@@ -5216,13 +5216,13 @@ packages:
       '@vite-pwa/assets-generator':
         optional: true
 
-  vite@8.2.2:
-    resolution: {integrity: sha512-cFKLV/PRgAUlIRm5WjMjJ86jrftzpqcgH+Us+DS8mI3CDNiH30Whrz8uHL3+MOLPAgqbMBAqWdAHAphOAM+z/Q==}
+  vite@8.3.2:
+    resolution: {integrity: sha512-SQr1x6W5vVSbROg7vsyXIaxK9b0G7zsT68acdWWRmnBUsgDieLCRG+Rep9WdZgcposvv/GSnr4GUUBqB3vXq6w==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
       '@types/node': ^20.19.0 || >=22.12.0
-      '@vitejs/devtools': ^0.4.0 || ^0.5.0
+      '@vitejs/devtools': ^0.7.1
       esbuild: ^0.27.0 || ^0.28.0
       jiti: '>=1.21.0'
       less: ^4.0.0
@@ -5465,10 +5465,10 @@ snapshots:
     dependencies:
       '@astrojs/internal-helpers': 0.11.0
       '@astrojs/underscore-redirects': 1.0.4
-      '@cloudflare/vite-plugin': 1.54.4(@types/node@26.4.0)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(wrangler@4.147.0(@types/node@26.4.0))
+      '@cloudflare/vite-plugin': 1.54.4(@types/node@26.4.0)(vite@8.3.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(wrangler@4.147.0(@types/node@26.4.0))
       astro: 7.3.5(@astrojs/markdown-remark@7.3.1(supports-color@8.1.1))(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
       piccolore: 0.1.3
-      vite: 8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)
+      vite: 8.3.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)
       wrangler: 4.147.0(@types/node@26.4.0)
     transitivePeerDependencies:
       - '@types/node'
@@ -6393,12 +6393,12 @@ snapshots:
     optionalDependencies:
       workerd: 1.20261001.1
 
-  '@cloudflare/vite-plugin@1.54.4(@types/node@26.4.0)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(wrangler@4.147.0(@types/node@26.4.0))':
+  '@cloudflare/vite-plugin@1.54.4(@types/node@26.4.0)(vite@8.3.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(wrangler@4.147.0(@types/node@26.4.0))':
     dependencies:
       '@cloudflare/unenv-preset': 2.16.1(unenv@2.0.0-rc.24)(workerd@1.20260903.1)
       miniflare: 5.20260903.0-alpha(@types/node@26.4.0)
       unenv: 2.0.0-rc.24
-      vite: 8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)
+      vite: 8.3.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)
       workerd: 1.20260903.1
       wrangler: 4.147.0(@types/node@26.4.0)
       ws: 8.21.0
@@ -7592,10 +7592,10 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
-  '@vite-pwa/astro@1.2.0(@vite-pwa/assets-generator@2.0.0(@types/node@26.4.0))(astro@7.3.5(@astrojs/markdown-remark@7.3.1(supports-color@8.1.1))(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(vite-plugin-pwa@1.3.0(@vite-pwa/assets-generator@2.0.0(@types/node@26.4.0))(supports-color@8.1.1)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(workbox-build@7.4.1(supports-color@8.1.1))(workbox-window@7.4.1))':
+  '@vite-pwa/astro@1.2.0(@vite-pwa/assets-generator@2.0.0(@types/node@26.4.0))(astro@7.3.5(@astrojs/markdown-remark@7.3.1(supports-color@8.1.1))(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2))(vite-plugin-pwa@1.3.0(@vite-pwa/assets-generator@2.0.0(@types/node@26.4.0))(supports-color@8.1.1)(vite@8.3.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(workbox-build@7.4.1(supports-color@8.1.1))(workbox-window@7.4.1))':
     dependencies:
       astro: 7.3.5(@astrojs/markdown-remark@7.3.1(supports-color@8.1.1))(@types/node@26.4.0)(jiti@2.7.0)(terser@5.51.2)
-      vite-plugin-pwa: 1.3.0(@vite-pwa/assets-generator@2.0.0(@types/node@26.4.0))(supports-color@8.1.1)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(workbox-build@7.4.1(supports-color@8.1.1))(workbox-window@7.4.1)
+      vite-plugin-pwa: 1.3.0(@vite-pwa/assets-generator@2.0.0(@types/node@26.4.0))(supports-color@8.1.1)(vite@8.3.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(workbox-build@7.4.1(supports-color@8.1.1))(workbox-window@7.4.1)
     optionalDependencies:
       '@vite-pwa/assets-generator': 2.0.0(@types/node@26.4.0)
 
@@ -7719,8 +7719,8 @@ snapshots:
       unifont: 0.7.5
       unstorage: 1.17.5
       verkit: 0.4.0
-      vite: 8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)
-      vitefu: 1.1.3(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))
+      vite: 8.3.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)
+      vitefu: 1.1.3(vite@8.3.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))
       xxhash-wasm: 1.1.0
       yargs-parser: 22.0.0
       zod: 4.5.4
@@ -11133,12 +11133,12 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.3
 
-  vite-plugin-pwa@1.3.0(@vite-pwa/assets-generator@2.0.0(@types/node@26.4.0))(supports-color@8.1.1)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(workbox-build@7.4.1(supports-color@8.1.1))(workbox-window@7.4.1):
+  vite-plugin-pwa@1.3.0(@vite-pwa/assets-generator@2.0.0(@types/node@26.4.0))(supports-color@8.1.1)(vite@8.3.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2))(workbox-build@7.4.1(supports-color@8.1.1))(workbox-window@7.4.1):
     dependencies:
       debug: 4.4.3(supports-color@8.1.1)
       pretty-bytes: 6.1.1
       tinyglobby: 0.2.17
-      vite: 8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)
+      vite: 8.3.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)
       workbox-build: 7.4.1(supports-color@8.1.1)
       workbox-window: 7.4.1
     optionalDependencies:
@@ -11146,7 +11146,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2):
+  vite@8.3.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2):
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.7
@@ -11160,9 +11160,9 @@ snapshots:
       jiti: 2.7.0
       terser: 5.51.2
 
-  vitefu@1.1.3(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)):
+  vitefu@1.1.3(vite@8.3.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)):
     optionalDependencies:
-      vite: 8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)
+      vite: 8.3.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)
 
   web-namespaces@2.0.1: {}
 
