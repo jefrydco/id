@@ -128,8 +128,8 @@ importers:
         specifier: ^3.7.4
         version: 3.7.4
       '@lucide/astro':
-        specifier: ^1.52.0
-        version: 1.52.0(astro@7.3.8(@astrojs/markdown-remark@7.3.2(supports-color@8.1.1))(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))
+        specifier: ^1.53.0
+        version: 1.53.0(astro@7.3.8(@astrojs/markdown-remark@7.3.2(supports-color@8.1.1))(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))
       '@mathjax/src':
         specifier: ^4.1.3
         version: 4.1.3
@@ -1444,8 +1444,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@lucide/astro@1.52.0':
-    resolution: {integrity: sha512-Vyo3sHYPtLvP5fbvqrMSMutcRzu8tbZXG6xFylrDnpeGVjLisokqKrWKuEm6K4IKwxkTrKK/xyXkVBE0WjxZKg==}
+  '@lucide/astro@1.53.0':
+    resolution: {integrity: sha512-sOK6+ZBIzlFEhGjifBxDYynGu9WrjdhYiOTMgfwdgEVHMPm7o3/YFnfSnWgiQ8uQsQiIWOM98rjJZJkPlLcb9g==}
     peerDependencies:
       astro: ^4 || ^5 || ^6 || ^7
 
@@ -6462,7 +6462,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
 
-  '@lucide/astro@1.52.0(astro@7.3.8(@astrojs/markdown-remark@7.3.2(supports-color@8.1.1))(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))':
+  '@lucide/astro@1.53.0(astro@7.3.8(@astrojs/markdown-remark@7.3.2(supports-color@8.1.1))(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))':
     dependencies:
       astro: 7.3.8(@astrojs/markdown-remark@7.3.2(supports-color@8.1.1))(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)
 
