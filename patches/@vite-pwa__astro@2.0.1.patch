@@ -1,0 +1,15 @@
+diff --git a/dist/prepare-build-context-C9o1bZCU.mjs b/dist/prepare-build-context-C9o1bZCU.mjs
+index 8e8cc44d3c6ebfb8e3458ab15be59ef67f0483e7..d3078c5adc0d987814ecd8fba8754e61889ac569 100644
+--- a/dist/prepare-build-context-C9o1bZCU.mjs
++++ b/dist/prepare-build-context-C9o1bZCU.mjs
+@@ -3,8 +3,8 @@ import { fileURLToPath } from "node:url";
+ import { normalizePath } from "@vite-pwa/workbox-build/utils/resolve-sw-names";
+ // src/prepare-build-context.ts
+ function prepareBuildContext(ctx, resolvedConfig) {
+-	const { base, vite, output, build, outDir, publicDir, root } = ctx.astro.config;
+-	if (output === "server") ctx.outDir = normalizePath(path.resolve(fileURLToPath(build.client)));
++	const { base, vite, output, build, outDir, publicDir, root, adapter } = ctx.astro.config;
++	if (output === "server" || adapter) ctx.outDir = normalizePath(path.resolve(fileURLToPath(build.client)));
+ 	else ctx.outDir = normalizePath(path.resolve(fileURLToPath(outDir)));
+ 	ctx.resolvedOptions.outDir = ctx.outDir;
+ 	if (ctx.outDir.at(-1) === "/") ctx.outDir = ctx.outDir.slice(0, ctx.outDir.length - 1);

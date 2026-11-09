@@ -9,6 +9,9 @@ allowBuilds:
 overrides:
   sharp: "^0.35.3"
 
+patchedDependencies:
+  '@vite-pwa/astro@2.0.1': patches/@vite-pwa__astro@2.0.1.patch
+
 peerDependencyRules:
   allowedVersions:
     '@vite-pwa/astro>astro': "^6.0.0"

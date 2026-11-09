@@ -12,7 +12,7 @@ import {
 	transformerNotationHighlight,
 } from "@shikijs/transformers";
 import { rendererRich, transformerTwoslash } from "@shikijs/twoslash";
-import AstroPWA from "@vite-pwa/astro";
+import { AstroPWAIntegration as AstroPWA } from "@vite-pwa/astro";
 import { defineConfig, svgoOptimizer } from "astro/config";
 import pagefind from "astro-pagefind";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
@@ -193,7 +193,7 @@ export default defineConfig({
 				start_url: "/",
 				scope: "/",
 			},
-			workbox: {
+			generateSW: {
 				navigateFallback: "/",
 				globPatterns: ["**/*.{css,js,html,svg,png,ico,txt,woff2}"],
 				globIgnores: ["_worker.js/**/*"],
@@ -221,7 +221,7 @@ export default defineConfig({
 				"string_decoder",
 				"@mathjax/src",
 				"puppeteer",
-				"workbox-window",
+				"@vite-pwa/workbox-window",
 			],
 		},
 	},
