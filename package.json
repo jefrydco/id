@@ -63,7 +63,7 @@
 		"@vite-pwa/assets-generator": "^2.0.0",
 		"@vite-pwa/astro": "^2.0.1",
 		"@vite-pwa/workbox-swkit": "^8.0.14",
-		"@vite-pwa/workbox-window": "^8.0.14",
+		"@vite-pwa/workbox-window": "^8.0.15",
 		"gray-matter": "^4.0.3",
 		"lefthook": "^2.2.2",
 		"magicast": "^0.5.5",
