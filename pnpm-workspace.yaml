@@ -10,7 +10,7 @@ overrides:
   sharp: "^0.35.3"
 
 patchedDependencies:
-  '@vite-pwa/astro@2.0.1': patches/@vite-pwa__astro@2.0.1.patch
+  '@vite-pwa/astro': patches/@vite-pwa__astro.patch
 
 peerDependencyRules:
   allowedVersions:
